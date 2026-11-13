@@ -1,0 +1,76 @@
+/* The new UI's record-level dialog (components/mc-dialog/McDialog.js) — values from the prototype
+   Contract_Details.html dlgFrame / dlgField / mcDate / dlgTextarea / g1-yesno / ctx-picks. The frame itself is the
+   bulk-ownership `.mcbo` frame (mc-ov*, mc-f, mc-slot, mc-help, mc-err, mc-note, g1-in, ctx-btn); `.mcca` adds what
+   that frame does not have and `.mcbo.mcca` overrides the few frame values these dialogs differ in. */
+
+.mcbo.mcca.mc-ov--confirm { width: min(440px, 92vw); }
+.mcbo.mcca .mc-f > label { line-height: normal; }
+.mcbo.mcca .mc-ov-intro b { font-weight: 700; }
+.mcca .mc-row { display: flex; gap: 6px 16px; flex-wrap: wrap; margin-top: 10px; align-items: flex-start; }
+.mcca .mc-w-m { width: 220px; max-width: 100%; }
+.mcca .mc-w-date { width: 220px; max-width: 100%; }
+.mcca .mc-w-full { flex: 1 1 100%; width: 100%; }
+.mcca .mc-ta { width: 100%; border: 1px solid #d5dbe3; border-radius: 6px; font: inherit; font-size: 12.5px; line-height: 1.5; color: #171b22; padding: 8px 10px; resize: vertical; min-height: 70px; background: #fff; box-shadow: none; }
+.mcca .mc-ta:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+.mcca .mc-ta[aria-invalid="true"], .mcca .fx-in[aria-invalid="true"], .mcca .g1-in[aria-invalid="true"] { border-color: #b42318; box-shadow: 0 0 0 2px #fde8e6; }
+.mcca .mc-note--warn { background: oklch(.965 .055 70); border-color: oklch(.81 .105 64); color: oklch(.35 .12 58); }
+.mcca .mc-note--collide { border-color: #e8b054; background: #fdf6ea; }
+.mcca .mc-note.mc-note--flush { margin: 0 0 12px; }
+.mcca .mc-note b { font-weight: 700; }
+.mcca .mc-err--block { margin: 0 0 10px; }
+.mcca p.mc-help { margin: 0; }
+.mcca .mc-chk { display: flex; align-items: center; gap: 8px; margin: 8px 0 0; font-size: 12px; color: #171b22; cursor: pointer; font-weight: 400; line-height: normal; }
+.mcca .mc-chk input[type="checkbox"] { appearance: auto; -webkit-appearance: checkbox; width: 13px; height: 13px; margin: 3px 3px 3px 5px; flex: 0 0 auto; accent-color: #2563eb; cursor: pointer; }
+.mcca .mc-chk input[type="checkbox"]:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.mcca .mc-reason { margin-top: 10px; }
+.mcca .mc-reason > label { display: block; font-size: 11.5px; font-weight: 500; color: #4a515c; margin: 0 0 4px; line-height: normal; }
+.mcca .ctx-btn.danger { border: 1px solid #b42318; background: #b42318; color: #fff; }
+.mcca .ctx-btn.danger:focus-visible { outline: 2px solid #b42318; outline-offset: 2px; }
+
+/* date field: DD/MM/YYYY text with the calendar button opening the native picker (prototype mcDate) */
+.mcca .fx-datewrap { position: relative; display: flex; align-items: center; width: 100%; }
+.mcca .fx-datewrap .fx-in { height: 32px; width: 100%; border: 1px solid #d5dbe3; border-radius: 6px; font-size: 12.5px; padding: 0 34px 0 10px; background: #fff; color: #171b22; font-variant-numeric: tabular-nums; letter-spacing: .01em; font-family: inherit; line-height: 30px; box-shadow: none; }
+.mcca .fx-datewrap .fx-in:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+.mcca .fx-datewrap .fx-in::placeholder { color: #8a929e; opacity: 1; }
+.mcca .fx-datewrap.fx-na .fx-in { background: #f4f5f7; color: #676e77; cursor: not-allowed; }
+.mcca .fx-cal { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 26px; height: 24px; border: 0; border-radius: 5px; background: transparent; color: #667080; display: grid; place-items: center; cursor: pointer; padding: 0; }
+.mcca .fx-cal:hover { background: #f4f6f8; }
+.mcca .fx-cal:disabled { cursor: not-allowed; opacity: .5; background: transparent; }
+.mcca .fx-native { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; right: 8px; bottom: 0; border: 0; padding: 0; }
+
+/* staff picks (radio list) */
+.mcca .ctx-picks { display: flex; flex-direction: column; gap: 4px; max-height: 232px; overflow: auto; margin-bottom: 12px; }
+.mcca .ctx-pick { display: flex; align-items: center; gap: 9px; height: 36px; padding: 0 11px; border: 1px solid #d5dbe3; border-radius: 7px; background: #fff; font: inherit; font-size: 12.5px; line-height: normal; color: #171b22; cursor: pointer; text-align: left; width: 100%; flex: 0 0 auto; }
+.mcca .ctx-pick:hover { background: #f7f9fc; }
+.mcca .ctx-pick.on { border-color: #cfe0ff; background: #eff4ff; color: #1d4ed8; font-weight: 550; }
+.mcca .ctx-pick[aria-disabled="true"] { cursor: default; color: #676e77; }
+.mcca .ctx-pick[aria-disabled="true"]:hover { background: #fff; }
+.mcca .ctx-pick em { margin-left: auto; font-style: normal; font-size: 10.5px; line-height: normal; color: #676e77; font-weight: 400; }
+.mcca .ctx-pick-dot { width: 13px; height: 13px; border-radius: 999px; border: 1.5px solid #c3cad4; background: #fff; flex: none; box-sizing: content-box; }
+.mcca .ctx-pick.on .ctx-pick-dot { border: 4.5px solid #2563eb; }
+.mcca .ctx-pick:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.mcca .ctx-empty { font-size: 12.5px; line-height: 1.55; color: #3d4552; background: #f6f7f9; border: 1px solid #e3e7ed; border-radius: 8px; padding: 11px 12px; margin: 0 0 14px; }
+.mcbo.mcca .g1-in.mc-reason-in { width: 100%; }
+
+/* two-way choice (prototype g1-yesno: two equal 32px buttons, the pressed one blue) */
+.mcca .g1-yesno { display: flex; gap: 6px; }
+.mcca .g1-yesno button { height: 32px; flex: 1 1 0%; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 12.5px; font-weight: 500; color: #171b22; border: 1px solid #d5dbe3; background: #fff; cursor: pointer; font-family: inherit; padding: 0; line-height: normal; }
+.mcca .g1-yesno button[aria-pressed="true"] { border-color: #2563eb; background: #eef4fd; font-weight: 650; }
+.mcca .g1-yesno button:disabled { cursor: not-allowed; opacity: .6; }
+.mcca .g1-yesno button:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.mcca .mc-ov-body > .mc-help { margin: 0; }
+
+/* short confirmation (prototype .ctx-confirm, role alertdialog): 420px + 20px padding, heading, copy, buttons right */
+.mcca-alert-backdrop { position: fixed; inset: 0; background: rgba(16, 24, 40, .32); z-index: 1010; }
+.mcca-alert { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(460px, 90vw); box-sizing: border-box; background: #fff; border-radius: 10px; box-shadow: 0 16px 38px rgba(16, 24, 40, .24); z-index: 1011; padding: 20px; color: #171b22; text-align: left; font-size: 14px; line-height: 1.5; font-family: var(--sans, "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif); -webkit-font-smoothing: antialiased; outline: 0; }
+.mcca-alert *, .mcca-alert *::before, .mcca-alert *::after { box-sizing: border-box; }
+.mcca-alert h3 { font-size: 16px; font-weight: 700; margin: 0; line-height: normal; color: #171b22; }
+.mcca-alert p { font-size: 12.5px; line-height: 1.5; color: #667080; margin: 10px 0 18px; }
+.mcca-alert .bt { display: flex; justify-content: flex-end; gap: 8px; }
+.mcca-alert .ctx-btn { height: 30px; border-radius: 6px; padding: 0 11px; font-size: 12px; font-weight: 550; cursor: pointer; font-family: inherit; line-height: 28px; white-space: nowrap; }
+.mcca-alert .ctx-btn.secondary { border: 1px solid #d5dbe3; background: #fff; color: #171b22; }
+.mcca-alert .ctx-btn.primary { border: 1px solid #2563eb; background: #2563eb; color: #fff; }
+.mcca-alert .ctx-btn.danger { border: 1px solid #b42318; background: #b42318; color: #fff; }
+.mcca-alert .ctx-btn:disabled, .mcca-alert .ctx-btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
+.mcca-alert .ctx-btn:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.mcca-alert .ctx-btn.danger:focus-visible { outline-color: #b42318; }

@@ -1,0 +1,127 @@
+/* Notification dropdown — new-UI theme (design tokens via src/tokens.css) */
+
+.header-notification-icon {
+    filter: grayscale(1);
+    opacity: .8;
+}
+
+.notification-dropdown .dropdown-toggle::after {
+    content: '';
+    display: none;
+}
+
+.notification-dropdown {
+    margin-right: 0;
+    position: relative;
+}
+
+/* Wrapper for custom trigger — passes through visually, holds dimensions for Popper */
+.notif-custom-toggle {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* ── Menu card ─────────────────────────────────────────────────────────────── */
+.notification-dropdown .dropdown-menu.notif-menu {
+    width: 380px;
+    padding: 0;
+    border: 1px solid var(--line-1);
+    border-radius: 12px;
+    background: var(--bg-surface);
+    box-shadow: 0 4px 20px oklch(0 0 0 / 0.12);
+    overflow: hidden;
+    font-family: var(--sans);
+}
+
+/* ── Header ────────────────────────────────────────────────────────────────── */
+.notif-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line-2);
+}
+
+.notif-head-title {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-1);
+}
+
+.notif-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border: none;
+    background: none;
+    border-radius: 6px;
+    color: var(--text-3);
+    cursor: pointer;
+    transition: background var(--dur-1), color var(--dur-1);
+}
+
+.notif-close:hover {
+    background: var(--bg-hover);
+    color: var(--text-1);
+}
+
+/* Unread count pill on the bell trigger */
+.notification-badge {
+    position: absolute;
+    min-width: 15px;
+    height: 15px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--st-danger);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    line-height: 15px;
+    text-align: center;
+}
+
+/* NT-01: connection failure → retry, never a false empty state */
+.notification-dropdown .notif-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  font-size: 12.5px;
+  color: #667080;
+}
+
+.notification-dropdown .notif-retry {
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: #fff;
+  color: #171b22;
+  font-size: 12px;
+  font-weight: 550;
+  height: 28px;
+  padding: 0 11px;
+  cursor: pointer;
+}
+
+.notification-dropdown .notif-retry:hover {
+  background: #f4f6f8;
+}
+
+/* NT-01: Mark all read is specified but has no endpoint yet — shown honestly as a preview, never a fake handler */
+.notification-dropdown .notif-mark-all {
+  margin-left: auto;
+  margin-right: 8px;
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 550;
+  color: #676e77;
+}
+
+

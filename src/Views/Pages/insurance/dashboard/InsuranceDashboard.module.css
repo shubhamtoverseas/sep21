@@ -1,0 +1,580 @@
+/* Insurance dashboard — page-specific styles. The shared listing vocabulary
+   (pageWrap / pageHeader / filterBar / tableCard / statusTag …) comes from
+   Invoice/InvoiceList.module.css; tones reuse the design-system tag palette. */
+
+.pageWrapIns.pageWrapIns {
+  gap: 0;
+  padding: 6px 4px 16px;
+  max-width: 1760px;
+}
+
+.pageHead.pageHead {
+  padding-bottom: 0;
+  margin-bottom: 14px;
+  border-bottom: 0;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  color: var(--text-1);
+}
+
+.notice {
+  padding: 12px 14px;
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  background: var(--bg-subtle);
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+/* ── Coverage cards ─────────────────────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  background: var(--bg-1, #fff);
+  text-align: left;
+  font-family: var(--sans);
+  cursor: pointer;
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+
+.card:hover {
+  border-color: var(--line-strong);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+.cardOn {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.cardN {
+  font-size: 22px;
+  font-weight: 650;
+  line-height: 1.2;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.cardL {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.cardD {
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+/* ── Work chips ─────────────────────────────────────────────────────────── */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--line-1);
+  border-radius: 999px;
+  background: var(--bg-1, #fff);
+  color: var(--text-2);
+  font-family: var(--sans);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+.chipOn {
+  border-color: var(--accent);
+  color: var(--text-1);
+  font-weight: 600;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+}
+
+.dotRequests { background: oklch(0.45 0.1 195); }   /* teal, as the prototype's Open requests chip (var(--st-teal)) */
+.dotAttention { background: oklch(0.47 0.17 58); }
+
+/* ── Filter bar ─────────────────────────────────────────────────────────── */
+.filterCard.filterCard {
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.filtersRow.filtersRow {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  padding: 10px 14px 12px;
+}
+
+.searchDisabled {
+  opacity: 0.6;
+}
+
+.filterEnd {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.clearBtn {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--sans);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.clearBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text-1);
+}
+
+.menuWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.menuBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-1, #fff);
+  color: var(--text-1);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.menuBtn:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+.menuBtnOn {
+  border-color: var(--accent);
+}
+
+.badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--bg-subtle);
+  color: var(--text-2);
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: var(--z-dropdown);
+  min-width: 220px;
+  padding: 6px;
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  background: var(--bg-1, #fff);
+  box-shadow: 0 8px 24px rgba(19, 19, 22, 0.12);
+}
+
+.menuRight { right: 0; }
+.menuLeft { left: 0; }
+
+.menuLabel {
+  padding: 6px 8px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-1);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menuItem:hover:not([aria-disabled="true"]),
+.menuItem:focus-visible {
+  background: var(--bg-hover);
+  outline: none;
+}
+
+.menuItem[data-danger="true"] {
+  color: var(--st-danger);
+}
+
+.menuItem[aria-disabled="true"] {
+  color: var(--text-3);
+  cursor: default;
+}
+
+.menuCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  color: #fff;
+}
+
+.menuCheckOn {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.menuRadio {
+  border-radius: 999px;
+}
+
+.always {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+/* a second line under a menu item's label: a disabled entry's reason, kept on one line (a reference never splits) */
+.menuItemBody {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.menuSub {
+  margin-top: 2px;
+  font-size: 11px;
+  font-style: italic;
+  white-space: nowrap;
+  color: var(--text-4);
+}
+
+.menuSep {
+  height: 1px;
+  margin: 6px 2px;
+  background: var(--line-1);
+}
+
+/* ── Table ──────────────────────────────────────────────────────────────── */
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+.tableRefreshing {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.table th,
+.table td {
+  white-space: nowrap;
+}
+
+.tableScroll .table thead th {
+  padding: 0 11px !important;
+  background: var(--bg-subtle) !important;
+}
+
+.tableScroll .table tbody td {
+  padding: 8px 11px !important;
+  vertical-align: middle;
+}
+
+.tableScroll .table thead th:first-child,
+.tableScroll .table tbody td:first-child {
+  text-align: left;
+  width: auto;
+  box-shadow: none !important;
+}
+
+/* Insurance Ref carries the divider on its left edge (C2: code order) */
+.dividerLeft {
+  border-left: 1px solid var(--line-1) !important;
+}
+
+.chkCell {
+  width: 38px;
+  text-align: center !important;
+}
+
+.row {
+  cursor: pointer;
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: -2px;
+}
+
+.rowSelected td {
+  background: var(--bg-selected, var(--bg-hover));
+}
+
+.thSortBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.thSortBtn svg { color: var(--text-4); }
+.thSortBtn:hover,
+.thSortActive { color: var(--text-1); }
+.thSortActive svg { color: var(--accent); }
+
+.thSortBtn:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ── Cells ──────────────────────────────────────────────────────────────── */
+.stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.name {
+  display: block;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.code {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #3b3b41;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Contract column: an ordinary text link (register #85), not a code */
+.contractLink {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.contractLink:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+/* Employer Name: the same primary-name treatment as Worker Name, whole bilingual value (register #83) */
+.employer {
+  display: block;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.muted { color: var(--text-4); }
+.soft { font-size: 12.5px; color: var(--text-2); }
+
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.sub {
+  display: block;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11.5px;
+  line-height: 16px;
+  color: var(--text-3);
+}
+
+/* Open requests column (prototype .colw-statusw, 180px): the tags wrap inside it instead of running into Coverage status */
+.workCell {
+  display: block;
+  width: 180px;
+  min-width: 180px;
+  white-space: normal;
+}
+
+.pillLegacy {
+  border-style: dashed !important;
+}
+
+.owner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ownerAvatar {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--line-1);
+  background: var(--bg-subtle);
+  color: var(--text-3);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.stateCell.stateCell {
+  padding: 28px 14px !important;
+  text-align: center;
+  color: var(--text-3);
+}
+
+.stateBody {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.footWarn {
+  font-weight: 600;
+  color: oklch(0.47 0.17 58);
+}
+
+.footSelected {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* ── Disclosed exact value (prototype .tt.disclose / .tip) ─────────────────── */
+.disclose {
+  cursor: default;
+}
+
+.disclose:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 1px;
+  border-radius: 3px;
+}
+
+.tip {
+  position: fixed;
+  z-index: 1400;
+  max-width: 460px;
+  padding: 6px 9px;
+  border-radius: 6px;
+  background: var(--text-1);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: normal;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+
+/* ── Custom range dialog ────────────────────────────────────────────────── */
+.rangeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+  .cards { grid-template-columns: 1fr; }
+}

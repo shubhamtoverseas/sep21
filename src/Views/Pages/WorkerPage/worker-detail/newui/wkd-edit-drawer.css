@@ -1,0 +1,21 @@
+/* Edit drawer chrome (PF:412-478) — owned by WkdEditWorkerDrawer, so every consumer (Worker Details, Employer Details …)
+   gets the same header row (title · "name · code" · ✕), not only the page that loads the Worker header rail sheet
+   (work order 27 Oct: the Edit Employer drawer rendered an unstyled heading and a bare close box). The drawer shell
+   (.ctx-drawer / .ctx-drawer-body / .wkd-edit-drawer-body) stays in worker-details.css, which every host page imports. */
+.wkd .wkd-ew-backdrop { background: rgba(16, 24, 40, .44); }
+.wkd .wkd-ew-panel { box-shadow: 0 12px 40px rgba(16, 24, 40, .22); }
+.wkd .wkd-ew-head {
+  display: flex; align-items: center; gap: 10px; padding: 16px 20px;
+  border-bottom: 1px solid #edf0f4; flex-shrink: 0;
+}
+.wkd .wkd-ew-head > div { flex: 1; min-width: 0; }
+.wkd .wkd-ew-title { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.25; color: #171b22; letter-spacing: -.01em; }
+.wkd .wkd-ew-sub { font-size: 11.5px; color: #676e77; margin-top: 2px; }
+.wkd .wkd-ew-sub .mono { font-family: var(--mono); }
+.wkd .wkd-ew-x {
+  width: 28px; height: 28px; border: 0; border-radius: 6px; background: transparent; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+  color: #667080; font-size: 15px; line-height: 1; flex-shrink: 0;
+}
+.wkd .wkd-ew-x:hover { background: #f4f6f8; color: #171b22; }
+.wkd .wkd-ew-x:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }

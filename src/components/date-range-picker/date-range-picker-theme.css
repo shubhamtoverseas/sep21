@@ -1,0 +1,160 @@
+/* New-UI theme for react-calendar / @wojtekmaj/react-daterange-picker.
+   Scoped under .date-range-container so it outranks the library defaults
+   regardless of stylesheet load order. Uses the global design tokens. */
+
+/* ── Input wrapper (shown while the custom picker is open) ────────────────── */
+.date-range-container .react-daterange-picker__wrapper {
+  border: 1px solid var(--line-1);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+  padding: 2px 6px;
+}
+
+.date-range-container .react-daterange-picker__inputGroup__input {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-1);
+  outline: none;
+}
+
+.date-range-container .react-daterange-picker__inputGroup__input:invalid {
+  background: var(--accent-bg);
+}
+
+.date-range-container .react-daterange-picker__button {
+  color: var(--text-3);
+  padding: 2px 4px;
+}
+
+.date-range-container .react-daterange-picker__button:enabled:hover svg,
+.date-range-container .react-daterange-picker__button:enabled:focus svg {
+  stroke: var(--accent);
+}
+
+/* ── Calendar card ─────────────────────────────────────────────────────────── */
+.date-range-container .react-calendar {
+  width: 300px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px oklch(0 0 0 / 0.12);
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 8px;
+  line-height: 1.2;
+}
+
+/* ── Month navigation (« ‹ July 2026 › ») ─────────────────────────────────── */
+.date-range-container .react-calendar__navigation {
+  height: 32px;
+  margin-bottom: 6px;
+}
+
+.date-range-container .react-calendar__navigation button {
+  min-width: 28px;
+  font-size: 14px;
+  color: var(--text-2);
+  border-radius: 6px;
+  background: none;
+}
+
+.date-range-container .react-calendar__navigation button:enabled:hover,
+.date-range-container .react-calendar__navigation button:enabled:focus {
+  background: var(--bg-hover);
+}
+
+.date-range-container .react-calendar__navigation button:disabled {
+  background: none;
+  color: var(--text-4);
+}
+
+.date-range-container .react-calendar__navigation__label {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+/* ── Weekday header (MON TUE …) — no underline, muted small caps ──────────── */
+.date-range-container .react-calendar__month-view__weekdays {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-4);
+}
+
+.date-range-container .react-calendar__month-view__weekdays__weekday {
+  padding: 6px 0;
+}
+
+.date-range-container .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+  cursor: default;
+}
+
+/* ── Day tiles ─────────────────────────────────────────────────────────────── */
+.date-range-container .react-calendar__tile {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+  padding: 8px 4px;
+  border-radius: 6px;
+}
+
+.date-range-container .react-calendar__tile:enabled:hover,
+.date-range-container .react-calendar__tile:enabled:focus {
+  background: var(--bg-hover);
+}
+
+/* Weekends and neighbouring-month days — muted, never red */
+.date-range-container .react-calendar__month-view__days__day--weekend {
+  color: var(--text-2);
+}
+
+.date-range-container .react-calendar__month-view__days__day--neighboringMonth {
+  color: var(--text-4);
+}
+
+.date-range-container .react-calendar__tile:disabled {
+  background: none;
+  color: var(--text-4);
+  opacity: 0.55;
+}
+
+/* Today — subtle accent ring instead of yellow */
+.date-range-container .react-calendar__tile--now {
+  background: var(--accent-bg);
+  color: var(--accent-fg);
+  font-weight: 600;
+}
+
+/* Selected range — accent ends, tinted middle */
+.date-range-container .react-calendar__tile--active,
+.date-range-container .react-calendar__tile--hasActive,
+.date-range-container .react-calendar__tile--rangeStart,
+.date-range-container .react-calendar__tile--rangeEnd {
+  background: var(--accent) !important;
+  color: #fff !important;
+}
+
+.date-range-container .react-calendar__tile--active.react-calendar__tile--range:not(.react-calendar__tile--rangeStart):not(.react-calendar__tile--rangeEnd) {
+  background: var(--accent-bg) !important;
+  color: var(--accent-fg) !important;
+  border-radius: 0;
+}
+
+.date-range-container .react-calendar__tile--rangeStart {
+  border-radius: 6px 0 0 6px;
+}
+
+.date-range-container .react-calendar__tile--rangeEnd {
+  border-radius: 0 6px 6px 0;
+}
+
+.date-range-container .react-calendar__tile--rangeBothEnds {
+  border-radius: 6px;
+}

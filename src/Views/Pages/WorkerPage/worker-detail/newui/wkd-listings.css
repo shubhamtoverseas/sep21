@@ -1,0 +1,87 @@
+/* ================================================================
+ * Worker Details — Job Offer / Contract / Invoice / Insurance /
+ * Activity listings (21 Sep prototype: worker-details/index.html
+ * joListHTML · joDetailHTML · contractHTML · invoiceHTML ·
+ * insuranceHTML · activityShell, adapter.css, shared/tokens.css).
+ * Scoped under .wkd like worker-details.css. Only NEW rules live
+ * here; existing selectors are edited in place in worker-details.css.
+ * ================================================================ */
+
+/* compact column-role tracks come from src/tokens.css (--mc-colc-*) */
+
+/* ---------- "+ New" bar above every listing card (newRecordTop) ---------- */
+.wkd .mc-newtop {display:flex;justify-content:flex-start;margin:0 0 12px;padding:0;flex:none;position:relative;}
+.wkd .mc-newmenu {position:absolute;top:calc(100% + 6px);left:0;z-index:50;min-width:200px;padding:4px;background:#fff;border:1px solid #e3e7ed;border-radius:8px;box-shadow:0 8px 24px rgba(16,24,40,.12);}
+.wkd .mc-newmenu .hd {padding:6px 8px 4px;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#676e77;}
+.wkd .mc-newmenu button {display:flex;width:100%;padding:7px 8px;border:0;border-radius:6px;background:transparent;font-size:12.5px;color:#171b22;text-align:left;cursor:pointer;}
+.wkd .mc-newmenu button:hover {background:#f4f6f8;}
+.wkd .mc-newbtn {height:28px;display:inline-flex;align-items:center;gap:6px;padding:0 11px;border-radius:6px;background:#2563eb;border:1px solid #2563eb;color:#fff;font-family:inherit;font-size:12px;font-weight:550;cursor:pointer;}
+.wkd .mc-newbtn:hover {background:#1d4ed8;border-color:#1d4ed8;}
+.wkd .mc-newbtn:focus-visible {outline:2px solid #2563eb;outline-offset:2px;}
+/* deferred (no create route delivered on this surface) — visible, disabled, preview-labelled */
+.wkd .mc-newbtn[data-mc-honest="deferred"] {background:#fff;border-color:#e3e7ed;color:#676e77;cursor:not-allowed;}
+.wkd .mc-newbtn[data-mc-honest="deferred"]:hover {background:#fff;border-color:#e3e7ed;}
+
+/* ---------- shared listing bits ---------- */
+/* neutral reference code (v213: no delivered JO Details destination / denied) */
+.wkd .mc-code-plain {display:inline-flex;align-items:center;font-family:var(--mono);font-size:12px;font-weight:400;line-height:18px;color:#3b3b41;white-space:nowrap;}
+.wkd .mc-worker-listing-row .mc-code-link {font-size:12px;font-weight:400;line-height:18px;}
+
+/* ---------- Job Offer listing toolbar (adapter.css filter sizes) ---------- */
+.wkd .wkd-jo-filterbar {display:flex;align-items:center;gap:8px;padding:12px 0;flex-wrap:wrap;}
+.wkd .wkd-jo-search {width:320px;height:36px;box-sizing:border-box;border:1px solid #dfe4ea;border-radius:8px;background:#fff;display:flex;align-items:center;gap:7px;padding:0 11px;}
+.wkd .wkd-jo-search:focus-within {border-color:#2563eb;box-shadow:0 0 0 2px #e8effd;}
+.wkd .wkd-jo-search input {min-width:0;flex:1;height:34px;border:0;outline:0;background:transparent;color:#171b22;font-family:inherit;font-size:12.5px;}
+.wkd .wkd-jo-search input::placeholder {color:#72777f;}
+.wkd .wkd-jo-filterbar .nus-trigger {height:36px;min-height:36px;min-width:180px;box-sizing:border-box;justify-content:space-between;gap:12px;padding:0 12px;border-radius:8px;border-color:#dfe4ea;color:#3d4552;font-size:12.5px;font-weight:500;}
+.wkd .wkd-jo-count {margin-left:auto;font-family:var(--mono);font-size:11.5px;color:#676e77;white-space:nowrap;}
+.wkd .wkd-jo-ivcell {display:flex;flex-direction:column;justify-content:center;min-height:26px;}
+
+/* ---------- stage tags ---------- */
+.wkd .wkd-stage-chip.compact {height:20px;}
+/* interview panel: square status tag with dot, stage colours, no border */
+.wkd .wkd-stage-tag {display:inline-flex;align-items:center;gap:6px;height:20px;padding:0 8px;border-radius:4px;font-size:11px;font-weight:500;white-space:nowrap;}
+.wkd .wkd-stage-chip[data-tone="cyan"], .wkd .wkd-stage-tag[data-tone="cyan"] {background:#e2f4f8;color:#0e7490;}
+.wkd .wkd-stage-chip[data-tone="sky"], .wkd .wkd-stage-tag[data-tone="sky"] {background:#dff0fb;color:#0b6aa8;}
+.wkd .wkd-stage-chip[data-tone="violet"], .wkd .wkd-stage-tag[data-tone="violet"] {background:#f1eafc;color:#6d3fc0;}
+.wkd .wkd-stage-chip[data-tone="amber"], .wkd .wkd-stage-tag[data-tone="amber"] {background:#fcf0da;color:#a05a0a;}
+.wkd .wkd-stage-chip[data-tone="blue"], .wkd .wkd-stage-tag[data-tone="blue"] {background:#e3ecfd;color:#1e51c9;}
+.wkd .wkd-stage-chip[data-tone="green"], .wkd .wkd-stage-tag[data-tone="green"] {background:#e3f4e8;color:#1a7f37;}
+.wkd .wkd-stage-chip[data-tone="neutral"], .wkd .wkd-stage-tag[data-tone="neutral"] {background:#f0f1f3;color:#7d8492;}
+.wkd .wkd-stage-tag-dot {width:6px;height:6px;border-radius:999px;background:currentColor;flex-shrink:0;}
+
+/* ---------- Job Offer detail ---------- */
+/* stacked field label (EMP-015): sentence case, not an eyebrow */
+.wkd .wkd-flbl {font-size:11.5px;font-weight:500;color:#4a515c;}
+.wkd .wkd-jo-cs-lbl {font-size:11.5px;font-weight:500;color:#4a515c;white-space:nowrap;}
+.wkd .wkd-jo-int-ctx {margin-top:10px;}
+.wkd .wkd-jo-endpassed-dot {width:7px;height:7px;border-radius:999px;background:#2563eb;flex-shrink:0;position:relative;top:-1px;}
+
+/* ---------- Activity filters (NewUiSelect inner elements) ---------- */
+.wkd .activity-filters .nus-trigger {height:36px;min-height:36px;min-width:190px;box-sizing:border-box;justify-content:space-between;gap:8px;padding:0 12px;border-radius:8px;border-color:#dfe4ea;color:#3d4552;font-size:12.5px;font-weight:500;}
+.wkd .activity-filters .nus-menu {top:42px;width:180px;min-width:180px;max-width:none;border-color:#e3e7ed;border-radius:8px;box-shadow:0 4px 16px rgba(16,24,40,.14);padding:4px;}
+.wkd .activity-filters .nus-item {height:28px;padding:0 10px;border-radius:5px;font-size:12px;color:#171b22;}
+.wkd .activity-filters .nus-item:hover {background:#f4f6f8;color:#171b22;}
+.wkd .activity-filters .nus-item.on {background:#fff;color:#1d4ed8;font-weight:600;}
+.wkd .activity-filters .nus-item.on:hover {background:#f4f6f8;}
+.wkd .activity-body .ctx-state .ctx-btn {margin-top:6px;}
+
+/* ---------- listing request states (SR-06): loading / error inside the card ---------- */
+.wkd .mc-worker-listing-card .wkd-listing-state {min-height:140px;padding:20px;}
+.wkd .mc-worker-listing-card .wkd-listing-state .ctx-btn {margin-top:6px;}
+/* restricted-access notice above the capped rows (PERM §1.3) */
+.wkd .mc-worker-listing-card .wkd-listing-notice {padding:10px 0 2px;font-size:11.5px;color:#667080;}
+/* a page-N load failure under the rows already shown */
+.wkd .wkd-activity-pageerr {display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 0;font-size:12px;color:#667080;}
+
+/* ---------- end-passed note: Fill Interview Report (proto panelFor noteAct) ---------- */
+.wkd .wkd-jo-endpassed-act {display:inline-block;margin-top:7px;padding:0;border:0;background:transparent;font-family:inherit;font-size:12px;font-weight:550;color:#1d4ed8;cursor:pointer;}
+.wkd .wkd-jo-endpassed-act:hover {text-decoration:underline;}
+
+/* ---------- Activity dot intent colours (proto activityEntryHTML) ---------- */
+.wkd .activity-dot[data-intent="ar"] {background:oklch(0.46 0.16 305);}
+.wkd .activity-dot[data-intent="ver"] {background:#1a7f37;}
+.wkd .activity-dot[data-intent="rev"], .wkd .activity-dot[data-intent="stage"] {background:#2563eb;}
+/* W-36: the entry's Job Offer reference, a link when the API resolved the target id */
+.wkd .activity-event .activity-target {color:#1d4ed8;font-weight:500;text-decoration:none;}
+.wkd .activity-event .activity-target:hover {text-decoration:underline;}

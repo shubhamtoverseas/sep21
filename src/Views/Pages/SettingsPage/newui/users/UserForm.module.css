@@ -1,0 +1,413 @@
+/* Users (new UI) — list cells, Add / Edit User wizard shell, document upload,
+   and the skin applied to the hosted legacy permission panels. */
+
+/* ── List cells ──────────────────────────────────────────────────────────── */
+.userCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.userAvatar {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid var(--line-1);
+  object-fit: cover;
+  background: var(--bg-subtle);
+}
+
+/* ── Wizard tabs ─────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin: -4px 0 18px;
+  box-shadow: inset 0 -1px 0 var(--line-1);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  height: 38px;
+  padding: 0 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-3);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--dur-1), border-color var(--dur-1);
+}
+
+.tab:hover {
+  color: var(--text-1);
+}
+
+.tabActive {
+  color: var(--text-1);
+  border-bottom-color: var(--accent);
+}
+
+.tabStep {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  line-height: 1;
+  padding: 0;
+  border-radius: 999px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-1);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+.tabActive .tabStep {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-on-accent);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
+/* ── Sections ────────────────────────────────────────────────────────────── */
+.section {
+  margin-top: 18px;
+}
+
+.section:first-child {
+  margin-top: 0;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sectionHead > h2 {
+  margin: 0;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.statusRow > label {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-surface);
+}
+
+.phoneRow {
+  display: grid;
+  grid-template-columns: minmax(120px, 44%) minmax(0, 1fr);
+  gap: 8px;
+}
+
+/* Save bar (client permissions preview .foot / Job Offer Edit .foot): sticky at the viewport bottom inside the card, so its text
+   and actions share the card's inner edges (status under the module list, actions on the section cards' edge). The page cancels
+   the shell's bottom padding so the card ends where the scroll ends and the bar never rides up. */
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 9px;
+  min-height: 57px;
+  margin: 20px -20px -20px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid var(--line-1);
+  border-radius: 0 0 calc(var(--radius-3) - 1px) calc(var(--radius-3) - 1px);
+}
+
+/* the permissions canvas runs straight into the bar */
+.footerJoined {
+  margin-top: 0;
+}
+
+.pageWithBar {
+  margin-bottom: -56px; /* AppShell .content padding-bottom */
+}
+
+@media (max-width: 767px) {
+  .pageWithBar {
+    margin-bottom: -48px;
+  }
+}
+
+.footerActions {
+  display: flex;
+  gap: 9px;
+  margin-left: auto;
+}
+
+/* ── Documents ───────────────────────────────────────────────────────────── */
+.docsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.docField {
+  min-width: 240px;
+}
+
+.uploadBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--accent-fg);
+  cursor: pointer;
+}
+
+.uploadBtn:hover {
+  background: var(--accent-bg);
+}
+
+.uploadBtn:focus-within {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+.uploadInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.fileChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 6px 0 8px;
+  border: 1px solid var(--st-success-bd);
+  border-radius: 6px;
+  background: var(--st-success-bg);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+  max-width: 100%;
+}
+
+.fileChipIcon {
+  color: var(--st-success);
+  flex: none;
+}
+
+.fileChipName {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileChipSize {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.fileChipRemove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-3);
+  cursor: pointer;
+}
+
+.fileChipRemove:hover {
+  background: rgba(16, 24, 40, 0.06);
+  color: var(--text-1);
+}
+
+/* ── react-select (single + multi) skinned to the form kit ───────────────── */
+.reactSelect {
+  font-family: var(--sans);
+  font-size: 12.5px;
+}
+
+.reactSelect :global(.nuform__control) {
+  min-height: 32px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  box-shadow: none;
+}
+
+.reactSelect :global(.nuform__control:hover) {
+  border-color: #d5dbe3;
+}
+
+.reactSelect :global(.nuform__control--is-focused) {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+.reactSelect :global(.nuform__control--is-disabled) {
+  background: #f6f7f9;
+}
+
+.reactSelectInvalid :global(.nuform__control) {
+  border-color: #b42318;
+}
+
+.reactSelect :global(.nuform__value-container) {
+  min-height: 30px;
+  padding: 1px 8px;
+  gap: 4px;
+}
+
+.reactSelect :global(.nuform__input-container),
+.reactSelect :global(.nuform__single-value),
+.reactSelect :global(.nuform__placeholder) {
+  margin: 0;
+  padding: 0;
+  line-height: 28px;
+}
+
+.reactSelect :global(.nuform__single-value) {
+  color: var(--text-1);
+}
+
+.reactSelect :global(.nuform__placeholder) {
+  color: #72777f;
+}
+
+.reactSelect :global(.nuform__input) {
+  height: 28px;
+  line-height: 28px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+}
+
+.reactSelect :global(.nuform__multi-value) {
+  margin: 0;
+  border-radius: 4px;
+  background: #eff4fe;
+}
+
+.reactSelect :global(.nuform__multi-value__label) {
+  padding: 2px 4px 2px 7px;
+  font-size: 12px;
+  color: #1d4ed8;
+}
+
+.reactSelect :global(.nuform__multi-value__remove) {
+  color: #1d4ed8;
+  border-radius: 0 4px 4px 0;
+}
+
+.reactSelect :global(.nuform__multi-value__remove:hover) {
+  background: #dbe7fd;
+  color: #1d4ed8;
+}
+
+.reactSelect :global(.nuform__indicator-separator) {
+  display: none;
+}
+
+.reactSelect :global(.nuform__indicators) {
+  min-height: 30px;
+  align-items: center;
+}
+
+.reactSelect :global(.nuform__indicator) {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  color: #6e757f;
+  cursor: pointer;
+}
+
+.reactSelect :global(.nuform__indicator:hover) {
+  color: var(--text-1);
+}
+
+.reactSelect :global(.nuform__indicator svg) {
+  width: 14px;
+  height: 14px;
+}
+
+.reactSelect :global(.nuform__dropdown-indicator) {
+  padding-right: 8px;
+}
+
+.reactSelect :global(.nuform__menu) {
+  margin-top: 4px;
+  border: 1px solid #e3e7ed;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(16, 24, 40, 0.14);
+  overflow: hidden;
+  z-index: var(--z-dropdown);
+}
+
+.reactSelect :global(.nuform__option) {
+  padding: 7px 12px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.reactSelect :global(.nuform__option--is-focused) {
+  background: #f4f6f8;
+}
+
+.reactSelect :global(.nuform__option--is-selected) {
+  background: #eff4ff;
+  color: #1d4ed8;
+}
+
+.checkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  min-height: 32px;
+  align-items: center;
+}

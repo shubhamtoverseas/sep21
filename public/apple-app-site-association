@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "3JQM9C65F7.com.map.maidmatch",
+        "paths": [
+          "/job-stage-details*",
+          "/job-details*",
+          "/share-stage-details*"
+        ]
+      }
+    ]
+  }
+} 

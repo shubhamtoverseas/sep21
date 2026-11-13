@@ -1,0 +1,287 @@
+/* Insurance forms — New Insurance, the request / result / record dialogs, identity pickers and the invoice picker.
+   Tones reuse the design-system tag palette (Invoice/InvoiceList.module.css statusTag). */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.muted { color: var(--text-4); }
+.small { font-size: 11.5px; }
+.code {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.err {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--st-danger);
+}
+
+/* ── Notices ─────────────────────────────────────────────────────────────── */
+.notice {
+  padding: 9px 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+.notice[data-tone="warn"] {
+  border-color: oklch(0.85 0.08 70);
+  background: oklch(0.97 0.03 80);
+  color: oklch(0.42 0.13 58);
+}
+
+.notice[data-tone="danger"] {
+  border-color: oklch(0.85 0.07 25);
+  background: oklch(0.97 0.02 25);
+  color: var(--st-danger);
+}
+
+/* ── Dialog footer: Cancel and the action sit at the right end (Insurance.html dom.js footer, .spacer) ── */
+.spacer { flex: 1; }
+
+/* ── Picker lists (invoices, workers, employers) ─────────────────────────── */
+/* the invoice picker is a titled box (forms.invoicePicker: .fieldset, .fs-title) */
+.pickerSet {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+}
+
+.fsTitle {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.pickerHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.search {
+  width: 260px;
+  max-width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--line-1);
+  border-radius: 7px;
+  font-size: 12.5px;
+}
+
+.search:disabled { background: var(--bg-subtle); }
+
+.picklist {
+  max-height: 340px;
+  overflow-y: auto;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+}
+
+.prow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  cursor: pointer;
+  outline: none;
+}
+
+.prow + .prow { border-top: 1px solid var(--line-1); }
+.prow:hover, .prow:focus-visible { background: var(--bg-hover); }
+.prowOn { background: var(--bg-subtle); }
+.prowIneligible { cursor: default; opacity: 0.75; }
+
+.prowMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.l1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-1);
+}
+
+.l2 {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-3);
+  overflow-wrap: anywhere;
+}
+
+.why {
+  flex-shrink: 0;
+  max-width: 45%;
+  font-size: 12px;
+  color: var(--text-3);
+  text-align: right;
+}
+
+.whyOk { color: oklch(0.49 0.13 150); }
+.whyWarn { color: oklch(0.47 0.17 58); }
+
+.empty {
+  padding: 14px 12px;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+/* the list could not be read: the error and Retry, never the empty-list copy */
+.loadError {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+/* ── New Insurance: one request form (Insurance.html newflow.js; .grid2.request-intake-top, .request-submit-bar,
+   [data-form="new"] .panel max 920px, .kv select max 320px) ── */
+.pageSub {
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.newForm {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.newTop {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.newPanel { max-width: 920px; }
+
+.noticeGap { margin-bottom: 10px; }
+.pickBtn { margin-top: 6px; }
+.kvControl { max-width: 320px; }
+
+/* the reference branch override: its branch and reason under the checkbox */
+.overrideFields {
+  display: grid;
+  gap: 10px;
+  max-width: 320px;
+  margin-top: 8px;
+}
+
+.submitBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 18px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-surface);
+}
+
+.submitActions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+@media (max-width: 1300px) {
+  .newTop { grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr); }
+}
+
+@media (max-width: 1100px) {
+  .newTop { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .submitBar { flex-direction: column; align-items: flex-start; }
+}
+
+.navrow {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 6px 14px;
+  font-size: 12.5px;
+}
+
+.k { color: var(--text-3); }
+.v { min-width: 0; color: var(--text-1); overflow-wrap: anywhere; }
+
+.check {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+/* ── Confirm policy / renewal / additional coverage / changes ───────────── */
+.diff {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.box {
+  padding: 8px 10px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  font-size: 12.5px;
+}
+
+.boxChanged { border-color: oklch(0.85 0.08 70); }
+
+/* Confirm changes: "Change to confirm", the proposed old → new rows */
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+}
+.boxT { font-size: 11px; color: var(--text-3); }
+.boxV { margin-top: 2px; color: var(--text-1); }
+
+.ro {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12.5px;
+}
+
+.roK { color: var(--text-3); font-size: 11.5px; }
+.roV { color: var(--text-1); }

@@ -1,0 +1,49 @@
+.qr-code-page {
+    min-height: 100vh;
+    height: 100%;
+}
+
+.qr-code-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-code-box {
+    background: #fff;
+    box-shadow: 1px 1px 5px #f1f1f1;
+    border-radius: 12px;
+    max-width: 538px;
+}
+
+@media screen and (max-width: 767px) {
+    .qr-code-box {
+        padding: 15px;
+    }
+    .qr-code-box .app-icon {
+        max-width: 50px!important;
+        margin-bottom: 5px!important;
+    }
+    .qr-code-box .app-text {
+        max-width: 130px!important;
+    }
+    .qr-code-box img {
+        max-width: 250px!important;
+    }
+}
+@media print {
+    .qr-code-page {
+        background: white;
+        padding: 0;
+        min-height: auto;
+    }
+    
+    .qr-code-box {
+        box-shadow: none;
+        max-width: 100%;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+}

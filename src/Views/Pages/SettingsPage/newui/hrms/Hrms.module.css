@@ -1,0 +1,506 @@
+/* HRMS (new UI) — leaves, my reportees, time requests, my profile.
+   Page/list chrome comes from Invoice/InvoiceList.module.css and
+   settings-newui.module.css; only HRMS-specific pieces live here. */
+
+/* ── Filter bar pieces ───────────────────────────────────────────────────── */
+.dateRange {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dateRangeLabel {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #667080;
+}
+
+.dateRangeInput {
+  width: 150px;
+}
+
+.filterCheck {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+}
+
+.filterSpacer {
+  flex: 1;
+}
+
+/* Bulk action strip above the pending reportee leaves table */
+.bulkBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--accent-bg);
+  border-radius: 8px;
+  background: var(--accent-bg);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.bulkBarActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Cells ───────────────────────────────────────────────────────────────── */
+.dateCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.rowLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--accent-fg);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.rowLink:hover {
+  text-decoration: underline;
+}
+
+.rowLink:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.rowSelect {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* ── Apply leave ─────────────────────────────────────────────────────────── */
+.balanceCard {
+  margin-bottom: 18px;
+}
+
+.balanceTotal {
+  margin: 0 0 10px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.balanceTotal strong {
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.halfDayField {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+}
+
+/* Radio groups sit beside a labelled date field — offset by the label height */
+.halfDayAlign {
+  padding-top: 20px;
+}
+
+.remainingCard {
+  align-self: end;
+  padding: 10px 12px 12px;
+}
+
+.remainingCard > h2 {
+  margin-bottom: 8px;
+}
+
+.withdrawRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+/* ── Time approval / view modals ─────────────────────────────────────────── */
+.infoBar {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.infoBar strong {
+  font-weight: 600;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+  margin-bottom: 4px;
+}
+
+.detailFull {
+  grid-column: 1 / -1;
+}
+
+.detailLabel {
+  margin: 0 0 3px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.detailValue {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text-1);
+  overflow-wrap: anywhere;
+}
+
+.detailValueMuted {
+  color: var(--text-3);
+}
+
+.modalTitleRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modalFootSpacer {
+  flex: 1;
+}
+
+/* ── Time credit sub-view ────────────────────────────────────────────────── */
+.subHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.subHeadActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── My profile ──────────────────────────────────────────────────────────── */
+.profileHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  margin-bottom: 16px;
+}
+
+.avatarWrap {
+  position: relative;
+  flex: none;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  border: 1px solid var(--line-1);
+  object-fit: cover;
+  background: var(--bg-subtle);
+}
+
+.avatarEdit {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 2px solid var(--bg-surface);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  cursor: pointer;
+}
+
+.avatarEdit:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 1px;
+}
+
+.profileIdentity {
+  min-width: 0;
+  flex: 1;
+}
+
+.profileName {
+  margin: 0 0 2px;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+.profileRole {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.profileStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+
+.profileStat {
+  min-width: 120px;
+  max-width: 260px;
+}
+
+.profileStatLabel {
+  margin: 0 0 3px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.profileStatValue {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.sectionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.sectionCard {
+  padding: 14px 16px 16px;
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  background: var(--bg-surface);
+}
+
+.sectionCardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sectionCardHead > h2 {
+  margin: 0;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 36px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.infoRow:last-child {
+  border-bottom: 0;
+}
+
+.infoLabel {
+  flex: none;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.infoValue {
+  min-width: 0;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.infoEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  width: min(100%, 260px);
+}
+
+.infoError {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: #b42318;
+}
+
+.fileLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 260px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--accent-fg);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileLink:hover {
+  text-decoration: underline;
+}
+
+.uploadLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--accent-fg);
+  cursor: pointer;
+}
+
+.uploadInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.securityCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  background: var(--bg-surface);
+}
+
+.securityCard + .securityCard {
+  margin-top: 12px;
+}
+
+.securityText {
+  min-width: 0;
+}
+
+.securityTitle {
+  margin: 0 0 2px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.securityHint {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+@media (max-width: 900px) {
+  .sectionGrid,
+  .detailGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* a readable section title where the 10.5px eyebrow was too small (Past Time Credit — user, 6 Nov) */
+.sectionTitle {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+/* Raise a time request: the Duration hours + minutes read as ONE joined control — selects touch, outer corners
+   only keep the radius (user, 6 Nov) */
+.durationPair {
+  display: flex;
+  gap: 0;
+}
+
+.durationPair > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.durationPair > :first-child select {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.durationPair > :last-child select {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px; /* the shared border paints once */
+}
+
+.durationPair > :last-child select:focus {
+  position: relative;
+  z-index: 1; /* the focus ring clears the neighbour's edge */
+}

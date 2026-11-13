@@ -1,0 +1,103 @@
+.maidmatch-switcher {
+  transform: scale(1.2);
+  width: fit-content; 
+  max-width: 100%;    
+  margin: 0 auto;     
+}
+
+ .maidmatch-switcher .custom-control-input {
+    width: 4px;
+}
+
+.maidmatch-switcher .custom-switch .custom-control-label::before {
+    left: 0 !important;
+    width: 2.3rem !important;
+    height: 1.2rem !important;
+}
+
+.maidmatch-switcher .custom-switch .custom-control-label::after {
+    left: 0.12rem!important;
+    top: 0.369rem;
+    width: 0.98rem;
+    height: 0.98rem;
+}
+
+.maidmatch-switcher .custom-switch .custom-control-input:checked~.custom-control-label::after {
+    left: 1rem!important;
+}
+
+.maidmatch-switcher .custom-switch .custom-control-input:checked~.custom-control-label::after {
+    transform: translateX(0.2rem);
+}
+
+.maidmatch-switcher .text-y {
+    padding-left: 2.5rem;
+}
+
+.maidmatch-switcher .text-y, 
+.maidmatch-switcher .text-n {
+    position: relative;
+    top: 2px;
+}
+
+.maidmatch-switch {
+    padding: 12px 22px 12px 8px!important;
+    border-radius: 16px;
+    border: 1px solid #00000033;
+    width: max-content;
+}
+.maidmatch-switch  label{
+    font-family: 'Roboto';
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 16.41px;
+    letter-spacing: 0.0025em;
+}
+.maidmatch-switch .custom-control-label::before {
+    width: 3rem!important;
+    height: 1.5rem;
+    border-radius: 16px!important;
+    top: 0.05rem !important;
+}
+.maidmatch-switch .custom-switch .custom-control-input:checked~.custom-control-label::after{
+    left: -1.32rem!important;
+}
+.maidmatch-switch .custom-control-label::after {
+    left: -2rem!important;
+    width: 1.2rem!important;
+    height: 1.2rem!important;
+    top: 3.2px!important;
+    border-radius: 100%!important;
+}
+.maidmarch-switch2{
+    width: 216px;
+    height: 68px;
+    padding: 20px 40px 20px 40px;
+    border-radius: 16px;
+    border: 1px solid #00000033
+}
+.maidmarch-switch2 .custom-control-label::before{
+    width: 48px!important;
+    height: 25px!important;
+    border-radius: 16px!important;
+    box-shadow: none!important;
+}
+.maidmarch-switch2 .custom-control-label::after{
+    width: 20px!important;
+    height: 20px!important;
+    border-radius: 100%!important;
+    top: 6.25px!important;
+    left: -34px!important;
+}
+.maidmarch-switch2 .custom-switch .custom-control-input:checked~.custom-control-label::after{
+    left: -22px!important;
+}
+
+@media screen and (max-width: 767px) {
+    .maidmarch-switch2 {
+        width: 176px;
+        height: 48px;
+        padding: 7px 20px;
+        line-height: 30px;
+    }
+}

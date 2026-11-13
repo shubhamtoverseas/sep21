@@ -1,0 +1,64 @@
+.selected-custom-chip {
+    background-color: #E3F2FD !important;
+    border-radius: 20px !important;
+    color: #1976D2 !important;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.custom-input-btn {
+    height: 44px;
+    border-radius: 4px;
+    overflow-y: hidden;
+    max-width: 300px;
+    overflow-x: auto;
+    
+    scrollbar-width: none;  
+    scrollbar-color: #888 transparent; 
+}
+
+.custom-input-btn::-webkit-scrollbar {
+    height: 0; 
+    width: 0;  
+}
+
+.custom-input-btn:hover::-webkit-scrollbar,
+.custom-input-btn:active::-webkit-scrollbar {
+    height: 0.5px;
+    width: 0.5px;
+}
+
+.custom-input-btn::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+.custom-input-btn::-webkit-scrollbar-thumb {
+    background: #888;  
+    border-radius: 0.5px; 
+}
+
+.arrow-down-wrapper {
+    position: sticky;
+    right: -8px;
+    padding: 4px 0;
+    background: #fff;
+}
+
+.custom-drop-menu {
+    margin: 0 !important;
+    cursor: pointer;
+}
+
+.p7-15 {
+    padding: 7px 15px;
+}
+
+.custom-drop-menu.active {
+    background-color: #DEEBFF;
+}
+
+.custom-drop-menu:hover {
+    background-color: #DEEBFF;
+}

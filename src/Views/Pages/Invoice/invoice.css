@@ -1,0 +1,116 @@
+  .tableBox .filterRow {
+    border-top: 1px solid rgba(0, 0, 0, 0.10);
+  }
+
+  .entries-bar p {
+    font-weight: 500;
+  }
+
+  .payment-type-wrapper {
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+    max-height: 86px;
+  }
+
+  .payment-type-wrapper input {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  .payment-type-wrapper.border-blue {
+    border: 3px solid #1E88E5;
+  }
+
+  .total-container {
+    border-radius: 8px;
+    border: 0px solid rgba(0, 0, 0, 0.20);
+    background: #fff;
+    max-height: 86px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .table-custom {
+    background-color: #e5faea;
+  }
+
+  .text-custom {
+    color: #000;
+  }
+
+  .non-refundable {
+    padding-left: 95px;
+    font-weight: 900;
+  }
+
+  .text-disabled {
+    background-color: #D3D3D3;
+  }
+
+  .remaining-amount {
+    padding-left: 290px;
+    font-weight: 900;
+  }
+
+  .block-button {
+    margin-top: 128px;
+  }
+
+  .text-block-right {
+    text-align: right;
+  }
+
+  .text-blur {
+    color: #A9A9A9;
+  }
+
+/* ── Invoice filter: Columns button ──────────────────────────────────────── */
+#ML_root {
+  height: 32px !important;
+  font-size: 13px !important;
+  padding: 0 12px !important;
+  border: 1px solid var(--line-1) !important;
+  border-radius: var(--radius-2) !important;
+  background: var(--bg-surface) !important;
+  color: var(--text-1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  font-family: var(--sans) !important;
+}
+
+#ML_root:hover {
+  border-color: var(--line-strong) !important;
+  background: var(--bg-hover) !important;
+  color: var(--text-1) !important;
+}
+
+.ml-columns-count {
+  display: inline-block;
+  background: var(--bg-subtle);
+  border-radius: 4px;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  line-height: 18px;
+  font-family: var(--mono);
+}
+
+  .border-dashed {
+    border-top: 2px dashed #dee2e6 !important;
+    border-color: #A0A0A0 !important;
+  }
+
+  .border-light {
+    border-top: 1px solid #dee2e6 !important;
+    border-color: #A0A0A0 !important;
+  }

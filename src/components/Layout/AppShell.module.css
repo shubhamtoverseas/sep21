@@ -1,0 +1,69 @@
+.shell {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-height: 100vh;
+  background: var(--bg-canvas);
+  font-family: var(--sans);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: var(--space-4) 24px 56px;
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .shell {
+    grid-template-columns: 0 minmax(0, 1fr);
+  }
+
+  .content {
+    padding: var(--space-4) var(--space-4) 48px;
+  }
+}
+
+/* Reset old layout classes that would otherwise double-pad inside AppShell */
+.content :global(.centerContent),
+.content :global(.greyBg.centerContent) {
+  padding: 0 !important;
+  min-height: unset !important;
+}
+
+.content :global(.greyBg) {
+  background: transparent !important;
+}
+
+.content :global(.coverpage_space) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Invoice DETAIL pages (new UI) render edge-to-edge — drop the main content
+   padding. Scoped to .detail-header so the add-contract / standalone CREATE
+   flows (also .invd) keep their normal page padding. */
+.content:has(:global(.detail-header)) {
+  padding: 0;
+}
+
+.content:has(:global(.gcp-page)) {
+  padding: 0;
+}
+
+/* Contract Details (prototype Contract_Details.html): rail + record header run edge-to-edge */
+.content:has(:global(.mcdt)) {
+  padding: 0;
+}
+
+/* Print (Ctrl+P): the page content alone, full width — the rail and topbar are hidden in their own modules */
+@media print {
+  .shell { display: block; min-height: 0; background: #fff; }
+  .main { min-height: 0; }
+  .content { padding: 0 !important; }
+}

@@ -1,0 +1,27 @@
+/* Manual Update Leaves (new UI) — page-specific layout only. */
+.employeeRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.employeeField {
+  flex: 0 1 360px;
+  min-width: 240px;
+}
+
+.balances {
+  margin-top: 14px;
+}
+
+.section {
+  margin-top: 18px;
+}
+
+.eligibleChip {
+  height: 32px;
+}
+
+.comment {
+  max-width: 640px;
+}

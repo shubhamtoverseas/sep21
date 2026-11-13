@@ -1,0 +1,30 @@
+/* ================================================================
+ * Worker Details — header, context rail, Edit Worker drawer chrome,
+ * Send Template additions (prototype v28/v29/v211). New rules only;
+ * everything scoped under .wkd.
+ * ================================================================ */
+
+/* header: photo avatar carries the 1px border (P:1513) */
+.wkd .wkd-avatar-photo { border: 1px solid #e3e7ed; }
+
+/* owners cluster — colour by role (P28:310): onboarding staff, partner agency, unassigned onboarding */
+.wkd .wkd-owner-av.tone-onb { background: #e7e0f6; color: #5b4a9e; }
+.wkd .wkd-owner-av.tone-partner { background: #f6e7d7; color: #8a5a1f; }
+.wkd .wkd-owner-av.tone-int { background: #d9f0ec; color: #1f6b5e; }
+.wkd .wkd-owner-av.tone-empty { background: #eceff3; color: #667080; }
+.wkd .wkd-owner-person + .wkd-owner-person { margin-top: 9px; }
+
+/* header buttons: Edit (gap 6 / 0 13) and the open state of Actions (P:1596) */
+.wkd .wkd-btn-outline.wkd-btn-edit { gap: 6px; padding: 0 13px; }
+.wkd .wkd-btn-outline[aria-expanded="true"] { background: #f4f6f8; border-color: #b9c2ce; }
+
+/* rail segment: the inactive side carries the mode dot — amber on Context while chatting (P:1459) */
+.wkd .ctx-dot-amber { background: #d97706; }
+
+/* denied / invalid entry card (P:179 .invalid-entry>div) */
+.wkd .wkd-invalid-entry > div {
+  max-width: 440px; text-align: center; background: #fff;
+  border: 1px solid #e3e7ed; border-radius: 10px; padding: 28px;
+}
+
+/* Edit drawer chrome (.wkd-ew-head / -title / -sub / -x) lives in wkd-edit-drawer.css, imported by WkdEditWorkerDrawer itself */

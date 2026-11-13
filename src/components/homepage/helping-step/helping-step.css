@@ -1,0 +1,9 @@
+.step-title1 {
+    color: var(--Gray-900, #061C3D);
+    text-align: center;
+    font-family: "Mabry Pro";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+}

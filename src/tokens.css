@@ -1,0 +1,151 @@
+/* Design tokens — imported first in index.js so they are available globally */
+:root {
+  --bg-canvas:   oklch(0.98 0.004 250);
+  --bg-surface:  #ffffff;
+  --bg-subtle:   oklch(0.97 0.005 250);
+  --bg-sunken:   oklch(0.955 0.006 250);
+  --bg-hover:    oklch(0.965 0.007 250);
+  --bg-selected: oklch(0.965 0.025 258);
+
+  --text-1: #131316;
+  --text-2: #3b3b41;
+  --text-3: #6a6a72;
+  --text-4: #676e77;
+  --text-on-accent: #ffffff;
+
+  --line-1:      oklch(0.91 0.004 250);
+  --line-2:      oklch(0.945 0.004 250);
+  --line-strong: oklch(0.86 0.005 250);
+
+  --accent:        oklch(0.52 0.17 258);
+  --accent-hover:  oklch(0.46 0.17 258);
+  --accent-fg:     oklch(0.42 0.18 258);
+  --accent-bg:     oklch(0.965 0.025 258);
+  --accent-ring:   oklch(0.86 0.06 258);
+  --code-fg:       oklch(0.38 0.19 258);
+
+  --st-success:     oklch(0.55 0.13 150);
+  --st-success-bg:  oklch(0.965 0.03 150);
+  --st-success-bd:  oklch(0.85 0.05 150);
+  --st-warning:     oklch(0.55 0.13 65);
+  --st-warning-bg:  oklch(0.965 0.04 65);
+  --st-warning-bd:  oklch(0.83 0.07 65);
+  --st-danger:      oklch(0.52 0.16 28);
+  --st-danger-bg:   oklch(0.965 0.03 28);
+  --st-danger-bd:   oklch(0.85 0.05 28);
+  --st-info:        oklch(0.5 0.13 230);
+  --st-info-bg:     oklch(0.965 0.03 230);
+  --st-info-bd:     oklch(0.84 0.05 230);
+  --st-neutral:     oklch(0.5 0.01 60);
+  --st-neutral-bg:  oklch(0.965 0.006 60);
+  --st-neutral-bd:  oklch(0.86 0.012 60);
+  --st-attention:   oklch(0.5 0.16 305);
+  --st-attention-bg:oklch(0.965 0.035 305);
+  --st-attention-bd:oklch(0.84 0.07 305);
+
+  /* channel brand colours (WhatsApp, LINE) */
+  --wa:         #1fa855;
+  --line-brand: #06c755;
+
+  /* search-hit highlight (Global Chat search in conversation) */
+  --search-hit-bg: #ffd666;
+
+  --tag-azure:    oklch(0.55 0.12 240);
+  --tag-azure-bg: oklch(0.965 0.025 240);
+  --tag-azure-bd: oklch(0.85 0.05 240);
+
+  --stage-invited:      oklch(0.5 0.13 230);
+  --stage-invited-bg:   oklch(0.965 0.03 230);
+  --stage-applied:      oklch(0.5 0.14 305);
+  --stage-applied-bg:   oklch(0.965 0.035 305);
+  --stage-matched:      oklch(0.5 0.12 160);
+  --stage-matched-bg:   oklch(0.965 0.03 160);
+  --stage-pending:      oklch(0.55 0.13 65);
+  --stage-pending-bg:   oklch(0.965 0.04 65);
+  --stage-upcoming:     oklch(0.52 0.17 258);
+  --stage-upcoming-bg:  oklch(0.965 0.025 258);
+  --stage-completed:    oklch(0.55 0.13 150);
+  --stage-completed-bg: oklch(0.965 0.03 150);
+  --stage-offer:        oklch(0.50 0.15 290);
+  --stage-offer-bg:     oklch(0.965 0.03 290);
+  --stage-cancelled:    oklch(0.55 0.01 60);
+  --stage-cancelled-bg: oklch(0.965 0.006 60);
+
+  --ico-miss: oklch(0.62 0.17 355);
+
+  --sans: "Hanken Grotesk", "Helvetica Neue", "PingFang HK", "PingFang TC", "Microsoft JhengHei", "Noto Sans HK", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* the names the new-UI stylesheets read (handoff tokens.css) */
+  --mc-sans: var(--sans);
+  --mc-mono: var(--mono);
+
+  /* Listing column tracks (CURRENT_REQUIREMENTS SR-06): eight semantic roles, min / preferred / max.
+     Full-page profile (--mc-col-*) for the six operational dashboards, compact profile (--mc-colc-*) for
+     record panels, applicant lists, Chat and Suggest. 11px cell inset, 22px adjacent-grid gap. */
+  --mc-col-gap: 22px;
+  --mc-col-name-min: 200px;   --mc-col-name: 208px;   --mc-col-name-max: 240px;
+  --mc-col-ref-min: 140px;    --mc-col-ref: 140px;    --mc-col-ref-max: 160px;
+  --mc-col-date-min: 112px;   --mc-col-date: 112px;   --mc-col-date-max: 128px;
+  --mc-col-datex-min: 150px;  --mc-col-datex: 180px;  --mc-col-datex-max: 200px;
+  --mc-col-status-min: 140px; --mc-col-status: 152px; --mc-col-status-max: 260px;
+  --mc-col-stage: 226px;
+  --mc-col-amount-min: 88px;  --mc-col-amount: 120px; --mc-col-amount-max: 140px;
+  --mc-col-staff-min: 132px;  --mc-col-staff: 132px;  --mc-col-staff-max: 150px;
+  --mc-col-select-min: 38px;  --mc-col-select: 38px;  --mc-col-select-max: 56px;
+  --mc-colc-name-min: 150px;   --mc-colc-name: 176px;   --mc-colc-name-max: 210px;
+  --mc-colc-ref-min: 104px;    --mc-colc-ref: 124px;    --mc-colc-ref-max: 144px;
+  --mc-colc-date-min: 100px;   --mc-colc-date: 100px;   --mc-colc-date-max: 116px;
+  --mc-colc-datex-min: 120px;  --mc-colc-datex: 150px;  --mc-colc-datex-max: 176px;
+  --mc-colc-status-min: 112px; --mc-colc-status: 136px; --mc-colc-status-max: 190px;
+  --mc-colc-amount-min: 72px;  --mc-colc-amount: 104px; --mc-colc-amount-max: 124px;
+  --mc-colc-staff-min: 96px;   --mc-colc-staff: 116px;  --mc-colc-staff-max: 136px;
+  --mc-colc-select-min: 32px;  --mc-colc-select: 40px;  --mc-colc-select-max: 56px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius-1: 3px;
+  --radius-2: 6px;
+  --radius-3: 8px;
+  --radius-pill: 999px;
+  --radius-dialog: 12px;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,.04);
+  --shadow-2: 0 4px 12px rgba(0,0,0,.06);
+  --shadow-3: 0 12px 32px rgba(0,0,0,.10);
+
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --dur-1: 80ms;
+  --dur-2: 160ms;
+  --dur-3: 240ms;
+  --dur-4: 360ms;
+
+  --z-base:     1;
+  --z-sticky:   10;
+  --z-dropdown: 100;
+  --z-overlay:  1000;
+  --z-toast:    2000;
+
+  --rail-w:    240px;
+  --rail-w-collapsed: 52px;
+  --topbar-h:  48px;
+  /* the app shell's sticky topbar (Topbar.module.css); pages keep what stays in view below it */
+  --shell-topbar-h: 52px;
+  --row-h:     32px;
+
+  /* Global Chat workspace columns: conversation list, right panel (summary / deep views) */
+  --list-w:          320px;
+  --panel-summary-w: 344px;
+  --panel-deep-w:    650px;
+}
+@media (min-width: 1512px) {
+  :root { --panel-deep-w: 665px; }
+}

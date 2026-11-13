@@ -1,0 +1,57 @@
+.chat-box-resizer {
+  position: absolute;
+  background: transparent;
+  z-index: 10;
+}
+
+/* Corners */
+.chat-box-resizer.top-left {
+  top: -5px; left: -5px;
+  width: 10px; height: 10px;
+  cursor: nwse-resize;
+}
+.chat-box-resizer.top-right {
+  top: -5px; right: -5px;
+  width: 10px; height: 10px;
+  cursor: nesw-resize;
+}
+.chat-box-resizer.bottom-left {
+  bottom: -5px; left: -5px;
+  width: 10px; height: 10px;
+  cursor: nesw-resize;
+}
+.chat-box-resizer.bottom-right {
+  bottom: -5px; right: -5px;
+  width: 10px; height: 10px;
+  cursor: nwse-resize;
+}
+
+/* Edges */
+.chat-box-resizer.top,
+.chat-box-resizer.bottom {
+  height: 6px;
+  width: 100%;
+  left: 0;
+}
+.chat-box-resizer.top {
+  top: -3px;
+  cursor: ns-resize;
+}
+.chat-box-resizer.bottom {
+  bottom: -3px;
+  cursor: ns-resize;
+} 
+.chat-box-resizer.left,
+.chat-box-resizer.right {
+  width: 6px;
+  height: 100%;
+  top: 0;
+}
+.chat-box-resizer.left {
+  left: -3px;
+  cursor: ew-resize;
+}
+.chat-box-resizer.right {
+  right: -3px;
+  cursor: ew-resize;
+}

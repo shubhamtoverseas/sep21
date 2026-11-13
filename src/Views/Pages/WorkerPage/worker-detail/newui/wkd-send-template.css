@@ -1,0 +1,107 @@
+/* ================================================================
+ * SEND TEMPLATE MODAL — exact v18.6 (ovTemplateDetailsHTML): card r12,
+ * recipient card + channel chip, language radios, template select,
+ * editable body, Cancel / Send. Self-contained (no .wkd ancestor
+ * needed) so Worker Details and the Job Offer record share it.
+ * ================================================================ */
+.wkd-stm-backdrop {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, .4); z-index: 1100;
+  display: flex; align-items: center; justify-content: center;
+}
+.wkd-stm-card {
+  width: 560px; max-width: 94vw; max-height: 90vh; overflow-y: auto; background: #fff; border-radius: 12px;
+  box-shadow: 0 24px 48px rgba(16, 24, 40, .24); font-family: var(--sans);
+  color: #171b22; font-size: 14px; line-height: 1.5; text-align: left; -webkit-font-smoothing: antialiased;
+}
+.wkd-stm-head { display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-bottom: 1px solid #edf0f4; }
+.wkd-stm-head .grow { flex: 1; }
+.wkd-stm-title { font-size: 15px; font-weight: 600; color: #171b22; }
+.wkd-stm-x {
+  width: 26px; height: 26px; border-radius: 6px; border: 0; background: transparent;
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.wkd-stm-x:hover { background: #f4f6f8; }
+.wkd-stm-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+
+/* recipient card */
+.wkd-stm-recipient {
+  border: 1px solid #e3e7ed; border-radius: 8px; padding: 10px 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.wkd-stm-recipient.self { border-color: #c8d9f7; background: #f7faff; }
+.wkd-stm-recipient .av {
+  width: 30px; height: 30px; border-radius: 8px; background: #eceff3; color: #667080;
+  display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 600;
+  flex-shrink: 0;
+}
+.wkd-stm-recipient.self .av { background: #dbe9f8; color: #33608f; }
+.wkd-stm-recipient .who { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.wkd-stm-recipient .nm { font-size: 12.5px; font-weight: 550; color: #171b22; }
+.wkd-stm-recipient .sub { font-size: 11.5px; color: #6e757f; margin-top: 1px; }
+.wkd-stm-recipient .sub .mono { font-family: var(--mono); }
+
+/* channel chip: 26px bordered select */
+.wkd-stm-channel { position: relative; display: inline-flex; align-items: center; flex-shrink: 0; }
+.wkd-stm-channel select {
+  width: 132px; min-height: 30px; padding: 0 28px 0 10px; border: 1px solid #e3e7ed; border-radius: 6px;
+  font-size: 11.5px; color: #3d4552; background: #fff; appearance: none; cursor: pointer;
+  font-family: var(--sans);
+}
+.wkd-stm-channel select:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+.wkd-stm-channel svg { position: absolute; right: 8px; pointer-events: none; }
+
+/* labels + selects */
+.wkd-stm-lbl { font-size: 11.5px; font-weight: 500; color: #667080; margin-bottom: 5px; }
+.wkd-stm-select { position: relative; display: flex; align-items: center; }
+.wkd-stm-select select {
+  width: 100%; min-height: 34px; padding: 0 30px 0 10px; border: 1px solid #d5dbe3; border-radius: 6px;
+  font-size: 12.5px; color: #171b22; background: #fff; appearance: none; cursor: pointer;
+  font-family: var(--sans);
+}
+.wkd-stm-select select:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+.wkd-stm-select svg { position: absolute; right: 10px; pointer-events: none; }
+.wkd-stm-ctx { font-size: 11.5px; color: #6e757f; margin-top: 5px; }
+
+.wkd-stm-note { font-size: 11.5px; color: #6e757f; }
+
+/* footer */
+.wkd-stm-foot {
+  padding: 12px 20px; background: #fafbfc; border-top: 1px solid #edf0f4;
+  display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap;
+}
+.wkd-stm-btn {
+  height: 32px; display: inline-flex; align-items: center; padding: 0 14px;
+  border-radius: 7px; background: #fff; border: 1px solid #d5dbe3; color: #171b22;
+  font-size: 12.5px; font-weight: 550; cursor: pointer; font-family: var(--sans);
+}
+.wkd-stm-btn:hover:not(:disabled) { background: #f7f8fa; }
+.wkd-stm-btn:disabled { opacity: .55; cursor: default; }
+.wkd-stm-btn.primary { padding: 0 16px; background: #2563eb; border: 0; color: #fff; }
+.wkd-stm-btn.primary:hover:not(:disabled) { opacity: .92; background: #2563eb; }
+
+/* Send Template (P:4681-4747, P28:682-720): language radios, fallback callout, editable body, notes */
+.wkd-stm-card .wkd-stm-channel-static {
+  height: 26px; display: inline-flex; align-items: center; padding: 0 10px; border-radius: 6px;
+  border: 1px solid #e3e7ed; font-size: 11.5px; color: #3d4552; flex-shrink: 0; white-space: nowrap;
+}
+.wkd-stm-card .wkd-stm-langs { border: 0; margin: 0; padding: 0; min-width: 0; }
+.wkd-stm-card .wkd-stm-langs legend { font-size: 11.5px; font-weight: 500; color: #4a515c; padding: 0; margin-bottom: 6px; float: none; width: auto; }
+.wkd-stm-card .wkd-stm-lang-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.wkd-stm-card .wkd-stm-lang { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: #171b22; cursor: pointer; margin: 0; }
+.wkd-stm-card .wkd-stm-lang input { width: 15px; height: 15px; margin: 0; accent-color: #2563eb; cursor: pointer; }
+.wkd-stm-card .wkd-stm-lang.muted { color: #6e757f; cursor: default; }
+.wkd-stm-card .wkd-stm-fallback {
+  display: flex; gap: 8px; align-items: flex-start; padding: 9px 12px; border-radius: 8px;
+  border: 1px solid #e6d6a8; background: #fdf8ec; color: #7a5a15; font-size: 12px; line-height: 1.5;
+}
+.wkd-stm-card .wkd-stm-fallback svg { flex-shrink: 0; margin-top: 2px; }
+.wkd-stm-card .wkd-stm-textarea {
+  width: 100%; box-sizing: border-box; border: 1px solid #d5dbe3; border-radius: 6px; padding: 10px 12px;
+  font-family: var(--sans); font-size: 12.5px; line-height: 1.55; color: #171b22; background: #fff;
+  resize: vertical; outline: none;
+}
+.wkd-stm-card .wkd-stm-textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+.wkd-stm-card .wkd-stm-textarea:disabled { background: #f6f7f9; color: #6e757f; cursor: default; }
+.wkd-stm-card .wkd-stm-copynote { margin: 0 20px 12px; padding: 9px 12px; border-radius: 8px; font-size: 12px; line-height: 1.5; }
+.wkd-stm-card .wkd-stm-copynote.ok { background: #effbf3; border: 1px solid #bfe5c9; color: #14532d; }
+.wkd-stm-card .wkd-stm-copynote.warn { background: #fff8e6; border: 1px solid #e3d3a8; color: #7a5a15; }

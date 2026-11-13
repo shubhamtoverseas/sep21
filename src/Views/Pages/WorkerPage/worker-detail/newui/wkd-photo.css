@@ -1,0 +1,98 @@
+/* Worker Details · Photo (prototype photoPaneHTML / ovCropHTML; WORKER.md §16.5–§16.10) — scoped .wkd .wkd-ph */
+.wkd .wkd-ph { display: flex; flex-direction: column; gap: 14px; }
+.wkd .wkd-ph .bio-card-body { padding-top: 16px; }
+.wkd .wkd-ph .mono { font-family: var(--mono, 'JetBrains Mono', monospace); }
+.wkd .wkd-ph .l { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #676e77; }
+.wkd .wkd-ph .mc-unavailable { color: #8a929e; }
+
+/* upload control = a real file input inside the button */
+/* the upload control is a <label>: Bootstrap's label margin-bottom lifted it above the Change Status button (tester 16 Oct) */
+.wkd .wkd-ph-upload { position: relative; cursor: pointer; overflow: hidden; margin: 0; vertical-align: middle; }
+.wkd .wkd-ph-upload input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.wkd .wkd-ph-upload input:disabled { cursor: not-allowed; }
+.wkd .wkd-ph-upload:focus-within { outline: 2px solid #87a8ef; outline-offset: 2px; }
+
+/* draft: new original, not saved yet */
+.wkd .wkd-ph-draft { border: 1px solid #c8d9f7; border-radius: 9px; padding: 14px; background: #f9fbff; display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 16px; align-items: start; margin-bottom: 14px; }
+.wkd .wkd-ph-draft > img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 8px; border: 1px solid #e3e7ed; display: block; }
+.wkd .wkd-ph-draft-body { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.wkd .wkd-ph-draft-body .t { font-size: 13px; font-weight: 600; color: #171b22; }
+.wkd .wkd-ph-draft-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+
+/* meta rows reuse the photo-view grid */
+.wkd .wkd-ph-meta { display: flex; flex-direction: column; gap: 7px; }
+.wkd .wkd-ph-meta .wkd-pv-row .v.wrap, .wkd .wkd-ph-draft .wkd-pv-row .v.wrap { white-space: normal; }
+
+/* two records side by side */
+.wkd .wkd-ph-pair { display: flex; gap: 14px; align-items: stretch; flex-wrap: wrap; }
+.wkd .wkd-ph-card { flex: 1; min-width: 260px; border: 1px solid #e3e7ed; border-radius: 9px; padding: 14px; background: #fff; }
+.wkd .wkd-ph-card.pending { border-color: #c8d9f7; background: #f9fbff; }
+.wkd .wkd-ph-card-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.wkd .wkd-ph-card-head .t { font-size: 13px; font-weight: 600; color: #171b22; }
+.wkd .wkd-ph-card-grid { display: grid; grid-template-columns: minmax(0, 1fr) 148px; gap: 14px; align-items: start; }
+.wkd .wkd-ph-card .wkd-ph-meta { margin-top: 14px; padding-top: 12px; border-top: 1px solid #edf0f4; }
+.wkd .wkd-ph-card-actions { margin-top: 12px; display: flex; justify-content: flex-end; gap: 8px; }
+.wkd .wkd-ph-card-actions.start { justify-content: flex-start; }
+.wkd .wkd-ph-side { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.wkd .wkd-ph-cap { font-size: 11px; color: #676e77; text-align: center; line-height: 1.45; }
+.wkd .wkd-ph-warn { margin-top: 10px; font-size: 11.5px; color: #7a5a15; background: #fdf8ec; border: 1px solid #e6d6a8; border-radius: 6px; padding: 8px 10px; line-height: 1.45; }
+
+/* the full photo: a real button when it opens the viewer; the crop ring sits on the stored coordinates */
+.wkd .wkd-ph-full { display: block; position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 8px; border: 1px solid #e3e7ed; overflow: hidden; background: #f6f7f9; padding: 0; text-align: left; }
+.wkd button.wkd-ph-full { cursor: zoom-in; }
+.wkd .wkd-ph-full:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.wkd .wkd-ph-full img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.wkd .wkd-ph-ring { position: absolute; left: var(--ph-cx); top: var(--ph-cy); width: var(--ph-d); aspect-ratio: 1 / 1; transform: translate(-50%, -50%); border: 2px dashed rgba(255, 255, 255, .92); border-radius: 999px; box-shadow: 0 0 0 9999px rgba(23, 25, 31, .22); pointer-events: none; }
+
+/* the headshot = the SAME original, positioned by the stored crop (CSS vars from photoModel.headshotVars) */
+.wkd .wkd-ph-headshot { width: 132px; height: 132px; border-radius: 999px; border: 1px solid #e3e7ed; overflow: hidden; padding: 0; background: #f6f7f9 var(--ph-img, none) no-repeat; background-size: var(--ph-size, cover); background-position: var(--ph-pos, center); display: flex; align-items: center; justify-content: center; }
+.wkd button.wkd-ph-headshot { cursor: zoom-in; }
+.wkd .wkd-ph-headshot:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.wkd .wkd-ph-headshot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wkd .wkd-ph-headshot.sm { width: 64px; height: 64px; }
+.wkd .wkd-ph-headshot.none { border: 1.5px dashed #c3cad4; font-size: 11px; color: #676e77; text-align: center; padding: 10px; box-sizing: border-box; background-image: none; }
+.wkd .wkd-ph-headshot.preview { width: 160px; height: 160px; }
+.wkd .wkd-ph-probe { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+/* single record: full photo left, headshot + facts right */
+.wkd .wkd-ph-single { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.wkd .wkd-ph-single > div:first-child { display: flex; flex-direction: column; gap: 8px; }
+.wkd .wkd-ph-single-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; position: relative; }
+.wkd .wkd-ph-single-head { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.wkd .wkd-ph-single-cap { display: flex; flex-direction: column; gap: 6px; }
+.wkd .wkd-ph-single-cap .mono { font-size: 11.5px; color: #3d4552; }
+.wkd .wkd-ph-tags { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.wkd .wkd-ph-single-side .wkd-ph-meta { padding-top: 12px; border-top: 1px solid #edf0f4; }
+
+/* empty state */
+.wkd .wkd-ph-empty { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 28px 0; color: #676e77; font-size: 12.5px; text-align: center; line-height: 1.5; max-width: 560px; margin: 0 auto; }
+.wkd .wkd-ph-empty .av { width: 64px; height: 64px; border-radius: 999px; background: oklch(0.945 0.008 250); color: #667080; display: flex; align-items: center; justify-content: center; }
+
+/* concise activity under the card body */
+.wkd .wkd-ph-activity { margin-top: 16px; padding-top: 12px; border-top: 1px solid #edf0f4; }
+
+/* Adjust Crop dialog */
+.wkd .wkd-ph-crop-backdrop { background: rgba(0, 0, 0, .4); }
+.wkd .wkd-ph-crop { width: 760px; max-width: 94vw; max-height: 92vh; overflow: auto; background: #fff; border-radius: 12px; box-shadow: 0 24px 48px rgba(16, 24, 40, .24); display: flex; flex-direction: column; }
+.wkd .wkd-ph-crop-head { display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-bottom: 1px solid #edf0f4; }
+.wkd .wkd-ph-crop-head h2 { margin: 0; font-size: 15px; font-weight: 600; color: #171b22; }
+.wkd .wkd-ph-crop-head .grow { flex: 1; }
+.wkd .wkd-ph-crop-file { font-size: 11.5px; color: #676e77; border-left: 1px solid #e3e7ed; padding-left: 10px; }
+.wkd .wkd-ph-crop-body { padding: 16px 20px; display: grid; grid-template-columns: minmax(0, 1fr) 232px; gap: 20px; align-items: start; }
+.wkd .wkd-ph-crop-stage-wrap { display: flex; flex-direction: column; gap: 10px; }
+.wkd .wkd-ph-crop-stage { position: relative; width: 100%; aspect-ratio: 3 / 4; max-height: 380px; border-radius: 8px; border: 1px solid #e3e7ed; overflow: hidden; background: #171b22; }
+.wkd .wkd-ph-crop-stage .reactEasyCrop_Container { border-radius: 8px; }
+.wkd .wkd-ph-crop-zoom { display: flex; align-items: center; gap: 10px; margin: 0; }
+.wkd .wkd-ph-crop-zoom input[type="range"] { flex: 1; accent-color: #2563eb; }
+.wkd .wkd-ph-crop-zoom .v { font-size: 11.5px; color: #3d4552; width: 46px; text-align: right; }
+.wkd .wkd-ph-crop-side { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.wkd .wkd-ph-crop-side .wkd-ph-meta { width: 100%; padding-top: 8px; border-top: 1px solid #edf0f4; }
+.wkd .wkd-ph-dim { color: #8a929e; font-weight: 400; }
+.wkd .wkd-ph-note { font-size: 11.5px; color: #676e77; line-height: 1.5; }
+.wkd .wkd-ph-crop-foot { padding: 12px 20px; background: #fafbfc; border-top: 1px solid #edf0f4; display: flex; justify-content: flex-end; gap: 8px; }
+
+@media (max-width: 900px) {
+  .wkd .wkd-ph-single, .wkd .wkd-ph-crop-body, .wkd .wkd-ph-draft { grid-template-columns: minmax(0, 1fr); }
+  .wkd .wkd-ph-card-grid { grid-template-columns: minmax(0, 1fr); }
+  .wkd .wkd-ph-side { align-items: flex-start; }
+}

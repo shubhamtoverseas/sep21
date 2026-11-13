@@ -1,0 +1,2114 @@
+/* ================================================================
+ * Worker Details v18.6 — exact styles from the design bundle
+ * (Worker_Details_v18_6_Source). Scoped under .wkd to prevent
+ * leakage, mirroring the .invd / .wgd conventions.
+ * Dropped on port: body{}, #qa-toast (QA harness), html rules.
+ * ================================================================ */
+
+.wkd {
+  color: #171b22;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.wkd *, .wkd *::before, .wkd *::after { box-sizing: border-box; }
+.wkd .g2-substage-meta {display:inline-flex;align-items:center;height:18px;padding:0 6px;border-radius:4px;background:#e3f4e8;color:#1a7f37;font-size:9.5px;font-weight:650;white-space:nowrap;}
+.wkd .g2-substage-meta.is-proposal {background:#f0f1f3;color:#667080;}
+.wkd .g2-card {background:#fff;border:1px solid #e3e7ed;border-radius:9px;}
+.wkd .g2-card-header {display:flex;align-items:flex-start;gap:10px;padding:17px 20px;border-bottom:1px solid #edf0f4;}
+.wkd .g2-card-header.g2-clean-header {min-height:66px;box-sizing:border-box;align-items:center;}
+.wkd .g2-title {margin:0;color:#171b22;font-size:16px;line-height:20px;font-weight:650;letter-spacing:-.01em;}
+.wkd .g2-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.wkd .g2-field-label {margin-bottom:5px;color:#667080;font-size:11.5px;font-weight:550;}
+.wkd .g2-field {min-height:34px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 11px;border:1px solid #d5dbe3;border-radius:6px;background:#fff;color:#171b22;font-size:12.5px;}
+.wkd .g2-field.is-readonly {background:#f7f8fa;color:#3d4552;}
+.wkd .g2-button {min-height:32px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 13px;border:1px solid #d5dbe3;border-radius:7px;background:#fff;color:#171b22;font-size:12.5px;font-weight:550;cursor:pointer;}
+.wkd .g2-button:hover:not([aria-disabled="true"]) {background:#f7f8fa;}
+.wkd .g2-button.wkd-oc-save {background:#2563eb;border-color:#2563eb;color:#fff;}
+.wkd .g2-button.wkd-oc-save:hover {background:#1e51c9;}
+.wkd .g2-button:disabled {opacity:.55;cursor:not-allowed;}
+.wkd .g2-button:focus-visible, .wkd .g2-check:focus-visible, .wkd .g2-section-tab:focus-visible {outline:2px solid #87a8ef;outline-offset:2px;}
+.wkd .g2-button.primary {border-color:#2563eb;background:#2563eb;color:#fff;}
+.wkd .g2-button.primary:hover:not([aria-disabled="true"]) {background:#1e51c9;}
+.wkd .g2-button[aria-disabled="true"] {opacity:.45;cursor:not-allowed;}
+.wkd .g2-callout {display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:1px solid #c8d9f7;border-radius:7px;background:#f4f7fd;color:#31507e;font-size:12px;line-height:1.5;}
+.wkd .g2-section-tabs {display:inline-flex;gap:2px;padding:3px;border-radius:7px;background:#eceff3;}
+.wkd .g2-section-tab {min-height:28px;display:inline-flex;align-items:center;gap:7px;padding:0 11px;border:0;border-radius:5px;background:transparent;color:#667080;font-size:11.5px;font-weight:550;cursor:pointer;}
+.wkd .g2-section-tab.is-active {background:#fff;color:#171b22;box-shadow:0 1px 2px rgba(16,24,40,.08);}
+.wkd .g2-section-dot {width:7px;height:7px;border-radius:999px;background:#b42318;flex:0 0 auto;}
+.wkd .g2-section-dot.ready {background:oklch(.49 .13 150);}
+.wkd .g2-section-dot[data-status="completed"], .wkd .g2-section-dot[data-status="verified"],
+.wkd .g2-section-dot[data-status="approved"], .wkd .g2-section-dot[data-status="ready"] {background:#1a7f37;}
+.wkd .g2-section-dot[data-status="in_review"], .wkd .g2-section-dot[data-status="in-review"], .wkd .g2-section-dot[data-status="blue"] {background:#1e51c9;}
+.wkd .g2-section-dot[data-status="action_required"], .wkd .g2-section-dot[data-status="action-required"] {background:#b42318;}
+.wkd .g2-section-dot[data-status="uploaded"] {background:#7d8492;}
+.wkd .g2-section-dot[data-status="disabled"] {background:#c3cad4;}
+.wkd .g2-section-dot[data-status="incomplete"] {background:oklch(0.55 0.13 65);}
+.wkd .g2-section-dot[data-status="deferred"] {background:#94a3b8;}
+.wkd .mc-collabel {font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#667080;white-space:nowrap;}
+/* substage bar (WkdSubTabBar): legacy status <img> icons inside titles are replaced by the dot */
+.wkd .g2-section-tab img {display:none;}
+.wkd .g2-section-tab:disabled {opacity:.45;cursor:not-allowed;}
+.wkd .wkd-subtabs .g2-section-tabs {flex-wrap:wrap;}
+.wkd .wkd-subtab-content {min-width:0;}
+.wkd .g2-status-tag {display:inline-flex;align-items:center;gap:5px;min-height:20px;width:max-content;padding:1px 7px 1px 6px;border:1px solid var(--bd);border-radius:4px;background:var(--bg);color:var(--fg);font-size:11px;line-height:16px;font-weight:650;white-space:nowrap;}
+.wkd .g2-clean-header .g2-status-tag {align-self:center;}
+.wkd .g2-lifecycle {--fg:oklch(.5 .1 28);--bg:oklch(.97 .02 28);--bd:oklch(.88 .035 28);}
+.wkd .g2-lifecycle.ready {--fg:oklch(.49 .13 150);--bg:oklch(.965 .03 150);--bd:oklch(.84 .05 150);}
+.wkd .g2-lifecycle-icon {width:34px;height:34px;display:grid;place-items:center;flex:0 0 auto;border:1px solid oklch(.88 .035 28);border-radius:8px;background:oklch(.97 .02 28);color:oklch(.5 .1 28);}
+.wkd .g2-lifecycle-icon.ready {border-color:oklch(.84 .05 150);background:oklch(.965 .03 150);color:oklch(.49 .13 150);}
+.wkd .g2-overview-card {min-height:68px;display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #e3e7ed;border-radius:8px;background:#fff;text-align:left;cursor:pointer;}
+.wkd .g2-overview-card:hover {background:#fafbfc;}
+.wkd .g2-overview-name {min-width:0;flex:1;color:#171b22;font-size:13px;font-weight:600;line-height:20px;}
+.wkd .g2-upload-audit {color:#667080;font-size:11.5px;line-height:18px;}
+.wkd .g2-upload-format {color:#6e757f;font-size:11px;line-height:18px;}
+.wkd [data-shared-upload-card] button:hover {background:#f4f6f8!important;}
+.wkd [data-shared-upload-card] button:focus-visible, .wkd [data-shared-upload-empty]:focus-within {outline:2px solid #87a8ef;outline-offset:2px;}
+.wkd .g2-assignment-state {--fg:#667080;--bg:#f0f1f3;--bd:#d5dbe3;}
+.wkd .g2-assignment-state.assigned {--fg:#1a7f37;--bg:#e3f4e8;--bd:#c9e8d3;}
+.wkd .g2-checklist-list {max-width:720px;display:flex;flex-direction:column;gap:8px;}
+.wkd .g2-check {width:100%;min-height:40px;display:flex;align-items:center;gap:10px;padding:10px 11px;border:1px solid #e3e7ed;border-radius:7px;background:#fff;color:#171b22;text-align:left;cursor:pointer;}
+.wkd .g2-check:hover {background:#fafbfc;}
+.wkd .g2-check-box {width:16px;height:16px;flex:0 0 auto;display:grid;place-items:center;border:1.5px solid #c3cad4;border-radius:3px;background:#fff;}
+.wkd .g2-check.is-checked .g2-check-box {border-color:#2563eb;background:#2563eb;color:#fff;}
+.wkd a {color:#1d4ed8;text-decoration:none;}
+.wkd a:hover {text-decoration:underline;}
+.wkd .jo-detail {container-type:inline-size;}
+.wkd .jo-body {display:grid;grid-template-columns:minmax(32rem,42rem) minmax(18rem,21rem);gap:clamp(16px,2.2cqi,26px);align-items:start;justify-content:start;}
+/* 32rem + 18rem + the minimum 16px gap needs 51rem. Stack through 52rem so
+   there is no narrow two-column band that overflows before the cards fit. */
+@container (max-width: 52rem) {.wkd .jo-body{grid-template-columns:minmax(0,1fr);}}
+.wkd .h-u:hover {text-decoration:underline;}
+.wkd .h-bg-lt:hover {background:#f4f6f8;}
+.wkd .h-bg-blue:hover {background:#e8effd;}
+.wkd .h-bg-chat:hover {background:#eff5fe;}
+.wkd .h-op:hover {opacity:.85;}
+.wkd input.sc-in, .wkd textarea.sc-in {font-family:'Hanken Grotesk','Helvetica Neue','PingFang HK','PingFang TC','Microsoft JhengHei','Noto Sans HK',Arial,sans-serif;outline:none;}
+.wkd input.sc-in::placeholder, .wkd textarea.sc-in::placeholder {color:#72777f;}
+.wkd .det-body {container-type:inline-size;}
+.wkd .det-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 28px;}
+.wkd .det-grid-edit {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 22px;}
+.wkd .det-full {grid-column:1/-1;}
+.wkd .det-tablewrap {overflow-x:auto;border:1px solid #e3e7ed;border-radius:8px;}
+
+@container (max-width: 940px) {.wkd .det-grid, .wkd .det-grid-edit {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
+@container (max-width: 640px) {.wkd .det-grid, .wkd .det-grid-edit {grid-template-columns:minmax(0,1fr);}
+}
+.wkd .ct-scroll {overflow-x:auto;}
+.wkd .mc-worker-listing-body {padding:16px 28px 28px;}
+/* inside the page gutter (.wkd-main already pads 18/24) the tab wrappers add nothing */
+.wkd .wkd-main .mc-worker-listing-body, .wkd .wkd-main .activity-screen {padding:0;}
+.wkd .mc-worker-listing-card {width:100%;max-width:none;box-sizing:border-box;background:#fff;border:1px solid #e3e7ed;border-radius:9px;padding:8px 18px 0;}
+.wkd .mc-worker-listing-scroll {overflow-x:auto;overscroll-behavior-inline:contain;}
+.wkd .mc-worker-listing-grid {min-width:100%;width:max-content;}
+.wkd .mc-insurance-listing-grid {width:100%;min-width:880px;}
+.wkd .mc-worker-listing-header {height:38px;min-height:38px;align-items:center;border-bottom:1px solid #e3e7ed;box-sizing:border-box;}
+.wkd .mc-worker-listing-row {height:44px;min-height:44px;align-items:center!important;border-bottom:1px solid #edf0f4;padding:0!important;box-sizing:border-box;font-family:'Hanken Grotesk','Helvetica Neue','PingFang HK','PingFang TC','Microsoft JhengHei','Noto Sans HK',Arial,sans-serif;font-size:12.5px;font-weight:400;color:#3b3b41;}
+.wkd .mc-worker-listing-cell {font-size:12.5px;font-weight:400;color:#3b3b41;white-space:nowrap;}
+.wkd .mc-listing-primary {font-family:'Hanken Grotesk','Helvetica Neue','PingFang HK','PingFang TC','Microsoft JhengHei','Noto Sans HK',Arial,sans-serif;font-size:13px;font-weight:500;line-height:19.5px;color:#131316;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis;}
+/* WRK-013: a long name truncates inside its own cell instead of overlapping the next column */.wkd .mc-listing-secondary {font-family:'Hanken Grotesk','Helvetica Neue','PingFang HK','PingFang TC','Microsoft JhengHei','Noto Sans HK',Arial,sans-serif;font-size:12.5px;font-weight:400;color:#3b3b41;white-space:nowrap;}
+.wkd .mc-listing-mono {font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:400;color:#3b3b41;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.wkd .mc-listing-owner-name {font-family:'Hanken Grotesk','Helvetica Neue','PingFang HK','PingFang TC','Microsoft JhengHei','Noto Sans HK',Arial,sans-serif;font-size:12.5px;font-weight:400;color:#3b3b41;white-space:nowrap;}
+.wkd .mc-insurance-listing-grid .mc-listing-owner-name {min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:11.5px;}
+.wkd .mc-listing-missing {font-family:'Hanken Grotesk','Helvetica Neue','PingFang HK','PingFang TC','Microsoft JhengHei','Noto Sans HK',Arial,sans-serif;font-size:13px;font-weight:400;color:#6e757f;white-space:nowrap;}
+.wkd .mc-listing-date {font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:400;color:#3b3b41;font-variant-numeric:tabular-nums;}
+.wkd .mc-worker-listing-sort {height:38px;font-size:10.5px;font-weight:600;letter-spacing:.08em;cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;text-transform:uppercase;color:#6e757f;}
+.wkd .mc-worker-listing-sort.on {color:#2563eb;}
+.wkd .mc-worker-listing-sort:focus-visible {outline:2px solid #87a8ef;outline-offset:-2px;border-radius:4px;}
+.wkd .mc-worker-listing-empty {min-height:92px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12.5px;color:#6e757f;}
+.wkd .mc-worker-listing-row>div {min-width:0;}
+.wkd .mc-listing-sub {display:block;margin-top:2px;font-size:11.5px;line-height:16px;color:#6e757f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.wkd .mc-insurance-request {display:inline-flex;align-items:center;white-space:nowrap;}
+.wkd .mc-profile-main-heading {font-size:16px;font-weight:600;color:#171b22;letter-spacing:-.01em;margin-bottom:12px;}
+.wkd .mc-profile-heading-inline {display:inline-flex;margin-bottom:0;}
+.wkd .mc-profile-subheading {font-size:14px;font-weight:600;color:#171b22;letter-spacing:-.005em;}
+.wkd .mc-main-duties-label {font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#667080;margin-bottom:6px;}
+.wkd .mc-main-duties-label.is-missing, .wkd .mc-missing-value {color:#b42318;}
+.wkd .mc-missing-value {font-size:12.5px;font-weight:500;}
+.wkd .row-nav {cursor:pointer;}
+.wkd .row-nav:hover {background:#f7f9fc;}
+.wkd .row-nav:focus-visible, .wkd .mc-code-link:focus-visible {outline:2px solid #87a8ef;outline-offset:2px;border-radius:4px;}
+.wkd .mc-code-link {font-family:'JetBrains Mono','JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:#1d4ed8;cursor:pointer;text-decoration:none;}
+.wkd .mc-code-link:hover {text-decoration:underline;}
+.wkd .mc-code-link:visited {color:#1d4ed8;}
+.wkd .mc-code-text {display:inline-flex;width:fit-content;align-items:center;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:400;line-height:18px;color:#3b3b41;cursor:default;text-decoration:none;pointer-events:none;white-space:nowrap;}
+.wkd .mc-person-name {color:#131316!important;}
+
+/* Shared worker listing (contract / invoice / insurance) — grid templates
+ * ported from CT_GRID / INV_GRID / INS_GRID inline styles in the bundle. */
+.wkd .wkd-grid-ct {display:grid;grid-template-columns:minmax(var(--mc-colc-name-min),var(--mc-colc-name-max)) minmax(var(--mc-colc-status-min),var(--mc-colc-status-max)) minmax(var(--mc-colc-date-min),var(--mc-colc-date-max)) minmax(var(--mc-colc-date-min),var(--mc-colc-date-max)) minmax(var(--mc-colc-date-min),var(--mc-colc-date-max)) minmax(var(--mc-colc-datex-min),var(--mc-colc-datex-max)) minmax(var(--mc-colc-staff-min),var(--mc-colc-staff-max));gap:0 var(--mc-col-gap);}
+.wkd .mc-worker-listing-sort.static {cursor:default;}
+.wkd .wkd-grid-inv {display:grid;grid-template-columns:minmax(var(--mc-colc-status-min),var(--mc-colc-status-max)) minmax(var(--mc-colc-status-min),var(--mc-colc-status-max)) minmax(var(--mc-colc-date-min),var(--mc-colc-date-max)) minmax(var(--mc-colc-amount-min),var(--mc-colc-amount-max)) minmax(var(--mc-colc-amount-min),var(--mc-colc-amount-max)) minmax(var(--mc-colc-amount-min),var(--mc-colc-amount-max)) minmax(var(--mc-colc-staff-min),var(--mc-colc-staff-max));gap:0 var(--mc-col-gap);}
+.wkd .wkd-grid-ins {display:grid;width:100%;grid-template-columns:minmax(var(--mc-colc-name-min),var(--mc-colc-name-max)) minmax(var(--mc-colc-status-min),var(--mc-colc-status-max)) minmax(var(--mc-colc-ref-min),var(--mc-colc-ref-max)) minmax(var(--mc-colc-date-min),var(--mc-colc-date-max)) minmax(var(--mc-colc-date-min),var(--mc-colc-date-max)) minmax(var(--mc-colc-ref-min),var(--mc-colc-ref-max)) minmax(var(--mc-colc-staff-min),var(--mc-colc-staff-max));gap:0 var(--mc-col-gap);}
+.wkd .wkd-listing-owner {display:flex;align-items:center;gap:7px;}
+.wkd .wkd-listing-owner-av {width:22px;height:22px;border-radius:999px;background:#eceff3;color:#667080;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0;}
+/* Insurance list: open request tags wrap inside their column (never into CS Owner) and Needs attention takes its own line,
+   so an Insurance row grows past 44px when it has to */
+.wkd .mc-worker-listing-row.wkd-grid-ins {height:auto;padding-block:10px!important;}
+.wkd .wkd-grid-ins .wkd-listing-work {min-width:0;white-space:normal;}
+/* insurance listing owner runs one size down (mockup: 20px avatar, 5px gap) */
+.wkd .wkd-listing-owner.sm {gap:5px;}
+.wkd .wkd-listing-owner-av.sm {width:20px;height:20px;font-size:8.5px;}
+
+/* Job Offer listing toolbar (bundle v18.6); the card / header / rows are the mc-worker-listing kit */
+.wkd .wkd-listing-toolbar {display:flex;align-items:center;gap:8px;padding:12px 0;flex-wrap:wrap;}
+.wkd .wkd-listing-search {width:230px;height:30px;border:1px solid #e3e7ed;border-radius:6px;display:flex;align-items:center;gap:7px;padding:0 9px;background:#fff;box-sizing:border-box;}
+.wkd .wkd-listing-search:focus-within {border-color:#2563eb;box-shadow:0 0 0 2px #e8effd;}
+/* toolbar controls share the 30px search height */
+.wkd .wkd-listing-toolbar .nus-trigger {min-height:30px;height:30px;border-radius:6px;border-color:#e3e7ed;}
+.wkd .wkd-listing-search input {min-width:0;flex:1;border:0;outline:0;background:transparent;color:#171b22;font-size:12px;}
+.wkd .wkd-listing-search input::placeholder {color:#6e757f;}
+.wkd .wkd-listing-select {height:30px;border:1px solid #e3e7ed;border-radius:6px;background:#fff;color:#3d4552;padding:0 10px;font-size:12px;cursor:pointer;outline:none;}
+.wkd .wkd-listing-select:focus-visible {outline:2px solid #87a8ef;outline-offset:2px;}
+.wkd .wkd-listing-count {margin-left:auto;font-family:var(--mono);font-size:11.5px;color:#6e757f;white-space:nowrap;}
+.wkd .wkd-grid-jo {display:grid;grid-template-columns:minmax(var(--mc-colc-name-min),var(--mc-colc-name-max)) minmax(var(--mc-colc-ref-min),var(--mc-colc-ref-max)) minmax(var(--mc-colc-status-min),var(--mc-colc-status-max)) minmax(var(--mc-colc-datex-min),var(--mc-colc-datex-max)) minmax(var(--mc-colc-staff-min),var(--mc-colc-staff-max));gap:0 var(--mc-col-gap);}
+/* JO refs on Worker Details are neutral reference-code text: no delivered JO Details destination from this surface (SR-06) */
+.wkd .wkd-jo-ref {font-family:var(--mono);font-size:12px;font-weight:400;line-height:18px;color:#3b3b41;white-space:nowrap;}
+.wkd .wkd-jo-score {font-size:11.5px;color:#6e757f;margin-left:4px;}
+.wkd .wkd-jo-dt {font-family:var(--mono);font-size:12px;font-weight:400;line-height:18px;color:#3b3b41;font-variant-numeric:tabular-nums;}
+.wkd .wkd-jo-ml svg {width:12px;height:12px;flex-shrink:0;}
+.wkd .wkd-jo-acts {display:flex;gap:10px;margin-top:4px;flex-wrap:wrap;}
+.wkd .wkd-jo-acts button {border:0;background:transparent;padding:0;font-size:12px;font-weight:550;color:#1d4ed8;cursor:pointer;}
+.wkd .wkd-jo-acts button:hover {text-decoration:underline;}
+.wkd .wkd-jo-acts button.danger {color:#b42318;}
+.wkd .wkd-jo-empty {padding:28px 0;text-align:center;font-size:12.5px;color:#6e757f;}
+.wkd .wkd-stage-chip {display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;font-size:11px;font-weight:700;white-space:nowrap;}
+
+/* Job Offer detail card (joDetailHTML inline styles, bundle v18.6) */
+.wkd .wkd-lbl {font-size:10.5px;font-weight:600;letter-spacing:.08em;color:#6e757f;text-transform:uppercase;}
+.wkd .wkd-jo-detail-card {background:#fff;border:1px solid #e3e7ed;border-radius:9px;padding:20px 24px;max-width:1180px;}
+.wkd .wkd-jo-detail-head {display:flex;align-items:center;gap:6px;flex-wrap:wrap;row-gap:8px;padding-bottom:14px;border-bottom:1px solid #edf0f4;}
+.wkd .wkd-jo-detail-head .grow {flex:1;}
+.wkd .wkd-jo-detail-title {font-size:15px;font-weight:600;color:#171b22;margin-right:6px;}
+.wkd .wkd-jo-cs {height:30px;display:inline-flex;align-items:center;gap:7px;padding:0 10px 0 5px;border-radius:6px;border:1px solid #d5dbe3;background:#fff;cursor:default;}
+/* Applicant View toolbar: Share → Add link → Edit, uniform height/spacing/icon treatment */
+.wkd .wkd-jo-toolbar {display:inline-flex;align-items:center;gap:6px;}
+.wkd .wkd-jo-toolbtn {height:28px;display:inline-flex;align-items:center;gap:6px;padding:0 11px;border-radius:6px;background:#fff;border:1px solid #d5dbe3;color:#171b22;font:inherit;font-size:12px;font-weight:550;cursor:pointer;}
+.wkd .wkd-jo-toolbtn:hover {background:#f4f6f8;border-color:#c3cad4;}
+.wkd .wkd-jo-toolbtn:focus-visible {outline:2px solid #2563eb;outline-offset:2px;}
+.wkd .wkd-jo-toolbtn svg {color:#667080;}
+.wkd .wkd-jo-cs-av {width:22px;height:22px;border-radius:999px;background:#dbe9f8;color:#33608f;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0;}
+.wkd .wkd-jo-cs-name {font-size:12.5px;font-weight:600;color:#171b22;}
+
+.wkd .wkd-jo-iconbtn {width:28px;height:28px;border-radius:6px;background:#fff;border:1px solid #d5dbe3;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;color:#667080;}
+.wkd .wkd-jo-iconbtn:hover {background:#f7f8fa;}
+.wkd .wkd-jo-titleblock {padding:16px 0 14px;border-bottom:1px solid #edf0f4;}
+.wkd .wkd-jo-titleblock .refrow {display:flex;align-items:center;gap:10px;}
+.wkd .wkd-jo-headline {font-size:17px;font-weight:650;color:#171b22;letter-spacing:-.01em;margin-top:8px;}
+.wkd .wkd-jo-fam {font-size:13px;font-weight:600;color:#171b22;margin-top:6px;}
+.wkd .wkd-jo-loc {font-size:12.5px;color:#6e757f;margin-top:2px;}
+.wkd .wkd-jo-sec {padding:14px 0;border-bottom:1px solid #edf0f4;}
+.wkd .wkd-jo-sec.last {border-bottom:0;}
+.wkd .wkd-jo-desc {font-size:13px;color:#3d4552;line-height:1.6;margin-top:8px;text-wrap:pretty;max-width:640px;}
+.wkd .wkd-jo-chips {display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.wkd .wkd-jo-chip {display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:4px;font-size:11.5px;font-weight:500;color:#3d4552;background:#f4f6f8;border:1px solid #e3e7ed;}
+.wkd .wkd-jo-chip img {width:14px;height:14px;object-fit:contain;}
+.wkd .wkd-jo-kv {padding:14px 0;display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px 16px;border-bottom:1px solid #edf0f4;}
+.wkd .wkd-jo-kv.last {border-bottom:0;}
+.wkd .wkd-jo-kv .k {align-self:baseline;padding-top:2px;}
+.wkd .wkd-jo-kv .v {font-size:13px;font-weight:500;color:#171b22;}
+.wkd .wkd-jo-kv .v.mono {font-family:var(--mono);font-size:12.5px;font-weight:600;}
+.wkd .wkd-jo-side {min-width:0;display:flex;flex-direction:column;gap:12px;padding-top:16px;}
+.wkd .wkd-jo-int {border:1px solid #d3ddf0;background:#f7faff;border-radius:9px;padding:16px;}
+.wkd .wkd-jo-int-toprow {display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.wkd .wkd-jo-int-title {font-size:13.5px;font-weight:600;color:#171b22;}
+.wkd .wkd-jo-int-rows {display:flex;flex-direction:column;gap:11px;margin-top:13px;}
+.wkd .wkd-jo-int-dt {font-family:var(--mono);font-size:13px;font-weight:600;color:#171b22;margin-top:4px;}
+.wkd .wkd-jo-int-v {display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:#171b22;margin-top:4px;}
+.wkd .wkd-jo-acting {display:inline-flex;width:max-content;align-items:center;padding:3px 8px;border-radius:4px;background:#f0ebfb;color:#5b4a9e;font-size:11.5px;font-weight:550;}
+.wkd .wkd-jo-appacts {border:1px solid #e3e7ed;background:#fafbfc;border-radius:9px;padding:16px;}
+.wkd .wkd-jo-appacts .wkd-jo-int-acts {margin-top:12px;}
+.wkd .wkd-jo-int-acts {display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+.wkd .wkd-jo-int-btn {
+  width:100%;height:40px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 16px;
+  border:1px solid #d5dbe3;border-radius:8px;background:#fff;color:#2b3440;
+  font-size:13px;font-weight:550;cursor:pointer;
+}
+.wkd .wkd-jo-int-btn:hover {background:#f7f8fa;}
+.wkd .wkd-jo-int-btn.primary {border-color:#2563eb;background:#2563eb;color:#fff;}
+.wkd .wkd-jo-int-btn.primary:hover {background:#1e51c9;}
+/* W-33: Request Interview on an expiring Job Offer — present, disabled, status as tooltip */
+.wkd .wkd-jo-int-btn:disabled {opacity:.55;cursor:not-allowed;}
+.wkd .wkd-jo-int-btn.primary:disabled:hover {background:#2563eb;}
+/* code-link rendered as <button>: kill the UA button chrome */
+.wkd button.mc-code-link {border:0;background:transparent;padding:0;}
+.wkd .mc-person-name:hover, .wkd .mc-person-name:focus, .wkd .mc-person-name:visited {color:#131316!important;}
+
+
+.wkd button {font-family:'Hanken Grotesk','Helvetica Neue','PingFang HK','PingFang TC','Microsoft JhengHei','Noto Sans HK',Arial,sans-serif}
+/* WRK-026: Hanken is the platform sans; Inter retired */.wkd .ctx-segment {border:0;background:transparent;flex:1;height:26px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;font-weight:500;color:#667080;cursor:pointer;border-radius:5px}
+.wkd .ctx-segment:hover, .wkd .ctx-rail-btn:hover {background:#f4f6f8}
+.wkd .ctx-segment:focus-visible, .wkd .ctx-rail-btn:focus-visible, .wkd .ctx-icon-btn:focus-visible, .wkd .ctx-btn:focus-visible, .wkd .code-link:focus-visible, .wkd .chat-history-row:focus-visible, .wkd .activity-dropdown button:focus-visible, .wkd .chat-history-dropdown button:focus-visible, .wkd .ctx-inline-link:focus-visible, .wkd .dup-select:focus-within, .wkd .dup-primary-option:focus-within {outline:2px solid #2563eb;outline-offset:2px}
+.wkd .chat-history-back {border:0;background:transparent;color:#1d4ed8;padding:0;font-size:12px;font-weight:600;cursor:pointer;align-self:flex-start}
+.wkd .chat-history-back:hover {text-decoration:underline}
+.wkd .chat-history-back:focus-visible {outline:2px solid #2563eb;outline-offset:3px}
+.wkd .chat-admin-name {color:#171b22!important}
+.wkd .chat-admin-role {font-size:11.5px;color:#6e757f}
+.wkd .chat-history-detail {display:flex;flex-direction:column;gap:14px}
+.wkd .chat-history-thread-head {display:grid;grid-template-columns:auto 1fr 1fr;align-items:center;gap:10px;padding:12px;border:1px solid #e3e7ed;border-radius:8px;background:#fafbfc}
+.wkd .chat-history-thread-head>div {min-width:0}
+.wkd .chat-history-thread-head strong {display:block;color:#171b22;font-size:12.5px}
+.wkd .chat-history-thread-head div span {display:block;color:#6e757f;font-size:11px;margin-top:2px}
+.wkd .chat-history-timeline {display:flex;flex-direction:column;gap:12px;padding:2px 0 8px}
+.wkd .chat-history-message {display:flex;flex-direction:column;max-width:86%}
+.wkd .chat-history-message.admin {align-self:flex-end;align-items:flex-end}
+.wkd .chat-history-message.worker {align-self:flex-start;align-items:flex-start}
+.wkd .chat-history-message-meta {display:flex;align-items:baseline;gap:6px;margin:0 2px 4px;font-size:10.5px}
+.wkd .chat-history-message-meta strong {color:#171b22;font-size:11px}
+.wkd .chat-history-message-meta span, .wkd .chat-history-message-meta time {color:#6e757f}
+.wkd .chat-history-message-meta time {font-family:'JetBrains Mono',monospace}
+.wkd .chat-history-bubble {padding:9px 11px;border-radius:10px;background:#f2f4f7;color:#171b22;font-size:12.5px;line-height:1.45}
+.wkd .chat-history-message.admin .chat-history-bubble {background:#e8effd}
+.wkd .ctx-dot {width:6px;height:6px;border-radius:999px}
+.wkd .ctx-dot-blue {background:#2563eb}
+.wkd .ctx-rail-btn {width:100%;flex-shrink:0;background:#fff;border:1px solid #e3e7ed;border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:9px;text-align:left;color:#171b22;cursor:pointer}
+.wkd .ctx-rail-btn.ctx-warning {align-items:flex-start;background:#fcf5e9;border-color:#f0ddb9}
+.wkd .ctx-grow {flex:1;min-width:0}
+.wkd .ctx-title {display:block;font-size:12.5px;font-weight:600;color:#171b22;line-height:1.35}
+.wkd .ctx-warn-icon {width:15px;height:15px;border:1.5px solid #b45309;color:#b45309;border-radius:999px;font-size:10px;font-weight:700;line-height:13px;text-align:center;margin-top:1px}
+.wkd .ctx-link-copy {display:block;margin-top:5px;color:#1d4ed8;font-size:12px;font-weight:500}
+.wkd .ctx-row {display:flex;align-items:center;gap:8px}
+.wkd .ctx-count {font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#6e757f}
+.wkd .ctx-count-ar {color:#7040a0;font-weight:600}
+.wkd .ctx-preview {display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:11.5px;line-height:1.4;color:#667080;margin-top:4px}
+.wkd .ctx-backdrop {position:fixed;inset:0;background:rgba(16,24,40,.18);z-index:1000}
+.wkd .ctx-drawer {position:fixed;right:0;top:0;height:100vh;width:min(540px,92vw);background:#fff;border-left:1px solid #e3e7ed;box-shadow:0 12px 32px rgba(16,24,40,.14);z-index:1001;display:flex;flex-direction:column;color:#171b22}
+.wkd .ctx-drawer-head {padding:16px 20px;border-bottom:1px solid #e3e7ed;display:flex;align-items:center;gap:12px}
+.wkd .ctx-drawer-head>div {flex:1}
+.wkd .ctx-drawer-head h2 {font-size:16px;line-height:1.25;margin:0;font-weight:600;letter-spacing:-.01em}
+.wkd .ctx-drawer-head>div>div {font-size:11.5px;color:#667080;margin-top:3px}
+.wkd .ctx-icon-btn {width:30px;height:30px;border:0;background:transparent;border-radius:6px;color:#667080;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.wkd .ctx-icon-btn:hover {background:#f4f6f8;color:#171b22}
+.wkd .ctx-drawer-body {flex:1;min-height:0;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+.wkd .mono-neutral {font-family:'JetBrains Mono',monospace;color:#667080}
+.wkd .wkd-inv-history {margin-top:12px}
+.wkd .wkd-inv-history ul {list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.wkd .wkd-inv-history li {font-size:12px;color:#454c57;line-height:1.45}
+.wkd .wkd-inv-history time {font-family:'JetBrains Mono',monospace;color:#6e757f;margin-right:6px}
+.wkd .wkd-inv-history .by {color:#6e757f}
+.wkd .ctx-note {background:#f7f9fc;border:1px solid #e3e7ed;border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:3px}
+.wkd .ctx-note.warning {background:#fcf5e9;border-color:#f0ddb9}
+.wkd .ctx-note strong {font-size:12.5px}
+.wkd .ctx-note span {font-size:12px;color:#667080;line-height:1.45}
+.wkd .ctx-state {min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:7px;color:#667080;padding:24px}
+.wkd .ctx-state strong {font-size:13.5px;color:#171b22}
+.wkd .ctx-state>span:last-of-type {font-size:12.5px;max-width:340px;line-height:1.5}
+.wkd .ctx-state-icon {width:32px;height:32px;border-radius:999px;background:#f0f1f3;color:#667080;display:flex;align-items:center;justify-content:center}
+.wkd .ctx-spinner {width:20px;height:20px;border-radius:999px;border:2px solid #d5dbe3;border-top-color:#2563eb;animation:ctx-spin 1s linear infinite}
+
+@keyframes ctx-spin{to{transform:rotate(360deg)}}
+.wkd .ctx-btn {height:30px;border-radius:6px;padding:0 11px;font-size:12px;font-weight:550;cursor:pointer}
+.wkd .ctx-btn.primary {border:1px solid #2563eb;background:#2563eb;color:#fff}
+.wkd .ctx-btn.secondary {border:1px solid #d5dbe3;background:#fff;color:#171b22}
+.wkd .ctx-btn.danger {border:1px solid #b42318;background:#b42318;color:#fff}
+.wkd .ctx-btn:disabled {opacity:.45;cursor:not-allowed}
+.wkd .dup-list, .wkd .remark-list, .wkd .ar-list, .wkd .chat-history-list {display:flex;flex-direction:column;gap:10px}
+.wkd .dup-card, .wkd .remark-item, .wkd .ar-card {border:1px solid #e3e7ed;border-radius:8px;padding:14px;background:#fff}
+.wkd .remark-head, .wkd .ar-top {display:flex;align-items:flex-start;gap:10px}
+.wkd .role-avatar {width:26px;height:26px;border-radius:999px;background:#eceff3;color:#667080;display:inline-flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:600;flex-shrink:0}
+.wkd .person-name {font-size:12.5px;font-weight:550;color:#171b22}
+.wkd .code-link {border:0;background:transparent;padding:0;font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:#1d4ed8;cursor:pointer;text-align:left}
+.wkd .code-link:hover {text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+.wkd .dup-meta {font-size:11.5px;color:#667080;margin-top:7px}
+.wkd .ctx-permission-note {display:flex;gap:7px;align-items:flex-start;padding:10px 12px;background:#fafbfc;border:1px solid #e3e7ed;border-radius:8px;color:#667080;font-size:11.5px;line-height:1.45}
+.wkd .ctx-permission-note svg {flex-shrink:0;margin-top:2px}
+.wkd .mono-static {display:block;margin-top:2px;font:600 11.5px 'JetBrains Mono',monospace;color:#3d4552}
+.wkd .dup-candidate-field, .wkd .dup-primary-field {border:0;margin:0;padding:0;min-width:0}
+.wkd .dup-candidate-field legend, .wkd .dup-primary-field legend {font-size:12.5px;font-weight:600;color:#171b22;margin-bottom:8px}
+.wkd .dup-select {display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.wkd .dup-select.selected, .wkd .dup-primary-option.selected {border-color:#9dbaf2;background:#f7faff}
+.wkd .dup-select input, .wkd .dup-primary-option input {margin-top:6px;accent-color:#2563eb}
+.wkd .dup-reason-inline {max-width:150px;font-size:11.5px;line-height:1.4;color:#667080;text-align:right}
+.wkd .dup-primary-field {display:flex;flex-direction:column;gap:8px}
+.wkd .dup-primary-option {border:1px solid #e3e7ed;border-radius:8px;padding:10px 12px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:9px;cursor:pointer}
+.wkd .dup-primary-option>span:nth-child(2) {min-width:0}
+.wkd .dup-primary-option>span:last-child {font-size:11px;color:#667080}
+.wkd .dup-actions {display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wkd .dup-audit {border-top:1px solid #edf0f4;padding-top:12px}
+.wkd .dup-audit h3 {font-size:12.5px;margin:0 0 8px}
+.wkd .dup-audit div {display:flex;flex-direction:column;gap:2px;padding:7px 0;border-top:1px solid #f0f2f5}
+.wkd .dup-audit strong {font-size:11.5px;text-transform:capitalize}
+.wkd .dup-audit span {font:10.5px 'JetBrains Mono',monospace;color:#667080}
+.wkd .dup-confirm dl {display:grid;grid-template-columns:110px minmax(0,1fr);gap:8px 12px;margin:0 0 18px;font-size:11.5px}
+.wkd .dup-confirm dt {color:#6e757f}
+.wkd .dup-confirm dd {margin:0;color:#3d4552;overflow-wrap:anywhere}
+.wkd .ctx-disabled-route {display:inline-flex;align-items:center;color:#6e757f;font-size:11.5px;font-weight:500;cursor:not-allowed}
+.wkd .remark-head .role-suffix {display:block;margin-top:2px}
+.wkd .ctx-visually-hidden {position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.wkd .chat-history-controls {display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wkd .chat-history-search {height:30px;min-width:210px;flex:1;border:1px solid #e3e7ed;border-radius:6px;display:flex;align-items:center;gap:7px;padding:0 9px;color:#6e757f;background:#fff;box-sizing:border-box}
+.wkd .chat-history-search:focus-within {border-color:#2563eb;box-shadow:0 0 0 2px #e8effd}
+.wkd .chat-history-search input {min-width:0;flex:1;border:0;outline:0;background:transparent;color:#171b22;font:12px 'Hanken Grotesk','Helvetica Neue','PingFang HK','PingFang TC','Microsoft JhengHei','Noto Sans HK',Arial,sans-serif}
+.wkd .chat-history-search input::placeholder {color:#6e757f}
+.wkd .chat-history-dropdown {position:relative}
+.wkd .chat-history-dropdown-trigger {height:30px;min-width:168px;border:1px solid #e3e7ed;border-radius:6px;background:#fff;color:#3d4552;padding:0 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;cursor:pointer}
+.wkd .chat-history-dropdown-menu {position:absolute;right:0;top:34px;width:180px;background:#fff;border:1px solid #e3e7ed;border-radius:8px;box-shadow:0 4px 16px rgba(16,24,40,.14);padding:4px;z-index:40}
+.wkd .chat-history-dropdown-menu button {width:100%;height:28px;border:0;border-radius:5px;background:#fff;padding:0 10px;text-align:left;font-size:12px;color:#171b22;cursor:pointer}
+.wkd .chat-history-dropdown-menu button:hover, .wkd .chat-history-dropdown-menu button:focus {background:#f4f6f8}
+.wkd .chat-history-dropdown-menu button[aria-selected="true"] {color:#1d4ed8;font-weight:600}
+.wkd .chat-history-count {width:100%;font:10.5px 'JetBrains Mono',monospace;color:#6e757f}
+.wkd .chat-history-filtered-empty {min-height:190px;border:1px dashed #d5dbe3;border-radius:8px}
+/* prototype chat-history-controls: the search takes the first line, the filters share the next line equally (User · Channel · Date range) */
+.wkd .chat-history-search {flex:1 1 100%;min-width:0}
+.wkd .chat-history-dropdown {flex:1 1 0;min-width:0}
+.wkd .chat-history-dropdown-trigger {width:100%;min-width:0}
+.wkd .chat-history-dropdown-trigger span:first-child {overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wkd .chat-history-dropdown-menu {min-width:150px}
+.wkd .remark-composer {border:1px solid #e3e7ed;border-radius:8px;padding:12px;background:#fafbfc}
+.wkd .remark-composer label {display:block;font-size:12.5px;font-weight:600;margin-bottom:7px}
+.wkd .remark-composer textarea {box-sizing:border-box;width:100%;min-height:84px;resize:vertical;border:1px solid #d5dbe3;border-radius:7px;padding:9px 10px;font:12.5px/1.45 'Hanken Grotesk','Helvetica Neue','PingFang HK','PingFang TC','Microsoft JhengHei','Noto Sans HK',Arial,sans-serif;color:#171b22;outline:none}
+.wkd .remark-composer textarea:focus {border-color:#2563eb;box-shadow:0 0 0 2px #e8effd}
+.wkd .remark-compose-foot {display:flex;align-items:center;margin-top:7px}
+.wkd .remark-compose-foot>span {flex:1;color:#6e757f;font:10.5px 'JetBrains Mono',monospace}
+.wkd .remark-head time {font:10.5px 'JetBrains Mono',monospace;color:#6e757f}
+.wkd .role-suffix {font-size:11.5px;color:#6e757f}
+.wkd .remark-body {font-size:12.5px;line-height:1.5;color:#3d4552;margin:9px 0}
+.wkd .remark-actions {display:flex;align-items:center;gap:10px;padding-top:8px;border-top:1px solid #edf0f4}
+.wkd .remark-actions span {flex:1;font-size:10.5px;color:#6e757f}
+.wkd .remark-actions button, .wkd .ctx-inline-link {border:0;background:transparent;padding:0;font-size:11.5px;font-weight:550;color:#1d4ed8;cursor:pointer}
+.wkd .remark-actions button:hover, .wkd .ctx-inline-link:hover {text-decoration:underline}
+.wkd .remark-actions .danger-text {color:#b42318}
+.wkd .remark-lock {display:flex;align-items:center;gap:5px;color:#6e757f;font-size:11px;margin-top:7px}
+.wkd .ar-top>div {flex:1}
+.wkd .ar-top strong {display:block;font-size:12.5px}
+.wkd .ar-top span {display:block;font-size:11.5px;color:#667080;margin-top:3px}
+.wkd .ctx-state-chip {height:20px;padding:0 7px 0 6px;border-radius:4px;display:inline-flex!important;align-items:center;gap:5px;font-size:10.5px!important;font-weight:600;white-space:nowrap}
+.wkd .ctx-state-chip>span {width:6px;height:6px;background:currentColor;border-radius:999px;margin:0}
+.wkd .ar-card dl {display:grid;grid-template-columns:70px 1fr;gap:6px 10px;margin:12px 0;font-size:11.5px}
+.wkd .ar-card dt {color:#6e757f}
+.wkd .ar-card dd {margin:0;color:#3d4552;line-height:1.45}
+.wkd .chat-history-row {border:1px solid #e3e7ed;border-radius:8px;background:#fff;padding:12px 14px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:5px;color:#171b22}
+.wkd .chat-history-row:hover {background:#f7f9fc}
+.wkd .chat-history-top {display:flex;align-items:center}
+.wkd .chat-history-top time {margin-left:auto;font:10.5px 'JetBrains Mono',monospace;color:#6e757f}
+.wkd .channel-badge {height:20px;display:inline-flex;align-items:center;padding:0 7px;border-radius:4px;background:#f0f1f3;color:#667080;font-size:10.5px;font-weight:600}
+.wkd .chat-history-row>strong {font-size:12.5px}
+.wkd .chat-preview {font-size:12px;color:#667080;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wkd .chat-route {display:flex;align-items:center;gap:8px;font-size:10.5px}
+.wkd .unread-badge {min-width:17px;height:17px;border-radius:999px;background:#2563eb;color:#fff;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;font:9.5px 'JetBrains Mono',monospace}
+.wkd .ctx-confirm-backdrop {position:fixed;inset:0;background:rgba(16,24,40,.32);z-index:1010}
+.wkd .ctx-confirm {position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(420px,90vw);background:#fff;border-radius:10px;box-shadow:0 16px 38px rgba(16,24,40,.24);z-index:1011;padding:20px}
+.wkd .ctx-confirm h3 {font-size:16px;margin:0}
+.wkd .ctx-confirm p {font-size:12.5px;line-height:1.5;color:#667080;margin:10px 0 18px}
+.wkd .ctx-confirm>div {display:flex;justify-content:flex-end;gap:8px}
+.wkd .activity-screen {padding:16px 28px 48px}
+.wkd .activity-card {background:#fff;border:1px solid #e3e7ed;border-radius:9px;max-width:1120px;overflow:visible}
+.wkd .activity-filters {min-height:60px;padding:11px 18px;border-bottom:1px solid #edf0f4;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-sizing:border-box}
+.wkd .activity-dropdown {position:relative}
+.wkd .activity-dropdown-trigger {height:30px;min-width:clamp(150px,16vw,190px);border:1px solid #e3e7ed;border-radius:6px;background:#fff;color:#3d4552;padding:0 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;cursor:pointer}
+.wkd .activity-dropdown-menu {position:absolute;left:0;top:34px;width:180px;background:#fff;border:1px solid #e3e7ed;border-radius:8px;box-shadow:0 4px 16px rgba(16,24,40,.14);padding:4px;z-index:40}
+.wkd .activity-dropdown-menu button {width:100%;height:28px;border:0;border-radius:5px;background:#fff;padding:0 10px;text-align:left;font-size:12px;color:#171b22;cursor:pointer}
+.wkd .activity-dropdown-menu button:hover, .wkd .activity-dropdown-menu button:focus {background:#f4f6f8}
+.wkd .activity-dropdown-menu button[aria-selected="true"] {color:#1d4ed8;font-weight:600}
+.wkd .activity-count {margin-left:auto;font:11.5px 'JetBrains Mono',monospace;color:#6e757f;white-space:nowrap}
+.wkd .activity-body {padding:8px 18px 20px;min-height:320px}
+.wkd .activity-day {position:relative}
+.wkd .activity-day-label {position:sticky;top:0;z-index:2;background:#fff;padding:12px 0 7px;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6e757f}
+.wkd .activity-line {position:relative;padding-left:24px}
+.wkd .activity-line:before {content:"";position:absolute;left:9px;top:10px;bottom:8px;width:1px;background:#e3e7ed}
+.wkd .activity-entry {position:relative;padding:8px 0 10px}
+.wkd .activity-dot {position:absolute;left:-19px;top:12px;width:8px;height:8px;border-radius:999px;border:2px solid #fff;box-sizing:border-box;background:#676e77}
+.wkd .activity-event {font-size:12.5px;color:#171b22;font-weight:500;line-height:1.45}
+.wkd .activity-change {font-size:12px;color:#454c57;margin-top:2px;line-height:1.45;word-break:break-word}
+.wkd .activity-change s {color:#8a919c}
+.wkd .activity-meta {font-size:11.5px;color:#6e757f;margin-top:2px}
+.wkd .activity-actor-name {color:#171b22;font-weight:500}
+.wkd .activity-actor-role {color:#6e757f}
+.wkd .activity-meta time {font-family:'JetBrains Mono',monospace}
+.wkd .activity-target {display:inline}
+/* Details read-mode (dRead port) */
+.wkd .wkd-lbl.is-missing {color:#b42318;}
+.wkd .wkd-read-value {font-size:13px;font-weight:500;color:#171b22;margin-top:4px;overflow-wrap:anywhere;}
+.wkd .wkd-read-value.is-empty {color:#6e757f;}
+.wkd .wkd-read-value.is-missing {color:#b42318;}
+.wkd .wkd-read-value.mono {font-family:var(--mono);font-size:12.5px;font-weight:600;}
+.wkd .wkd-card-body {padding:17px 20px;}
+.wkd .wkd-read-cards {display:flex;flex-direction:column;gap:14px;}
+.wkd .wkd-back {display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:550;color:#1d4ed8;cursor:pointer;border:0;background:transparent;padding:0;margin-bottom:12px;}
+.wkd .wkd-back:hover {text-decoration:underline;}
+.wkd .wkd-wx-table {width:100%;border-collapse:collapse;}
+.wkd .wkd-wx-table th {padding:9px 12px;border-bottom:1px solid #e3e7ed;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6e757f;text-align:left;white-space:nowrap;background:#fafbfc;}
+.wkd .wkd-wx-table td {padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:12.5px;color:#3b3b41;}
+.wkd .wkd-wx-table tr:last-child td {border-bottom:0;}
+.wkd .wkd-wx-table td.mono {font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.wkd .wkd-wx-empty {padding:18px 20px;font-size:12.5px;color:#6e757f;}
+.wkd .wkd-grow {flex:1;}
+.wkd .wkd-tablewrap-flush {border:0;border-radius:0;}
+.wkd .wkd-doc-link {display:inline-block;margin-top:4px;font-size:12.5px;font-weight:550;color:#1d4ed8;}
+.wkd .wkd-doc-link:hover {text-decoration:underline;}
+
+/* Edit Worker drawer (ovEditWorker v18.6): name + contact only */
+.wkd .wkd-edit-drawer {width:min(520px,94vw);}
+/* no bottom padding: the sticky footer is the drawer's last band and sits flush on its bottom edge */
+.wkd .wkd-edit-drawer-body {gap:0;padding:18px 20px 0;display:flex;flex-direction:column;}
+.wkd .wkd-edit-drawer-body form {display:flex;flex-direction:column;flex:1;min-height:0;gap:18px;}
+.wkd .wkd-edit-drawer-body,
+.wkd .wkd-edit-drawer-body input,
+.wkd .wkd-edit-drawer-body select,
+.wkd .wkd-edit-drawer-body button {font-family:var(--sans);}
+.wkd .wkd-unit-field {position:relative;}
+.wkd .wkd-unit-field .form-control {padding-right:34px;}
+.wkd .wkd-unit-suffix {position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:11.5px;color:#667080;pointer-events:none;}
+.wkd .wkd-ew-seclbl {
+  font-family:var(--mono);font-size:10.5px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;
+  color:#6e757f;
+}
+.wkd .wkd-ew-sec {display:flex;flex-direction:column;gap:11px;}
+.wkd .wkd-ew-grid2 {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px 14px;}
+.wkd .wkd-ew-field {display:flex;flex-direction:column;gap:5px;}
+.wkd .wkd-ew-lblrow {display:flex;align-items:center;gap:7px;}
+.wkd .wkd-ew-lbl {font-size:11.5px;font-weight:500;color:#4a515c;margin:0;}
+.wkd .wkd-ew-lbl.req::after {content:" *";color:#b42318;}
+.wkd .wkd-ew-input {
+  height:32px;border:1px solid #d5dbe3;border-radius:6px;padding:0 10px;
+  font-size:12.5px;color:#171b22;background:#fff;width:100%;outline:none;
+}
+.wkd .wkd-ew-input:focus {border-color:#2563eb;box-shadow:0 0 0 2px #e8effd;}
+.wkd .wkd-ew-input.mono {font-family:var(--mono);font-size:12px;}
+.wkd .wkd-ew-ro {
+  height:32px;border:1px solid #d5dbe3;border-radius:6px;padding:0 10px;
+  display:flex;align-items:center;font-size:12.5px;color:#667080;background:#f6f7f9;flex:1;
+  font-family:var(--mono);font-size:12px;
+}
+.wkd .wkd-ew-phone {display:flex;gap:7px;align-items:center;}
+.wkd .wkd-ew-phone .wkd-ew-input {flex:1;min-width:0;}
+.wkd .wkd-ew-code {
+  width:104px;flex:none;height:32px;border:1px solid #d5dbe3;border-radius:6px;padding:0 24px 0 10px;
+  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='none' stroke='%23667080' stroke-width='1.8'%3E%3Cpath d='M3.5 6 8 10.5 12.5 6'/%3E%3C/svg%3E") no-repeat right 9px center;
+  font-family:var(--mono) !important;font-size:12px;color:#171b22;
+  appearance:none;-webkit-appearance:none;cursor:pointer;outline:none;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.wkd .wkd-ew-code:focus {border-color:#2563eb;box-shadow:0 0 0 2px #e8effd;}
+.wkd .wkd-ew-btn {
+  height:32px;display:inline-flex;align-items:center;gap:5px;padding:0 11px;border-radius:6px;
+  background:#fff;border:1px solid #d5dbe3;color:#171b22;font-size:12px;font-weight:550;
+  cursor:pointer;flex-shrink:0;white-space:nowrap;
+}
+.wkd .wkd-ew-btn:hover {background:#f7f8fa;}
+.wkd .wkd-ew-btn:disabled {opacity:.55;cursor:not-allowed;}
+.wkd .wkd-ew-chip {
+  display:inline-flex;align-items:center;gap:4px;height:17px;padding:0 6px;border-radius:4px;
+  background:#e8f5ee;border:1px solid #bfe3ce;color:#186a3b;font-size:10px;font-weight:600;
+}
+.wkd .wkd-ew-chip.pending {background:#fff4e5;border-color:#f3d2a3;color:#9a5b00;}
+.wkd .wkd-ew-input.is-invalid {border-color:#b42318;box-shadow:0 0 0 2px #fde7e4;}
+.wkd .wkd-ew-otp {
+  display:flex;flex-direction:column;gap:5px;border:1px solid #e3e7ed;background:#fafbfc;
+  border-radius:7px;padding:10px 11px;
+}
+.wkd .wkd-ew-otp-row {display:flex;gap:7px;align-items:center;}
+.wkd .wkd-ew-otp-row .wkd-ew-input {width:120px;flex:none;letter-spacing:.3em;}
+.wkd .wkd-ew-verify {
+  height:32px;display:inline-flex;align-items:center;padding:0 13px;border-radius:6px;
+  background:#2563eb;border:1px solid #2563eb;color:#fff;font-size:12px;font-weight:550;cursor:pointer;
+}
+.wkd .wkd-ew-verify:hover {background:#1e51c9;}
+.wkd .wkd-ew-hint {font-size:11px;color:#667080;}
+.wkd .wkd-ew-hint .mono {font-family:var(--mono);}
+.wkd .wkd-ew-hint-link {color:#2563eb;cursor:pointer;}
+.wkd .wkd-ew-hint-link.off {color:#98a2b3;cursor:default;}
+.wkd .wkd-ew-err {font-size:11px;color:#b42318;line-height:1.4;}
+.wkd .wkd-ew-banner {
+  border:1px solid #f0c4bd;background:#fef3f2;border-radius:8px;padding:11px 13px;
+  display:flex;gap:8px;align-items:flex-start;
+}
+.wkd .wkd-ew-banner svg {flex-shrink:0;margin-top:1px;}
+.wkd .wkd-ew-banner-title {font-size:12px;font-weight:600;color:#b42318;}
+.wkd .wkd-ew-banner-body {font-size:11.5px;color:#912018;margin-top:2px;line-height:1.45;}
+.wkd .wkd-ew-foot {
+  position:sticky;bottom:0;margin:auto -20px 0;flex-shrink:0;
+  display:flex;align-items:center;justify-content:flex-end;gap:8px;
+  padding:14px 20px;border-top:1px solid #edf0f4;background:#fff;
+}
+.wkd .wkd-ew-foot .wkd-ew-cancel {
+  height:32px;display:inline-flex;align-items:center;padding:0 13px;border-radius:7px;
+  background:#fff;border:1px solid #d5dbe3;color:#171b22;font-size:12.5px;font-weight:550;cursor:pointer;
+}
+.wkd .wkd-ew-foot .wkd-ew-cancel:hover {background:#f7f8fa;}
+.wkd .wkd-ew-foot .wkd-ew-save {
+  height:32px;display:inline-flex;align-items:center;padding:0 15px;border-radius:7px;
+  background:#2563eb;border:1px solid #2563eb;color:#fff;font-size:12.5px;font-weight:550;cursor:pointer;
+}
+.wkd .wkd-ew-foot .wkd-ew-save:hover {background:#1e51c9;}
+/* plain number inputs — no spinners (mockup) */
+.wkd .wkd-edit-drawer-body input[type="number"]::-webkit-inner-spin-button,
+.wkd .wkd-edit-drawer-body input[type="number"]::-webkit-outer-spin-button {-webkit-appearance:none;margin:0;}
+.wkd .wkd-edit-drawer-body input[type="number"] {-moz-appearance:textfield;appearance:textfield;}
+
+.wkd .wkd-activity-scroll {max-height:75vh;overflow-y:auto;padding-top:0;}
+.wkd .wkd-activity-scroll::before {content:"";display:block;position:sticky;top:0;z-index:3;height:8px;background:#fff;}
+.wkd .wkd-activity-loading {padding:12px 0;text-align:center;font-size:12px;color:#6e757f;}
+.wkd .invalid-entry {height:100%;display:flex;align-items:center;justify-content:center;background:#f6f7f9}
+.wkd .invalid-entry>div {max-width:440px;text-align:center;background:#fff;border:1px solid #e3e7ed;border-radius:10px;padding:28px}
+.wkd .invalid-entry>div>span {width:36px;height:36px;border-radius:999px;background:#fdeae7;color:#b42318;display:inline-flex;align-items:center;justify-content:center;font-weight:700}
+.wkd .invalid-entry h2 {font-size:17px;margin:12px 0 5px}
+.wkd .invalid-entry p {font-size:12.5px;line-height:1.5;color:#667080}
+.wkd .invalid-entry code {display:inline-block;background:#f4f6f8;padding:4px 7px;border-radius:5px;color:#667080}
+
+@media(max-width:1280px) {.wkd .ctx-drawer {width:min(500px,92vw)}
+}
+
+/* ================================================================
+ * Inline-style extraction — page layout, identity header, tab bar,
+ * status chips and context-rail wrapper (workerHeaderHTML /
+ * ctxRailSummaryHTML, Worker_Details_v18_6_Source).
+ * ================================================================ */
+
+.wkd.wkd-page { background: oklch(0.965 0.004 250); min-height: 100%; }
+/* Full-bleed: cancel the AppShell content padding (var(--space-4) 24px 56px)
+ * so the rail sits flush against the sidebar and the page touches the edges. */
+.wkd.wkd-page {
+  margin: calc(var(--space-4) * -1) -24px -56px;
+  min-height: calc(100% + var(--space-4) + 56px);
+}
+
+.wkd .wkd-header { padding: 20px 28px 0; background: #fff; flex-shrink: 0; }
+.wkd .wkd-id-row { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; row-gap: 12px; }
+.wkd .wkd-avatar {
+  width: 64px; height: 64px; border-radius: 999px; background: oklch(0.945 0.008 250);
+  color: #667080; display: flex; align-items: center; justify-content: center;
+  font-size: 19px; font-weight: 600; flex-shrink: 0; overflow: hidden;
+}
+.wkd .wkd-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.wkd .wkd-id-main { flex: 1; min-width: 0; }
+.wkd .wkd-name-row { display: flex; align-items: center; gap: 10px; }
+.wkd .wkd-name { font-size: 19px; font-weight: 650; color: #171b22; letter-spacing: -0.01em; }
+.wkd .wkd-code-row { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+/* own-record code: neutral, never a link (SR-05/06) */
+.wkd .wkd-code { font-family: var(--mono); font-size: 12px; font-weight: 600; line-height: 18px; color: #3b3b41; }
+.wkd .wkd-code-muted { font-size: 12px; font-weight: 500; color: #676e77; }
+.wkd .wkd-copy {
+  height: 18px; display: inline-flex; align-items: center; padding: 0 6px;
+  border: 1px solid #e3e7ed; border-radius: 4px; font-size: 10px; font-weight: 550;
+  color: #667080; background: #fff; cursor: pointer;
+}
+.wkd .wkd-copy:hover { border-color: #d5dbe3; color: #3d4552; }
+.wkd .wkd-id-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; position: relative; }
+
+.wkd .wkd-owners {
+  position: relative; display: inline-flex; align-items: center; gap: 8px; height: 32px;
+  padding: 0 10px; border: 1px solid #e3e7ed; border-radius: 7px; background: #fff; cursor: pointer;
+}
+.wkd .wkd-owners.open { border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+.wkd .wkd-owners-trigger {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 0; padding: 0; background: transparent; cursor: pointer;
+}
+.wkd .wkd-owner-avs { display: flex; }
+.wkd .wkd-owner-av {
+  width: 22px; height: 22px; border-radius: 999px; display: flex; align-items: center;
+  justify-content: center; font-size: 8.5px; font-weight: 600; border: 2px solid #fff;
+}
+.wkd .wkd-owner-av + .wkd-owner-av { margin-left: -7px; }
+.wkd .wkd-owner-av.tone-a { background: #e7e0f6; color: #5b4a9e; }
+.wkd .wkd-owner-av.tone-b { background: #dbe9f8; color: #33608f; }
+.wkd .wkd-owners-lbl { font-size: 12.5px; font-weight: 550; color: #171b22; }
+.wkd .wkd-owners-count { font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: #667080; }
+.wkd .wkd-owners-pop {
+  position: absolute; right: 0; top: 40px; width: 290px; background: #fff;
+  border: 1px solid #e3e7ed; border-radius: 10px; box-shadow: 0 8px 24px rgba(16, 24, 40, 0.16);
+  z-index: 60; text-align: left; cursor: default;
+}
+.wkd .wkd-owners-pop-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border-bottom: 1px solid #edf0f4;
+}
+.wkd .wkd-owners-pop-head span:first-child { font-size: 13px; font-weight: 600; color: #171b22; }
+.wkd .wkd-owner-section { padding: 10px 14px; }
+.wkd .wkd-owner-section + .wkd-owner-section { border-top: 1px solid #f2f4f7; }
+.wkd .wkd-owner-role { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: #6e757f; }
+.wkd .wkd-owner-person { display: flex; align-items: center; gap: 9px; margin-top: 7px; }
+.wkd .wkd-owner-person .wkd-owner-av { width: 26px; height: 26px; font-size: 9.5px; border: 0; }
+.wkd .wkd-owner-nm { font-size: 12.5px; font-weight: 500; color: #171b22; }
+.wkd .wkd-owner-sub { display: block; font-size: 11px; color: #6e757f; margin-top: 1px; }
+
+.wkd .wkd-btn-primary {
+  height: 32px; display: inline-flex; align-items: center; gap: 6px; padding: 0 13px;
+  border: 0; border-radius: 7px; background: #2563eb; color: #fff;
+  font-size: 12.5px; font-weight: 550; cursor: pointer;
+}
+.wkd .wkd-btn-primary:hover { background: #1e51c9; }
+.wkd .wkd-btn-outline {
+  height: 32px; display: inline-flex; align-items: center; gap: 7px; padding: 0 12px;
+  border-radius: 7px; background: #fff; border: 1px solid #d5dbe3; color: #171b22;
+  font-size: 12.5px; font-weight: 550; cursor: pointer;
+}
+.wkd .wkd-btn-outline:hover { background: #f7f8fa; }
+.wkd .wkd-btn-icon { width: 32px; padding: 0; justify-content: center; }
+.wkd .wkd-actions-wrap { position: relative; }
+.wkd .wkd-actions-pop {
+  position: absolute; right: 0; top: 38px; width: 236px; background: #fff;
+  border: 1px solid #e3e7ed; border-radius: 8px; box-shadow: 0 8px 24px rgba(16, 24, 40, 0.16);
+  z-index: 70; padding: 5px; text-align: left;
+}
+.wkd .wkd-actions-pop button[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+.wkd .wkd-actions-pop button {
+  display: flex; align-items: center; width: 100%; height: 32px; padding: 0 10px; border: 0; border-radius: 5px;
+  background: transparent; text-align: left; font-size: 12.5px; color: #171b22; cursor: pointer;
+}
+.wkd .wkd-actions-pop button:hover { background: #f4f6f8; }
+
+.wkd .wkd-status-chip {
+  display: inline-flex; align-items: center; gap: 6px; height: 20px; padding: 0 8px;
+  border-radius: 4px; font-size: 11px; font-weight: 500;
+}
+/* own dot class — the loader stylesheets ship a GLOBAL `.dot` with a wave animation */
+.wkd .wkd-status-chip .wkd-chip-dot { width: 6px; height: 6px; flex: none; border-radius: 999px; background: currentColor; }
+
+.wkd .wkd-meta-strip {
+  display: flex; align-items: center; gap: 7px; row-gap: 6px; flex-wrap: wrap; margin-top: 14px;
+  padding: 10px 0; border-top: 1px solid #edf0f4; border-bottom: 1px solid #edf0f4;
+  font-size: 12.5px; color: #3d4552;
+}
+.wkd .wkd-meta-strip .sep { color: #c3cad4; }
+.wkd .wkd-meta-strip .grow { flex: 1; }
+.wkd .wkd-contact { display: flex; align-items: baseline; gap: 8px; }
+.wkd .wkd-contact + .wkd-contact { margin-left: 16px; }
+.wkd .wkd-contact .k { font-size: 10.5px; font-weight: 600; letter-spacing: 0.07em; color: #6e757f; text-transform: uppercase; }
+/* U-0331 (21 Oct): blue belongs only to a control that navigates; a contact value is neutral reference text (`.link` is kept for a real destination) */
+.wkd .wkd-contact .v { font-size: 12.5px; font-weight: 500; color: #171b22; }
+.wkd .wkd-contact .v.muted { color: #6e757f; }
+
+.wkd .wkd-tabbar { display: flex; gap: 28px; margin-top: 8px; }
+.wkd .wkd-tab {
+  padding: 11px 2px; font-size: 13px; font-weight: 500; color: #667080;
+  cursor: pointer; background: none; border: 0;
+}
+.wkd .wkd-tab.on { font-weight: 600; color: #171b22; box-shadow: inset 0 -2px 0 #2563eb; }
+.wkd .wkd-tab:focus-visible { outline: 2px solid #87a8ef; outline-offset: 2px; }
+/* Change Status confirm (kit ConfirmModal body): the recorded reason */
+.wkd-status-reason { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.wkd-status-reason > span { font-size: 10.5px; font-weight: 600; letter-spacing: 0.07em; color: #6e757f; text-transform: uppercase; }
+.wkd-status-reason textarea {
+  width: 100%; min-height: 72px; padding: 8px 10px; border: 1px solid #d5dbe3; border-radius: 6px;
+  font: inherit; font-size: 12.5px; color: #171b22; resize: vertical;
+}
+.wkd-status-reason textarea:focus-visible { outline: 2px solid #87a8ef; outline-offset: 1px; }
+.wkd .wkd-invalid-entry .wkd-btn-outline { margin-top: 4px; }
+
+.wkd .wkd-body { display: flex; align-items: stretch; min-height: calc(100vh - 52px); }
+.wkd .wkd-rail {
+  width: 340px; flex-shrink: 0; background: #fafbfc; border-right: 1px solid #e3e7ed;
+  display: flex; flex-direction: column; min-height: 0; overflow: hidden;
+}
+.wkd .wkd-main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.wkd .wkd-main-col .wkd-main { flex: 1; }
+.wkd .wkd-rail-seg-wrap { padding: 12px 12px 10px; }
+.wkd .wkd-rail-seg { display: flex; background: #eceff3; border-radius: 7px; padding: 3px; }
+.wkd .wkd-rail-seg .seg {
+  flex: 1; height: 26px; display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: 12px; font-weight: 500; color: #667080; border: 0; background: transparent; cursor: pointer;
+}
+.wkd .wkd-rail-seg .seg.on {
+  background: #fff; border-radius: 5px; font-weight: 600; color: #171b22;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08); cursor: default;
+}
+.wkd .wkd-rail-cards { padding: 12px 12px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; min-height: 0; flex: 1; }
+/* chat mode: no bottom padding — the composer must sit flush on the rail's
+ * bottom edge (a scroll container always paints its own bottom padding, so
+ * a negative margin on the chat cannot cancel it) */
+.wkd .wkd-rail-cards:has(.wkd-rail-chat) { padding-bottom: 0; }
+
+.wkd .wkd-rail:has(.wkd-rail-chat) {
+  height: calc(100vh - 52px);
+  position: sticky;
+  top: 52px;
+}
+
+.wkd .wkd-rail-expand { padding: 0 12px 12px; }
+.wkd .wkd-main { position: relative; flex: 1; min-width: 0; padding: 18px 24px 40px; background: #f4f5f7; }
+/* Mockup frame for legacy tabs (Profile/Details): the sub-tab bar sits on
+ * the grey page; the pane content is the white card. The legacy wrapper
+ * goes transparent and the card chrome moves to .wkd-subtab-content. */
+.wkd .wkd-main .table-wrapper.bg-white {
+  background: transparent !important; border: 0 !important;
+  padding: 0 !important; box-shadow: none !important;
+}
+.wkd .wkd-subtab-content {
+  background: #fff; border: 1px solid #e3e7ed; border-radius: 9px;
+  padding: 18px 20px; margin-top: 14px; /* v18.6 source: radius 9, padding 18x20 */
+}
+/* Details tab read panes already render their own g2-cards on the grey —
+ * don't wrap them in a second card. (Targets .wkd-read-cards, NOT
+ * .det-body: BiodataView also carries det-body for its grid container.) */
+.wkd .wkd-subtab-content:has(.wkd-read-cards) {
+  background: transparent; border: 0; border-radius: 0; padding: 0;
+}
+/* TabFooterActions inline variant: bare flex, no footer chrome at all */
+.wkd-inline-actions { display: flex; align-items: center; }
+.wkd-inline-actions > .d-flex { align-items: center; gap: 8px; }
+.wkd-inline-actions .btn { margin: 0 !important; }
+
+/* header action cluster: one baseline, zero stray box model anywhere */
+.wkd .wkd-bio-headacts,
+.wkd .wkd-bio-headacts .table-wrapper-footer,
+.wkd .wkd-bio-headacts .table-wrapper-footer > .d-flex {
+  display: flex !important; align-items: center !important; gap: 10px; /* v18.6 header gap */
+  margin: 0 !important; padding: 0 !important; border: 0 !important;
+  position: static !important; background: transparent !important;
+  flex-shrink: 0; flex-wrap: nowrap; white-space: nowrap;
+}
+.wkd .bio-data-view .form-row.align-items-center.justify-content-between { flex-wrap: nowrap; }
+.wkd .bio-data-view .form-row.align-items-center.justify-content-between > .col { min-width: 0; }
+.wkd .wkd-bio-headacts .btn,
+.wkd .wkd-bio-headacts .change-status,
+.wkd .wkd-bio-headacts .change-status .abc.bg-blue {
+  height: 28px !important; min-height: 28px !important; max-height: 28px !important; /* v18.6: 28px header actions */
+  margin: 0 !important; display: inline-flex !important; align-items: center !important;
+}
+/* biodata header: single tight row — divider on the ROW, not inside
+ * DocumentStatus (whose own divider inflated the title column height
+ * and pushed the buttons off the title baseline) */
+.wkd .bio-data-view .form-row.align-items-center.justify-content-between {
+  align-items: center !important;
+  border-bottom: 1px solid #edf0f4; padding-bottom: 14px; margin-bottom: 18px;
+}
+.wkd .bio-data-view .document-status { padding-bottom: 0 !important; border-bottom: 0 !important; margin-bottom: 0 !important; }
+/* DocumentStatus's second row is an empty doc-preview slot for Biodata —
+ * it inflates the header height and misaligns the buttons. Kill it. */
+.wkd .bio-data-view .document-status .row.mt-3 { display: none !important; }
+.wkd .bio-data-view .col.mb36, .wkd .bio-data-view .col-auto.mb36 { margin-bottom: 0 !important; }
+/* no extra top gap inside the card */
+.wkd .wkd-subtab-content .bio-data-view { margin-top: 0 !important; }
+.wkd .wkd-subtab-content .bio-data-view > .row > .col-12 { margin-bottom: 0 !important; }
+
+@media (max-width: 880px) {
+  .wkd .wkd-body { flex-direction: column; }
+  .wkd .wkd-rail { width: 100%; border-right: 0; border-bottom: 1px solid #e3e7ed; }
+}
+
+/* ================================================================
+ * Legacy inner-view re-skin (Profile Biodata/Photo/Doc Upload/PT and
+ * remaining legacy tab content): maps the legacy utility classes onto
+ * the v18.6 type roles (UI-007) until each view is componentized.
+ * Scoped to .wkd .tab-content so nothing outside the worker page moves.
+ * ================================================================ */
+
+/* type scale: legacy display sizes → v18.6 roles (panel title 16/600 -.01em) */
+.wkd .tab-content .fz24 { font-size: 16px !important; font-weight: 600 !important; letter-spacing: -0.01em; }
+.wkd .tab-content .fz22 { font-size: 16px !important; font-weight: 600 !important; letter-spacing: -0.01em; }
+.wkd .tab-content .fz20 { font-size: 14px !important; font-weight: 600 !important; }
+.wkd .tab-content .fz18 { font-size: 13.5px !important; }
+.wkd .tab-content .fz16 { font-size: 13px !important; }
+
+/* legacy text inside the re-skinned tabs renders Roboto — force the
+ * mockup sans everywhere text shows (icon fonts keep their own family) */
+.wkd .tab-content .detail-item .title,
+.wkd .tab-content .detail-item .desc,
+.wkd .tab-content p,
+.wkd .tab-content .btn,
+.wkd .tab-content .chip,
+.wkd .tab-content .custom_drop_holder,
+.wkd .tab-content .form-label,
+.wkd .tab-content .form-control,
+.wkd .tab-content .document-status span { font-family: var(--sans) !important; }
+
+/* DetailItem — v18.6 source: label 11.5/500 #667080, value 13/500 #171b22 +4px */
+.wkd .tab-content .detail-item .title {
+  font-size: 11.5px !important; font-weight: 500 !important; letter-spacing: 0;
+  text-transform: none; color: #667080 !important; line-height: 1.35 !important;
+  margin-bottom: 4px !important;
+}
+.wkd .tab-content .detail-item .desc {
+  font-size: 13px !important; font-weight: 500; color: #171b22; line-height: 1.45 !important;
+}
+
+/* Biodata read: 2-column grid — v18.6 source: gap 12x32 */
+.wkd .bio-data-view .det-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 32px; }
+.wkd .bio-data-view .det-grid.mb24 { margin-bottom: 16px !important; }
+
+/* biodata card header shows only "Biodata" + status chip — the legacy
+ * Can Start / Last Avl meta strip is not in the mockup */
+.wkd .bio-data-view .document-status span.fz14 { display: none !important; }
+
+/* DocumentStatus chips → v18.6 status tag: 20px, 0 8px, radius 4, 11/500, 6px dot */
+.wkd .tab-content .document-status .btn.chip {
+  height: 20px !important; min-height: 20px !important; padding: 0 8px !important;
+  border-radius: 4px !important; font-size: 11px !important; font-weight: 500 !important;
+  line-height: 1 !important; display: inline-flex !important; align-items: center;
+}
+.wkd .tab-content .document-status .btn.chip::before {
+  content: ""; width: 6px; height: 6px; border-radius: 999px; background: currentColor;
+  display: inline-block; margin-right: 6px;
+}
+.wkd .tab-content .document-status .btn.chip.notuploadeddoc { background: #fdeae7 !important; color: #b42318 !important; border: 1px solid #f5cdc6 !important; }
+.wkd .tab-content .document-status .btn.chip.inreviewdoc { background: #e3ecfd !important; color: #1e51c9 !important; border: 1px solid #c8d9f7 !important; }
+.wkd .tab-content .document-status .btn.chip.actionrequireddoc { background: #fdeae7 !important; color: #b42318 !important; border: 1px solid #f5cdc6 !important; }
+.wkd .tab-content .document-status .btn.chip.verified { background: #e3f4e8 !important; color: #1a7f37 !important; border: 1px solid #c9e8d3 !important; }
+.wkd .tab-content .document-status .btn.chip.uploadeddoc { background: #f0f1f3 !important; color: #7d8492 !important; border: 1px solid #e0e3e8 !important; }
+
+/* DocumentStatus meta strip (Updated / Last Avl) */
+.wkd .tab-content .document-status span.fz14 { font-size: 11.5px !important; color: #6e757f !important; }
+
+/* legacy chips → quiet bordered chips (status-coloured variants keep their bg) */
+.wkd .tab-content .btn.chip.small {
+  height: 22px; min-height: 22px; padding: 0 8px; border-radius: 4px;
+  font-size: 11.5px !important; font-weight: 500; line-height: 20px;
+}
+.wkd .tab-content .btn.chip.small.light { color: #3d4552; background: #f4f6f8; border: 1px solid #e3e7ed; }
+
+/* legacy buttons → v18.6 header actions: 28px, radius 6, 12/550 */
+.wkd .tab-content .btn.btn-outline {
+  height: 28px; min-height: 28px; padding: 0 11px; display: inline-flex; align-items: center;
+  border: 1px solid #d5dbe3; border-radius: 6px;
+  background: #fff; color: #171b22; font-size: 12px !important; font-weight: 550;
+}
+.wkd .tab-content .btn.btn-outline:hover { background: #f7f8fa; }
+.wkd .tab-content .btn.filled-btn { border-radius: 7px; font-size: 12px !important; font-weight: 550; }
+
+/* legacy form controls inside edit views */
+.wkd .tab-content label.form-label { font-size: 11.5px !important; font-weight: 550; color: #667080; }
+.wkd .tab-content .form-control { font-size: 12.5px; border-color: #d5dbe3; border-radius: 6px; }
+.wkd .tab-content .form-control:focus { border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+
+/* v18.6 biodata layout: TWO sibling cards (biodata + Activity) on the grey
+ * page — the subtab wrapper goes transparent and the main row becomes the
+ * biodata card, so the Activity card can sit beside it, not inside it. */
+.wkd .wkd-subtab-content:has(.bio-data-view) {
+  background: transparent; border: 0; border-radius: 0; padding: 0;
+}
+.wkd .bio-data-view > .row {
+  margin: 0 !important;
+  background: #fff; border: 1px solid #e3e7ed; border-radius: 9px; padding: 18px 20px;
+}
+.wkd .bio-data-view > .row > .col-12 { padding: 0 !important; }
+
+/* Activity card (v18.6 bioReadHTML): white card, 14px below the biodata
+ * card, dot timeline with a hairline spine and mono timestamps */
+.wkd .wkd-activity-card {
+  background: #fff; border: 1px solid #e3e7ed; border-radius: 9px;
+  padding: 16px 20px; margin-top: 14px;
+}
+.wkd .wkd-activity-title { font-size: 14px; font-weight: 600; color: #171b22; margin-bottom: 12px; }
+.wkd .wkd-activity-timeline { position: relative; padding-left: 24px; }
+.wkd .wkd-activity-timeline::before {
+  content: ""; position: absolute; left: 9px; top: 4px; bottom: 4px; width: 1px; background: #e3e7ed;
+}
+.wkd .wkd-activity-entry { position: relative; padding: 6px 0; }
+/* NOTE: NOT class "dot" — a global loader .dot carries a chatWave bounce
+ * animation; this must stay collision-free */
+.wkd .wkd-activity-entry .wkd-tl-dot {
+  position: absolute; left: -20px; top: 9px; width: 8px; height: 8px;
+  box-sizing: content-box; /* 8px dot + white ring, like the mockup */
+  border-radius: 999px; border: 2px solid #fff;
+  animation: none !important; display: block;
+}
+.wkd .wkd-activity-entry .wkd-tl-dot.blue { background: #2563eb; }
+.wkd .wkd-activity-entry .wkd-tl-dot.amber { background: #d97706; }
+.wkd .wkd-activity-entry .wkd-tl-dot.green { background: #1a7f37; }
+.wkd .wkd-activity-entry .t { font-size: 12.5px; font-weight: 500; color: #171b22; }
+.wkd .wkd-activity-entry .m { font-size: 11.5px; color: #6e757f; margin-top: 2px; }
+.wkd .wkd-activity-entry .when { font-family: var(--mono); }
+
+/* Work experience — v18.6: each experience is a bordered card
+ * (border #e3e7ed, radius 8, padding 14x16) with heading row + Active tag,
+ * fields grid, then an uppercase MAIN DUTIES label over white chips. */
+.wkd .wkd-we-card {
+  border: 1px solid #e3e7ed; border-radius: 8px; padding: 14px 16px;
+  background: #fff; margin-bottom: 12px; position: relative;
+}
+/* first card of the group = the one following a non-card sibling */
+.wkd .form-row + .wkd-we-card { margin-top: 16px; }
+.wkd .form-row + .wkd-we-card::before { /* section hairline above the card group */
+  content: ""; position: absolute; top: -8px; left: 0; right: 0; height: 1px; background: #edf0f4;
+}
+.wkd .wkd-we-head { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+.wkd .wkd-we-card p.fz22 { border-top: 0 !important; padding-top: 0 !important; margin-bottom: 0 !important; width: auto; }
+.wkd .wkd-we-active {
+  display: inline-flex; align-items: center; gap: 6px; height: 20px; padding: 0 8px;
+  border-radius: 4px; font-size: 11px; font-weight: 500;
+  background: #e3f4e8; color: #1a7f37; border: 1px solid #c9e8d3;
+}
+.wkd .wkd-we-active::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+.wkd .wkd-we-card .det-grid.mb24 { margin-bottom: 0 !important; }
+.wkd .wkd-we-card > .form-row { margin-top: 12px; }
+.wkd .wkd-we-card > .form-row .title { /* MAIN DUTIES label */
+  font-size: 10.5px !important; font-weight: 600 !important; letter-spacing: .08em;
+  text-transform: uppercase; color: #667080; margin-bottom: 6px !important;
+}
+.wkd .wkd-we-card .btn.chip.small.light { background: #fff; }
+.wkd .wkd-we-card .mb28 { margin-bottom: 0 !important; }
+
+/* Biodata read sections on the mockup det-grid: bootstrap col-* children
+ * become plain grid cells; section titles get hairline separators. */
+/* grid cells: the legacy mb24/col-* utilities must not add their own box —
+ * all spacing comes from the grid gap (12x32) */
+.wkd .det-grid > [class*="col-"] {
+  width: 100% !important; max-width: 100% !important; flex: none !important;
+  padding: 0 !important; margin: 0 !important;
+}
+/* v18.6 sections: 16px vertical rhythm, hairline between sections,
+ * heading 16/600 -.01em with 12px below (mc-profile-main-heading) */
+.wkd .bio-data-view p.fz22 {
+  display: block !important; width: 100%; padding-top: 16px; border-top: 1px solid #edf0f4;
+  font-size: 16px !important; font-weight: 600 !important; letter-spacing: -0.01em;
+  margin-bottom: 12px !important;
+}
+/* the legacy wrapper cols around headings/chips stack their own margins on
+ * top of the section rhythm — spacing must come from p.fz22 + .mb24 only */
+.wkd .bio-data-view .form-row .col.mb-3,
+.wkd .bio-data-view .form-row .col.mb16,
+.wkd .bio-data-view .form-row .col.mb12,
+.wkd .bio-data-view .row > .col-12.mb-3 { margin-bottom: 0 !important; }
+/* chip wrappers only — must NOT match the col-* field cells (cell reset
+ * zeroes those) nor det-grid (handled at its own rule + we-card override) */
+.wkd .bio-data-view div.mb24:not([class*="col-"]):not(.det-grid) { margin-bottom: 16px !important; }
+
+/* ================================================================
+ * Doc-upload / PT review workspace re-skin (rev card, bundle v18.6):
+ * DocumentStatus head, striped preview pane, activity feed, footer
+ * actions — shared chrome of the 8 doc tabs + 4 PT tabs.
+ * ================================================================ */
+.wkd .tab-content .document-status { padding-bottom: 14px; border-bottom: 1px solid #edf0f4; margin-bottom: 16px; }
+.wkd .tab-content .document-status .left-border { border-left: 1px solid #e3e7ed; }
+.wkd .tab-content .doc-upload-wrapper {
+  border: 1px solid #e3e7ed; border-radius: 8px; padding: 10px;
+  background: repeating-linear-gradient(45deg, #f7f8fa, #f7f8fa 8px, #eef0f3 8px, #eef0f3 16px);
+}
+.wkd .tab-content .doc-upload-wrapper img { border-radius: 6px; background: #fff; }
+.wkd .tab-content .activity-status-collapsible .card {
+  background: #fafbfc !important; border: 1px solid #e3e7ed !important; border-radius: 8px;
+}
+.wkd .tab-content .activity-status-collapsible .card-header { font-size: 12.5px !important; font-weight: 600 !important; }
+.wkd .tab-content .activity-status-collapsible.mb100 { margin-bottom: 24px !important; }
+.wkd .tab-content .activity-item { margin-bottom: 14px !important; }
+.wkd .tab-content .activity-item .fz16 { font-size: 12.5px !important; }
+.wkd .tab-content .activity-item .fz14 { font-size: 11px !important; color: #6e757f !important; }
+.wkd .tab-content .table-wrapper-footer {
+  position: static !important; /* legacy pins it absolute bottom w/ grey bgf7 band */
+  background: transparent !important; border-top: 1px solid #edf0f4;
+  border-radius: 0 !important;
+  padding: 12px 0 0 !important; margin-top: 16px;
+}
+/* Biodata edit form: the 9 sequential sub-form sections get the same
+ * hairline section rhythm as the read view (headers are p.fz20.fw-700). */
+.wkd .tab-content form p.fz20.fw-700,
+.wkd .tab-content form p.fz22 {
+  display: block; width: 100%; padding-top: 14px; margin-top: 4px;
+  border-top: 1px solid #edf0f4;
+}
+
+/* Change Status trigger: legacy blue block → mockup white bordered button */
+.wkd .tab-content .change-status .abc.bg-blue {
+  background: #fff !important; border: 1px solid #d5dbe3; border-radius: 6px;
+  height: 28px !important; min-height: 28px !important;
+}
+.wkd .tab-content .change-status .abc.bg-blue .custom_drop_holder,
+.wkd .tab-content .change-status .abc.bg-blue span { color: #171b22 !important; font-size: 12px; font-weight: 550; }
+/* mockup shows a thin grey chevron, not the legacy caret image */
+.wkd .tab-content .change-status .abc.bg-blue img { display: none !important; }
+/* exact v18.6 chevron: 10x10 svg, stroke 1.8 #667080, 6px from label */
+.wkd .tab-content .change-status .abc.bg-blue .custom_drop_holder::after {
+  content: ""; width: 10px; height: 10px; flex-shrink: 0; margin-left: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='none' stroke='%23667080' stroke-width='1.8'%3E%3Cpath d='M3.5 6 8 10.5 12.5 6'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+}
+
+
+/* ================================================================
+ * RAIL CHAT — definitive skin (v18.6 chat rail). Single source of
+ * truth; every rail-chat rule lives HERE and nowhere else.
+ * Anatomy: [chips row + Global Chat] → messages (flex-fill, scroll)
+ * → composer flush at the rail bottom.
+ * ================================================================ */
+
+/* fill the rail column and bleed over .wkd-rail-cards' 12px padding so
+ * the composer sits flush at the rail's bottom edge */
+.wkd .wkd-rail-chat {
+  flex: 1; min-height: 0; display: flex; flex-direction: column;
+  margin: 0 -12px; /* side bleed only; bottom padding is removed on the container */
+  position: relative; /* anchors the Global Chat link onto the chip row */
+}
+.wkd .wkd-rail-chat .chat-page.processing-page {
+  position: static !important; width: 100% !important; height: auto !important;
+  left: auto !important; top: auto !important;
+  /* legacy z-index:9999 still applies to FLEX ITEMS even when static —
+   * it stacked the whole chat above the Global Chat link */
+  z-index: auto !important;
+  background: transparent; border: 0; border-radius: 0; box-shadow: none;
+  overflow: visible; display: flex; flex-direction: column; flex: 1; min-height: 0;
+}
+.wkd .wkd-rail-chat .chat-box-resizer { display: none !important; }
+.wkd .wkd-rail-chat .chat-item { display: none !important; }
+.wkd .wkd-rail-chat .sender-avatar, .wkd .wkd-rail-chat .receiver-avatar { display: none !important; }
+
+/* flex chain: everything between chips and composer stretches */
+.wkd .wkd-rail-chat .chat-conversation { display: flex; flex-direction: column; flex: 1; min-height: 0; width: 100%; }
+.wkd .wkd-rail-chat .chat-conversation > div { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.wkd .wkd-rail-chat .tab-content { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.wkd .wkd-rail-chat .tab-content > .tab-pane.active { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.wkd .wkd-rail-chat .messages-window {
+  flex: 1 1 auto !important; overflow-y: auto; min-height: 0 !important;
+  height: auto !important; padding: 10px 12px !important;
+  background: transparent !important; /* legacy .chat-window paints #fff */
+}
+
+/* channel chips: text pills, top strip */
+.wkd .wkd-rail-chat .nav-pills .nav-link .mobile-icon-blue-bg,
+.wkd .wkd-rail-chat .nav-pills .nav-link i,
+.wkd .wkd-rail-chat .nav-pills .nav-link img { display: none !important; }
+.wkd .wkd-rail-chat .nav-pills .nav-item:nth-child(1) .nav-link::after { content: "In-App"; }
+.wkd .wkd-rail-chat .nav-pills .nav-item:nth-child(2) .nav-link::after { content: "WhatsApp"; }
+.wkd .wkd-rail-chat .nav-pills .nav-item:nth-child(3) .nav-link::after { content: "Line"; }
+.wkd .wkd-rail-chat .nav.nav-pills {
+  display: flex !important; gap: 6px !important; padding: 8px 96px 8px 12px !important; margin: 0 !important;
+  border-bottom: 1px solid #edf0f4; background: transparent;
+}
+/* legacy chat.css (lazy-loaded AFTER this file) sets .nav-item width:50% —
+ * every prop here must be explicit + !important to survive the load order */
+.wkd .wkd-rail-chat .nav-pills .nav-item {
+  flex: 0 0 auto !important; width: auto !important; min-width: 0 !important;
+  padding: 0 !important;
+}
+.wkd .wkd-rail-chat .nav-pills .nav-item:last-child { margin-right: 0 !important; }
+.wkd .wkd-rail-chat .nav-pills .nav-link {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  width: auto !important; min-width: 0 !important;
+  height: 26px !important; min-height: 26px !important; max-height: 26px !important;
+  border: 1px solid #e3e7ed !important; border-radius: 999px !important;
+  padding: 0 12px !important; margin: 0 !important; gap: 0 !important;
+  font-size: 11px !important; font-weight: 550; line-height: 1 !important;
+  color: #3d4552 !important; background: #fff !important;
+}
+.wkd .wkd-rail-chat .nav-pills .nav-link.active {
+  background: #e8effd !important; border-color: #c8d9f7 !important; color: #1e51c9 !important;
+}
+
+/* bubbles: the BODY is the bubble; container transparent so the
+ * timestamp falls BELOW the bubble, outside it, on the message's side */
+.wkd .wkd-rail-chat .message-text {
+  background: transparent !important; border-radius: 0 !important;
+  padding: 0 !important; box-shadow: none !important;
+  font-size: 12.5px !important; line-height: 1.45; color: #171b22;
+  max-width: 100% !important; width: 100%;
+}
+.wkd .wkd-rail-chat .message-text .row { display: block !important; margin: 0 !important; }
+.wkd .wkd-rail-chat .message-text .row > [class*="col"] { display: block; width: 100%; max-width: 100%; padding: 0; }
+.wkd .wkd-rail-chat .message-box-text {
+  display: block !important; width: fit-content !important; max-width: 100% !important;
+  background: #f2f4f7; border-radius: 10px; padding: 9px 11px !important; margin: 0 !important;
+}
+.wkd .wkd-rail-chat .message.sender .message-box-text { background: #e8effd; margin-left: auto !important; }
+.wkd .wkd-rail-chat .message.sender { padding-right: 8px; }
+.wkd .wkd-rail-chat .message.receiver { padding-left: 8px; }
+.wkd .wkd-rail-chat .message { margin-bottom: 12px; max-width: 100% !important; }
+.wkd .wkd-rail-chat .message-text .time-and-ticks {
+  position: static !important; display: flex !important; width: 100% !important;
+  justify-content: flex-end; align-items: center; gap: 3px; margin-top: 3px; padding: 0 2px;
+}
+.wkd .wkd-rail-chat .message.receiver .message-text .time-and-ticks { justify-content: flex-start; }
+/* timestamp: legacy "29/7/2026 4:40 PM" text is collapsed (font-size 0)
+ * and replaced by the raw HH:mm carried on data-hm + the channel name */
+.wkd .wkd-rail-chat .chat-time { font-family: var(--mono); font-size: 10px !important; color: #6e757f !important; }
+.wkd .wkd-rail-chat .chat-time[data-hm]:not([data-hm=""]) { font-size: 0 !important; }
+.wkd .wkd-rail-chat .chat-time[data-hm]:not([data-hm=""])::before {
+  content: attr(data-hm) " · In-App";
+  font-family: var(--mono); font-size: 10px; color: #6e757f; letter-spacing: .02em;
+}
+.wkd .wkd-rail-chat .tab-content > .tab-pane:nth-child(2) .chat-time[data-hm]:not([data-hm=""])::before { content: attr(data-hm) " · WhatsApp"; }
+.wkd .wkd-rail-chat .tab-content > .tab-pane:nth-child(3) .chat-time[data-hm]:not([data-hm=""])::before { content: attr(data-hm) " · Line"; }
+.wkd .wkd-rail-chat .tick-icons { font-size: 12px !important; }
+
+/* day divider: "22 Aug" centered over the day's first message */
+.wkd .wkd-rail-chat .wkd-day-divider {
+  display: flex !important; justify-content: center; padding: 6px 0 10px;
+}
+.wkd .wkd-rail-chat .wkd-day-divider span {
+  font-family: var(--mono); font-size: 10px; font-weight: 600; color: #8a92a6; letter-spacing: .04em;
+}
+
+
+/* composer: flush bottom, divider on top, icon-free, "via <channel>" */
+.wkd .wkd-rail-chat .sending-bar {
+  margin-top: auto; border-top: 1px solid #edf0f4 !important;
+  padding: 10px 12px !important; background: #fff !important;
+  display: flex; align-items: center; gap: 8px;
+}
+.wkd .wkd-rail-chat .sending-bar > img[alt="emoji"],
+.wkd .wkd-rail-chat .sending-bar > img[alt="attach"] { display: none !important; }
+.wkd .wkd-rail-chat .sending-bar div:has(> img[alt="send"]) { display: none !important; }
+.wkd .wkd-rail-chat .sending-bar input,
+.wkd .wkd-rail-chat .sending-bar textarea {
+  flex: 1; border: 1px solid #e3e7ed !important; border-radius: 8px !important;
+  min-height: 34px; padding: 6px 10px; font-size: 12.5px !important; background: #fff;
+}
+.wkd .wkd-rail-chat .sending-bar::after {
+  content: "via In-App"; font-family: var(--mono); font-size: 10.5px;
+  color: #6e757f; white-space: nowrap; align-self: center; flex-shrink: 0;
+}
+.wkd .wkd-rail-chat .tab-content > .tab-pane:nth-child(2) .sending-bar::after { content: "via WhatsApp"; }
+.wkd .wkd-rail-chat .tab-content > .tab-pane:nth-child(3) .sending-bar::after { content: "via Line"; }
+
+/* Global Chat link: shares the chip row — absolutely pinned to its right,
+ * vertically centered on the 42px strip (8 + 26 + 8) */
+.wkd .wkd-globalchat-link {
+  position: absolute; top: 0; right: 0; height: 42px; z-index: 30; /* above the chip strip's scroll wrapper */
+  display: inline-flex; align-items: center; pointer-events: auto;
+  padding: 0 12px 0 10px; background: #fafbfc; /* masks any chip overflowing beneath */
+  font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: #1d4ed8 !important;
+  text-decoration: none; white-space: nowrap;
+}
+.wkd .wkd-globalchat-link:hover { text-decoration: underline; }
+
+/* ================================================================
+ * BIODATA EDIT — v18.6 skin (bioEditHTML + FORM_SECS source).
+ * Controls 32px / #d5dbe3 / r6 / 12.5px; labels 11.5/500 + red *;
+ * section headings 14/600 with 18px rhythm; sticky Cancel/Save bar.
+ * ================================================================ */
+
+/* the read layout makes the subtab wrapper transparent, so the edit form
+ * carries its own card chrome (v18.6: one card, radius 9, padding 18x20) */
+.wkd .bio-data-view .wkd-bio-edit {
+  display: block; background: #fff; border: 1px solid #e3e7ed;
+  border-radius: 9px; padding: 18px 20px;
+}
+
+/* section headings (legacy p.fz20.fw-700.text-uppercase) */
+.wkd .wkd-bio-edit p.fz20 {
+  font-size: 14px !important; font-weight: 600 !important; text-transform: none !important;
+  letter-spacing: -0.01em; color: #171b22;
+  display: block; width: 100%;
+  padding-top: 18px; border-top: 1px solid #edf0f4;
+  margin: 18px 0 14px !important;
+}
+.wkd .wkd-bio-edit p.fz20.wkd-fsec-first { border-top: 0; padding-top: 4px; margin-top: 0 !important; }
+/* a title that opens a [data-bio-section] shell: the shell owns the hairline + 18px, the title only keeps its 14px below */
+.wkd .wkd-bio-edit [data-bio-section] > p.fz20:first-child { border-top: 0; padding-top: 0; margin-top: 0 !important; }
+
+/* labels: 11.5/500 grey, 4px below; required * in v18.6 red */
+.wkd .wkd-bio-edit label.form-label {
+  font-size: 11.5px !important; font-weight: 500 !important; color: #667080 !important;
+  margin-bottom: 4px !important;
+}
+.wkd .wkd-bio-edit label.form-label.required::after { color: #b42318 !important; }
+
+/* controls: 32px, border #d5dbe3, radius 6, 12.5px */
+.wkd .wkd-bio-edit .form-control,
+.wkd .wkd-bio-edit select.form-control,
+.wkd .wkd-bio-edit input[type="date"],
+.wkd .wkd-bio-edit input[type="text"],
+.wkd .wkd-bio-edit input[type="number"],
+.wkd .wkd-bio-edit .form-control.ht44 {
+  height: 32px !important; min-height: 32px !important;
+  padding: 0 10px !important; font-size: 12.5px !important;
+  border: 1px solid #d5dbe3 !important; border-radius: 6px !important;
+  color: #171b22; background-color: #fff;
+}
+.wkd .wkd-bio-edit textarea.form-control {
+  height: auto !important; min-height: 72px !important; padding: 8px 10px !important;
+  line-height: 1.5;
+}
+.wkd .wkd-bio-edit .form-control:focus { border-color: #2563eb !important; box-shadow: 0 0 0 2px #e8effd; }
+.wkd .wkd-bio-edit .form-control:disabled,
+.wkd .wkd-bio-edit .form-control[readonly] {
+  background-color: #f4f6f8 !important; color: #6e757f !important;
+}
+.wkd .wkd-bio-edit .form-control.is-invalid,
+.wkd .wkd-bio-edit .form-control.error {
+  border-color: #d92d20 !important; box-shadow: 0 0 0 2px #fdeae7;
+}
+
+/* react-select's INTERNAL search input must not inherit the 32px input box
+ * (it showed as a stray empty bordered box after the chips) */
+.wkd .wkd-bio-edit [class*="-control"] input {
+  height: auto !important; min-height: 0 !important; border: 0 !important;
+  padding: 0 !important; box-shadow: none !important; background: transparent !important;
+}
+
+/* react-select (multi chips): kill the inline 44px minHeight, restyle chips */
+.wkd .wkd-bio-edit [class*="-control"] {
+  min-height: 32px !important; border-color: #d5dbe3 !important;
+  border-radius: 6px !important; font-size: 12.5px !important; box-shadow: none;
+}
+.wkd .wkd-bio-edit [class*="-control"]:hover { border-color: #b9c2ce !important; }
+.wkd .wkd-bio-edit [class*="-ValueContainer"] { padding: 2px 8px !important; }
+.wkd .wkd-bio-edit [class*="-indicatorContainer"] { padding: 4px !important; }
+.wkd .wkd-bio-edit [class*="-multiValue"] {
+  background: #f4f6f8 !important; border: 1px solid #e3e7ed; border-radius: 4px !important;
+  font-size: 11.5px !important;
+}
+.wkd .wkd-bio-edit [class*="-menu"] { font-size: 12.5px !important; }
+
+/* errors: 11.5 red, 4px below the control */
+.wkd .wkd-bio-edit small.text-danger {
+  font-size: 11.5px !important; color: #b42318 !important;
+  display: block; margin-top: 4px;
+}
+
+/* native pickers: radios/checkboxes in v18.6 blue */
+.wkd .wkd-bio-edit input[type="radio"],
+.wkd .wkd-bio-edit input[type="checkbox"] {
+  accent-color: #2563eb; width: 15px; height: 15px;
+}
+
+/* field rhythm: 12px vertical, bootstrap col gutters give the 24px column gap */
+.wkd .wkd-bio-edit .row > [class*="col"] { margin-bottom: 12px !important; }
+.wkd .wkd-bio-edit .row.mb-4 { margin-bottom: 0 !important; }
+
+/* legacy chip buttons inside the form (skills etc.) — 22px grey chips */
+.wkd .wkd-bio-edit .btn.chip {
+  height: 22px; min-height: 22px; padding: 0 8px; border-radius: 4px;
+  font-size: 11.5px !important; font-weight: 500;
+  color: #3d4552; background: #f4f6f8; border: 1px solid #e3e7ed;
+}
+
+/* work experience headers — v18.6: title left, small 26px actions inline
+ * right, ONE row. The legacy mt-4 on the heading fought the section margins
+ * and pushed titles below the buttons. */
+.wkd .wkd-bio-edit .d-flex.justify-content-between > p.fz20,
+.wkd .wkd-bio-edit .d-flex.justify-content-between > p.fz24 {
+  margin: 0 !important; border-top: 0 !important; padding-top: 0 !important; width: auto;
+}
+.wkd .wkd-bio-edit div.d-flex.justify-content-between:has(> p.fz20) {
+  border-top: 1px solid #edf0f4; padding-top: 18px; margin-top: 18px; margin-bottom: 14px; gap: 8px;
+}
+/* the master "Work Experience" row (p.fz24) is not in the mockup — keep only
+ * its action buttons, right-aligned */
+.wkd .wkd-bio-edit div.d-flex.justify-content-between:has(> p.fz24) {
+  justify-content: flex-end !important; gap: 8px;
+  border-top: 1px solid #edf0f4; padding-top: 18px; margin-top: 18px;
+}
+.wkd .wkd-bio-edit div.d-flex.justify-content-between > p.fz24 { display: none; }
+
+/* section action buttons (Move to past/current, + Add, Delete) → 26px pills */
+.wkd .wkd-bio-edit .btn.btn-outline-primary,
+.wkd .wkd-bio-edit .btn.btn-link {
+  height: 26px !important; min-height: 26px !important;
+  display: inline-flex !important; align-items: center; gap: 6px;
+  padding: 0 10px !important; border: 1px solid #d5dbe3 !important; border-radius: 6px !important;
+  background: #fff !important; color: #1d4ed8 !important;
+  font-size: 11.5px !important; font-weight: 550; text-decoration: none !important;
+  white-space: nowrap;
+}
+.wkd .wkd-bio-edit .btn.btn-outline-primary:hover,
+.wkd .wkd-bio-edit .btn.btn-link:hover { background: #f7f8fa !important; }
+.wkd .wkd-bio-edit .btn.btn-link.text-danger { color: #b42318 !important; border-color: #f0c4bd !important; }
+.wkd .wkd-bio-edit .btn.btn-link.text-danger img { display: none; }
+.wkd .wkd-bio-edit .btn.mr-3 { margin-right: 8px !important; }
+
+/* sticky footer: Cancel + Save pinned while scrolling (v18.6) */
+.wkd .wkd-bioedit-footer {
+  position: sticky; bottom: 0; z-index: 10;
+  display: flex; justify-content: flex-end; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(4px);
+  border-top: 1px solid #e3e7ed;
+  margin: 10px -20px -18px; padding: 12px 20px; /* bleed to the card edges */
+  border-radius: 0 0 9px 9px;
+}
+.wkd .wkd-bioedit-footer .btn.btn-outline {
+  height: 32px !important; min-height: 32px !important; padding: 0 14px !important;
+  border: 1px solid #d5dbe3 !important; border-radius: 7px !important;
+  background: #fff; color: #171b22; font-size: 12.5px !important; font-weight: 550;
+  display: inline-flex; align-items: center;
+}
+.wkd .wkd-bioedit-footer .btn.filled-btn {
+  height: 32px !important; min-height: 32px !important; padding: 0 16px !important;
+  border-radius: 7px !important; background: #2563eb !important; border: 0 !important;
+  color: #fff !important; font-size: 12.5px !important; font-weight: 550;
+  display: inline-flex; align-items: center;
+}
+
+/* radios — v18.6: 15px circle, thin grey border; selected = thick blue ring */
+.wkd .wkd-bio-edit .mode-radio-buttons { min-height: 32px; }
+.wkd .wkd-bio-edit .custom-radio.compact { margin-right: 16px !important; }
+.wkd .wkd-bio-edit .custom-radio input[type="radio"] + .radio-label:before {
+  width: 15px !important; height: 15px !important;
+  border: 1.5px solid #c3cad4 !important; background: #fff !important;
+  margin-right: 6px !important; top: 2px !important; box-shadow: none !important;
+}
+.wkd .wkd-bio-edit .custom-radio input[type="radio"]:checked + .radio-label:before {
+  border: 5px solid #2563eb !important; background: #fff !important; box-shadow: none !important;
+}
+.wkd .wkd-bio-edit .custom-radio input[type="radio"]:disabled + .radio-label:before {
+  border-color: #e3e7ed !important; background: #f4f6f8 !important;
+}
+.wkd .wkd-bio-edit .custom-radio .radio-label {
+  font-family: var(--sans) !important; font-size: 12.5px !important; color: #171b22 !important;
+}
+
+/* stepper — v18.6: 32px box, value left, 18px circular −/+ on the right */
+.wkd .wkd-stepper {
+  height: 32px; border: 1px solid #d5dbe3; border-radius: 6px; background: #fff;
+  display: flex; align-items: center; padding: 0 10px;
+}
+.wkd .wkd-stepper .counter { display: flex; align-items: center; gap: 6px; width: 100%; }
+.wkd .wkd-stepper .counter .inc-span {
+  order: -1; margin-right: auto; top: 0 !important;
+  font-size: 12.5px !important; color: #171b22;
+}
+.wkd .wkd-stepper .minus-circle-btn,
+.wkd .wkd-stepper .plus-circle-btn {
+  width: 18px; height: 18px; border-radius: 999px; border: 1px solid #d5dbe3;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin: 0 !important; background: #fff; flex-shrink: 0;
+}
+.wkd .wkd-stepper .minus-circle-btn:hover,
+.wkd .wkd-stepper .plus-circle-btn:hover { background: #f7f8fa; }
+.wkd .wkd-stepper .minus-circle-btn i,
+.wkd .wkd-stepper .plus-circle-btn i { font-size: 12px !important; color: #667080 !important; line-height: 1; }
+
+/* ================================================================
+ * JO on-behalf CONFIRM OVERLAY — v18.6 (ovAccept/ovAppAct/ovCancel):
+ * 480px card r12, id-grid 150px recap, tinted note, Back + Confirm.
+ * ================================================================ */
+/* scrim, card, head and close come from the kit Modal (components/ui/Modal); only the recap body and the buttons live here */
+.wkd-jocm-body { padding: 8px 0 4px; display: flex; flex-direction: column; gap: 12px; }
+.wkd-jocm-grid { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 9px 16px; }
+.wkd-jocm-grid .l {
+  font-size: 11.5px; font-weight: 500; color: #667080;
+  align-self: baseline; padding-top: 2px;
+}
+.wkd-jocm-grid .v { font-size: 13px; font-weight: 500; color: #171b22; }
+.wkd-jocm-grid .v.mono { font-family: var(--mono); font-size: 12.5px; font-weight: 600; }
+.wkd-jocm-grid .v .mc-code { font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: #1d4ed8; }
+.wkd-jocm-note {
+  border-radius: 7px; padding: 10px 12px; font-size: 12.5px; color: #3d4552; line-height: 1.5;
+}
+.wkd-jocm-note.primary { background: #f0ebfb; border: 1px solid #e0d5f5; }
+.wkd-jocm-note.danger { background: #fdeae7; border: 1px solid #f5cdc6; }
+.wkd-jocm-note b, .wkd-jocm-note strong { font-weight: 600; color: #171b22; }
+.wkd-jocm-note .danger-word { font-weight: 600; color: #b42318; }
+.wkd-jocm-spacer { flex: 1; }
+.wkd-jocm-btn {
+  height: 40px; display: inline-flex; align-items: center; padding: 0 18px;
+  border-radius: 8px; font-size: 13px; font-weight: 550; cursor: pointer; border: 0;
+}
+.wkd-jocm-btn:disabled { opacity: .6; cursor: default; }
+.wkd-jocm-btn.back { background: #fff; border: 1px solid #d5dbe3; color: #171b22; }
+.wkd-jocm-btn.back:hover:not(:disabled) { background: #f7f8fa; }
+.wkd-jocm-btn.confirm { padding: 0 20px; color: #fff; }
+.wkd-jocm-btn.confirm.primary { background: #2563eb; }
+.wkd-jocm-btn.confirm.danger { background: #d92d20; }
+.wkd-jocm-btn.confirm:hover:not(:disabled) { opacity: .92; }
+
+/* ================================================================
+ * DETAILS EDIT (DET-02/03/06/09) — the legacy Basic/Passport/Consulate
+ * forms wear the shared .wkd-bio-edit skin; this adds their card chrome
+ * and exempts the intentionally borderless inline display fields.
+ * ================================================================ */
+.wkd .wkd-det-edit {
+  display: block; background: #fff; border: 1px solid #e3e7ed;
+  border-radius: 9px; padding: 18px 20px; margin-top: 10px;
+}
+/* legacy `form-control border-0 p-0` = read-only inline text, NOT an input box */
+.wkd .wkd-bio-edit .form-control.border-0 {
+  border: 0 !important; height: auto !important; min-height: 0 !important;
+  padding: 0 !important; background: transparent !important;
+}
+/* legacy section rows keep the 12px rhythm */
+.wkd .wkd-det-edit .custom-row [class*="col"] { margin-bottom: 12px !important; }
+
+/* ================================================================
+ * P2-03 lower region + P2-06 status popover — v18.6 exact match.
+ * ================================================================ */
+
+/* Change Status popover (statusPopHTML): 230px menu, micro header,
+ * 30px items — replaces the legacy dropdown look inside worker detail */
+.wkd .tab-content .change-status .custom_drop_menu {
+  width: 230px !important; min-width: 230px;
+  background: #fff !important; border: 1px solid #e3e7ed !important;
+  border-radius: 8px !important; box-shadow: 0 4px 16px rgba(16, 24, 40, .14) !important;
+  padding: 4px !important;
+}
+.wkd .tab-content .change-status .custom_drop_menu::before {
+  content: "Change Status:"; display: block;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em;
+  color: #6e757f; text-transform: uppercase; padding: 7px 10px 5px;
+  font-family: var(--sans);
+}
+.wkd .tab-content .change-status .custom_drop_menu ul { padding: 0 !important; }
+.wkd .tab-content .change-status .custom_drop_menu .cdd_li {
+  height: 30px; display: flex; align-items: center;
+  padding: 0 10px !important; border-radius: 5px;
+  font-size: 12.5px !important; color: #171b22; font-family: var(--sans);
+}
+.wkd .tab-content .change-status .custom_drop_menu .cdd_li:hover { background: #f4f6f8; }
+
+/* checkbox groups (Main Skills / Cooking cascades): v18.6 15px blue checks
+ * in a two-column grid; group titles read as field labels */
+.wkd .wkd-bio-edit p.fz16.fw-600 {
+  font-size: 11.5px !important; font-weight: 500 !important; color: #667080 !important;
+  margin-bottom: 6px !important; font-family: var(--sans) !important;
+}
+.wkd .wkd-bio-edit .row > .col-5.mb22,
+.wkd .wkd-bio-edit .row > .col-4.mb22 {
+  flex: 0 0 50%; max-width: 50%; margin-bottom: 8px !important;
+}
+.wkd .wkd-bio-edit .custom-checkbox label {
+  font-size: 12.5px !important; color: #171b22 !important; font-family: var(--sans) !important;
+}
+.wkd .wkd-bio-edit .custom-checkbox label:before {
+  padding: 6.75px !important; /* 15px box */
+  border: 1.5px solid #c3cad4 !important; border-radius: 3px !important;
+  margin-right: 8px !important;
+}
+.wkd .wkd-bio-edit .custom-check-input:checked + label:before {
+  background-color: #2563eb !important; border-color: #2563eb !important;
+}
+.wkd .wkd-bio-edit .custom-checkbox input:checked + label:after {
+  border-color: #fff !important; left: 6px !important; top: 4px !important;
+  width: 4.5px; height: 9.5px;
+}
+
+/* Upload Reference Letter (Expectations): v18.6 dropzone */
+.wkd .wkd-bio-edit .upload-file-wrapper {
+  border: 1.5px dashed #c3cad4 !important; border-radius: 8px !important;
+  padding: 20px !important; background: #fff !important;
+}
+.wkd .wkd-bio-edit .upload-file-wrapper p {
+  font-size: 12.5px !important; color: #667080 !important; font-family: var(--sans) !important;
+}
+.wkd .wkd-bio-edit .upload-file-wrapper img { width: 18px; height: 18px; object-fit: contain; }
+
+/* ================================================================
+ * DOC UPLOAD WORKSPACE (P2-04/05, docsHTML): list card of documents
+ * over the selected doc's review card.
+ * ================================================================ */
+.wkd .wkd-docws { display: flex; flex-direction: column; gap: 14px; }
+.wkd .wkd-docws-list {
+  background: #fff; border: 1px solid #e3e7ed; border-radius: 9px; padding: 18px 20px;
+}
+.wkd .wkd-docws-head {
+  display: flex; align-items: center; gap: 10px;
+  padding-bottom: 14px; border-bottom: 1px solid #edf0f4;
+}
+.wkd .wkd-docws-head .t { font-size: 16px; font-weight: 600; color: #171b22; letter-spacing: -0.01em; }
+.wkd .wkd-docws-head .note { font-size: 11.5px; color: #6e757f; border-left: 1px solid #e3e7ed; padding-left: 10px; }
+.wkd .wkd-docws-rows { display: flex; flex-direction: column; }
+.wkd .wkd-docws-row {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  padding: 11px 10px; border: 0; border-bottom: 1px solid #f2f4f7;
+  border-left: 2px solid transparent; background: transparent; cursor: pointer;
+  font-family: var(--sans);
+}
+.wkd .wkd-docws-row.sel { border-left-color: #2563eb; background: #f7faff; }
+.wkd .wkd-docws-row.off { opacity: .55; cursor: default; }
+.wkd .wkd-docws-row:hover:not(.sel):not(.off) { background: #fafbfc; }
+.wkd .wkd-docws-row .thumb {
+  width: 36px; height: 46px; border-radius: 4px; border: 1px solid #e3e7ed; flex-shrink: 0;
+  background: repeating-linear-gradient(45deg, #f7f8fa, #f7f8fa 5px, #eef0f3 5px, #eef0f3 10px);
+  display: flex; align-items: center; justify-content: center;
+}
+.wkd .wkd-docws-row .who { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.wkd .wkd-docws-row .nm {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500; color: #171b22;
+}
+.wkd .wkd-docws-row .central-badge {
+  font-size: 9px; font-weight: 650; letter-spacing: 0.06em; color: #5b4a9e;
+  background: #f0ebfb; padding: 1.5px 5px; border-radius: 3px;
+}
+.wkd .wkd-docws-row .type { font-size: 11.5px; color: #6e757f; margin-top: 2px; }
+.wkd .wkd-docws-row .view { font-size: 12px; font-weight: 500; color: #667080; min-width: 30px; text-align: right; }
+.wkd .wkd-docws-row.sel .view { color: #1d4ed8; }
+.wkd .wkd-docws-cascade { font-size: 11.5px; color: #6e757f; padding: 10px 10px 0; }
+/* ================================================================
+ * GATE-2 ASSIGN PARTNER (G2-01/02/03): card shell over the legacy
+ * multi-step flow; assigned state renders the readonly g2 grid.
+ * ================================================================ */
+.wkd .wkd-g2 .g2-card { overflow: hidden; }
+.wkd .wkd-g2 .wkd-g2-body { padding: 18px 20px; }
+.wkd .wkd-g2 .wkd-g2-address { font-size: 12.5px !important; color: #3d4552; }
+.wkd .wkd-g2 .wkd-g2-address .blue { color: #1d4ed8; }
+.wkd .wkd-g2 .wkd-g2-active { color: #1a7f37; font-size: 11px; }
+/* footer bar inside the card matches the mockup's #fafbfc action strip */
+.wkd .wkd-g2 .bottom-bar {
+  margin: 16px -20px -18px; padding: 13px 20px !important;
+  background: #fafbfc !important; border-top: 1px solid #edf0f4;
+}
+.wkd .wkd-g2 .bottom-bar .btn { font-size: 12.5px !important; font-weight: 550; border-radius: 7px !important; }
+
+/* ================================================================
+ * DETAILS PASSPORT/CONSULATE polish (DET-05/07/08/10):
+ * file sections, file cards, deferred-empty body.
+ * ================================================================ */
+.wkd .wkd-filesec { padding: 16px 0; border-bottom: 1px solid #edf0f4; }
+.wkd .wkd-filesec:first-child { padding-top: 0; }
+.wkd .wkd-filesec .t {
+  font-size: 14px; font-weight: 600; color: #171b22; letter-spacing: -0.01em; margin-bottom: 10px;
+}
+.wkd .wkd-filesec .t .req { color: #b42318; margin-left: 2px; }
+.wkd .wkd-filecard {
+  display: flex; align-items: center; gap: 10px;
+  border: 1px solid #e3e7ed; border-radius: 8px; padding: 10px 12px;
+}
+.wkd .wkd-filecard .ic {
+  width: 30px; height: 38px; border-radius: 4px; border: 1px solid #e3e7ed; flex-shrink: 0;
+  background: repeating-linear-gradient(45deg, #f7f8fa, #f7f8fa 5px, #eef0f3 5px, #eef0f3 10px);
+  display: flex; align-items: center; justify-content: center;
+}
+.wkd .wkd-filecard .nm { flex: 1; min-width: 0; font-size: 12.5px; font-weight: 500; color: #171b22; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wkd .wkd-fileempty {
+  border: 1.5px dashed #e3e7ed; border-radius: 8px; padding: 14px;
+  text-align: center; font-size: 12.5px; color: #9aa2af;
+}
+.wkd .wkd-fileempty.is-missing { border-color: #f0c4bd; color: #b42318; }
+.wkd .wkd-passport-grid { padding-top: 16px; }
+/* deferred-empty Consulate body (UI-009): centered icon + quiet copy */
+.wkd .wkd-consulate-deferred {
+  padding: 36px 0 24px; display: flex; flex-direction: column;
+  align-items: center; gap: 8px; font-size: 12.5px; color: #9aa2af;
+}
+
+/* ================================================================
+ * RESCHEDULE DRAWER (INT-06, ovReschedHTML): v18.6 skin on the legacy
+ * ScheduleInterview side panel + InterviewLocation step, scoped to
+ * worker detail.
+ * ================================================================ */
+.wkd .joboffer_popup .joboffer_popup_inner { font-family: var(--sans); }
+.wkd .joboffer_popup .side-panel-heading {
+  font-size: 15px !important; font-weight: 600 !important; color: #171b22 !important;
+  letter-spacing: -0.01em;
+}
+.wkd .joboffer_popup .head-bar { border-bottom: 1px solid #edf0f4; padding-bottom: 14px !important; }
+.wkd .joboffer_popup .fz18.fw-500.grey2 { font-size: 12.5px !important; font-weight: 550 !important; color: #667080 !important; }
+/* worker-available-days note → v18.6 callout */
+.wkd .joboffer_popup .available-dates {
+  background: #f0f4fd !important; border: 1px solid #c8d9f7; border-radius: 7px;
+  font-size: 11.5px !important; color: #25466f !important; padding: 8px 10px !important;
+}
+/* time slot chips → mono pills (buttons only — NOT the grid wrapper,
+ * which an earlier selector collapsed causing the overlap bug) */
+.wkd .joboffer_popup .time-slots button {
+  height: 30px; display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 8px !important; border-radius: 7px !important;
+  font-family: var(--mono); font-size: 11.5px !important; color: #3d4552 !important;
+  line-height: 1 !important;
+}
+.wkd .joboffer_popup .time-slots .unavailable-slot {
+  background: #f4f6f8 !important; color: #b9c2ce !important;
+}
+.wkd .joboffer_popup .time-slots > div { padding-top: 12px !important; padding-bottom: 12px !important; }
+/* upcoming-interviews collapsible header → quiet v18.6 bar */
+.wkd .joboffer_popup .collapse-view .bgf7 {
+  background: #f7f8fa !important; border: 1px solid #edf0f4; border-radius: 8px !important;
+  padding: 10px 12px !important;
+}
+.wkd .joboffer_popup .collapse-view .fz17 { font-size: 12.5px !important; font-weight: 600 !important; color: #171b22; }
+.wkd .joboffer_popup .collapse-view i { font-size: 14px; color: #6e757f; }
+.wkd .joboffer_popup .text-danger.text-left { font-size: 11.5px !important; color: #b42318 !important; display: block; margin: 2px 0 6px; }
+/* sticky Next / confirm → v18.6 primary */
+.wkd .joboffer_popup .sticky-next-button .btn,
+.wkd .joboffer_popup .btn.btninfo_simple {
+  height: 40px !important; min-height: 40px !important; padding: 0 20px !important;
+  border-radius: 8px !important; background: #2563eb !important; border: 0 !important;
+  color: #fff !important; font-size: 13px !important; font-weight: 550 !important;
+  display: inline-flex !important; align-items: center; justify-content: center;
+}
+/* InterviewLocation step: titles + radio cards */
+.wkd .joboffer_popup .interview-location-title { font-size: 15px !important; font-weight: 600 !important; }
+.wkd .joboffer_popup .fz20.fw-500.grey2 { font-size: 12.5px !important; font-weight: 550 !important; color: #667080 !important; }
+.wkd .joboffer_popup .percent_radio .form-check-label {
+  border: 1px solid #d5dbe3 !important; border-radius: 8px !important;
+  padding: 10px 12px !important; font-size: 12.5px !important; color: #171b22;
+}
+.wkd .joboffer_popup .percent_radio .form-check-input:checked + .form-check-label,
+.wkd .joboffer_popup .percent_radio .form-check-input:checked ~ .form-check-label {
+  border-color: #2563eb !important; background: #f7faff !important; box-shadow: 0 0 0 2px #e8effd;
+}
+.wkd .joboffer_popup .fz16.grey { font-size: 11.5px !important; color: #6e757f !important; }
+
+/* ================================================================
+ * GATE-2 PARTNER TAB (G2-04..07): section strip + Overview grid +
+ * section card wrapper for the legacy upload/checklist tabs.
+ * ================================================================ */
+.wkd .wkd-g2-partner { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
+.wkd .g2-lifecycle-dot { width: 6px; height: 6px; border-radius: 999px; background: currentColor; display: inline-block; }
+.wkd .wkd-g2ov-grid {
+  padding: 18px 20px; display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;
+}
+/* legacy section content (Medical/Training/Labour/Submit) inside a g2 card */
+.wkd .wkd-g2sec {
+  background: #fff; border: 1px solid #e3e7ed; border-radius: 9px; padding: 0; overflow: hidden;
+}
+.wkd .wkd-g2sec > div { margin-top: 0 !important; }
+
+/* Submit Documents checklist (G2-08..10): the legacy table becomes the
+ * mockup's quiet checklist card — rows as bordered check items */
+.wkd .wkd-g2sec .table.commonTable { margin-bottom: 0; }
+.wkd .wkd-g2sec .table.commonTable th {
+  font-size: 10.5px !important; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: #6e757f !important;
+  border-top: 0; border-bottom: 1px solid #edf0f4 !important; padding: 8px 10px;
+}
+.wkd .wkd-g2sec .table.commonTable td {
+  font-size: 12.5px !important; font-weight: 550; color: #171b22;
+  border-top: 1px solid #f2f4f7; padding: 10px; vertical-align: middle;
+}
+.wkd .wkd-g2sec .fz16.grey2.fw-600 { font-size: 12.5px !important; color: #667080 !important; }
+.wkd .wkd-g2sec input[type="checkbox"] { accent-color: #2563eb; width: 15px; height: 15px; }
+
+/* Change Partner compare (G2-11, g2ReassignmentHTML) */
+.wkd .wkd-g2-change {
+  display: grid; grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+  gap: 12px; align-items: stretch; margin-bottom: 14px;
+}
+.wkd .wkd-g2-change .lbl { font-size: 11.5px; font-weight: 500; color: #667080; margin-bottom: 10px; }
+.wkd .wkd-g2-change .cur { border: 1px solid #e3e7ed; border-radius: 8px; padding: 14px; background: #fafbfc; }
+.wkd .wkd-g2-change .cur .ag { font-size: 13px; font-weight: 600; color: #171b22; }
+.wkd .wkd-g2-change .cur .br { font-size: 12px; color: #667080; margin-top: 3px; }
+.wkd .wkd-g2-change .cur .code { font-family: var(--mono); font-size: 11px; color: #1d4ed8; margin-top: 12px; }
+.wkd .wkd-g2-change .arr { display: grid; place-items: center; color: #6e757f; }
+.wkd .wkd-g2-change .pro { border: 1px solid #c8d9f7; border-radius: 8px; padding: 14px; background: #f7f9fe; }
+.wkd .wkd-g2-change .pro .hint { font-size: 12px; color: #667080; }
+.wkd .wkd-g2-change-note { margin-bottom: 14px; }
+
+/* Activity error state (ACT-05) */
+.wkd .wkd-activity-error { color: #b42318; }
+.wkd .wkd-activity-retry {
+  border: 1px solid #d5dbe3; background: #fff; color: #171b22;
+  height: 26px; padding: 0 10px; border-radius: 6px; margin-left: 8px;
+  font-size: 11.5px; font-weight: 550; cursor: pointer; font-family: var(--sans);
+}
+.wkd .wkd-activity-retry:hover { background: #f7f8fa; }
+
+/* Invalid Worker entry (CTX-08, invalidEntryHTML) */
+.wkd .wkd-invalid-entry {
+  min-height: 60vh; display: flex; align-items: center; justify-content: center;
+  background: #f6f7f9; text-align: center; padding: 40px 20px;
+}
+.wkd .wkd-invalid-entry .mark {
+  width: 36px; height: 36px; border-radius: 999px; margin: 0 auto;
+  background: #fdeae7; color: #b42318; font-size: 16px; font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.wkd .wkd-invalid-entry h2 { font-size: 17px; font-weight: 650; color: #171b22; margin: 12px 0 5px; }
+.wkd .wkd-invalid-entry p { font-size: 12.5px; color: #667080; line-height: 1.5; margin: 0 0 12px; }
+.wkd .wkd-invalid-entry code {
+  display: inline-block; font-family: var(--mono); font-size: 11.5px; color: #667080;
+  background: #f4f6f8; border: 0; border-radius: 5px; padding: 4px 7px;
+}
+
+/* scheduled-end-passed note (INT panel, endPassed rule): white card, blue dot, headline + sub-line */
+.wkd .wkd-jo-endpassed {
+  background: #fff; border: 1px solid #e3e7ed;
+  border-radius: 7px; padding: 10px 12px;
+  display: flex; gap: 9px; align-items: baseline;
+}
+.wkd .wkd-jo-endpassed strong { display: block; font-size: 12.5px; font-weight: 550; color: #171b22; }
+.wkd .wkd-jo-endpassed span { display: block; font-size: 11.5px; color: #676e77; margin-top: 2px; }
+
+/* ================================================================
+ * AR HISTORY DRAWER CHAT — v18.6 skin on the interim ActionChat
+ * (until the AR items API lands): same visual system as the rail chat.
+ * ================================================================ */
+.wkd .ctx-drawer .chat-action {
+  border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  background: transparent !important; height: 100%;
+  display: flex; flex-direction: column; min-height: 0;
+}
+.wkd .ctx-drawer .chat-action .chat-conversation {
+  display: flex; flex-direction: column; flex: 1; min-height: 0; width: 100% !important;
+}
+.wkd .ctx-drawer .chat-action .messages-window {
+  flex: 1 1 auto !important; overflow-y: auto; min-height: 0 !important;
+  height: auto !important; max-height: none !important;
+  padding: 10px 12px !important; background: transparent !important;
+  border: 0 !important;
+}
+/* avatars off, bubbles on the v18.6 palette */
+.wkd .ctx-drawer .chat-action .sender-avatar,
+.wkd .ctx-drawer .chat-action .receiver-avatar { display: none !important; }
+.wkd .ctx-drawer .chat-action .message { max-width: 100% !important; }
+.wkd .ctx-drawer .chat-action .message.sender { padding-right: 8px !important; }
+.wkd .ctx-drawer .chat-action .message.receiver { padding-left: 8px !important; }
+.wkd .ctx-drawer .chat-action .message-text {
+  background: #f2f4f7 !important; border: 0 !important; border-radius: 10px !important;
+  padding: 9px 11px !important; box-shadow: none !important;
+  font-size: 12.5px !important; line-height: 1.45 !important; color: #171b22 !important;
+  width: fit-content; max-width: 100% !important;
+}
+.wkd .ctx-drawer .chat-action .message.sender .message-text { background: #e8effd !important; margin-left: auto; }
+.wkd .ctx-drawer .chat-action .message-sender-name,
+.wkd .ctx-drawer .chat-action .message-sender-name-action {
+  font-size: 11.5px !important; font-weight: 600 !important; color: #3d4552 !important;
+}
+.wkd .ctx-drawer .chat-action .chat-time {
+  font-family: var(--mono); font-size: 10px !important; color: #6e757f !important;
+}
+.wkd .ctx-drawer .chat-action .tick-icons { font-size: 12px !important; }
+/* composer: flush divider bar, quiet input, Enter sends */
+.wkd .ctx-drawer .chat-action .sending-bar {
+  margin-top: auto; border-top: 1px solid #edf0f4 !important;
+  padding: 10px 12px !important; background: #fff !important;
+  display: flex; align-items: center; gap: 8px;
+}
+/* emoji / attach / send stay available — sized to the v18.6 bar */
+.wkd .ctx-drawer .chat-action .sending-bar > img[alt="emoji"],
+.wkd .ctx-drawer .chat-action .sending-bar > img[alt="attach"] {
+  width: 18px; height: 18px; opacity: .75; cursor: pointer;
+}
+.wkd .ctx-drawer .chat-action .sending-bar div:has(> img[alt="send"]) img {
+  width: 20px; height: 20px;
+}
+.wkd .ctx-drawer .chat-action .sending-bar input,
+.wkd .ctx-drawer .chat-action .sending-bar textarea {
+  flex: 1; border: 1px solid #e3e7ed !important; border-radius: 8px !important;
+  min-height: 34px; padding: 6px 10px; font-size: 12.5px !important; background: #fff;
+}
+
+/* ================================================================
+ * react-datepicker → v18.6 calendar (biodata edit "Earliest date you
+ * can start work" and any other pickers inside the edit form).
+ * ================================================================ */
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker {
+  font-family: var(--sans); font-size: 12px; color: #171b22;
+  border: 1px solid #e3e7ed; border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(16, 24, 40, .14); overflow: hidden;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__triangle { display: none; }
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__header {
+  background: #fff; border-bottom: 1px solid #edf0f4; padding-top: 10px;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__current-month {
+  font-size: 13px; font-weight: 600; color: #171b22; letter-spacing: -0.01em;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__navigation { top: 10px; }
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__navigation-icon::before {
+  border-color: #667080; border-width: 1.8px 1.8px 0 0; height: 7px; width: 7px;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__header__dropdown {
+  font-size: 11.5px; color: #667080; margin-top: 2px;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__year-read-view--down-arrow { border-color: #667080; top: 3px; }
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__year-dropdown {
+  background: #fff; border: 1px solid #e3e7ed; border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(16, 24, 40, .14); font-size: 12px;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__year-option:hover { background: #f4f6f8; }
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__day-name {
+  color: #6e757f; font-size: 10.5px; font-weight: 600; width: 28px; line-height: 24px; margin: 1px;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__day {
+  width: 28px; line-height: 26px; margin: 1px; border-radius: 6px;
+  font-size: 12px; color: #171b22;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__day:hover { background: #f4f6f8; border-radius: 6px; }
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__day--selected,
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__day--keyboard-selected {
+  background: #2563eb !important; color: #fff !important; font-weight: 600; border-radius: 6px;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__day--today:not(.react-datepicker__day--selected) {
+  box-shadow: inset 0 0 0 1px #c8d9f7; font-weight: 600; color: #1e51c9;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__day--disabled,
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__day--outside-month {
+  color: #c3cad4 !important;
+}
+:is(.wkd .wkd-bio-edit, .wkd .joboffer_popup) .react-datepicker__day--disabled:hover { background: transparent; }
+
+/* date fields with the overlay calendar icon (.inputIcon): v18.6 spec —
+ * small grey icon vertically centered, text offset past it */
+.wkd .wkd-bio-edit .inputIcon i {
+  left: 10px !important; top: 50% !important; transform: translateY(-50%);
+  font-size: 13px !important; color: #6e757f !important; pointer-events: none;
+}
+.wkd .wkd-bio-edit .inputIcon .form-control.datepickerF,
+.wkd .wkd-bio-edit .inputIcon .react-datepicker__input-container .form-control {
+  padding-left: 30px !important;
+}
+
+/* ================================================================
+ * BIODATA READ — Expanded Profile groups + Expectations rows (exact
+ * v18.6 bioReadHTML EXP_GROUPS / EXPECT_ROWS treatments).
+ * ================================================================ */
+/* group rows: 10px rhythm, hairline above each, subheading 14/600,
+ * thin 11px chevron (replaces the big legacy remix arrows) */
+.wkd .bio-data-view .collapse-view.activity-status-collapsible {
+  border-top: 1px solid #edf0f4; padding: 10px 0 !important; margin: 0 !important;
+  background: transparent !important; border-left: 0; border-right: 0; border-bottom: 0;
+}
+.wkd .bio-data-view .collapse-view .collapsible-wrapper > div:first-child { margin-bottom: 0 !important; }
+.wkd .bio-data-view .collapse-view .text-uppercase {
+  font-size: 14px !important; font-weight: 600 !important; text-transform: none !important;
+  color: #171b22 !important; letter-spacing: -0.005em;
+}
+.wkd .bio-data-view .collapse-view i.ri-arrow-down-s-line,
+.wkd .bio-data-view .collapse-view i.ri-arrow-up-s-line {
+  font-size: 14px !important; color: #6e757f !important;
+}
+.wkd .bio-data-view .collapse-view .det-grid { margin-top: 10px; gap: 10px 32px; }
+
+/* Expectations: row-wise 2-col grid, 56px column gap, hairline rows */
+.wkd .wkd-expect-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px;
+  padding: 0 !important;
+}
+.wkd .wkd-expect-row {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  padding: 7px 0; border-bottom: 1px solid #f2f4f7;
+}
+.wkd .wkd-expect-row .l { font-size: 12.5px; color: #667080; }
+.wkd .wkd-expect-row .v { font-size: 12.5px; font-weight: 500; color: #171b22; text-align: right; }
+
+/* ================================================================
+ * BUTTON NORMALIZATION — every legacy .filled-btn / .btn-outline inside
+ * worker detail lands on the v18.6 scale (32px, radius 7, 12.5/550,
+ * blue #2563eb). More-specific scopes (28px card headers, 40px overlay
+ * footers) keep their own sizes by higher specificity.
+ * ================================================================ */
+.wkd .btn.filled-btn,
+.wkd .btn.btninfo_simple,
+.wkd .btn.btn-primary {
+  height: 32px !important; min-height: 32px !important; max-height: 32px !important;
+  padding: 0 16px !important; border-radius: 7px !important;
+  background: #2563eb !important; border: 0 !important; color: #fff !important;
+  font-size: 12.5px !important; font-weight: 550 !important; line-height: 1 !important;
+  font-family: var(--sans) !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  width: auto !important; min-width: auto !important;
+}
+.wkd .btn.filled-btn:hover, .wkd .btn.btninfo_simple:hover, .wkd .btn.btn-primary:hover { background: #1e51c9 !important; }
+.wkd .btn.filled-btn:disabled, .wkd .btn.btninfo_simple:disabled, .wkd .btn.btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+.wkd .btn.btn-outline,
+.wkd .btn.btn-outline-primary,
+.wkd .btn.btn-secondary {
+  height: 32px !important; min-height: 32px !important; max-height: 32px !important;
+  padding: 0 14px !important; border: 1px solid #d5dbe3 !important; border-radius: 7px !important;
+  background: #fff !important; color: #171b22 !important;
+  font-size: 12.5px !important; font-weight: 550 !important; line-height: 1 !important;
+  font-family: var(--sans) !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  width: auto !important; min-width: auto !important;
+}
+.wkd .btn.btn-outline:hover, .wkd .btn.btn-outline-primary:hover, .wkd .btn.btn-secondary:hover { background: #f7f8fa !important; }
+/* in-card text links restyled as quiet bordered actions keep blue accent */
+.wkd .btn.btn-outline-primary.blue { color: #1d4ed8 !important; }
+/* plain text-link buttons stay links but on the v18.6 type scale */
+.wkd .btn.btn-link {
+  font-size: 12.5px !important; font-weight: 550 !important; font-family: var(--sans) !important;
+  color: #1d4ed8 !important; text-decoration: none;
+}
+.wkd .btn.btn-link:hover { text-decoration: underline; }
+.wkd .btn.btn-link.text-danger { color: #b42318 !important; }
+/* legacy modal footers → v18.6 footer band (white, hairline top, 14/20 pad) */
+.wkd .modal-bg-footer { background: #fff; border-top: 1px solid #edf0f4; padding: 14px 20px; }
+
+.wkd .remark-item .person-role {
+  display: block; font-weight: 400; color: #6e757f; font-size: 11px; margin-top: 1px;
+}
+
+/* full-width primary in the interview panel (Request Interview, mockup) */
+.wkd .wkd-jo-int-btn.wide { width: 100%; justify-content: center; }
+
+.wkd .wkd-jo-ml {display:flex;align-items:center;gap:5px;font-size:11.5px;color:#667080;margin-top:3px;}
+
+/* chat history bubbles render sanitized template HTML — tame inner tags */
+.wkd .chat-history-bubble p { margin: 0; }
+.wkd .chat-history-bubble p + p { margin-top: 2px; }
+.wkd .chat-history-bubble span[style] { color: inherit !important; }
+.wkd .chat-history-bubble a { color: #1d4ed8; }
+
+/* schedule drawer slots — v18.6 states (kills the legacy orange):
+ * base = white bordered pill; selected (inline #1E90FF border from the
+ * component) = blue tint; unavailable = pale, no orange */
+.wkd .joboffer_popup .time-slots button {
+  border: 1px solid #d5dbe3 !important; background: #fff;
+}
+.wkd .joboffer_popup .time-slots button[style*="30, 144, 255"] {
+  border-color: #2563eb !important; background: #e8effd !important; color: #1e51c9 !important;
+}
+.wkd .joboffer_popup .time-slots .unavailable-slot {
+  border-color: #e3e7ed !important; background-color: #f4f6f8 !important; color: #b9c2ce !important;
+}
+/* scheduled-date highlight on the calendar: soft blue ring, not orange */
+.wkd .joboffer_popup .react-datepicker__day--highlighted {
+  background: #f0f4fd !important; color: #1e51c9 !important;
+  box-shadow: inset 0 0 0 1px #c8d9f7; border-radius: 6px;
+}
+
+/* Suggest Another Time drawer (INT-01) */
+.wkd .wkd-sug-drawer {width:min(440px,92vw);}
+.wkd .wkd-sug-head-main {flex:1;display:flex;align-items:center;gap:10px;}
+.wkd .wkd-sug-body {flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:14px;}
+.wkd .wkd-sug-grid {border:1px solid #e3e7ed;border-radius:8px;padding:10px 12px;display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 14px;}
+.wkd .wkd-sug-k {font-size:12px;color:#667080;}
+.wkd .wkd-sug-v {font-size:12.5px;color:#171b22;font-weight:550;}
+.wkd .wkd-sug-pills {display:flex;gap:6px;flex-wrap:wrap;}
+.wkd .wkd-sug-pill {height:28px;display:inline-flex;align-items:center;padding:0 12px;border-radius:6px;border:1px solid #d5dbe3;background:#fff;color:#3d4552;font-size:12px;font-weight:500;cursor:pointer;}
+.wkd .wkd-sug-pill.mono {font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:0 11px;}
+.wkd .wkd-sug-pill.sel {background:#2563eb;border-color:#2563eb;color:#fff;font-weight:600;}
+.wkd .wkd-sug-note {font-size:11.5px;color:#6e757f;line-height:1.5;}
+.wkd .wkd-sug-foot {padding:12px 20px;background:#fafbfc;border-top:1px solid #edf0f4;display:flex;justify-content:flex-end;gap:8px;}
+.wkd .wkd-sug-sent {flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center;}
+.wkd .wkd-sug-sent-ico {width:44px;height:44px;border-radius:999px;background:#e3f4e8;color:#1a7f37;display:flex;align-items:center;justify-content:center;}
+.wkd .wkd-sug-sent-title {font-size:14px;font-weight:600;color:#171b22;}
+.wkd .wkd-sug-sent-msg {font-size:12.5px;color:#667080;line-height:1.55;max-width:300px;}
+.wkd .wkd-sug-pill:disabled {color:#6e757f;background:#f7f8fa;cursor:not-allowed;}
+
+/* Interview Report panel — read-only outcome radios + comment box */
+.wkd .wkd-rep-radios {display:flex;flex-direction:column;gap:8px;}
+.wkd .wkd-rep-radio {display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#171b22;}
+.wkd .wkd-rep-dot {width:15px;height:15px;border-radius:999px;border:1.5px solid #c6cdd7;background:#fff;flex:none;}
+.wkd .wkd-rep-radio.sel .wkd-rep-dot {border:5px solid #2563eb;}
+.wkd .wkd-rep-comment {min-height:80px;border:1px solid #d5dbe3;border-radius:6px;padding:9px 11px;font-size:12.5px;color:#171b22;background:#f7f8fa;line-height:1.5;white-space:pre-line;}
+
+/* Activity tab — custom date-range calendar anchored under its dropdown */
+.wkd .wkd-activity-range { position: relative; display: inline-flex; }
+
+/* listing-card footer: count + shared PaginationBar (global-list pattern) */
+.wkd .wkd-listing-foot {display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #e3e7ed;padding:8px 0;}
+.wkd .wkd-listing-foot-count {font-size:12px;color:#6e757f;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.wkd .wkd-listing-foot > :last-child {padding:0;}
+.wkd .mc-worker-listing-empty + .wkd-listing-foot {border-top:1px solid #e3e7ed;}
+
+/* skill-detail groups (Baby Care / Elderly Care / Household Chores) — always expanded, hairline separated */
+.wkd .wkd-skill-group {padding-top:14px;margin-top:6px;border-top:1px solid #edf0f4;}
+.wkd .wkd-skill-group > p {font-size:14px;font-weight:600;color:#171b22;}
+
+/* header: headshot opens the approved full original; owners popover Edit; empty actions; contact link tone */
+.wkd .wkd-avatar-btn { padding:0; border:1px solid #e3e7ed; cursor:zoom-in; }
+.wkd .wkd-avatar-btn:focus-visible { outline:2px solid #2563eb; outline-offset:2px; }
+.wkd .wkd-owners-pop-head { display:flex; align-items:center; justify-content:space-between; }
+.wkd .wkd-owners-edit { border:0; background:none; padding:0; font-size:12px; font-weight:550; color:#1d4ed8; cursor:pointer; }
+.wkd .wkd-owner-nm.muted { color:#6e757f; font-weight:400; }
+.wkd .wkd-pop-empty { padding:9px 10px; font-size:12px; color:#676e77; }
+.wkd .wkd-contact .v.link { color:#1d4ed8; }
+/* full-sized approved photo dialog (prototype ovPhotoViewHTML) */
+.wkd-pv-backdrop { position:fixed; inset:0; z-index:1200; background:rgba(0,0,0,.62); display:flex; align-items:center; justify-content:center; padding:24px; }
+.wkd-pv-card { --pv-h:min(62vh, 560px); display:flex; flex-direction:column; width:min(560px, 92vw); max-width:min(560px, 92vw); max-height:92vh; overflow:auto; background:#fff; border-radius:12px; box-shadow:0 24px 48px rgba(16,24,40,.3); font-family:var(--sans); box-sizing:border-box; }
+.wkd-pv-head { display:flex; align-items:center; gap:10px; padding:14px 18px; border-bottom:1px solid #edf0f4; flex-wrap:nowrap; min-width:0; }
+.wkd-pv-head h2 { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; flex:0 1 auto; }
+.wkd-pv-head .wkd-pv-vis { flex:none; white-space:nowrap; }
+.wkd-pv-head h2 { margin:0; font-size:14px; font-weight:600; color:#171b22; }
+.wkd-pv-head .grow { flex:1; }
+.wkd-pv-vis { display:inline-flex; align-items:center; height:20px; padding:0 8px; border-radius:4px; font-size:10.5px; font-weight:650; letter-spacing:.04em; background:#f0f1f3; color:#667080; border:1px solid #e3e7ed; }
+.wkd-pv-vis.on { background:#e3f4e8; color:#1a7f37; border-color:#c9e8d3; }
+/* prototype mc-icon-btn: 26px borderless ghost, grey hover */
+.wkd-pv-close { width:26px; height:26px; border-radius:6px; border:0; background:transparent; color:#667080; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; padding:0; flex:none; }
+.wkd-pv-close:hover { background:#f4f6f8; }
+.wkd-pv-close:focus-visible { outline:2px solid #2563eb; outline-offset:2px; }
+.wkd-pv-body { padding:18px; }
+.wkd-pv-image { width:100%; height:var(--pv-h); border-radius:8px; border:1px solid #e3e7ed; background:#f6f7f9; display:flex; align-items:center; justify-content:center; overflow:hidden; box-sizing:border-box; }
+.wkd-pv-image img { max-width:100%; max-height:100%; object-fit:contain; }
+.wkd-pv-empty { color:#6e757f; }
+.wkd-pv-meta { display:flex; flex-direction:column; gap:7px; margin-top:14px; min-width:0; }
+.wkd-pv-body { min-width:0; }
+.wkd-pv-row { display:grid; grid-template-columns:118px minmax(0,1fr); gap:10px; align-items:baseline; }
+.wkd-pv-row .l { font-size:11.5px; font-weight:500; color:#667080; }
+.wkd-pv-row .v { font-size:12.5px; font-weight:500; color:#171b22; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.wkd-pv-row .v.mono { font-family:var(--mono); }
+.wkd-pv-note { font-size:11.5px; color:#676e77; margin-top:12px; }
+
+/* honest deferred controls: present, disabled, marked Preview */
+.wkd .mc-preview-tag, .wkd-edit-drawer .mc-preview-tag { display:inline-flex; align-items:center; height:16px; padding:0 5px; margin-left:6px; border:1px solid #e3e7ed; border-radius:4px; background:#fff; font-size:10px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:#667080; }
+[data-mc-honest="deferred"] { opacity:.6; cursor:not-allowed; }
+
+/* Contract End "Expected" tag on listings (shared primitive) */
+.wkd .mc-expected-cell { display:inline; }
+.wkd .mc-expected-tag { display:inline-flex; align-items:center; height:16px; padding:0 5px; margin-left:7px; border:1px solid #e3e7ed; border-radius:4px; background:#fff; font-family:'Hanken Grotesk',sans-serif; font-size:10px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:#667080; vertical-align:middle; position:relative; top:-1px; }
+
+/* Send registration link dialog (shared/registration-link.js) */
+.wkd-rl-backdrop { position:fixed; inset:0; z-index:9500; background:rgba(16,24,40,.42); display:flex; align-items:center; justify-content:center; padding:24px; font-family:var(--sans); }
+.wkd-rl-card { width:min(560px,96vw); max-height:92vh; overflow:auto; background:#fff; border-radius:12px; box-shadow:0 24px 48px rgba(16,24,40,.3); border:1px solid #e3e7ed; }
+.wkd-rl-head { display:flex; align-items:center; gap:10px; padding:14px 18px; border-bottom:1px solid #edf0f4; }
+.wkd-rl-head h2 { margin:0; font-size:14px; font-weight:600; color:#171b22; white-space:nowrap; }
+.wkd-rl-sub { font-size:12px; color:#676e77; }
+.wkd-rl-head .grow { flex:1; }
+.wkd-rl-btn { height:28px; padding:0 10px; border:1px solid #d5dbe3; border-radius:6px; background:#fff; font:inherit; font-size:12px; cursor:pointer; color:#171b22; }
+.wkd-rl-btn.lg { height:32px; padding:0 14px; border-radius:7px; font-size:12.5px; }
+.wkd-rl-btn.primary { height:32px; padding:0 16px; border-radius:7px; font-size:12.5px; font-weight:550; background:#2563eb; border-color:#2563eb; color:#fff; }
+.wkd-rl-btn:disabled { opacity:.5; cursor:not-allowed; }
+.wkd-rl-body { padding:16px 18px; display:flex; flex-direction:column; gap:14px; font-size:12.5px; color:#171b22; line-height:1.5; }
+.wkd-rl-body p { margin:0; color:#4a515c; }
+.wkd-rl-fieldset { border:1px solid #e3e7ed; border-radius:8px; padding:10px 12px; margin:0; }
+.wkd-rl-fieldset legend { font-size:11.5px; font-weight:600; color:#4a515c; padding:0 4px; width:auto; margin:0; }
+.wkd-rl-option { display:flex; align-items:flex-start; gap:8px; padding:6px 0; margin:0; cursor:pointer; font-weight:400; }
+.wkd-rl-option input { margin-top:3px; accent-color:#2563eb; }
+.wkd-rl-muted { color:#676e77; }
+.wkd-rl-note { padding:10px 12px; border-radius:8px; }
+.wkd-rl-note.ok { background:#effbf3; border:1px solid #bfe5c9; }
+.wkd-rl-note.warn { background:#fff8e6; border:1px solid #e3d3a8; }
+.wkd-rl-actions { display:flex; gap:8px; justify-content:flex-end; }
+.wkd-rl-fine { font-size:11.5px; color:#676e77; }
+
+/* ===== Biodata read view: independent cards (prototype bioCard) ===== */
+.wkd .bio-cards { display:flex; flex-direction:column; gap:14px; padding:0; }
+.wkd .bio-card { background:#fff; border:1px solid #e3e7ed; border-radius:9px; padding:18px 20px; }
+.wkd .bio-card.is-dimmed .bio-card-body { opacity:.45; }
+.wkd .bio-card-head { display:flex; align-items:center; gap:10px; padding-bottom:14px; border-bottom:1px solid #edf0f4; position:relative; }
+.wkd .bio-card-head .grow { flex:1; }
+.wkd .bio-card-title { font-size:16px; font-weight:600; letter-spacing:-.01em; color:#171b22; }
+.wkd .bio-card-updated { font-size:11.5px; color:#676e77; border-left:1px solid #e3e7ed; padding-left:10px; }
+.wkd .bio-btn { height:28px; padding:0 11px; border-radius:6px; background:#fff; border:1px solid #d5dbe3; color:#171b22; font:inherit; font-size:12px; font-weight:550; cursor:pointer; display:inline-flex; align-items:center; gap:6px; }
+.wkd .bio-btn:hover { background:#f4f6f8; }
+.wkd .bio-status-btn.open { background:#f4f6f8; border-color:#b9c2ce; box-shadow:0 0 0 2px #e8effd; }
+.wkd .bio-status-wrap { position:relative; }
+.wkd .bio-status-pop { position:absolute; right:0; top:44px; width:230px; background:#fff; border:1px solid #e3e7ed; border-radius:8px; box-shadow:0 4px 16px rgba(16,24,40,.14); padding:4px; z-index:40; }
+.wkd .bio-status-eyebrow { font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#676e77; padding:7px 10px 5px; }
+.wkd .bio-status-row { display:flex; align-items:center; justify-content:space-between; width:100%; height:30px; padding:0 10px; border:0; border-radius:5px; background:transparent; font:inherit; font-size:12.5px; color:#171b22; text-align:left; cursor:pointer; }
+.wkd .bio-status-row:hover:not(.current):not(:disabled) { background:#f4f6f8; }
+.wkd .bio-status-row.current { color:#676e77; cursor:default; }
+.wkd .bio-status-row.tint { background:#f0f4fd; }
+.wkd .bio-status-row:disabled { color:#a1a7b3; cursor:not-allowed; }
+.wkd .bio-status-pop.up { top:auto; bottom:36px; box-shadow:0 -4px 16px rgba(16,24,40,.14); }
+.wkd .bio-status-btn:disabled { color:#9aa1ab; background:#fff; cursor:default; }
+.wkd .bio-card-body > .bio-section:first-child { padding-top:14px; }
+.wkd .bio-card-body > .det-grid:first-child { padding-top:16px; }
+.wkd .bio-section { padding:16px 0; border-top:1px solid #edf0f4; }
+.wkd .bio-card-body > .bio-section:first-child { border-top:0; }
+.wkd .bio-section-title { font-size:16px; font-weight:600; letter-spacing:-.01em; color:#171b22; margin-bottom:12px; }
+.wkd .bio-card .det-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px 32px; }
+.wkd .bio-field.span-2 { grid-column:span 2; }
+.wkd .bio-field.span-3 { grid-column:1 / -1; }
+.wkd .bio-lbl { font-size:11.5px; font-weight:500; color:#4a515c; }
+.wkd .bio-lbl.is-missing { color:#b42318; }
+.wkd .bio-val { font-size:13px; font-weight:500; color:#171b22; margin-top:4px; overflow-wrap:anywhere; }
+.wkd .bio-val.is-empty { color:#676e77; }
+.wkd .bio-val.is-danger { color:#b42318; }
+.wkd .bio-chips { display:flex; flex-wrap:wrap; gap:6px; }
+.wkd .bio-chip { display:inline-flex; align-items:center; height:22px; padding:0 8px; border-radius:4px; font-size:11.5px; font-weight:500; color:#3d4552; background:#f4f6f8; border:1px solid #e3e7ed; }
+.wkd .bio-duties { margin-top:14px; }
+.wkd .bio-duties-lbl { font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#667080; margin-bottom:6px; }
+.wkd .bio-duties-lbl.is-missing { color:#b42318; }
+.wkd .bio-duties .bio-chip { background:#fff; }
+
+/* edit form: head, section anchors, hints, focus rail, textarea counter */
+.wkd .bio-edit-head { display:flex; align-items:center; gap:10px; padding:0 0 14px; border-bottom:1px solid #edf0f4; }
+/* prototype section shell: every form section = padding 18px 0 + bottom hairline (#edf0f4) */
+.wkd .wkd-bio-edit [data-bio-section] { padding:18px 0; border-bottom:1px solid #edf0f4; }
+.wkd .wkd-bio-edit [data-bio-section="work"] { padding:0; border-bottom:0; } /* each work record carries its own shell */
+.wkd .wkd-bio-edit [data-bio-section][data-mc-edit-focus="1"] { box-shadow:inset 3px 0 0 #2563eb; padding-left:14px; }
+.wkd .bio-hint { font-size:11.5px; color:#676e77; line-height:1.5; margin:12px 0 0; }
+.wkd .bio-textarea-wrap { display:block; }
+.wkd .bio-textarea-wrap textarea { min-height:72px; }
+.wkd .bio-textarea-count { display:block; text-align:right; margin-top:2px; font:10px 'JetBrains Mono',monospace; color:#676e77; }
+
+/* prototype multi control: checkbox grid (accent blue, 15px boxes, gap 8x24) */
+.wkd .bio-checkgrid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px 24px; padding:2px 4px; border:1px solid transparent; border-radius:6px; }
+.wkd .bio-checkgrid.cols-3 { grid-template-columns:repeat(3, minmax(0,1fr)); }
+.wkd .bio-checkgrid.cols-4 { grid-template-columns:repeat(4, minmax(0,1fr)); }
+.wkd .bio-checkgrid.has-error { border-color:#d92d20; }
+.wkd .bio-check { display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:400; color:#171b22; cursor:pointer; margin:0; }
+.wkd .bio-check input { accent-color:#2563eb; width:15px; height:15px; margin:0; flex:none; }
+.wkd .bio-check.is-disabled { color:#8a919c; cursor:not-allowed; }
+
+/* work experience records: head with badge + Remove, add bar with counter */
+/* every work record is its own section (Current Contract / Work Experience N): same shell as above */
+.wkd .bio-we-record { padding:18px 0; border-bottom:1px solid #edf0f4; }
+.wkd .bio-we-record[data-mc-edit-focus="1"] { box-shadow:inset 3px 0 0 #2563eb; padding-left:14px; }
+.wkd .bio-we-head { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.wkd .bio-we-head .grow { flex:1; }
+.wkd .bio-we-title { font-size:14px; font-weight:600; letter-spacing:-.01em; color:#171b22; }
+.wkd .bio-we-new { display:inline-flex; align-items:center; height:18px; padding:2px 6px; border-radius:4px; font-size:11px; color:#1d4ed8; background:#eef3ff; border:1px solid #c8d9f7; }
+.wkd .bio-btn-remove { height:26px; padding:0 10px; color:#b42318; }
+.wkd .bio-btn-lg { height:32px; padding:0 14px; border-radius:7px; font-size:12.5px; }
+.wkd .bio-we-addbar { display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid #edf0f4; }
+.wkd .bio-we-record:empty { display:none; } /* deleted records render nothing — no stray hairline */
+
+/* prototype date control: calendar glyph at 10px, text box typed as MM/YYYY or DD/MM/YYYY (no native picker) */
+.wkd .bio-date { position:relative; }
+/* the calendar glyph is a button that opens the kit calendar (react-datepicker, DateInput.module.css skin); it sits where the
+   decorative glyph used to, inside the 30px left padding of the typed box */
+.wkd .bio-date > .react-datepicker-wrapper { position:absolute; left:6px; top:50%; transform:translateY(-50%); width:auto; z-index:1; }
+.wkd .bio-date .bio-date-cal { display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; padding:0; border:0; border-radius:4px; background:transparent; color:#676e77; cursor:pointer; }
+.wkd .bio-date .bio-date-cal:hover { background:#f4f6f8; color:#171b22; }
+.wkd .bio-date .bio-date-cal:disabled { cursor:default; color:#c3cad4; background:transparent; }
+.wkd .bio-date .bio-date-cal:focus-visible { outline:2px solid var(--accent, #2563eb); outline-offset:1px; }
+.wkd .wkd-bio-edit .bio-date .form-control { padding-left:30px !important; }
+.wkd .bio-date small { display:block; margin-top:4px; }
+.wkd .bio-we-count { font-size:11.5px; color:#676e77; }

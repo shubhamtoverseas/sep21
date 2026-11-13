@@ -1,0 +1,620 @@
+/* Insurance record page — page-specific styles. Shared listing vocabulary (pageWrap / statusTag …)
+   comes from Invoice/InvoiceList.module.css; tones reuse the design-system tag palette. */
+
+.page.page {
+  gap: 0;
+  padding: 6px 4px 24px;
+  max-width: 1760px;
+}
+
+/* ── Record shell: the shared record frame (Worker / Employer details: .wkd-page · .wkd-rail · .wkd-main) with the
+   Insurance Context rail on the left (Insurance.html .ins-record-layout, 340px; 260px at 1100px and below) ── */
+.shell .rail.rail { width: 340px; }
+
+.main.main {
+  padding: 18px 24px 40px;
+  font-size: 13px;
+}
+
+/* ── Remarks drawer body (Insurance.html .ins-remarks-drawer / remarks.js) ── */
+.remarksDrawerBody.remarksDrawerBody { background: #fafbfc; padding: 20px; }
+
+.remarksPanel { display: flex; flex-direction: column; }
+
+.remarkComposer {
+  padding: 14px;
+  border: 1px solid #e3e7ed;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 16px;
+}
+
+.remarkComposer textarea { min-height: 84px; resize: vertical; }
+
+.remarkComposerActions { display: flex; justify-content: flex-end; margin-top: 12px; }
+
+/* without Insurance Remarks: one line where the composer would be (owner, 12 Nov 2026) */
+.remarkReadOnly {
+  padding: 12px 14px;
+  border: 1px solid #e3e7ed;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 16px;
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.remarkList { display: grid; gap: 12px; }
+
+.remarkRow {
+  padding: 16px;
+  border: 1px solid #e3e7ed;
+  border-radius: 8px;
+  background: #fff;
+  min-width: 0;
+}
+
+.remarkMeta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.remarkMuted { font-size: 12px; color: var(--text-3); }
+
+.remarkEdited { margin-top: 5px; }
+
+/* staff-authored text keeps its line breaks and wraps long words (prototype .remarks-text) */
+.remarkText {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.remarkRow[data-deleted] > .remarkText { color: var(--text-3); }
+
+.remarkActions { display: flex; gap: 8px; margin-top: 10px; }
+
+.remarkAuthorNote { margin-top: 12px; }
+
+.remarkHistory {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-2, #edf0f4);
+}
+
+.remarkHistory summary { cursor: pointer; font-size: 12px; color: var(--text-3); }
+
+.remarkHistory summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.remarkVersion { border-bottom: 1px solid var(--line, #e2e5eb); padding: 10px 0; }
+
+.remarkVersion:last-child { border-bottom: 0; }
+
+.remarkVersion .remarkText { margin-top: 4px; }
+
+.remarkLabel { font-size: 12px; font-weight: 600; }
+
+.remarksEmpty { padding: 30px 16px; text-align: center; color: var(--text-3); font-size: 13px; }
+
+/* Edit / Delete remark open over the Remarks drawer (.ctx-drawer is at 1001, the shared Modal at --z-overlay 1000) */
+.remarkDialogLayer { position: relative; z-index: 1002; }
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.crumbs a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.crumbs a:hover { text-decoration: underline; }
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  color: var(--text-1);
+}
+
+.ref {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.copy {
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--line-1);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.copy:hover { background: var(--bg-hover); }
+
+.pillLg.pillLg {
+  height: 24px;
+  padding: 2px 10px 2px 8px;
+  font-size: 12px;
+}
+
+.headActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notice {
+  padding: 12px 14px;
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  background: var(--bg-subtle);
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.noticeAction { margin-top: 10px; }
+
+/* a tab or page part that could not be read: the error and Retry, never an empty list or an endless spinner */
+.loadError {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* ── Strips ─────────────────────────────────────────────────────────────── */
+/* Open requests and Needs attention under the identity line (Insurance.html .workstrip / .work-attention) */
+.workStrip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+}
+
+.workAttention {
+  margin-left: auto;
+  padding-left: 18px;
+  border-left: 1px solid var(--line-1);
+}
+
+.stripLabel {
+  margin-right: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* four columns: the policy facts share row 1, Contract · CS Owner · Branch row 2 (Insurance.html C1 summary strip);
+   two columns at 1100px and below */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px 20px;
+  margin-bottom: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  background: var(--bg-1, #fff);
+}
+
+.fact { min-width: 0; }
+
+.factK {
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+.factV {
+  margin-top: 2px;
+  overflow-wrap: anywhere;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.factSub {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-3);
+}
+
+/* CS Owner: avatar, the shared inactive-staff cue when explicitly inactive, the normal dark name (C3) */
+.owner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ownerAvatar {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-1);
+  border-radius: 999px;
+  background: var(--bg-subtle);
+  color: var(--text-3);
+  font-size: 8.5px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Back to the dashboard: a ghost button, not a link colour (the shared frame colours every link) */
+.shell a.back { color: var(--text-2); }
+.shell a.back:hover { color: var(--text-1); text-decoration: none; }
+
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.muted { color: var(--text-4); }
+.small { font-size: 11.5px; }
+.warn { color: oklch(0.47 0.17 58); }
+
+.relStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.code {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #3b3b41;
+}
+
+.codeLink {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.codeLink:hover { text-decoration: underline; }
+
+/* ── Tabs ───────────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line-1);
+}
+
+.tab {
+  padding: 8px 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: -2px;
+}
+
+.tabOn {
+  border-bottom-color: var(--accent);
+  color: var(--text-1);
+}
+
+/* ── Panels ─────────────────────────────────────────────────────────────── */
+.grid2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.panel {
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  background: var(--bg-1, #fff);
+}
+
+.panelHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line-1);
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--text-1);
+}
+
+.panelCount {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.spacer { flex: 1; }
+
+.panelBody { padding: 10px 14px; }
+.panelBodyTight { padding: 0; }
+
+.list > * + * { border-top: 1px solid var(--line-1); }
+
+.item {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+
+.itemMain { min-width: 0; }
+
+.itemTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-1);
+}
+
+.itemLine {
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.itemRight {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* a request row: its facts, then its own buttons on a row of their own (Insurance.html .li[data-request] > .r) */
+.requestItem {
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+}
+
+.itemActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.requestDetails { margin-top: 8px; }
+.requestDetailsLabel { font-weight: 600; }
+
+/* a Needs attention issue: the warning icon and the words (INS08; not a coloured tag) */
+.issueTitle > svg {
+  flex: none;
+  color: oklch(0.47 0.17 58);
+}
+
+.period {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.period + .period { border-top: 1px dashed var(--line-1); }
+
+.bar {
+  flex-shrink: 0;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--line-strong);
+}
+
+.bar[data-tone="green"] { background: oklch(0.49 0.13 150); }
+.bar[data-tone="orange"] { background: oklch(0.47 0.17 58); }
+.bar[data-tone="blue-1"] { background: oklch(0.50 0.14 220); }
+.bar[data-tone="teal"] { background: oklch(0.45 0.1 195); }
+.bar[data-tone="red"] { background: oklch(0.49 0.16 28); }
+
+.gap {
+  padding: 4px 0 4px 13px;
+  font-size: 12px;
+  color: var(--st-danger);
+}
+
+.gapNeutral { color: var(--text-3); }
+
+.voided { opacity: 0.7; }
+
+/* Legacy (migrated) values stay visible as evidence with the hatched edge and the legacy pill (prototype
+   .period.legacy / .he.legacy / .pill.legacy; ACT #40) */
+.legacy {
+  border-left: 4px solid;
+  border-image: repeating-linear-gradient(135deg, #d5dbe3 0 3px, transparent 3px 6px) 1;
+  padding-left: 6px;
+}
+
+.pillLegacy.pillLegacy { border-left: 4px solid currentColor; }
+
+.synTag {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid var(--line-1);
+  border-radius: 4px;
+  color: var(--text-4);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) minmax(0, 1fr);
+  gap: 8px 14px;
+  font-size: 12.5px;
+}
+
+.k { color: var(--text-3); }
+.v { min-width: 0; color: var(--text-1); overflow-wrap: anywhere; }
+
+/* identifiers and dates never break mid-string (prototype .kv .v .mono / .code) */
+.v.mono,
+.v .mono,
+.v .code,
+.v .codeLink { white-space: nowrap; }
+
+.tag {
+  display: inline-block;
+  padding: 0 6px;
+  border: 1px solid var(--line-1);
+  border-radius: 4px;
+  background: var(--bg-subtle);
+  color: var(--text-3);
+  font-size: 11px;
+}
+
+.btnSm.btnSm {
+  height: 26px;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+/* ── History ────────────────────────────────────────────────────────────── */
+.event {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 14px;
+}
+
+.eventWhen {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.eventWhat {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.eventWho {
+  font-weight: 400;
+  color: var(--text-3);
+}
+
+.change {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.changeField { color: var(--text-3); }
+.changeOld { text-decoration: line-through; color: var(--text-4); }
+
+.loadMore {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* Insurance.html record breakpoints (components.css): the overview is one column and the header's Back / Actions take their own
+   row at 1700px and below; at 1100px the rail narrows to 260px and the summary takes two columns; at 880px the shared frame
+   stacks the rail above the record and its cards sit side by side */
+@media (max-width: 1700px) {
+  .grid2 { grid-template-columns: 1fr; }
+  .headActions { width: 100%; }
+  /* Back / Actions sit at the left here, so the Actions menu opens towards the record, not over the rail */
+  .headActions [role="menu"] { left: 0; right: auto; }
+}
+
+/* the right-hand column (Parties) stacks under the overview at narrower widths (prototype components.css 1100px) */
+@media (max-width: 1100px) {
+  .grid2 { grid-template-columns: 1fr; }
+  .shell .rail.rail { width: 260px; }
+  .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 880px) {
+  .shell .rail.rail { width: 100%; }
+  .rail :global(.wkd-rail-cards) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .main.main { padding: 16px; }
+  .event { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+}
+
+/* the request a follow-up returned to (calendarSourceLinks ?request=) */
+.arrived.arrived { box-shadow: inset 3px 0 0 var(--accent); background: #f5f8ff; }
+.arrived:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }

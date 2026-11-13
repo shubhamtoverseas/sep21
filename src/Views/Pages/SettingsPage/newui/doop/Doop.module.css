@@ -1,0 +1,73 @@
+/* Days of Operation (new UI) — name/status row and the seven-day picker. */
+
+.masterRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.masterGrid {
+  flex: 1 1 420px;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+}
+
+.statusRow > label {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-surface);
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.dayCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+
+.dayCard:hover {
+  border-color: var(--line-strong);
+}
+
+.dayCardOn {
+  background: var(--bg-surface);
+  border-color: var(--accent);
+}
+
+.dayName {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.daysError {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: #b42318;
+}

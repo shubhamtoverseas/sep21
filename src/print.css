@@ -1,0 +1,78 @@
+/* Print (Ctrl+P / Save as PDF): the current page prints as it is on screen, full width.
+   The shell parts (rail, topbar) and the module-scoped sticky / scroll rules live beside their own CSS;
+   this sheet holds only the global rules. */
+@media print {
+  html, body, #root { height: auto !important; min-height: 0 !important; overflow: visible !important; background: #fff !important; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { margin: 10mm; }
+
+  /* legacy scroll wrappers (bootstrap / DataTables / CommonTable) show their full content */
+  .table-responsive, .commonTable, .dataTables_wrapper { overflow: visible !important; }
+
+  /* Bootstrap grid at desktop widths: a printed page is narrower than the md / lg / xl breakpoints, so the responsive
+     columns would stack (labels over their checkboxes, forms one field per line). Print keeps the screen's desktop grid. */
+  .col-sm { flex-basis: 0; flex-grow: 1; max-width: 100%; }
+  .col-sm-auto { flex: 0 0 auto; width: auto; max-width: 100%; }
+  .col-sm-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .col-sm-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-sm-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-sm-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-sm-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-sm-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-sm-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-sm-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-sm-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-sm-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-sm-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-sm-12 { flex: 0 0 100%; max-width: 100%; }
+  .d-sm-none { display: none !important; } .d-sm-block { display: block !important; } .d-sm-flex { display: flex !important; } .d-sm-inline-flex { display: inline-flex !important; }
+  .justify-content-sm-end { justify-content: flex-end !important; } .justify-content-sm-between { justify-content: space-between !important; } .text-sm-right { text-align: right !important; } .text-sm-left { text-align: left !important; }
+  .col-md { flex-basis: 0; flex-grow: 1; max-width: 100%; }
+  .col-md-auto { flex: 0 0 auto; width: auto; max-width: 100%; }
+  .col-md-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .col-md-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-md-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-md-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-md-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-md-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-md-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-md-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-md-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-md-12 { flex: 0 0 100%; max-width: 100%; }
+  .d-md-none { display: none !important; } .d-md-block { display: block !important; } .d-md-flex { display: flex !important; } .d-md-inline-flex { display: inline-flex !important; }
+  .justify-content-md-end { justify-content: flex-end !important; } .justify-content-md-between { justify-content: space-between !important; } .text-md-right { text-align: right !important; } .text-md-left { text-align: left !important; }
+  .col-lg { flex-basis: 0; flex-grow: 1; max-width: 100%; }
+  .col-lg-auto { flex: 0 0 auto; width: auto; max-width: 100%; }
+  .col-lg-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .col-lg-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-lg-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-lg-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-lg-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-lg-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-lg-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-lg-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-lg-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-lg-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-lg-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-lg-12 { flex: 0 0 100%; max-width: 100%; }
+  .d-lg-none { display: none !important; } .d-lg-block { display: block !important; } .d-lg-flex { display: flex !important; } .d-lg-inline-flex { display: inline-flex !important; }
+  .justify-content-lg-end { justify-content: flex-end !important; } .justify-content-lg-between { justify-content: space-between !important; } .text-lg-right { text-align: right !important; } .text-lg-left { text-align: left !important; }
+  .col-xl { flex-basis: 0; flex-grow: 1; max-width: 100%; }
+  .col-xl-auto { flex: 0 0 auto; width: auto; max-width: 100%; }
+  .col-xl-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .col-xl-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .col-xl-3 { flex: 0 0 25%; max-width: 25%; }
+  .col-xl-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .col-xl-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  .col-xl-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-xl-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  .col-xl-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .col-xl-9 { flex: 0 0 75%; max-width: 75%; }
+  .col-xl-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  .col-xl-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  .col-xl-12 { flex: 0 0 100%; max-width: 100%; }
+  .d-xl-none { display: none !important; } .d-xl-block { display: block !important; } .d-xl-flex { display: flex !important; } .d-xl-inline-flex { display: inline-flex !important; }
+  .justify-content-xl-end { justify-content: flex-end !important; } .justify-content-xl-between { justify-content: space-between !important; } .text-xl-right { text-align: right !important; } .text-xl-left { text-align: left !important; }
+}

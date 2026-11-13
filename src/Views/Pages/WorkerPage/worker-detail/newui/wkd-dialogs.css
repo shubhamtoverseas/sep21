@@ -1,0 +1,24 @@
+/* Worker record header dialogs on the kit Modal (Change Onboarding 1 / 2 · Change Partner): the prototype
+   Worker_Details.html reassign-confirm anatomy — intro line, radio picks (ctx-picks), empty state, note.
+   Values are the prototype's (.ctx-picks / .ctx-pick / .ctx-empty / .ctx-note). */
+.wkd-dlg .intro { font-size: 12.5px; line-height: 1.5; color: #667080; margin: 0 0 12px; }
+.wkd-dlg .intro b { font-weight: 700; color: #171b22; }
+.wkd-dlg .wkd-dlg-search { margin: 0 0 10px; }
+.wkd-dlg .ctx-picks { display: flex; flex-direction: column; gap: 4px; max-height: 232px; overflow: auto; margin-bottom: 12px; }
+.wkd-dlg .ctx-pick { display: flex; align-items: center; gap: 9px; min-height: 36px; padding: 0 11px; border: 1px solid #d5dbe3; border-radius: 7px; background: #fff; font: inherit; font-size: 12.5px; line-height: normal; color: #171b22; cursor: pointer; text-align: left; width: 100%; flex: 0 0 auto; }
+.wkd-dlg .ctx-pick:hover { background: #f7f9fc; }
+.wkd-dlg .ctx-pick.on { border-color: #cfe0ff; background: #eff4ff; color: #1d4ed8; font-weight: 550; }
+.wkd-dlg .ctx-pick[aria-disabled="true"] { cursor: default; color: #676e77; }
+.wkd-dlg .ctx-pick[aria-disabled="true"]:hover { background: #fff; }
+.wkd-dlg .ctx-pick .lbl { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wkd-dlg .ctx-pick em { margin-left: auto; font-style: normal; font-size: 10.5px; line-height: normal; color: #676e77; font-weight: 400; white-space: nowrap; }
+.wkd-dlg .ctx-pick-dot { width: 13px; height: 13px; border-radius: 999px; border: 1.5px solid #c3cad4; background: #fff; flex: none; box-sizing: content-box; }
+.wkd-dlg .ctx-pick.on .ctx-pick-dot { border: 4.5px solid #2563eb; }
+.wkd-dlg .ctx-pick:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.wkd-dlg .ctx-empty { font-size: 12.5px; line-height: 1.55; color: #3d4552; background: #f6f7f9; border: 1px solid #e3e7ed; border-radius: 8px; padding: 11px 12px; margin: 0 0 14px; }
+.wkd-dlg .note { font-size: 11.5px; line-height: 1.5; color: #676e77; margin: 0; }
+.wkd-dlg .note.danger { color: #b42318; }
+.wkd-dlg .grow { flex: 1; }
+/* Send inquiry (Partner inquiry): the approved WhatsApp text as it goes out, and a refused send */
+.wkd-dlg .wkd-inquiry-text { font-size: 12.5px; line-height: 1.55; color: #171b22; background: #f6f7f9; border: 1px solid #e3e7ed; border-radius: 8px; padding: 11px 12px; margin: 0 0 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.wkd-dlg .wkd-inquiry-error { font-size: 12px; line-height: 1.5; color: #b42318; margin: 0 0 10px; }

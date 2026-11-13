@@ -1,0 +1,30 @@
+import { apiPath, REACT_APP_CONTRACT_API_URL } from './apiPath';
+import commonClient from './commonClient';
+
+export const getInvoices = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.invoicesList, reqPayload);
+export const priceContractInvoiceAPI = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.invoicesPrice, reqPayload);
+export const getCalculatePrice = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.getCalculatePrice, reqPayload);
+export const setContractInvoice = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.setContractInvoice, reqPayload);
+export const getInvoiceStatus = (reqPayload) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.invoiceStatus, reqPayload);
+export const getInvoiceFlagList = () => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.invoiceFlagList, {});
+export const getPaymentMethodCatalogueAPI = () => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.invoicePaymentMethodList, {});
+export const getInvoiceDetails = (reqPayload) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.invoiceDetails + "/" + reqPayload.invoice_id, {});
+export const resolveInvoiceAPI = (ref) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.resolveInvoice + encodeURIComponent(ref), {});
+export const getContractGlobalStatusList = (reqPayload) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.contractGLobalStatusList, reqPayload);
+export const getInvoiceActivityLogList = (reqPayload) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.invoiceActivityLogList + "/" + reqPayload.invoice_id + "?limit=" + reqPayload.limit + "&page=" + reqPayload.page, {});
+export const getInvoicePaymentLogList = (reqPayload) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.invoicePaymentLogList + "/" + reqPayload.invoice_id + "?limit=" + reqPayload.limit + "&page=" + reqPayload.page, {});
+/* Pay Remaining Balance: the invoice in the path; the body carries the locked amount and version the screen showed */
+export const setPayRemainingBalance = ({ invoice_id, ...body }) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.invoicePayRemainingBalance.replace(":id", encodeURIComponent(invoice_id)), body);
+export const getReservationFee = (reqPayload) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.reservationFee, reqPayload);
+export const getEmployerCreditList = (reqPayload) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.employerCreditList + "/" + reqPayload.employer_id + "?credit_type=" + reqPayload.credit_type, {});
+export const saveUploadInvoicePaymentAttachment = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.saveUploadInvoicePaymentAttachment, reqPayload);
+export const deleteInvoicePaymentAttachment = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.deleteInvoicePaymentAttachment, reqPayload);
+export const getActionStatusList = (params) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.getActionStatusList, { params });
+export const changeInvoiceStatus = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.changeInvoiceStatus, reqPayload);
+export const invoiceGLobalCancellationReason = (reqPayload) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.invoiceGLobalCancellationReason, reqPayload);
+export const refundInvoice = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.refundInvoice, reqPayload);
+export const addInvoiceExchange = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.addInvoiceExchange, reqPayload);
+export const updateAdjustPaymentInvoice = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.updateAdjustAmount, reqPayload);
+export const getPolicies = (params) => commonClient.get(REACT_APP_CONTRACT_API_URL + apiPath.getPolicies, { params });
+export const validateContractAPI = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.validateContract, reqPayload);
+export const checkParentInvoiceExchangedAPI = (reqPayload) => commonClient.post(REACT_APP_CONTRACT_API_URL + apiPath.checkParentInvoiceExchanged, reqPayload);

@@ -1,0 +1,501 @@
+/* Employer Dashboard (new UI) — page-specific styles. Shared listing vocabulary
+   (pageWrap / pageHeader / filterBar / tableCard / statusTag …) comes from
+   Invoice/InvoiceList.module.css. */
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+/* Prototype .phead h1 — 24px/650, tighter tracking than the shared pageTitle */
+.title {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  color: var(--text-1);
+}
+
+.lastRefresh {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 5px;
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+.lastRefresh b {
+  color: var(--text-1);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Filter bar ─────────────────────────────────────────────────────────── */
+/* Prototype .filterbar anatomy (class doubled to win the tie against the
+   shared controlsRow rule regardless of CSS emission order) */
+.filtersRow.filtersRow {
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px 12px;
+  padding: 10px 14px 12px;
+}
+
+/* Prototype cards are radius 10 (shared listing card is radius 8) */
+.card10.card10 {
+  border-radius: 10px;
+}
+
+/* Prototype vertical stack: .page > .phead (mb 14) > .filterbar (mb 10) > .tablecard.
+   The shared pageWrap adds a 12px flex gap between children — zero it and set
+   the exact margins instead (classes doubled to beat the shared rules). */
+.pageWrapEmd.pageWrapEmd {
+  gap: 0;
+  /* app shell content pads 16px 24px 56px; prototype .page is 22px 28px 72px, max 1760px */
+  padding: 6px 4px 16px;
+  max-width: 1760px;
+}
+
+.pageHead.pageHead {
+  padding-bottom: 0;
+  margin-bottom: 14px;
+  border-bottom: 0;
+}
+
+.filterCard.filterCard {
+  margin-bottom: 10px;
+}
+
+.clearBtn {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--sans);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+
+.clearBtn:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--text-1);
+  border-color: var(--line-strong);
+}
+
+.clearBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Created filter — invoice-style inline calendar popover under the pill */
+.createdWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.createdPop {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: var(--z-dropdown);
+}
+
+/* ── Table ───────────────────────────────────────────────────────────────── */
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+.tableRefreshing {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.table th,
+.table td {
+  white-space: nowrap;
+}
+
+/* Prototype .wtable thead th — 11px gutters, bg painted on the cells themselves */
+.tableScroll .table thead th {
+  padding: 0 11px !important;
+  background: var(--bg-subtle) !important;
+}
+
+.tableScroll .table tbody td {
+  padding: 8px 11px !important;
+}
+
+/* first column keeps the card inset; no checkbox column on this listing.
+   Prototype .wname carries a 1px divider after the sticky column — the shared
+   listing CSS nulls box-shadow on first-child, so restore it here. */
+.tableScroll .table thead th:first-child {
+  padding: 0 11px 0 14px !important;
+  text-align: left;
+  width: auto;
+  box-shadow: none !important;
+  border-right: 1px solid var(--line-1) !important;
+}
+
+.tableScroll .table tbody td:first-child {
+  padding: 8px 11px 8px 14px !important;
+  text-align: left;
+  width: auto;
+  box-shadow: none !important;
+  border-right: 1px solid var(--line-1) !important;
+}
+
+.stickyName {
+  left: 0;
+  box-shadow: 1px 0 0 var(--line-1);
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: -2px;
+}
+
+.thSortBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.thSortBtn svg {
+  color: var(--text-4);
+}
+
+.thSortBtn:hover,
+.thSortActive {
+  color: var(--text-1);
+}
+
+.thSortActive svg {
+  color: var(--accent);
+}
+
+.thSortBtn:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ── Cells ───────────────────────────────────────────────────────────────── */
+.nameCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.avatar {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--line-1);
+  background: var(--bg-subtle);
+  color: var(--text-3);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.nameText {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Prototype .mc-link-code — platform hyperlink for identifier codes */
+.codeText {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #3b3b41;
+  white-space: nowrap;
+}
+
+/* Prototype .mono — relative Updated/Activity timestamps */
+/* Prototype .soft — Primary Language / Branch text cells */
+.softCell {
+  font-size: 12.5px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+/* Prototype .owner / .rav.r-cs / .onm — quiet CS role identifier */
+.csCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.csAvatar {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 8.5px;
+  font-weight: 600;
+  line-height: 1;
+  background: oklch(0.96 0.008 250);
+  color: oklch(0.46 0.022 250);
+  border: 1px solid oklch(0.89 0.012 250);
+}
+
+.csName {
+  font-size: 12.5px;
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── States ──────────────────────────────────────────────────────────────── */
+/* the error/empty cell is also the first-child td — outrank its left-align + divider */
+.stateCell,
+.tableScroll .table tbody td.stateCell {
+  text-align: center !important;
+  box-shadow: none !important;
+  border-right: 0 !important;
+}
+
+.stateBody {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.skeletonRow td {
+  height: 44px;
+}
+
+.skeletonBar {
+  display: block;
+  width: 70%;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--bg-subtle) 25%, var(--bg-hover) 50%, var(--bg-subtle) 75%);
+  background-size: 200% 100%;
+  animation: employerSkeleton 1.2s ease-in-out infinite;
+}
+
+@keyframes employerSkeleton {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonBar { animation: none; }
+}
+
+/* ── Foot ────────────────────────────────────────────────────────────────── */
+.footCount {
+  font-size: 12px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Duplicates page ─────────────────────────────────────────────────────── */
+.dupHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--line-1);
+  border-radius: 7px;
+  background: var(--bg-surface);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text-1);
+}
+
+.backBtn:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+.reasonCell {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--st-danger);
+}
+
+/* ── "Employer added" toast (bottom-centre, SPA-safe) ────────────────────── */
+.addedToast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  z-index: var(--z-toast);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  transform: translateX(-50%);
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  box-shadow: 0 10px 32px rgba(16, 24, 40, 0.2);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.addedToastIcon {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--st-success-bg);
+  border: 1px solid var(--st-success-bd);
+  color: var(--st-success);
+}
+
+.addedToastCode {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--code-fg);
+}
+
+.addedToastSep {
+  width: 1px;
+  height: 18px;
+  background: var(--line-1);
+}
+
+.addedToastLink {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-fg);
+  font-size: 12px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.addedToastLink:hover {
+  text-decoration: underline;
+}
+
+.addedToastClose {
+  display: inline-flex;
+  padding: 2px;
+  border: 0;
+  background: none;
+  color: var(--text-4);
+  cursor: pointer;
+}
+
+/* DASH §9 — search help button inside the trailing edge of the search input, popover kept inside the filter card.
+   The wrap spans the whole search box (mouse events pass through to the input) so the popover can anchor to the box's
+   LEFT edge: right-aligned at 300px it ran past a 200–280px box and under the fixed sidebar (Job Offers, 4 Nov). */
+.searchHelpWrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 6px;
+  pointer-events: none;
+  z-index: 45;
+}
+.searchHelpWrap::before { content: ""; position: absolute; left: -8px; right: -8px; top: 100%; height: 10px; pointer-events: auto; }
+.searchHelpBtn {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--text-4);
+  cursor: pointer;
+  padding: 0;
+}
+.searchHelpBtn:hover,
+.searchHelpOpen .searchHelpBtn { color: var(--text-2); background: var(--bg-hover, #f4f6f8); }
+.searchHelpBtn:focus-visible { outline: 2px solid var(--accent-ring, #2563eb); outline-offset: 1px; }
+.searchHelpPop {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: auto;
+  z-index: 40;
+  pointer-events: auto;
+  width: 300px;
+  min-width: 100%;
+  max-width: calc(100vw - 32px);
+  padding: 9px 11px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #dfe4ea;
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.12);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-2);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+.searchHelpOpen .searchHelpPop { display: block; }
+.searchHelpOff .searchHelpBtn { opacity: 0.5; }
+
+/* the search yields width first, so the filter row stays on one line */
+/* format message under the search (SEARCH.md 129 / 131): the row keeps its height, the text sits below the control */
+.search.search { position: relative; }
+.searchError { position: absolute; left: 0; top: 100%; margin-top: 4px; font-size: 11.5px; line-height: 1.3; color: #b42318; white-space: nowrap; }
+.search.search {
+  flex: 1 1 200px;
+  width: auto;
+  min-width: 200px;
+  max-width: 360px;
+}
+
+/* Print: the horizontal scroller shows every column; the pinned name column prints in flow */
+@media print {
+  .tableScroll { overflow: visible; }
+  .stickyName { position: static; box-shadow: none; }
+  .addedToast { display: none; }
+}

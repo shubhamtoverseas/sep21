@@ -1,0 +1,278 @@
+/* Templates (new UI) — Quill editor skin and media preview. */
+
+.editorField {
+  margin-top: 4px;
+}
+
+.editor :global(.ql-toolbar.ql-snow) {
+  border: 1px solid #d5dbe3;
+  border-radius: 6px 6px 0 0;
+  background: var(--bg-subtle);
+  font-family: var(--sans);
+}
+
+.editor :global(.ql-container.ql-snow) {
+  border: 1px solid #d5dbe3;
+  border-top: 0;
+  border-radius: 0 0 6px 6px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+  background: var(--bg-surface);
+}
+
+.editor :global(.ql-container.ql-snow) {
+  height: auto;
+}
+
+.editor :global(.ql-editor) {
+  min-height: 200px;
+  max-height: 480px;
+  overflow-y: auto;
+  line-height: 1.55;
+}
+
+.editor :global(.ql-editor.ql-blank::before) {
+  color: #72777f;
+  font-style: normal;
+}
+
+.editor :global(.ql-snow .ql-stroke) {
+  stroke: var(--text-2);
+}
+
+.editor :global(.ql-snow .ql-fill) {
+  fill: var(--text-2);
+}
+
+.editor :global(.ql-snow .ql-picker-label) {
+  color: var(--text-2);
+}
+
+.editor :global(.ql-snow.ql-toolbar button:hover .ql-stroke),
+.editor :global(.ql-snow.ql-toolbar button.ql-active .ql-stroke) {
+  stroke: var(--accent);
+}
+
+.editor :global(.ql-snow.ql-toolbar button:hover .ql-fill),
+.editor :global(.ql-snow.ql-toolbar button.ql-active .ql-fill) {
+  fill: var(--accent);
+}
+
+.editorFallback {
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+}
+
+/* ── Media preview ───────────────────────────────────────────────────────── */
+.media {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px 8px 8px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+  max-width: 100%;
+}
+
+.mediaImage {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--line-1);
+}
+
+.mediaIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  color: var(--text-3);
+}
+
+.mediaName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Category configuration (Send Template, 10 Nov 2026 package) ─────────── */
+.configPanel {
+  grid-column: 1 / -1;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  padding: 12px 14px;
+  font-family: var(--sans);
+}
+
+.configGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px 18px;
+  margin: 0;
+}
+
+.configGrid dt {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-3);
+  margin-bottom: 2px;
+}
+
+.configGrid dd {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-1);
+  overflow-wrap: anywhere;
+}
+
+.configLanguage + .configLanguage::before {
+  content: " · ";
+  color: var(--text-3);
+}
+
+.configMissing {
+  color: oklch(0.49 0.16 28);
+}
+
+.configSite {
+  display: inline-block;
+  margin: 0 6px 2px 0;
+  padding: 0 6px;
+  border: 1px solid var(--line-1);
+  border-radius: 4px;
+  background: var(--bg-surface);
+  font-size: 11.5px;
+}
+
+.configNotes {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.configNotes summary {
+  cursor: pointer;
+  color: var(--text-2);
+}
+
+.configNotes ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+
+/* ── Version history (S9, F-30) ─────────────────────────────────────────── */
+.versionPanel {
+  grid-column: 1 / -1;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.versionPanel > summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.versionList {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.versionList > li + li {
+  border-top: 1px solid var(--line-1);
+}
+
+.versionList summary {
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.versionNo {
+  font-weight: 500;
+}
+
+.versionMeta {
+  margin-left: 8px;
+  color: var(--text-3);
+}
+
+.versionBody {
+  margin: 0 0 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.versionFile {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.saveRefusal,
+.configError {
+  margin-top: 6px;
+  font-size: 12px;
+  color: oklch(0.49 0.16 28);
+}
+
+.configError {
+  grid-column: 1 / -1;
+}
+
+.inactiveTag {
+  margin-left: 6px;
+}
+
+.recipientFields {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recipientFields li + li {
+  margin-top: 10px;
+}
+
+.recipientFieldsHead {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 4px;
+}
+
+.recipientFieldsFamily {
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+@media (max-width: 900px) {
+  .configGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .configGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

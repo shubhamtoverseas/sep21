@@ -1,0 +1,124 @@
+/* body {
+    background: #fff;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: #222;
+} */
+
+/* Center and contain invoice */
+.invoice-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+/* Outer border box */
+.invoice-container {
+    background: #fff;
+    border: 1.5px solid #fff;
+    border-radius: 8px;
+    padding: 40px;
+    box-sizing: border-box;
+    /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.1); */
+}
+
+/* Header alignment */
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Title and status badge */
+.invoice-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.status-badge {
+    background: #e8f9ee;
+    color: #29a157;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Info section grid */
+.invoice-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 30px;
+    margin-bottom: 25px;
+}
+
+.invoice-info div {
+    line-height: 1.4;
+}
+
+/* Subsection titles */
+.section-title {
+    font-size: 14px;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+/* Employer/Worker block */
+.employer-worker {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    padding: 16px 0;
+    margin-bottom: 20px;
+}
+
+/* Table consistent look */
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.invoice-table th,
+.invoice-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.invoice-table th {
+    background: #fafafa;
+    font-weight: 600;
+}
+
+/* Totals section */
+.total-section {
+    border-top: 2px solid #000;
+    margin-top: 10px;
+    padding-top: 10px;
+    text-align: right;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* Payment info */
+.payment-info {
+    border-top: 1px dashed #ccc;
+    margin-top: 30px;
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+/* .content-section {
+    box-shadow: none !important;
+} */

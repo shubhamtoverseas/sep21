@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAGA,OAAO,CAAP,mGAAO;AACP,OAAO,CAAP,+GAAO;AACP,OAAO,CAAP,0GAAO;AACP,OAAO,CAAP,0GAAO;AACP,OAAO,CAAP,oGAAO;AACP,OAAO,CAAP,+FAAO;AACP,OAAO,CAAP,+FAAO;AACP,OAAO,CAAP,2FAAO;AACP,OAAO,CAAP,gGAAO;AAEP,OAAO,CAAP,gHAAO;AAEP,OAAO,CAAP,+FAAO;AACP,OAAO,CAAP,iIAAO",
+    "sources": [
+        "mamaadmin.scss"
+    ],
+    "names": [],
+    "file": "mamaadmin.css"
+}

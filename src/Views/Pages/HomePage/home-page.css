@@ -1,0 +1,126 @@
+.ptb-100 {
+    padding: 6.1rem 0;
+}
+
+.ptb-80 {
+    padding: 5rem 0;
+}
+
+.section-description {
+    color: var(--Blue-Gray-900, #0F172A);
+    font-family: "Mabry Pro";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    /* 168.75% */
+}
+
+.home-page .section-title {
+    color: var(--Blue-Gray-900, #0F172A);
+    font-family: "Cooper BT";
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 42px;
+    /* 131.25% */
+}
+
+.light-bg-section {
+    border: 1px solid rgba(221, 221, 221, 0.50);
+    background: rgba(221, 221, 221, 0.10);
+}
+
+.custom-container {
+    max-width: 1400px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.policy-term-links a {
+    color: #000;
+    font-family: "Mabry Pro";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Extra small devices */
+@media (max-width: 575.98px) {
+
+    html,
+    body {
+        font-size: 14px;
+    }
+
+    .home-page .section-title {
+        font-size: 1.75rem;
+    }
+
+    .ptb-100 {
+        padding: 4rem 0;
+    }
+
+    .ptb-80 {
+        padding: 3rem 0;
+    }
+
+    .mr56 {
+        margin-right: 3rem;
+    }
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    html,
+    body {
+        font-size: 15px;
+    }
+
+    .home-page .section-title {
+        font-size: 1.9rem;
+    }
+
+    .ptb-100 {
+        padding: 5rem 0;
+    }
+
+    .ptb-80 {
+        padding: 4rem 0;
+    }
+
+    .mr56 {
+        margin-right: 3.5rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    html,
+    body {
+        font-size: 15px;
+    }
+
+    .home-page .section-title {
+        font-size: 1.9rem;
+    }
+
+    .ptb-100 {
+        padding: 5rem 0;
+    }
+
+    .ptb-80 {
+        padding: 4rem 0;
+    }
+
+    .mr56 {
+        margin-right: 3.5rem;
+    }
+}

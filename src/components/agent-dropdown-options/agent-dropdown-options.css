@@ -1,0 +1,49 @@
+.agents-listing-options.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.agents-listing-options.is-disabled .agent-title,
+.agents-listing-options.is-disabled .agent-desc {
+    color: var(--Black-Disabled, #9E9E9E);
+}
+
+.agents-listing-options .agent-title {
+    color: #000;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+}
+
+.agents-listing-options .agent-role {
+    color: var(--Black-Disabled, #9E9E9E);
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+}
+
+.agents-listing-options .agent-desc {
+    color: #000;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+}
+
+.agents-listing-options .agent-last-update {
+    color: var(--Black-Disabled, #9E9E9E);
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+}

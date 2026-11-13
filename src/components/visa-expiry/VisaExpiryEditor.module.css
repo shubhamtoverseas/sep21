@@ -1,0 +1,40 @@
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.value {
+  font-size: 14px;
+  color: var(--text-1, #131316);
+}
+
+.empty {
+  color: var(--text-3, #8a8a94);
+}
+
+.actions {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.intro {
+  margin: 4px 0 14px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+
+.error {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--st-danger);
+}
+

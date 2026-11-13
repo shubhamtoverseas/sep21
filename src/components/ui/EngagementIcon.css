@@ -1,0 +1,31 @@
+/* Prototype .wid .ph[data-emp-engagement] — 26px circle, three hue families (App 250 · Web 190 · Staff 305) */
+.mc-engagement {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e3e7ed;
+  background: #f4f6f8;
+  color: #667080;
+}
+
+.mc-engagement-app {
+  color: oklch(0.5 0.12 250);
+  background: oklch(0.965 0.03 250);
+  border-color: oklch(0.9 0.04 250);
+}
+
+.mc-engagement-web {
+  color: oklch(0.5 0.12 190);
+  background: oklch(0.965 0.03 190);
+  border-color: oklch(0.9 0.04 190);
+}
+
+.mc-engagement-staff {
+  color: oklch(0.5 0.12 305);
+  background: oklch(0.965 0.03 305);
+  border-color: oklch(0.9 0.04 305);
+}

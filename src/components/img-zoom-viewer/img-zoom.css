@@ -1,0 +1,16 @@
+.image-controls {
+    padding: 4px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    position: absolute;
+    left: 15px;
+    box-shadow: 0px 0px 8px #ddd;
+    bottom: 15px;
+}
+.image-controls .zoom-percentage {
+    padding: 2px 8px;
+    border: 1px solid #d3d3d3;
+}
+.image-controller-wrapper {
+    max-height: 300px;
+}

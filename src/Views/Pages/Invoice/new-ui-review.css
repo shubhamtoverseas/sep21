@@ -1,0 +1,507 @@
+/* invoice-create.html blocks 3 — exact bundle CSS, scoped under .invd. Tokens via src/tokens.css. */
+
+.invd .review-page {
+  padding: 20px 24px 64px; max-width: 1400px;
+}
+.invd .review-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin-bottom: 16px;
+}
+.invd .review-breadcrumb .step {
+  color: var(--text-3);
+}
+.invd .review-breadcrumb .step.done {
+  color: var(--text-2);
+}
+.invd .review-breadcrumb .step.here {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .review-breadcrumb .sep {
+  color: var(--text-4);
+}
+.invd .review-head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px; gap: 16px; flex-wrap: wrap;
+}
+.invd .review-head .left {
+  display: flex; align-items: center; gap: 12px;
+}
+.invd .review-head .left h1 {
+  margin: 0;
+  font-size: 22px; font-weight: 600; letter-spacing: -0.018em;
+  color: var(--text-1);
+}
+.invd .review-head .meta {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 11.5px;
+}
+.invd .review-head .meta .item .k {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600; margin-bottom: 1px;
+}
+.invd .review-head .meta .item .v {
+  font-size: 12.5px; color: var(--text-1); font-weight: 500;
+  font-family: var(--mono);
+}
+.invd .review-head .meta .item .v.sans {
+  font-family: var(--sans);
+}
+.invd .review-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 440px;
+  gap: 16px;
+}
+@media (max-width: 1180px) {
+.invd .review-grid {
+  grid-template-columns: 1fr;
+}
+}
+.invd .review-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  padding: 22px 24px;
+}
+.invd .parties-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line-2);
+}
+.invd .party-block .role {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600; margin-bottom: 6px;
+}
+.invd .party-block .name {
+  font-size: 18px; font-weight: 600; color: var(--text-1);
+  letter-spacing: -0.012em; line-height: 1.2;
+}
+.invd .party-block .name .ref {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+  font-weight: 400;
+  margin-left: 6px;
+}
+.invd .party-block .sub {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+.invd .party-arrow {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+}
+.invd .items-table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  font-size: 13px;
+}
+.invd .items-table thead th {
+  text-align: left;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-4);
+  font-weight: 600;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line-1);
+}
+.invd .items-table thead th.right {
+  text-align: right;
+}
+.invd .items-table tbody td {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-2);
+  vertical-align: top;
+  color: var(--text-2);
+}
+.invd .items-table tbody td.primary {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .items-table tbody td.right {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+.invd .items-table tbody td.right.neg {
+  color: var(--st-danger);
+}
+
+.invd .items-table thead th:first-child { width: 28%; }
+.invd .items-table thead th:nth-child(3) { width: 110px; }
+.invd .items-table thead th:nth-child(4) { width: 26%; min-width: 150px; }
+.invd .items-table thead th:nth-child(5) { width: 110px; }
+.invd .items-table thead th + th,
+.invd .items-table tbody td + td { padding-left: 12px; }
+.invd .items-table .subtotal-row td {
+  padding-top: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line-2);
+  font-weight: 500;
+  color: var(--text-1);
+}
+.invd .items-table .discount-row td {
+  color: var(--text-3); font-size: 12.5px;
+}
+.invd .items-table .discount-row td.right {
+  color: var(--st-danger);
+}
+.invd .items-table .after-discount-row td {
+  border-top: 1px solid var(--line-1);
+  padding-top: 12px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+.invd .items-table .accent-row td {
+  background: var(--accent-bg);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-weight: 600;
+  color: var(--accent-fg);
+  border-top: 1px solid var(--accent-ring);
+  border-bottom: 1px solid var(--accent-ring);
+}
+.invd .items-table .total-row td {
+  border-top: 2px solid var(--text-1);
+  padding-top: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+.invd .items-table .total-row td.right {
+  font-size: 18px;
+}
+.invd .deadline-card {
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: var(--st-warning-bg);
+  border: 1px solid var(--st-warning-bd);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+.invd .deadline-card .ico {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  background: var(--bg-surface);
+  border: 1px solid var(--st-warning-bd);
+  color: var(--st-warning);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.invd .deadline-card .body .label {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600;
+}
+.invd .deadline-card .body .when {
+  font-size: 14px; font-weight: 600; color: var(--text-1);
+  font-family: var(--mono); margin-top: 2px;
+}
+.invd .deadline-card .body .desc {
+  font-size: 11.5px; color: var(--text-3); margin-top: 2px;
+}
+.invd .interviews-card {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.invd .interviews-card strong {
+  color: var(--text-1); font-weight: 600;
+}
+.invd .interviews-card .pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 1px 7px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+}
+.invd .payment-card {
+  padding: 0;
+}
+.invd .payment-card .head {
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--line-2);
+}
+.invd .payment-card .head h2 {
+  margin: 0; font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+}
+.invd .payment-card .head .sub {
+  margin-top: 2px; font-size: 12px; color: var(--text-3);
+}
+.invd .payment-card .body {
+  padding: 18px 22px;
+}
+.invd .payment-form {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.invd .payment-form .row {
+  display: flex; gap: 10px;
+  margin: 0; 
+}
+.invd .payment-form .row > * {
+  flex: 1;
+}
+.invd .payment-form .field {
+  display: flex; flex-direction: column; gap: 4px;
+}
+/* Exchange review — cancel-contract section */
+.invd .review-card .cancel-head { font-size: 13px; font-weight: 600; color: var(--text-1); margin: 18px 0 12px; }
+.invd .cancel-form .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0; }
+.invd .cancel-form .field textarea.input { height: auto; min-height: 76px; padding: 8px 12px; resize: vertical; line-height: 1.5; }
+.invd .cancel-form .field-err { color: var(--st-danger); font-size: 11.5px; margin-top: 4px; }
+.invd .payment-form .field label {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600;
+}
+.invd .payment-form .field label .req {
+  color: var(--st-danger); margin-left: 2px;
+}
+.invd .payment-form .field .input {
+  height: 36px;
+  padding: 0 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-1);
+  font-family: var(--sans);
+}
+.invd .payment-form .field .input:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+.invd .payment-form .field .input.mono {
+  font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: 0.1em;
+}
+.invd .payment-summary {
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+}
+.invd .payment-summary .label {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600;
+}
+.invd .payment-summary .amt {
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-top: 4px;
+  letter-spacing: -0.01em;
+}
+.invd .payment-summary.warning {
+  background: var(--st-warning-bg);
+  border-color: var(--st-warning-bd);
+}
+.invd .payment-summary.warning .amt {
+  color: var(--st-warning);
+}
+.invd .payment-summary.success {
+  background: var(--st-success-bg);
+  border-color: var(--st-success-bd);
+}
+.invd .payment-summary.success .amt {
+  color: var(--st-success);
+}
+.invd .payment-summary .note {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-3);
+}
+.invd .payment-summary .note .nrf {
+  color: var(--st-danger);
+  font-weight: 500;
+}
+.invd .payment-error {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--st-danger-bg);
+  border: 1px solid var(--st-danger-bd);
+  border-radius: 6px;
+  color: var(--st-danger);
+  font-size: 12px;
+}
+.invd .payment-foot {
+  padding: 14px 22px 18px;
+  border-top: 1px solid var(--line-2);
+  background: var(--bg-subtle);
+  display: flex; gap: 10px; justify-content: flex-end;
+  border-radius: 0 0 10px 10px;
+}
+.invd .review-foot {
+  display: flex; justify-content: flex-end; gap: 8px;
+  margin-top: 18px;
+}
+.invd .pay-type-seg {
+  display: inline-flex;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  padding: 3px;
+  margin-bottom: 16px;
+  gap: 2px;
+}
+.invd .pay-type-seg button {
+  height: 26px;
+  padding: 0 12px;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-3);
+  font-size: 11.5px;
+  font-weight: 500;
+  font-family: var(--sans);
+}
+.invd .pay-type-seg button:hover {
+  color: var(--text-1);
+}
+.invd .pay-type-seg button.active {
+  background: var(--bg-surface);
+  color: var(--text-1);
+  box-shadow: var(--shadow-1);
+}
+.invd .modal-veil,
+.invd.modal-veil {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: var(--z-overlay);
+  display: flex; align-items: center; justify-content: center;
+}
+.invd .modal-card {
+  background: var(--bg-surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-3);
+  width: 480px; max-width: 92vw;
+  overflow: hidden;
+}
+.invd .modal-card .head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line-2);
+}
+.invd .modal-card .head .ico {
+  width: 36px; height: 36px;
+  border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.invd .modal-card .head h2 {
+  margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-1);
+}
+.invd .modal-card .body {
+  padding: 18px 22px;
+}
+.invd .modal-card .body p {
+  font-size: 13px; color: var(--text-2); line-height: 1.5; margin: 0 0 14px;
+}
+.invd .modal-card .foot {
+  padding: 14px 22px;
+  border-top: 1px solid var(--line-2);
+  display: flex; justify-content: flex-end; gap: 10px;
+  background: var(--bg-subtle);
+}
+
+/* ---- Helpers (avoid inline styles) ---- */
+.invd .review-head .left .btn-icon.outlined {
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  border-radius: 6px;
+  border-color: var(--line-1); background: var(--bg-surface);
+  color: var(--text-2);
+}
+.invd .interviews-card input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; }
+.invd .pay-side .head { padding: 16px 22px 0; }
+.invd .pay-side .head h2 { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-1); }
+.invd .pay-side .head .sub { margin-top: 2px; font-size: 12px; color: var(--text-3); }
+/* Head variant with a leading symbol — mirrors the bundle's .pm-head + .sym */
+.invd .pay-side .head.with-sym { display: flex; align-items: center; gap: 13px; }
+.invd .pay-side .head .sym {
+  width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-ring);
+  font-size: 20px;
+}
+/* Bundle .pm-instruct — explanatory paragraph inside the payment panel */
+.invd .pay-side .pm-instruct { font-size: 12.5px; color: var(--text-2); line-height: 1.55; margin: 0 0 14px; }
+.invd .pay-side .pms-host { padding: 16px 22px 20px; }
+.invd .review-card.pay-side { padding: 0; }
+/* Side-panel action row (bundle: Original Worker Handling) — plain, no strip */
+.invd .pay-side .panel-actions { display: flex; gap: 6px; justify-content: flex-end; margin-top: 16px; }
+.invd .interviews-card .iv-label { display: flex; align-items: center; gap: 8px; margin: 0; cursor: pointer; }
+
+/* ---- Action-modal icon intents + warning lines (shared invoice popups) ---- */
+.invd .modal-card .head .ico.accent  { background: var(--accent-bg);     color: var(--accent); }
+.invd .modal-card .head .ico.warning { background: var(--st-warning-bg); color: var(--st-warning); }
+.invd .modal-card .head .ico.danger  { background: var(--st-danger-bg);  color: var(--st-danger); }
+.invd .modal-card .head .ico.success { background: var(--st-success-bg); color: var(--st-success); }
+.invd .modal-card .body .warn-line { color: var(--st-danger); font-size: 12.5px; line-height: 1.5; margin-top: 8px; }
+.invd .modal-card .field + .field { margin-top: 14px; }
+.invd .refund-type-btn { flex: 1 1 120px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 16px; border-radius: 9px; cursor: pointer; background: var(--bg-surface); border: 1px solid var(--line-1); font-size: 13.5px; font-weight: 600; color: var(--text-1); line-height: 1.3; text-align: center; }
+.invd .refund-type-btn:hover { border-color: var(--line-strong); }
+.invd .refund-type-btn.active { border-color: var(--accent); background: var(--accent-bg); box-shadow: 0 0 0 2px var(--accent-bg); }
+.invd .refund-type-btn .radio { width: 15px; height: 15px; border-radius: 999px; border: 1.5px solid var(--line-strong); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.invd .refund-type-btn.active .radio { border-color: var(--accent); background: var(--accent); color: #fff; }
+.invd .modal-card .field-label { font-size: 12.5px; color: var(--text-2); font-weight: 500; display: block; margin-bottom: 8px; }
+.invd .modal-card .head .spacer { flex: 1; }
+.invd .modal-card .modal-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) { .invd .modal-card .modal-grid2 { grid-template-columns: 1fr; } }
+.invd .modal-card .body .err { color: var(--st-danger); font-size: 12px; margin-top: 4px; }
+.invd .modal-card .body .group-lbl { font-size: 12.5px; color: var(--text-2); font-weight: 500; display: block; margin: 4px 0 8px; }
+.invd .mt14 { margin-top: 14px; }
+.invd .modal-card .impact { background: var(--bg-subtle); border: 1px solid var(--line-2); border-radius: 6px; padding: 12px 14px; margin: 0 0 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; }
+.invd .modal-card .impact .k { font-size: 11px; color: var(--text-3); align-self: center; }
+.invd .modal-card .impact .v { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--text-1); text-align: right; }
+.invd .modal-card .impact .v.pos { color: var(--st-success); }
+.invd .modal-card .impact .v.neg { color: var(--st-danger); }
+
+/* ---- Invoice Review (Step 3): plain meta row inside the summary card ---- */
+.invd .review-card .rc-meta { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px; font-size: 12px; }
+.invd .review-card .rc-meta .it .k { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-4); font-weight: 600; }
+.invd .review-card .rc-meta .it .v { color: var(--text-1); font-weight: 500; margin-top: 2px; }
+.invd .items-table td.dash { color: var(--text-4); }
+.invd .items-table .dash { color: var(--text-4); }
+/* Inline per-row discount / promo (mockup Step-3 review 4th column) */
+.invd .items-table .line-adj { display: inline-flex; align-items: baseline; gap: 5px; font-size: 11.5px; color: var(--text-2); }
+.invd .items-table .line-adj + .line-adj { margin-left: 8px; }
+.invd .items-table .line-adj .neg { color: var(--st-danger); font-family: var(--mono); }
+
+/* Invoice Review item table — prototype Invoice_Detail.html INV-18 (Shubham, 23 Oct): the discount / promo / credit is a pill on
+   the item's own row, one per adjustment, instead of sub-rows; the line total stays on that row */
+.invd .items-table td.adjust-cell .line-adjust { margin: 2px 6px 2px 0; vertical-align: middle; }
+.invd .items-table .line-adjust { display: inline-block; font-size: 11.5px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--bg-subtle); color: var(--text-2); font-variant-numeric: tabular-nums; }
+.invd .items-table .line-adjust.discount { border-color: #c7e3d4; background: #ecf7f1; color: #1f7a4d; }
+.invd .items-table .line-adjust.promo { border-color: #cdddf5; background: #eef4fd; color: #2a5db0; }
+.invd .items-table .line-adjust.credit { border-color: #e6d6b8; background: #faf3e2; color: #936a17; }

@@ -1,0 +1,10 @@
+.better-hiring-experience-section {
+    border: 1px solid rgba(221, 221, 221, 0.50);
+    background: rgba(0, 154, 250, 0.03);
+}
+
+.better-hiring-experience-section .section-description {
+    font-size: 1.25rem;
+    font-family: 'Mabry Pro';
+    font-weight: 400;
+}

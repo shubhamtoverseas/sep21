@@ -1,0 +1,13 @@
+/* Contract #2 / SR-06: Employer and Worker names use the dashboards' primary-name treatment */
+.contract-person-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 19.5px;
+  color: #131316;
+  /* Bilingual names ("English · 中文") keep the same treatment and truncate inside their column */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

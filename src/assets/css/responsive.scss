@@ -1,0 +1,1234 @@
+@media screen and (max-width: 1600px) {
+  .sidebar,
+  #v-pills-tab-new_setting {
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .jobofferadmin .inviteWorkerRow .customSelect {
+    width: auto;
+  }
+  .jobofferadmin .inviteWorkerRow .customSelect p,
+  .jobofferadmin .inviteWorkerRow .customSelect button {
+    font-size: 14px;
+  }
+  .inviteworker_popup {
+    .contractInvoicerow {
+      .topRow {
+        display: flex;
+      }
+    }
+    .inviteworker_popup_popupcontent {
+      .colLgTwo {
+        max-width: 40%;
+      }
+      .colLgTen {
+        max-width: 64%;
+      }
+      .colLgFour {
+        max-width: 100%;
+        flex: 100%;
+        margin-top: 20px;
+      }
+      .inviteworker_popup_right {
+        .userprofile_Detailpopup {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  .commonTable td.nametd .cstooltip {
+    position: relative;
+    left: 0px;
+    top: -12px;
+  }
+
+  .dataTabing_block {
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      overflow-x: scroll;
+      flex-wrap: unset;
+      li {
+        display: inline-flex;
+        a {
+          white-space: nowrap;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 1199px) {
+  .contractInvoicerow {
+    .topRow {
+      display: block;
+      .CNuser {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .jobofferadmin {
+    .invitefilterRow {
+      display: block;
+      .searchInput {
+        margin-top: 20px;
+      }
+      .showallList {
+        ul {
+          height: 60px;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          overflow-x: auto;
+          padding-bottom: 15px;
+        }
+      }
+    }
+  }
+  .addcontact_addpayment {
+    .contractInvoice_detailblock {
+      width: 100%;
+    }
+    .fileElement {
+      .secwrap {
+        p {
+          width: 100px;
+        }
+      }
+    }
+  }
+  .processing_section {
+    .contractInvoicerow {
+      .editRow {
+        display: block;
+        ul {
+          li {
+            width: 20%;
+          }
+        }
+      }
+    }
+    .btnsec {
+      display: block;
+      .btn {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .doclist {
+    a {
+      margin-bottom: 10px;
+    }
+  }
+  .processingDocument {
+    .folderRow {
+      .folderBtn {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .processing_Global {
+    .processingtab_head {
+      ul {
+        display: block;
+        li {
+          margin-bottom: 20px;
+          width: 100% !important;
+          .dataTables_length {
+            margin: 0px;
+          }
+        }
+      }
+      .searchInput {
+        input {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  header {
+    .container-fluid {
+      padding: 0px 15px;
+    }
+
+    .navbar-toggler {
+      position: absolute;
+      right: 0px;
+      top: 17px;
+      padding: 0px;
+      &:focus {
+        outline: none;
+      }
+    }
+    .navbar-toggler[aria-expanded="true"] {
+      i {
+        &:before {
+          content: "\eb99" !important;
+        }
+      }
+    }
+    .topBar {
+      padding: 0px;
+      padding-bottom: 10px;
+      background: white;
+      .navbar {
+        padding: 0px;
+      }
+      .mobileHead {
+        display: flex;
+        margin: 10px 0px;
+      }
+      .backArrow {
+        margin-right: 10px;
+        i {
+          font-size: 20px !important;
+        }
+      }
+      .questionSign {
+        margin-left: 0px;
+      }
+      ul {
+        li {
+          margin-right: 15px;
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
+      .navbar {
+        justify-content: flex-end;
+        #navbarSupportedContent {
+          display: flex;
+          form {
+            display: none;
+          }
+          .navbar-nav {
+            flex-direction: row;
+          }
+        }
+        .searchInput input {
+          width: auto !important;
+          border: 1px solid transparent;
+          &:focus {
+            border-color: #2196f3;
+          }
+        }
+      }
+    }
+    .bottomNav {
+      position: fixed;
+      left: -320px;
+      height: 100vh;
+      width: 280px;
+      top: 0;
+      box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.28);
+      z-index: 1;
+      transition: all 0.3s;
+      .container-fluid {
+        padding: 0px;
+      }
+      &.show {
+        left: 0;
+      }
+      ul {
+        li {
+          display: block;
+          &.moreButton {
+            display: none;
+          }
+          a {
+            padding: 25px 20px;
+          }
+        }
+      }
+    }
+  }
+  .centerContent {
+    padding: 20px 0px;
+  }
+  .tableBox {
+    .tableboxHeder {
+      padding: 15px;
+      .tableHead {
+        .NewOfferBtn {
+          .btn {
+            margin-top: 15px;
+          }
+        }
+      }
+    }
+  }
+  .totaljobList {
+    display: block;
+  }
+  .p40 {
+    padding: 20px;
+  }
+  .jobofferadmin {
+    .userchatRow {
+      margin-top: 0px;
+    }
+    .invitefilterRow {
+      margin-top: 20px;
+      .searchInput {
+        width: 100%;
+      }
+    }
+  }
+
+  footer {
+    ul {
+      li {
+        a {
+          padding: 10px 5px !important;
+        }
+      }
+    }
+  }
+
+  .inviteworker_popup {
+    .bloc2kouter {
+      margin-top: 25px;
+      &.mT50 {
+        margin-top: 20px;
+      }
+    }
+    .contractInvoicerow {
+      .topRow {
+        display: flex;
+      }
+    }
+    .inviteworker_popup_popupcontent {
+      .colLgTwo {
+        max-width: 100%;
+      }
+      .colLgTen {
+        max-width: 100%;
+      }
+      .colLgFour {
+        max-width: 100%;
+        flex: 100%;
+        margin-top: 20px;
+      }
+      .inviteworker_popup_right {
+        .userprofile_Detailpopup {
+          max-width: 100%;
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+  .photouploadTab {
+    .upRow {
+      display: block !important;
+      .uploadedfotoBlock {
+        &.mR60 {
+          margin-right: 0px;
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  .Worker_biodata {
+    .tabConentinner {
+      padding: 50px 40px 50px 30px;
+    }
+  }
+
+  .dataTabing_outerblock.opendetail_block .dataTabing_block,
+  .dataTabing_outerblock.chattab_open .dataTabing_block,
+  .dataTabing_outerblock.activity_Blockopen .dataTabing_block {
+    width: 100%;
+    margin: 0px 0 20px;
+  }
+  .dataTabing_outerblock.activity_Blockopen {
+    display: block;
+  }
+  .interviewSchedule_block {
+    width: 100%;
+  }
+  .contractTab .dataRow .leftData {
+    width: max-content;
+  }
+  .contractTab .dataRow .rightData {
+    width: max-content;
+  }
+  .contractTab .dataRow {
+    display: flex;
+    overflow: hidden;
+    overflow-x: scroll;
+  }
+  .contractTab .dataRow .rightData .workerbottomRow .innerBlock {
+    white-space: nowrap;
+  }
+  .detailBlock .basicdetail_title {
+    margin-bottom: 15px;
+  }
+  .detailBlock .statictable_Detail.mB50,
+  .detailBlock .commonTable.mB50 {
+    margin-bottom: 20px;
+  }
+  .detailBlock .workingTable.mT50 {
+    margin-top: 0px;
+  }
+  .dataTabing_outerblock.chattab_open {
+    display: block;
+  }
+  .dataTabing_outerblock.chattab_open .chatview {
+    width: 100%;
+  }
+  .chatview .staffBlock,
+  .chatview {
+    margin-bottom: 20px;
+  }
+  .newjobofferBlock_select .workingTable.mT50 {
+    margin-top: 10px !important;
+  }
+  .newjobofferBlock_select .spaceHeight {
+    height: 30px;
+  }
+  .newjobofferBlock_select .modalBtn div.mL30 {
+    margin-left: 0px;
+  }
+  .newjobofferBlock_select .row.mT40 {
+    margin-top: 0px;
+  }
+  .dataTabing_block .activityTab {
+    margin: 15px;
+  }
+  .remarkBlock .dataRow {
+    padding-right: 0px;
+  }
+  .remarkBlock {
+    padding: 15px;
+  }
+  // .workerglobal_section .tableBox .tableboxHeder .tableHead .NewOfferBtn .btn{margin-top:0px;}
+  .workerglobal_section .entryRow_worker {
+    display: block;
+  }
+
+  .workerglobal_section {
+    .tableBox .tableHead .NewOfferBtn {
+      display: none;
+    }
+    .workerSearchBox {
+      margin: 0px 20px;
+    }
+  }
+  .workerSearchBox {
+    .dateOFBirth,
+    .selectPT {
+      display: none;
+    }
+  }
+  .searchROw {
+    display: block;
+    .jobOffer {
+      margin-right: 15px;
+    }
+  }
+  .workerSearchBoxMobile {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    .dateOFBirth,
+    .selectPT {
+      display: block;
+    }
+    .dateOFBirth {
+      i {
+        top: 2px;
+      }
+      input {
+        padding: 0px;
+      }
+    }
+    .customSelect {
+      margin-right: 0px;
+      button {
+        margin: 0px;
+        border-radius: 0px;
+      }
+    }
+  }
+  .itemBox {
+    .contentRow {
+      .box3 {
+        width: 30%;
+      }
+    }
+  }
+  .processingList {
+    display: block;
+    .dataLi {
+      width: 49%;
+      display: inline-flex;
+      flex-direction: column;
+      &:first-child {
+        .dataTitle {
+          margin-left: 0px;
+        }
+      }
+
+      .dataInnerblock {
+        width: 100%;
+      }
+    }
+  }
+  .processingKjri {
+    .adultsWorkingblock {
+      h4 {
+        margin-bottom: 15px !important;
+      }
+      > .d-flex {
+        display: block !important;
+        margin-bottom: 20px;
+      }
+      .radioList {
+        margin-left: 10px;
+        .mR60 {
+          margin-right: 20px;
+        }
+        .form-check.d-inline {
+          display: flex !important;
+        }
+      }
+      &.mB70 {
+        margin-bottom: 10px;
+      }
+      &.applicationType {
+        .subinnerradio {
+          margin-left: 0px;
+          span {
+            width: auto;
+            margin-right: 10px;
+          }
+          .radioList {
+            .form-check.mR50 {
+              margin-right: 0px;
+            }
+            .form-check-label {
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+    .row.marginBottom {
+      margin-bottom: 10px;
+    }
+    .photoRow {
+      margin: 0px 10px 20px;
+    }
+    .noEmail {
+      margin: 0px 12px 20px;
+    }
+  }
+  .otherDiv {
+    .radioList {
+      margin-bottom: 15px;
+    }
+  }
+  #v-pills-emdetails {
+    .spaceHeight {
+      height: 0;
+    }
+  }
+  .workexp_block {
+    .workHead {
+      padding: 14px;
+    }
+  }
+  .invoicePage {
+    .tableHead {
+      .contractinvoiceBtn {
+        margin-top: 20px;
+      }
+    }
+    .invoiceFillter {
+      padding: 20px;
+      margin-top: 10px;
+    }
+  }
+  .pricelisting_table .spaceTd i {
+    right: -40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .tableBox {
+    .tableHead {
+      .customSelect {
+        max-width: 100%;
+      }
+      .NewOfferBtn,
+      .changestatusBtn_mobileview {
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+        .infouser {
+          width: 55px;
+          margin-top: 15px;
+        }
+      }
+      .changestatusBtn_mobileview {
+        display: block !important;
+        margin-top: 15px;
+      }
+    }
+    .filterRow {
+      li {
+        margin-right: 10px !important;
+        &.changest {
+          display: none;
+        }
+      }
+    }
+  }
+  .inviteWorkerRow {
+    .scrollrow {
+      .col-sm-6 {
+        margin-bottom: 10px;
+      }
+      .customSelect {
+        width: 100%;
+        border: 1px solid #eee;
+        padding: 2px 15px;
+        justify-content: center;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        p,
+        .bootstrap-select {
+          width: auto;
+        }
+      }
+      a.d-flex {
+        white-space: nowrap;
+        border: 1px solid #2196f3;
+        text-align: center;
+        justify-content: center;
+        padding: 6px;
+      }
+    }
+  }
+  .contractInvoicerow {
+    .topRow {
+      .CNuser {
+        display: block;
+        text-align: center;
+        figure {
+          margin: 0px auto;
+        }
+        .contentWrap {
+          display: block;
+          .innerwrap {
+            margin: 10px 0px 20px !important;
+          }
+          .iconRow {
+            margin-bottom: 30px;
+          }
+        }
+      }
+      .btnRow {
+        text-align: center;
+        .btn {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  .Worker_biodata .nav-pills {
+    height: auto;
+    padding: 20px;
+  }
+  .tabConentinner {
+    padding: 20px !important;
+    padding-left: 35px !important;
+    .uploadBtn {
+      margin-top: 10px;
+    }
+    .marginClass {
+      margin-bottom: 0px;
+    }
+    .adultsWorkingblock {
+      margin-bottom: 20px;
+      .radioList {
+        margin-bottom: 0px;
+      }
+    }
+    .noEmail {
+      margin-left: 14px;
+      margin-top: -20px;
+    }
+    .statusList {
+      display: block !important;
+    }
+  }
+  .photouploadTab {
+    .photoBlock {
+      .multiPhoto {
+        .imgFrame {
+          margin-right: 15px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  .newRegistrationJO {
+    .modal-header {
+      padding: 15px;
+      display: block;
+      .btndiv {
+        margin-top: 10px;
+      }
+    }
+  }
+  .formElement {
+    .radioList {
+      margin-bottom: 20px;
+    }
+    .agecontent {
+      margin-top: 0px;
+      margin-bottom: 15px;
+    }
+  }
+  .addressBlock {
+    margin-bottom: 35px;
+  }
+  .otherDetail,
+  .previousDetail {
+    margin-top: 10px;
+  }
+  .employerchatview_activity {
+    .dataRow {
+      p {
+        span {
+          display: block;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+  .workerglobal_section {
+    .entryRow_worker {
+      display: block;
+    }
+  }
+  .entryRow_worker .dataTables_length {
+    margin: 10px 0px;
+  }
+  .itemBox {
+    margin-top: 20px;
+    .titleRow {
+      display: none;
+    }
+    .contentRow {
+      display: block;
+      .box3 {
+        width: 30%;
+      }
+      .commonBox {
+        padding: 0px 20px;
+        label {
+          display: block !important;
+          margin-bottom: 20px;
+        }
+        .form-group {
+          display: inline-block;
+          margin-bottom: 10px;
+        }
+        &.box2,
+        &.box3,
+        &.box4 {
+          width: 100%;
+        }
+        &.box1 {
+          padding: 20px !important;
+        }
+        &.box4 {
+          text-align: left;
+          margin: 10px 0px;
+          > div {
+            text-align: left;
+          }
+          label {
+            margin-bottom: 7px;
+          }
+        }
+        &.box5 {
+          position: unset;
+          border: 0px;
+          margin: 18px 0px 8px;
+          a {
+            display: inline-block;
+            margin-bottom: 0px;
+          }
+        }
+      }
+    }
+  }
+  .addcontactInvoice,
+  .addcontactInvoice2,
+  .addcontactInvoice_addworkerConfirm {
+    .contractInvoice_detailblock {
+      width: 100% !important;
+    }
+  }
+  .addcontactInvoice_addEmployer {
+    .modal-header {
+      display: block !important;
+    }
+    .inputGroup_Search {
+      width: 100% !important;
+      margin-bottom: 20px;
+    }
+    .btn {
+      margin-bottom: 10px !important;
+    }
+    .contractInvoice_detailblock {
+      width: 100% !important;
+    }
+  }
+  .addcontactInvoice_addworker {
+    .searchInput2 {
+      width: auto;
+    }
+  }
+  .icRow {
+    .substract_ic {
+      right: -7px;
+    }
+  }
+  .addcontact_addpayment {
+    .fileElement {
+      .headRow {
+        display: block;
+        .firstitle {
+          margin-bottom: 10px;
+        }
+      }
+      .dateIssued_row {
+        margin: 20px 0px;
+        display: block !important;
+        .btnrow {
+          margin-top: 10px;
+          .btn {
+            margin-bottom: 10px !important;
+          }
+        }
+      }
+      .iconWrap {
+        margin-bottom: 20px;
+      }
+      .invoiceTo,
+      .simtable {
+        margin-bottom: 20px;
+      }
+      .invoiceTo {
+        display: block !important;
+        p {
+          margin: 0px;
+          padding: 5px 0px;
+        }
+      }
+
+      .paymentDetail_row {
+        .innerRow {
+          display: block;
+        }
+      }
+      .spaceHeight {
+        height: 20px;
+      }
+      .simtable {
+        td,
+        th {
+          padding: 10px 15px;
+        }
+      }
+    }
+  }
+  .processingList {
+    .dataLi {
+      width: 100%;
+    }
+  }
+  .processing_section {
+    .contractInvoicerow {
+      .editRow {
+        ul {
+          li {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+    .btnsec {
+      .btn {
+        width: 100%;
+      }
+    }
+    .thirdremark_row {
+      .remarkComment {
+        margin-top: 25px;
+      }
+    }
+  }
+
+  .processingDocument {
+    .modal-content {
+      padding: 20px;
+    }
+    .processingHeader {
+      .folderSec {
+        display: block;
+        text-align: center;
+        h4 {
+          margin-bottom: 10px !important;
+        }
+      }
+    }
+  }
+  .invoicePage {
+    .invoicesearchTable {
+      .filterRow {
+        padding: 0px 20px;
+        display: block;
+        ul {
+          li {
+            margin: 0px !important;
+            display: block;
+            text-align: center;
+            .downaR {
+              display: none;
+            }
+            .btn {
+              width: 100%;
+            }
+          }
+        }
+        .exportUl {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .commonTable {
+        padding: 0px 0px;
+      }
+    }
+  }
+  #v-pills-tab-new_setting {
+    padding: 4px;
+    a {
+      font-size: 0px;
+      justify-content: center;
+      i,
+      img {
+        margin-right: 0px !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .contractInvoicerow {
+    .editRow {
+      ul {
+        display: block;
+        li {
+          border-bottom: 1px solid #eee;
+          padding: 10px 0px;
+          margin-right: 0px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &:last-child {
+            border: none;
+            padding-bottom: 0px;
+          }
+        }
+      }
+    }
+    .topRow {
+      .btnRow {
+        .btn {
+          justify-content: center;
+          width: 100%;
+        }
+      }
+    }
+  }
+  .joboffer_popup {
+    .roleBlock {
+      &.mT50 {
+        margin-top: 20px;
+      }
+      .leftBlock {
+        margin-bottom: 30px;
+        .userdetailinner_content.mb30 {
+          margin-bottom: 15px;
+        }
+      }
+      .salBlock {
+        padding: 15px !important;
+        > div {
+          display: block !important;
+          .userdetailinner_content {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+          }
+        }
+      }
+    }
+    .joboffer_popupcontent {
+      .content_head {
+        .inner_row {
+          display: block;
+          margin-bottom: 10px;
+          > div {
+            margin-bottom: 10px;
+            display: block !important;
+            p {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+      .mainDuties {
+        .form-group textarea {
+          width: 100%;
+        }
+        .requirementsBlock {
+          .contentwrap {
+            .leftCol {
+              width: 37%;
+            }
+          }
+        }
+      }
+      .nationality_block {
+        display: block;
+        box-shadow: 1px 0px 4px 3px rgba(204, 204, 204, 0.32);
+        padding: 15px;
+        margin-top: 20px;
+        .userdetailinner_content {
+          margin-bottom: 10px;
+        }
+      }
+      .workingTable {
+        margin-top: 20px;
+      }
+    }
+  }
+  .age-range-slider {
+    width: 86%;
+  }
+  .detailBlock .statictable_Detail .statictable_Detailinner {
+    margin-right: 0px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .detailBlock .statictable_Detail {
+    display: block;
+    width: 100% !important;
+  }
+  .detailBlock {
+    padding: 15px;
+  }
+  .detailBlock .statictable_Detail.statictable_Addresblock p {
+    display: block;
+  }
+  .detailBlock .statictable_Detail.statictable_Addresblock span {
+    display: block;
+    margin-top: 6px;
+  }
+  .newjobofferBlock_select .oferTitel .d-flex {
+    display: block !important;
+    margin-bottom: 40px;
+  }
+  #joboffer {
+    padding: 15px;
+  }
+  .jobofferchatview_admin .joboffer_popup .joboffer_popupcontent {
+    padding: 0px;
+  }
+  .jobofferchatview_admin .mainDuties.mT40 {
+    margin-top: 10px;
+  }
+  .interviewQuestion_location label {
+    flex-direction: column;
+    text-align: center;
+    padding: 0px;
+    img {
+      width: 35px;
+      margin: 0px 0px 5px;
+    }
+  }
+  .interview_datecalandar .react-datepicker__day-name {
+    width: 30px;
+  }
+  .interview_datecalandar .react-datepicker__day,
+  .interview_datecalandar .react-datepicker__time-name {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .userprofile_Detailpopup {
+    .profilecard_Banner {
+      .profile_cardouter {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .profile_card {
+        padding: 10px;
+        .cardtop_data {
+          display: block;
+          text-align: center;
+          figure {
+            width: 80px;
+            height: 80px;
+            position: unset;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10px;
+          }
+        }
+        .cardbottom_data {
+          display: block;
+          > div {
+            border-bottom: 1px solid #eee;
+            text-align: center;
+            padding: 6px 0px;
+            &:last-child {
+              border-bottom: 0px;
+            }
+          }
+        }
+      }
+      .detailRow {
+        .row {
+          &.mB10,
+          &.mB15 {
+            margin-bottom: 0px;
+          }
+          .userdetailinner_content {
+            margin-bottom: 10px;
+          }
+        }
+
+        .halfline {
+          margin: 20px 0px;
+        }
+        .userprofile_widgettitle {
+          font-size: 20px;
+        }
+        .mainSkills {
+          ul {
+            display: block;
+            li {
+              width: 100%;
+            }
+          }
+        }
+        .mainDuties {
+          .badge {
+            font-size: 13px;
+            white-space: normal;
+            word-break: normal;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  .inviteworker_popup_centertablehead {
+    display: block !important;
+    .btnRow {
+      margin-top: 20px;
+      .btn {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .bloc2kouter {
+    .row {
+      &.mT50 {
+        margin-top: 0px !important;
+      }
+    }
+  }
+  .interviewSchedule_block {
+    .interviewSchedule_data {
+      .interviewSchedule_datarow {
+        display: block;
+        .dateBlock {
+          width: 45px;
+          height: 45px;
+          font-size: 14px;
+          span {
+            line-height: 10px;
+          }
+        }
+        .contentwrap {
+          margin-top: 0px;
+        }
+        .dataRight {
+          margin-top: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+  .fileElement {
+    .secwrap {
+      display: block !important;
+      p {
+        border-bottom: 1px solid #dadada;
+        width: 100% !important;
+        padding: 10px 0px;
+      }
+    }
+  }
+  .addcontact_addpayment {
+    .fileElement {
+      .dateIssued_row {
+        .btnrow {
+          .btn {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile_cardouter {
+    .detailRow {
+      padding: 0px;
+    }
+  }
+  .userprofile_Detailpopup .profilecard_Banner .detailRow .mainDuties .badge {
+    margin-right: 20px;
+  }
+}

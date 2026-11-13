@@ -1,0 +1,902 @@
+/* New Employer + Send Registration Link modals — prototype form anatomy
+   (32px controls, #d5dbe3 borders, 2-column grid, section dividers). */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--sans);
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* ── Grid / fields ───────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+}
+
+/* permission-scoped block of the edit drawer: a disabled fieldset whose children stay grid items (audit P-01) */
+.lockedGroup {
+  display: contents;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.field {
+  min-width: 0;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.fieldLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #667080;
+}
+
+.required {
+  color: #b42318;
+  margin-left: 1px;
+}
+
+.fieldError {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #b42318;
+}
+
+.sectionDivider {
+  grid-column: 1 / -1;
+  padding: 6px 0 6px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid var(--line-2);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+/* ── Controls ────────────────────────────────────────────────────────────── */
+.input,
+.select {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-1);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  outline: none;
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+
+.input::placeholder {
+  color: #72777f;
+}
+
+.input:focus,
+.select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+.invalid,
+.invalid .select {
+  border-color: #b42318;
+}
+
+.readonly,
+.readonly .select {
+  background: #f6f7f9;
+  color: #72777f;
+  cursor: default;
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 28px;
+  cursor: pointer;
+}
+
+.select:disabled {
+  cursor: default;
+}
+
+.selectChevron {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6e757f;
+  pointer-events: none;
+}
+
+.phoneRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.countryCode {
+  width: 112px;
+  flex: none;
+}
+
+.phoneInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.linkBtn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-fg);
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 550;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.linkBtn:hover {
+  text-decoration: underline;
+}
+
+.linkBtn:disabled {
+  color: var(--text-4);
+  cursor: default;
+  text-decoration: none;
+}
+
+/* ── Verification ───────────────────────────────────────────────────────── */
+.verifiedTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: 4px;
+  border: 1px solid var(--st-success-bd);
+  background: var(--st-success-bg);
+  color: var(--st-success);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.verifiedDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+/* a changed number whose WhatsApp code is not verified yet (prototype "Replacement pending") */
+.pendingTag {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: 4px;
+  border: 1px solid oklch(0.81 0.105 64);
+  background: oklch(0.965 0.055 70);
+  color: oklch(0.35 0.12 58);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Edit Employer: Email is display-only (prototype Employer_Details.html · Edit Employer) */
+.readonlyText {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid var(--line-1);
+  border-radius: 6px;
+  background: #f6f7f9;
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+
+.otpRow {
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid var(--line-1);
+  border-radius: 7px;
+  background: #f6f7f9;
+}
+
+.otpInputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.otpInput {
+  width: 130px;
+  flex: none;
+  letter-spacing: 0.2em;
+}
+
+.otpInput::placeholder {
+  letter-spacing: normal;
+}
+
+.mutedField,
+.mutedField .select {
+  background: #f6f7f9;
+  color: #667080;
+  cursor: default;
+  opacity: 1;
+}
+
+.otpVerify {
+  height: 30px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.otpVerify:hover {
+  background: var(--accent-hover);
+}
+
+.otpHint {
+  margin-top: 6px;
+  font-size: 11px;
+  color: #6e757f;
+}
+
+/* ── Checks / radios ─────────────────────────────────────────────────────── */
+.checkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 6px;
+}
+
+.checkLabel,
+.radioLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+/* Prototype checkbox — 15px, radius 4, solid #2563eb fill with white check */
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  flex: none;
+  display: inline-grid;
+  place-content: center;
+  border: 1.5px solid #c3cad4;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.checkbox:checked {
+  border-color: #2563eb;
+  background: #2563eb;
+}
+
+.checkbox:checked::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 12 5 5L20 6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.checkbox:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+.radioRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 32px;
+}
+
+/* Prototype radio — 14px circle; checked = thick #2563eb ring (white dot) */
+.radio {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  flex: none;
+  box-sizing: border-box;
+  border: 1.5px solid #c3cad4;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.radio:checked {
+  border: 4.5px solid #2563eb;
+}
+
+.radio:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+/* ── Validation banner ───────────────────────────────────────────────────── */
+.banner {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--st-danger-bd);
+  border-left: 3px solid var(--st-danger);
+  border-radius: 7px;
+  background: var(--st-danger-bg);
+}
+
+.bannerTitle {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: oklch(0.42 0.15 28);
+}
+
+.bannerText {
+  margin-top: 2px;
+  font-size: 12px;
+  color: oklch(0.42 0.15 28);
+}
+
+/* ── Duplicate phone warn step (E-1 / U-0032) ────────────────────────────── */
+.warn {
+  padding: 10px 12px;
+  border: 1px solid var(--st-warning-bd);
+  border-left: 3px solid var(--st-warning);
+  border-radius: 7px;
+  background: var(--st-warning-bg);
+}
+
+.warnTitle {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--st-warning);
+}
+
+.warnText {
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-1);
+}
+
+.warnList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.warnRow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.warnSource {
+  flex: none;
+  width: 64px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6e757f;
+}
+
+.warnName {
+  flex: 1;
+  min-width: 0;
+}
+
+.warnNumber {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: #667080;
+}
+
+.warnNote {
+  margin-top: 8px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--text-1);
+}
+
+/* ── Dedupe search ───────────────────────────────────────────────────────── */
+.dedupeWrap {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.dedupeBox {
+  position: relative;
+}
+
+.dedupeInput {
+  width: 100%;
+  height: 32px;
+  padding: 0 30px 0 10px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+  outline: none;
+}
+
+.dedupeInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+.dedupeIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6e757f;
+  pointer-events: none;
+}
+
+.dedupePop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 36px;
+  z-index: 30;
+  padding: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.16);
+}
+
+.dedupeHead {
+  padding: 6px 12px 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6e757f;
+}
+
+.dedupeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dedupeRow:hover,
+.dedupeRow:focus-visible {
+  background: var(--bg-hover);
+  outline: none;
+}
+
+.dedupeAvatar {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #eceff3;
+  color: #667080;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.dedupeMeta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dedupeName {
+  font-size: 12.5px;
+  font-weight: 550;
+  color: var(--text-1);
+}
+
+.dedupeSub {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: #667080;
+}
+
+.dedupeOpen {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 12px;
+  font-weight: 550;
+  color: #1d4ed8;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dedupeOpen:hover {
+  text-decoration: underline;
+}
+
+.dedupeOpen:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.dedupeFoot {
+  margin-top: 4px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--line-2);
+  font-size: 11.5px;
+  color: #6e757f;
+}
+
+.dedupeEmpty {
+  padding: 14px 12px;
+}
+
+.dedupeEmptyTitle {
+  font-size: 12.5px;
+  font-weight: 550;
+  color: var(--text-1);
+}
+
+.dedupeEmptyHint {
+  margin-top: 3px;
+  font-size: 11.5px;
+  color: #6e757f;
+}
+
+/* ── Send Registration Link ──────────────────────────────────────────────── */
+.segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  margin-bottom: 14px;
+  border-radius: 7px;
+  background: #eceff3;
+}
+
+.segment {
+  height: 26px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #667080;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.segmentOn {
+  background: var(--bg-surface);
+  color: var(--text-1);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
+}
+
+.hint {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #6e757f;
+}
+
+.sentState {
+  padding: 8px 0 4px;
+  text-align: center;
+}
+
+.sentIcon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--st-success-bg);
+  border: 1px solid var(--st-success-bd);
+  color: var(--st-success);
+}
+
+.sentTitle {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.sentText {
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: #667080;
+}
+
+.sentNote {
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: #6e757f;
+}
+
+/* ── Shared small controls (address / worker modals, detail cards) ────────── */
+.textarea {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #667080;
+  cursor: pointer;
+}
+
+.iconBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text-1);
+}
+
+.linkBtnBordered {
+  height: 28px;
+  padding: 0 11px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--accent-fg);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.linkBtnBordered:hover {
+  background: var(--bg-hover);
+}
+
+.addressCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+}
+
+.addressCardPrimary {
+  background: #f8fafe;
+  border-color: #c8dafc;
+}
+
+.addressBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.addressLine {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-1);
+}
+
+.addressSub {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: #6e757f;
+}
+
+.addressFoot {
+  margin-top: 8px;
+}
+
+.addressActions {
+  display: flex;
+  gap: 2px;
+}
+
+.addressAddRow {
+  margin-top: 12px;
+}
+
+/* ── Edit drawer hosting (inside .wkd-edit-drawer-body) ──────────────────── */
+.drawerForm {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Prototype drawer stacks Mobile and WhatsApp on their own full-width rows
+   (the New Employer modal keeps them side by side) */
+.drawerForm .contactField {
+  grid-column: 1 / -1;
+}
+
+.drawerBody {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: 16px;
+  /* pull the scrollbar out into the drawer's 20px edge padding so it does not
+     sit flush against the fields (fields keep their width) */
+  margin-right: -14px;
+  padding-right: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: #d5dbe3 transparent;
+}
+
+.drawerBody::-webkit-scrollbar {
+  width: 8px;
+}
+
+.drawerBody::-webkit-scrollbar-thumb {
+  background: #d5dbe3;
+  border-radius: 999px;
+}
+
+.drawerBody::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.drawerFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--line-2);
+  background: var(--bg-surface);
+}
+
+/* a legacy Primary Language is the stored text, not a choice (CURRENT_REQUIREMENTS 140): shown muted + italic until a language is picked */
+.legacyValue .select {
+  color: #667080;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Edit Employer drawer skin (prototype emp-edit-panel) ─────────────────
+   Section headings are mono eyebrows, grid is 11×14, phone rows use a 104px
+   code select with a bordered Send OTP button, OTP row is the #fafbfc card. */
+.drawerForm .grid {
+  gap: 11px 14px;
+}
+
+.drawerForm .sectionDivider {
+  margin: 0;
+  padding: 7px 0 0;
+  border: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6e757f;
+}
+
+.drawerForm .phoneRow {
+  gap: 7px;
+}
+
+.drawerForm .countryCode {
+  width: 104px;
+}
+
+.drawerForm .phoneRow .linkBtn {
+  height: 32px;
+  padding: 0 11px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: #fff;
+  color: #171b22;
+  font-size: 12px;
+}
+
+.drawerForm .phoneRow .linkBtn:hover {
+  background: #f7f8fa;
+  text-decoration: none;
+}
+
+.drawerForm .otpRow {
+  margin-top: 5px;
+  padding: 10px 11px;
+  border-color: #e3e7ed;
+  background: #fafbfc;
+}
+
+.drawerForm .otpInput {
+  width: 120px;
+  letter-spacing: 0.3em;
+}
+
+.drawerForm .otpVerify {
+  height: 32px;
+}
+
+.drawerForm .otpHint {
+  margin-top: 5px;
+  color: #667080;
+}
+
+.drawerForm .banner {
+  padding: 11px 13px;
+  border: 1px solid #f0c4bd;
+  border-radius: 8px;
+  background: #fef3f2;
+}
+
+.drawerForm .bannerTitle {
+  font-size: 12px;
+  color: #b42318;
+}
+
+.drawerForm .bannerText {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #912018;
+}

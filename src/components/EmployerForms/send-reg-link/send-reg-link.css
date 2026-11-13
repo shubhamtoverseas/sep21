@@ -1,0 +1,14 @@
+.modalCustom .modal-header {
+    justify-content: center;
+    background-color: transparent;
+}
+.modal-title {
+    font-family: Roboto;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 23.44px;
+}
+.modal-footer {
+    background-color: #FAFAFA;
+    border-top: 1px solid #EEEEEE;
+}

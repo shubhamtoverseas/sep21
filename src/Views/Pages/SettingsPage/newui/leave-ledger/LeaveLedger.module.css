@@ -1,0 +1,35 @@
+/* View Leave Ledger (new UI) — filter row, balance chips, count colours. */
+
+.filtersRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px 14px;
+  padding: 12px 14px;
+}
+
+.userField {
+  flex: 1 1 260px;
+  max-width: 360px;
+}
+
+.dateField {
+  flex: 0 1 180px;
+  min-width: 150px;
+}
+
+.goCell {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ── Count cell ──────────────────────────────────────────────────────────── */
+.countCredit {
+  color: var(--st-success);
+  font-weight: 600;
+}
+
+.countDebit {
+  color: var(--st-danger);
+  font-weight: 600;
+}

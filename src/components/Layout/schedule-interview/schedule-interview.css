@@ -1,0 +1,98 @@
+.head-bar {
+    border-bottom: 1px solid #0000001A
+}
+
+.inviteworker_popup .sticky-next-button {
+    position: sticky;
+    bottom: 0px;
+    left: 0px;
+    padding: 1rem;
+    right: 0px;
+    background: #fff;
+    border-top: 1px solid #eee;
+    z-index: 2;
+}
+
+.side-panel-heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0.0015em;
+    text-transform: uppercase;
+}
+
+.inner-label {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 18.75px;    
+}
+    .border-bar-left{
+    border-left: 1px solid #9E9E9E
+}
+.react-datepicker-wrapper{
+    width: 100%;
+}
+.css-wsp0cs-MultiValueGeneric {
+    font-size: 0.875rem!important;
+    font-weight: 400!important;
+    line-height: 21px!important;
+    letter-spacing: 0.25px;
+    color: #1976D2!important;
+}
+.css-1p3m7a8-multiValue {
+    background-color: #E3F2FD;
+    border-radius: 20px;
+}
+.input-range__track--active {
+    background: #2196F3!important;
+}
+.input-range__slider {
+    background: #2196F3!important;
+    border: 1px solid #2196F3!important;
+}
+.input-range {
+    width: 96%!important;
+    margin: 0 auto!important;
+}
+.invite-workers-section h5{
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 21px;    
+    display: inline-block;
+}
+.invite-workers-section {
+    padding: 30px 20px;
+}
+.page-back-btn {
+    font-size: 1.5rem;
+    position: relative;
+    top: 4px;
+}
+.interview-info{
+    border-bottom: 1px solid #0000001A;
+}
+.interview-date h6{
+    font-family: Roboto;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0.0015em;
+}
+.right-arrow {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.available-dates {
+    background-color: #E3F2FD;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 18.75px;
+    letter-spacing: 0.005em;
+}
+.time-slots .unavailable-slot {
+ border-color: #FF9800!important;
+ background-color: #FFE0B2!important;
+}

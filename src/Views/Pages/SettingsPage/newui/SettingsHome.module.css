@@ -1,0 +1,75 @@
+/* Settings home (new UI) — group cards with permission-filtered links.
+   Card chrome mirrors the invoice stat / table cards (radius-3, line-1);
+   group titles use the invoice stat-label eyebrow. */
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.groupCard {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  padding: 14px 10px 10px;
+  font-family: var(--sans);
+}
+
+.groupTitle {
+  margin: 0 0 6px;
+  padding: 0 8px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 36px;
+  padding: 0 8px;
+  border-radius: var(--radius-2);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-1);
+  text-decoration: none;
+  transition: background var(--dur-1), color var(--dur-1);
+}
+
+.link:hover {
+  background: var(--bg-hover);
+  color: var(--text-1);
+  text-decoration: none;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: -2px;
+}
+
+.linkChevron {
+  color: var(--text-4);
+  flex: none;
+  transition: color var(--dur-1), transform var(--dur-1);
+}
+
+.link:hover .linkChevron {
+  color: var(--accent);
+  transform: translateX(2px);
+}

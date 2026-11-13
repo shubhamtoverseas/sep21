@@ -1,0 +1,19 @@
+.feature-box {
+    display: inline-flex;
+    padding: 8px 14px 8px 13.281px;
+    justify-content: center;
+    align-items: center;
+    gap: 12.719px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    background: #FFF;
+}
+.feature-box-title {
+    color: #000;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "Mabry Pro";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+} 

@@ -1,0 +1,9 @@
+/* task editor in linked mode (prototype task-editor.js): the people line, then the read-only source record grid after Notes */
+.cal-task-editor .src { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; align-items: baseline; border: 1px solid #e3e7ed; border-radius: 8px; background: #fafbfc; padding: 9px 12px; font-size: 12px; color: #131316; }
+.cal-task-editor .src .lb { font-size: 11px; color: #676e77; }
+.cal-task-editor .src .val { color: #131316; overflow-wrap: anywhere; }
+.cal-task-editor .src .soft { color: #676e77; }
+.cal-task-editor .src .mono { font-family: var(--mono, "JetBrains Mono", monospace); font-size: 12px; color: #3b3b41; }
+.cal-task-editor .src .mono.wcode { font-size: 11px; }
+.cal-task-editor .who-line { font-size: 12px; color: #4a515c; }
+.cal-task-editor .who-line span { color: #676e77; }

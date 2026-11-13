@@ -1,0 +1,352 @@
+/* Job Offer Dashboard (new UI) — page-specific styles. The shared listing anatomy (page, filter bar, table card,
+   sticky name column, sort buttons, cells) comes from Invoice/InvoiceList.module.css and the Employer dashboard
+   module; this file carries the status cards, the stage cells, the CS Owner header filter and the footer legend
+   (prototype modules/job-offer-dashboard index.html). */
+
+.page {
+  font-family: var(--mc-sans, 'Hanken Grotesk', 'Helvetica Neue', 'PingFang HK', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans HK', Arial, sans-serif);
+}
+
+/* ── Status cards (six across) ───────────────────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.card {
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+  background: var(--bg-surface, #fff);
+  border: 1px solid var(--line-1, #e3e7ed);
+  border-radius: 10px;
+  padding: 14px 14px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-family: inherit;
+  transition: border-color var(--dur-2, 160ms) var(--ease, ease), box-shadow var(--dur-2, 160ms) var(--ease, ease), background var(--dur-2, 160ms) var(--ease, ease);
+}
+
+.card:hover {
+  border-color: var(--line-strong, #cfd6df);
+  box-shadow: var(--shadow-1, 0 1px 2px rgba(0, 0, 0, .04));
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--accent-ring, oklch(0.86 0.06 258));
+  outline-offset: 2px;
+}
+
+.cardN {
+  font-size: 21px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text-1, #131316);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+
+.cardL {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-2, #3b3b41);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardS {
+  font-size: 10.5px;
+  color: var(--text-4, #676e77);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardOn {
+  border-color: var(--accent, oklch(0.52 0.17 258));
+  background: var(--accent-bg, oklch(0.965 0.025 258));
+  box-shadow: none;
+}
+
+.cardOn .cardL,
+.cardOn .cardN {
+  color: var(--accent-fg, oklch(0.42 0.18 258));
+}
+
+/* ── Filter bar extras ───────────────────────────────────────────────────── */
+.grow {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* the search is the one control that yields width, so the row never wraps at 1440+ */
+.search.search {
+  flex: 1 1 200px;
+  width: auto;
+  min-width: 200px;
+  max-width: 360px;
+}
+
+/* ── Cells ───────────────────────────────────────────────────────────────── */
+.mono {
+  font-family: var(--mc-mono, 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 12px;
+  color: var(--text-2, #3b3b41);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* prototype renders "English · 中文" in ONE .nm span — the Chinese part keeps the name colour and weight */
+.zh {
+  color: inherit;
+  font-weight: inherit;
+}
+
+/* Stage details (DASH §8.4 reference treatment): 9px icons, 5px between stages, 1px icon↔count, smallest mono numerals */
+.stagecells {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stagecells span {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  font: 600 10.5px var(--mc-mono, 'JetBrains Mono', ui-monospace, monospace);
+  color: var(--text-4, #676e77);
+  font-variant-numeric: tabular-nums;
+}
+
+.stagecells .hi {
+  color: var(--accent-fg, oklch(0.42 0.18 258));
+}
+
+.csRequest {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--st-danger-bd, oklch(0.85 0.05 28));
+  border-radius: 999px;
+  background: var(--st-danger-bg, oklch(0.965 0.03 28));
+  color: var(--st-danger, oklch(0.52 0.16 28));
+  cursor: pointer;
+  padding: 0;
+  flex: none;
+}
+
+/* ── CS Owner header filter (prototype .thfilter / .menu) ─────────────────── */
+.thwrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.thFilterWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.thFilter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  padding: 0;
+  background: transparent;
+  color: var(--text-4, #676e77);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.thFilter:hover {
+  border-color: var(--line-strong, #cfd6df);
+  background: var(--bg-surface, #fff);
+  color: var(--text-1, #131316);
+}
+
+.thFilterOn {
+  color: var(--accent-fg, oklch(0.42 0.18 258));
+  border-color: var(--accent-ring, oklch(0.86 0.06 258));
+  background: var(--accent-bg, oklch(0.965 0.025 258));
+}
+
+.thFilter i {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-style: normal;
+  font-family: var(--mc-mono, 'JetBrains Mono', monospace);
+  font-size: 8.5px;
+  line-height: 1;
+  background: var(--accent, oklch(0.52 0.17 258));
+  color: #fff;
+  border-radius: 999px;
+  padding: 2px 4px;
+}
+
+.menu {
+  position: fixed;
+  top: var(--jo-menu-top);
+  right: var(--jo-menu-right);
+  z-index: var(--z-dropdown, 1100);
+  font-family: var(--font-sans, inherit);
+  font-size: 13px;
+  min-width: 200px;
+  padding: 4px;
+  background: var(--bg-surface, #fff);
+  border: 1px solid var(--line-1, #e3e7ed);
+  border-radius: 8px;
+  box-shadow: var(--shadow-3, 0 12px 32px rgba(0, 0, 0, .10));
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--text-1, #131316);
+  text-align: left;
+  font-family: inherit;
+}
+
+.menuItem:hover {
+  background: var(--bg-hover, #f4f6f8);
+}
+
+.cb {
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  border: 1.5px solid var(--line-strong, #cfd6df);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--bg-surface, #fff);
+  flex: none;
+}
+
+.cbOn {
+  background: var(--accent, oklch(0.52 0.17 258));
+  border-color: var(--accent, oklch(0.52 0.17 258));
+}
+
+.menuFoot {
+  border-top: 1px solid var(--line-2, #edf0f4);
+  margin-top: 4px;
+  padding: 4px 4px 2px;
+}
+
+.menuFoot button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 11.5px;
+  color: var(--accent-fg, oklch(0.42 0.18 258));
+  padding: 3px 5px;
+  font-family: inherit;
+}
+
+.menuFoot button:hover {
+  text-decoration: underline;
+}
+
+/* ── Footer: legend left, count + pager right ─────────────────────────────── */
+.foot {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* prototype .empty: magnifier above the text, 200px tall, --text-4 */
+.emptyCell {
+  height: 200px;
+  color: var(--text-4, #676e77);
+}
+
+.emptyWrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--text-3, #6a6a72);
+}
+
+.legendCap {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-4, #676e77);
+  font-weight: 600;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sw {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sw_applied { background: var(--stage-applied-bg); color: var(--stage-applied); }
+.sw_matched { background: var(--stage-matched-bg); color: var(--stage-matched); }
+.sw_upcoming { background: var(--stage-upcoming-bg); color: var(--stage-upcoming); }
+.sw_pending { background: var(--stage-pending-bg); color: var(--stage-pending); }
+.sw_completed { background: var(--stage-completed-bg); color: var(--stage-completed); }
+.sw_cancelled { background: var(--stage-cancelled-bg); color: var(--stage-cancelled); }
+
+/* the row the actor came back from (SR-05) */
+.rowReturned td {
+  background: var(--accent-bg, oklch(0.965 0.025 258));
+}
+
+/* Restricted Search Access cap note beside the count */
+.capNote {
+  font-size: 12px;
+  color: var(--text-3, #6a6a72);
+}
+
+@media (max-width: 1360px) {
+  .cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

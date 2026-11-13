@@ -1,0 +1,165 @@
+/* ── Add Contract Invoice page ───────────────────────────────────────────── */
+.pageWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  font-family: var(--sans);
+}
+
+/* ── Common page header (title + back + date/branch/cs row) ─────────────── */
+.pageHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+}
+
+.pageHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.backBtn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: var(--text-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-2);
+  font-size: 18px;
+  transition: background var(--dur-1), color var(--dur-1);
+  flex-shrink: 0;
+}
+
+.backBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text-1);
+}
+
+.pageTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.headerFields {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fieldLabel {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--sans);
+}
+
+.fieldLabel.required::after {
+  content: " *";
+  color: var(--st-danger);
+}
+
+.fieldInput,
+.fieldSelect {
+  height: 32px;
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-2);
+  padding: 0 10px;
+  font-size: 13px;
+  color: var(--text-1);
+  background: var(--bg-surface);
+  font-family: var(--sans);
+  outline: none;
+  transition: border-color var(--dur-2), box-shadow var(--dur-2);
+  min-width: 140px;
+}
+
+.fieldInput:focus,
+.fieldSelect:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-ring);
+}
+
+/* ── Detail card (employer / worker) ────────────────────────────────────── */
+.detailCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  padding: var(--space-5);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-1);
+  font-family: var(--sans);
+  margin: 0;
+}
+
+.cardTitleTick {
+  width: 18px;
+  height: 18px;
+}
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--space-3);
+}
+
+/* ── Sticky footer bar ───────────────────────────────────────────────────── */
+.stickyFooter {
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--line-1);
+  padding: var(--space-3) var(--space-5);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-2);
+  z-index: var(--z-sticky);
+  margin-top: var(--space-3);
+}

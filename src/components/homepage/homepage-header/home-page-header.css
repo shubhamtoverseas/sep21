@@ -1,0 +1,10 @@
+.home-page header {
+    padding: 30px 40px;
+}
+
+/* Extra small devices */
+@media (max-width: 575.98px) {
+    .home-page header {
+        padding: 20px;
+    }
+}

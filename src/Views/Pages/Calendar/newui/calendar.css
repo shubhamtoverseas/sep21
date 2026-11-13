@@ -1,0 +1,262 @@
+/* Calendar — port of handoff modules/calendar/parts/calendar.css, scoped under .cal-root.
+   Tones for interview blocks and task pins live here (the prototype inlined them). */
+.cal-root { display: flex; flex-direction: column; min-height: calc(100vh - 64px); position: relative; background: #fff; color: #171b22; font-size: 13px; line-height: 1.45; font-family: var(--mc-sans, 'Hanken Grotesk', 'Helvetica Neue', 'PingFang HK', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans HK', Arial, sans-serif); }
+.cal-root button, .cal-root input, .cal-root select { font-family: inherit; }
+.cal-root button { white-space: nowrap; }
+.cal-root button:focus-visible, .cal-root input:focus-visible, .cal-root select:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+/* kit Date / Time fields carry their own focus ring — no second outline (same exemption as .cal-task-editor below) */
+.cal-root .react-datepicker-wrapper input:focus-visible { outline: 0; }
+
+/* toolbar */
+/* the toolbar wraps on a narrow viewport — the range label and Jump to date never overlap (tester 26 Oct) */
+.cal-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; row-gap: 8px; padding: 12px 20px 10px; border-bottom: 1px solid #e3e7ed; min-width: 0; }
+.cal-toolbar h1 { margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
+.cal-tz { font-size: 11px; color: #676e77; border: 1px solid #e3e7ed; border-radius: 4px; padding: 1px 6px; white-space: nowrap; }
+.cal-seg { display: inline-flex; border: 1px solid #dfe4ea; border-radius: 8px; overflow: hidden; height: 34px; box-sizing: border-box; background: #fff; flex: none; }
+.cal-seg button { border: 0; background: #fff; color: #3d4552; font-weight: 600; font-size: 12.5px; padding: 0 13px; cursor: pointer; }
+.cal-seg button + button { border-left: 1px solid #dfe4ea; }
+.cal-seg button:focus-visible { outline: 2px solid #2f6fec; outline-offset: -2px; }
+.cal-seg button[aria-pressed="true"] { background: #e8effd; color: #2058c9; }
+.cal-nav { display: inline-flex; align-items: center; gap: 6px; flex: none; }
+.cal-btn { height: 34px; border: 1px solid #dfe4ea; border-radius: 8px; background: #fff; color: #3d4552; font-size: 12.5px; font-weight: 600; padding: 0 12px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.cal-btn.icon { width: 34px; padding: 0; }
+.cal-btn.primary { border-color: #2563eb; background: #2563eb; color: #fff; padding: 0 14px; }
+.cal-btn.overdue { height: 30px; border-color: #e9b9b5; background: #fff1f0; color: #9b3333; font-size: 12px; padding: 0 10px; }
+.cal-weeklabel { font-size: 14px; font-weight: 600; margin-left: 4px; white-space: nowrap; flex: none; min-width: max-content; }
+.cal-jump { display: inline-flex; align-items: center; gap: 8px; font-size: 11.5px; color: #676e75; margin-left: 4px; flex: none; }
+.cal-jump span { white-space: nowrap; }
+.cal-jump .cal-jump-field { width: 148px; }
+.cal-jump .cal-jump-field input { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 12px; }
+.cal-spacer { flex: 1; }
+
+/* filters */
+.cal-filters { display: flex; align-items: center; gap: 10px; padding: 8px 20px; border-bottom: 1px solid #e3e7ed; background: #fafbfc; min-width: 0; }
+.cal-search { display: flex; align-items: center; gap: 8px; height: 34px; width: 280px; border: 1px solid #dfe4ea; border-radius: 8px; background: #fff; padding: 0 10px; box-sizing: border-box; color: #3d4552; flex: none; }
+.cal-search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 12.5px; color: #171b22; }
+/* the wrapper carries the focus ring; the bare control inside shows none (the generic .cal-root rule would draw a second ring) */
+.cal-search input:focus-visible { outline: 0; }
+.cal-search:focus-within { border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.14); }
+/* Staff / Show / Status = the kit filter popover (FilterSelect) at this bar's 34px control height */
+.cal-filters .cal-select > button { height: 34px; min-width: 0; }
+.cal-count { font-size: 11.5px; color: #676e77; white-space: nowrap; margin-left: auto; }
+
+/* body */
+.cal-body { flex: 1; min-height: 0; display: flex; position: relative; }
+.cal-body.has-sheet > .cal-week, .cal-body.has-sheet > .cal-agenda { margin-right: 360px; }
+.cal-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px; color: #676e77; font-size: 12.5px; }
+.cal-denied { padding: 48px 28px; max-width: 560px; color: #3d4552; font-size: 13px; line-height: 1.6; }
+.cal-denied strong { display: block; margin-bottom: 6px; }
+
+/* timed grid (Week = 7 columns, Day = 1) */
+.cal-week { flex: 1; min-width: 0; overflow: auto; position: relative; }
+.cal-head { display: grid; grid-template-columns: 52px repeat(7, minmax(0, 1fr)); position: sticky; top: 0; background: #fff; z-index: 3; border-bottom: 1px solid #e3e7ed; }
+.cal-head .d { padding: 8px 0 6px; text-align: center; border-left: 1px solid #eef1f4; }
+.cal-head .dow { font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; color: #676e77; }
+.cal-head .num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 99px; font-size: 15px; font-weight: 600; margin-top: 2px; }
+.cal-head .num.today { background: #2563eb; color: #fff; }
+.cal-grid { display: grid; grid-template-columns: 52px repeat(7, minmax(0, 1fr)); position: relative; padding-top: 10px; padding-bottom: 16px; }
+.cal-week[data-cal-days="1"] .cal-head, .cal-week[data-cal-days="1"] .cal-grid { grid-template-columns: 52px minmax(0, 1fr); }
+.cal-hours { position: relative; }
+.cal-hours .h { position: absolute; right: 8px; font-size: 10.5px; color: #676e77; transform: translateY(-6px); font-family: var(--mc-mono, 'JetBrains Mono', monospace); }
+.cal-col { position: relative; border-left: 1px solid #eef1f4; background: #fff; }
+.cal-col.today { background: #fafcff; }
+.cal-col .hl { position: absolute; left: 0; right: 0; border-top: 1px solid #eef1f4; }
+.cal-gridnote { padding: 0 20px 14px 60px; font-size: 11px; color: #676e77; }
+
+/* interview blocks — one tone family per status */
+.cal-block { position: absolute; border: 1px solid; border-left-width: 3px; border-radius: 5px; text-align: left; padding: 3px 6px; cursor: pointer; font-size: 11px; line-height: 1.25; overflow: hidden; z-index: 1; display: flex; flex-direction: column; justify-content: center; gap: 1px; box-sizing: border-box; }
+.cal-block .t { font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-block .s { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 10px; }
+.cal-block.iv-upcoming { background: #e8effd; border-color: #b9ccf2; border-left-color: #2058c9; color: #2058c9; }
+.cal-block.iv-upcoming .s { color: #4a6fb8; }
+.cal-block.iv-pending { background: #fff; border-color: #b9ccf2; border-left-color: #2058c9; border-style: dashed; color: #2058c9; }
+.cal-block.iv-completed { background: #f1f3f5; border-color: #d5dbe3; border-left-color: #5b6472; color: #5b6472; }
+.cal-block.iv-completed .s { color: #7b8494; }
+.cal-block.iv-cancelled { background: #f6f7f8; border-color: #dfe3e8; border-left-color: #9096a0; border-style: dashed; color: #9096a0; }
+.cal-block.iv-cancelled .t { text-decoration: line-through; }
+.cal-block.sel { box-shadow: 0 0 0 2px currentColor; }
+
+/* task markers */
+.cal-pin { position: absolute; right: 3px; height: 22px; display: flex; align-items: center; gap: 5px; border: 1px solid #d5dbe3; border-radius: 5px; background: #fff; padding: 0 5px 0 4px; z-index: 2; box-sizing: border-box; box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06); }
+.cal-pin.sel { box-shadow: 0 0 0 2px #2563eb; border-color: #2563eb; }
+.cal-pin .lbl { flex: 1; min-width: 0; border: 0; background: transparent; text-align: left; padding: 0; font-size: 11px; color: #171b22; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; line-height: 1.2; }
+.cal-pin .lbl .tm { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-weight: 600; color: #3b3b41; }
+.cal-pin.task-completed .lbl { color: #7b8494; text-decoration: line-through; }
+.cal-pin.task-cancelled .lbl { color: #9096a0; text-decoration: line-through; }
+.cal-pin.task-cancelled { background: #fafbfc; }
+.cal-pin.task-overdue { background: oklch(0.985 0.012 28); border-color: oklch(0.84 0.055 28); }
+.cal-pin.task-overdue .lbl { color: oklch(0.40 0.15 28); }
+.cal-pin.task-overdue .lbl .tm { color: oklch(0.49 0.16 28); }
+.cal-pin.cluster { background: #eef2f7; border-color: #b9c2ce; }
+.cal-pin.cluster .lbl { font-weight: 650; color: #171b22; }
+/* a cluster with any overdue member carries the overdue tint (prototype pinClusterHTML) */
+.cal-pin.cluster.task-overdue { background: oklch(0.985 0.012 28); border-color: oklch(0.84 0.055 28); }
+.cal-pin.cluster.task-overdue .lbl { color: oklch(0.40 0.15 28); }
+
+/* agenda */
+.cal-agenda { flex: 1; min-width: 0; overflow: auto; padding: 16px 20px 24px; }
+.cal-agenda h2 { margin: 0; font-size: 13px; font-weight: 600; color: #171b22; }
+.cal-agenda h2.is-today { color: #2058c9; }
+.cal-agenda .sec { margin-bottom: 16px; }
+.cal-agenda .sechead { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #e3e7ed; }
+.cal-agenda .sechead .n, .cal-agenda .ovh .n { font-size: 11px; color: #676e77; }
+.cal-agenda .ovh { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.cal-agenda .ovh h2 { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #9b3333; }
+.cal-rows { display: flex; flex-direction: column; gap: 6px; }
+.cal-row { display: grid; grid-template-columns: 22px 92px minmax(0, 1fr) 110px auto; gap: 12px; align-items: center; border: 1px solid #e3e7ed; border-radius: 8px; background: #fff; padding: 8px 12px; }
+.cal-row.ov { grid-template-columns: 22px 170px minmax(0, 1fr) auto; border-color: #e9b9b5; }
+.cal-row.sel { background: #f4f7fd; }
+.cal-row .when { font-size: 12px; color: #3b3b41; font-family: var(--mc-mono, 'JetBrains Mono', monospace); }
+.cal-row.ov .when { color: #9b3333; font-weight: 600; }
+.cal-row .ttl { border: 0; background: transparent; padding: 0; text-align: left; cursor: pointer; font-family: inherit; font-size: 12.5px; color: #171b22; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-row .ttl b { font-weight: 600; }
+.cal-row .ttl span { color: #676e77; }
+.cal-row .st { font-size: 11px; font-weight: 600; color: #3b3b41; }
+.cal-row .code { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 11.5px; color: #3b3b41; min-width: 96px; text-align: right; }
+.cal-row.task-completed .ttl, .cal-row.task-cancelled .ttl { text-decoration: line-through; color: #7b8494; }
+.cal-row .ivmark { width: 16px; height: 16px; border-radius: 4px; border-left: 3px solid; box-sizing: border-box; display: block; }
+.cal-row.iv-upcoming .ivmark { background: #e8effd; border-left-color: #2058c9; }
+.cal-row.iv-pending .ivmark { background: #fff; border-left-color: #2058c9; }
+.cal-row.iv-completed .ivmark { background: #f1f3f5; border-left-color: #5b6472; }
+.cal-row.iv-completed { opacity: 0.7; }
+.cal-row.iv-cancelled .ivmark { background: #f6f7f8; border-left-color: #9096a0; }
+.cal-row.iv-cancelled { opacity: 0.7; border-style: dashed; }
+.cal-row.iv-cancelled .ttl { text-decoration: line-through; }
+.cal-row.iv-cancelled .st { color: #9096a0; }
+.cal-row.iv-completed .st { color: #5b6472; }
+.cal-empty { border: 1px dashed #dfe4ea; border-radius: 8px; padding: 28px; text-align: center; color: #676e77; font-size: 12.5px; }
+
+@media (max-width: 1180px) {
+  .cal-toolbar { flex-wrap: wrap; row-gap: 8px; }
+  .cal-toolbar .cal-spacer { display: none; }
+  .cal-toolbar .cal-btn.primary { margin-left: auto; }
+  .cal-filters { flex-wrap: wrap; row-gap: 8px; }
+  .cal-search { width: min(280px, 100%); flex: 1 1 200px; }
+  .cal-count { margin-left: auto; }
+}
+
+/* contextual sheet */
+.cal-sheet { position: absolute; top: 0; right: 0; bottom: 0; width: 360px; max-width: 100%; background: #fff; border-left: 1px solid #e3e7ed; box-shadow: -12px 0 32px rgba(16, 24, 40, 0.08); overflow: auto; padding: 14px 18px 18px; box-sizing: border-box; overflow-wrap: anywhere; z-index: 6; }
+.cal-sheet .top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.cal-sheet .back { border: 0; background: transparent; padding: 0; color: #1d4ed8; font-size: 12px; font-weight: 600; cursor: pointer; }
+.cal-sheet .x { width: 26px; height: 26px; border: 1px solid #e3e7ed; border-radius: 6px; background: #fff; cursor: pointer; color: #676e77; font-size: 14px; margin-left: auto; }
+.cal-sheet .kicker { font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #676e77; }
+.cal-sheet h3 { margin: 4px 0 8px; font-size: 15px; font-weight: 600; color: #131316; line-height: 1.35; }
+.cal-sheet .grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px 14px; font-size: 12px; margin-bottom: 12px; }
+.cal-sheet .grid2 .span2 { grid-column: 1 / -1; }
+.cal-sheet .lb { color: #676e77; font-size: 11px; }
+.cal-sheet .mono { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 11.5px; color: #3b3b41; }
+.cal-sheet .mono.meet { color: #1d4ed8; text-decoration: underline; display: block; margin-top: 2px; }
+.cal-sheet .muted { color: #9096a0; }
+.cal-sheet .stv { font-weight: 600; color: #3b3b41; }
+.cal-sheet .stv.iv-upcoming { color: #2058c9; }
+.cal-sheet .stv.iv-completed { color: #5b6472; }
+.cal-sheet .stv.iv-cancelled { color: #9b3333; }
+.cal-sheet .note { font-size: 11.5px; color: #676e77; line-height: 1.5; }
+.cal-sheet .note.gap { margin-bottom: 12px; }
+.cal-sheet .note.divider { border-top: 1px solid #e3e7ed; padding-top: 10px; margin-top: 4px; }
+.cal-sheet .box { border: 1px solid #e3e7ed; border-radius: 7px; padding: 8px 10px; background: #fafbfc; margin-bottom: 10px; font-size: 12px; }
+.cal-sheet .cards { display: flex; flex-direction: column; gap: 6px; }
+.cal-sheet .card { border: 1px solid #e3e7ed; border-radius: 8px; background: #fff; padding: 9px 11px; display: flex; flex-direction: column; gap: 3px; text-align: left; cursor: pointer; font-family: inherit; }
+.cal-sheet .card:hover { background: #fafbfc; }
+.cal-sheet .card-title { font-weight: 600; font-size: 12.5px; color: #131316; }
+/* task-cluster cards: a checkbox beside the title (a div card, the title is the button) */
+.cal-sheet div.card { cursor: default; }
+.cal-sheet .card-row { display: flex; align-items: center; gap: 8px; }
+.cal-sheet .card-title.link { border: 0; background: transparent; padding: 0; text-align: left; cursor: pointer; font-family: inherit; }
+.cal-sheet .card.task-completed .card-title, .cal-sheet .card.task-cancelled .card-title { text-decoration: line-through; color: #9096a0; }
+.cal-sheet .card.task-overdue { border-color: oklch(0.84 0.055 28); background: oklch(0.985 0.012 28); }
+.cal-sheet .link.mono { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 11.5px; }
+.cal-task-editor .tr-note { font-size: 11.5px; color: #676e77; line-height: 1.5; margin: 6px 0 10px; }
+.cal-sheet .acts { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
+.cal-sheet .act { height: 30px; border: 1px solid #d5dbe3; border-radius: 7px; background: #fff; font-size: 12px; font-weight: 550; padding: 0 11px; cursor: pointer; }
+
+/* task state checkbox (prototype .cal-check) — on pins, agenda rows and the sheet; it completes / reopens the task (disabled when the caller may not) */
+.cal-check { width: 14px; height: 14px; border: 1.5px solid #8a93a0; border-radius: 3px; background: #fff; color: #fff; font-size: 10px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; padding: 0; flex: none; cursor: pointer; box-sizing: border-box; }
+.cal-check:disabled { cursor: default; }
+.cal-check.lg { width: 16px; height: 16px; border-radius: 4px; }
+.cal-check.xl { width: 18px; height: 18px; border-radius: 4px; font-size: 12px; margin-top: 3px; }
+.cal-pin.task-completed .cal-check, .cal-row.task-completed .cal-check, .cal-task-detail.task-completed .cal-check { background: #2563eb; border-color: #2563eb; }
+.cal-pin.task-cancelled .cal-check, .cal-row.task-cancelled .cal-check, .cal-task-detail.task-cancelled .cal-check { background: #f1f3f6; border-color: #c9cfd8; color: #9096a0; }
+.cal-pin.task-overdue .cal-check, .cal-row.task-overdue .cal-check, .cal-task-detail.task-overdue .cal-check { border-color: oklch(0.60 0.16 28); }
+
+/* task detail block in the sheet (prototype task-ui detailHTML) */
+.cal-task-detail .hd { display: flex; align-items: flex-start; gap: 10px; }
+.cal-task-detail .hd h3 { margin: 0; }
+.cal-task-detail.task-completed .hd h3, .cal-task-detail.task-cancelled .hd h3 { text-decoration: line-through; color: #7b8494; }
+.cal-task-detail .due { margin: 8px 0 12px; display: flex; align-items: center; gap: 8px; font-size: 12.5px; flex-wrap: wrap; }
+.cal-task-detail .due .mono { font-size: 12.5px; font-weight: 600; color: #131316; }
+.cal-task-detail .stl { font-size: 11px; font-weight: 600; color: #3b3b41; }
+.cal-task-detail.task-overdue .stl { color: oklch(0.49 0.16 28); }
+.cal-task-detail.task-completed .stl, .cal-task-detail.task-cancelled .stl { color: #9096a0; }
+.cal-task-detail .link { border: 0; background: transparent; padding: 0; cursor: pointer; font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 11.5px; font-weight: 600; color: #1d4ed8; text-align: left; }
+.cal-task-detail .acts.second { margin-top: 8px; }
+.cal-task-detail .box.restricted { margin-top: 14px; margin-bottom: 0; }
+.cal-task-detail .who { font-weight: 600; color: #131316; }
+.cal-task-detail .soft { font-weight: 400; color: #676e77; }
+.cal-task-detail .notes { margin-top: 12px; }
+.cal-task-detail .notes .lb span { font-weight: 400; }
+.cal-task-detail .txt { font-size: 12.5px; line-height: 1.5; white-space: pre-wrap; color: #171b22; }
+.cal-task-detail .act.danger { color: #b42318; }
+.cal-task-detail .act:disabled { opacity: 0.55; cursor: default; }
+.cal-task-editor select.sm.notes-pick { max-width: 220px; padding: 0 8px; font-family: inherit; }
+/* Use template on a non-empty draft: Replace notes / Cancel (prototype notes-confirm) */
+.cal-task-editor .notes-confirm { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: #171b22; background: #fff7ed; border: 1px solid #fdba74; border-radius: 6px; padding: 6px 10px; margin-bottom: 6px; }
+.cal-task-detail .hist { margin-top: 16px; border-top: 1px solid #e3e7ed; padding-top: 10px; }
+.cal-task-detail .hist .kicker { margin-bottom: 6px; line-height: 1.45; }
+/* own class — the legacy global `.row` is display:flex with -15px margins and would glue the event to the actor */
+.cal-task-detail .hist .hist-row { display: block; margin: 0; font-size: 11.5px; line-height: 1.45; padding: 4px 0; border-bottom: 1px solid #eef1f4; }
+.cal-task-detail .hist .hist-row > div { display: block; font-weight: 400; color: #171b22; }
+.cal-task-detail .hist .hist-row .who { color: #676e77; }
+
+/* task editor dialog (prototype task-editor.js dialogHTML) */
+.cal-task-editor { position: fixed; inset: 0; background: rgba(23, 27, 34, 0.32); z-index: 9040; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box; font-family: var(--mc-sans, 'Hanken Grotesk', 'Helvetica Neue', 'PingFang HK', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans HK', Arial, sans-serif); }
+.cal-task-editor .dlg { width: 520px; max-width: 100%; max-height: 92vh; background: #fff; border-radius: 12px; box-shadow: 0 24px 48px rgba(16, 24, 40, 0.24); display: flex; flex-direction: column; overflow: auto; overflow-x: hidden; font-size: 13px; color: #171b22; line-height: 1.45; outline: 0; }
+.cal-task-editor .hd { display: flex; align-items: center; gap: 10px; padding: 14px 20px 0; }
+.cal-task-editor .hd h3 { margin: 0; flex: 1; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #676e77; }
+.cal-task-editor .x { width: 26px; height: 26px; border: 0; border-radius: 6px; background: transparent; cursor: pointer; color: #676e77; font-size: 15px; }
+.cal-task-editor .bd { padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 14px; }
+.cal-task-editor .titlewrap { display: flex; flex-direction: column; gap: 6px; position: relative; }
+.cal-task-editor .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.cal-task-editor .titlebox { display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #d5dbe3; padding: 2px 0 6px; }
+.cal-task-editor .titlebox.open { border-bottom-color: #2563eb; }
+.cal-task-editor .titlebox.bad { border-bottom-color: #b42318; }
+.cal-task-editor .titlebox input, .cal-task-editor .titlebox input:focus-visible { flex: 1; min-width: 0; border: 0; outline: 0; box-shadow: none; font-size: 17px; font-weight: 600; color: #171b22; background: transparent; padding: 0; line-height: 1.4; font-family: inherit; }
+.cal-task-editor .tog { width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; padding: 0; line-height: 1; border: 1px solid #e3e7ed; border-radius: 6px; background: #fff; cursor: pointer; color: #676e77; font-size: 12px; flex: none; }
+.cal-task-editor .err { font-size: 11.5px; color: #b42318; }
+.cal-task-editor .meta { font-size: 11.5px; color: #676e77; min-height: 16px; }
+.cal-task-editor .list { border: 1px solid #e3e7ed; border-radius: 8px; background: #fff; box-shadow: 0 8px 24px rgba(16, 24, 40, 0.10); max-height: 260px; overflow: auto; overflow-x: hidden; }
+.cal-task-editor .lh { padding: 8px 12px 4px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #676e77; display: flex; justify-content: space-between; }
+.cal-task-editor .lh .n { font-weight: 400; letter-spacing: 0; text-transform: none; }
+.cal-task-editor .opt { display: flex; width: 100%; box-sizing: border-box; align-items: baseline; justify-content: space-between; gap: 10px; border: 0; border-top: 1px solid #f1f3f6; background: #fff; padding: 7px 12px; text-align: left; cursor: pointer; color: #171b22; white-space: normal; font-size: 13px; font-family: inherit; }
+.cal-task-editor .opt:hover { background: #fafbfc; }
+.cal-task-editor .opt.on { background: #f4f7fd; font-weight: 600; }
+.cal-task-editor .opt .zh { font-size: 11px; color: #9096a0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45%; }
+.cal-task-editor .foot { padding: 10px 12px; font-size: 12px; color: #676e77; border-top: 1px solid #f1f3f6; }
+.cal-task-editor .foot.soft { padding: 8px 12px; background: #fafbfc; font-size: 11.5px; }
+.cal-task-editor .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; }
+.cal-task-editor .fld { display: flex; flex-direction: column; gap: 5px; }
+.cal-task-editor .fld label { font-size: 11.5px; font-weight: 500; color: #4a515c; }
+.cal-task-editor .req { color: #b42318; }
+.cal-task-editor .grid2 .fld input { font-family: var(--mc-mono, 'JetBrains Mono', monospace); }
+.cal-task-editor textarea { border: 1px solid #d5dbe3; border-radius: 6px; padding: 10px 12px; font-size: 12.5px; line-height: 1.55; resize: vertical; font-family: inherit; color: #171b22; }
+.cal-task-editor .tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 11.5px; color: #676e77; }
+.cal-task-editor .tools .soft { color: #9096a0; }
+.cal-task-editor .sm { min-height: 28px; border: 1px solid #d5dbe3; border-radius: 6px; background: #fff; font-size: 12px; font-weight: 600; padding: 0 10px; cursor: pointer; color: #171b22; font-family: inherit; }
+.cal-task-editor .ft { padding: 12px 20px; background: #fafbfc; border-top: 1px solid #edf0f4; display: flex; justify-content: flex-end; gap: 8px; border-radius: 0 0 12px 12px; }
+.cal-task-editor button:focus-visible, .cal-task-editor input:focus-visible, .cal-task-editor textarea:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+/* the kit Date / Time fields (react-datepicker inputs) carry their own focus ring (border + 2px shadow) — the generic
+   editor outline above drew a second ring around it (Mubin, 6 Nov) */
+.cal-task-editor .react-datepicker-wrapper input:focus-visible { outline: 0; }
+
+/* transfer responsibility dialog (prototype task-ui transferDialog): the editor's backdrop and card at 440px */
+.cal-task-editor .dlg.transfer { width: 440px; }
+.cal-task-editor .dlg.transfer .bd { gap: 12px; padding-top: 10px; }
+.cal-task-editor .tr-title { font-size: 13px; font-weight: 600; }
+.cal-task-editor .tr-who { font-size: 12px; color: #4a515c; }
+.cal-task-editor .tr-who span { color: #676e77; }
+.cal-task-editor .tr-none { font-size: 12px; color: #676e77; }
+.cal-task-editor .fld select { min-height: 34px; border: 1px solid #d5dbe3; border-radius: 6px; padding: 0 10px; font-size: 12.5px; font-family: inherit; color: #171b22; background: #fff; }
+.cal-task-editor .formerr { font-size: 11.5px; color: #b42318; line-height: 1.5; }
+
+/* in-editor template library panel (U-0260) — beside Notes, toggled by Create/edit template */

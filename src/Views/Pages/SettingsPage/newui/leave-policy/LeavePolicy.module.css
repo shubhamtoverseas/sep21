@@ -1,0 +1,229 @@
+/* Leave Policy (new UI) — Add / Edit page layout on top of the shared settings
+   chrome and the form kit. */
+
+.masterRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.masterGrid {
+  flex: 1 1 420px;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+}
+
+.statusRow > label {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-surface);
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sectionHead > h2 {
+  margin: 0;
+}
+
+/* ── Inline leave-type editor ────────────────────────────────────────────── */
+.typeForm {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  background: var(--bg-canvas);
+}
+
+/* Shubham 10 Nov: the card (border + background) spans full width; only the FIELDS area narrows to 70% */
+.fieldsArea {
+  max-width: 70%;
+}
+
+@media (max-width: 1280px) {
+  .fieldsArea { max-width: 100%; }
+}
+
+.typeFormHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.typeFormHead > h2 {
+  margin: 0;
+}
+
+.typeFormActions {
+  display: flex;
+  gap: 6px;
+}
+
+.typeFormFoot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.span2 {
+  grid-column: span 2;
+}
+
+/* each Yes/No group toggle starts its own grid line (Shubham 6 Nov) */
+.rowStart {
+  grid-column: 1;
+}
+
+@media (max-width: 900px) {
+  .span2 { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+  .span2 { grid-column: 1 / -1; }
+}
+
+/* max value + "No limit" + percentage/value radios on one line. The cell spans 2 grid tracks (16px gap), so the
+   input is sized to exactly the first track — its right edge lines up with the single-track fields above/below
+   and the limit cluster starts on the next column line (user, 6 Nov alignment fix) */
+/* Shubham 10 Nov: the Percentage / Value radios lead, then the numeric box with its embedded No-limit checkbox */
+.maxRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px 16px;
+}
+
+/* the numeric box and its No-limit checkbox are one unit; No limit blurs the box out */
+.limitUnit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.limitUnit input[type="number"] {
+  width: 150px;
+  flex: none;
+}
+
+.limitUnit input:disabled {
+  opacity: 0.45;
+}
+
+/* the No-limit label never wraps or spills under a neighbouring field */
+.limitUnit label {
+  white-space: nowrap;
+  flex: none;
+}
+
+/* number box + its unit (days) as one input group — the addon is a joined grey cap (Shubham 10 Nov) */
+.unitWrap {
+  display: flex;
+  align-items: stretch;
+}
+
+.unitWrap input {
+  flex: 1;
+  min-width: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.unitSuffix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+  background: var(--bg-subtle, #f6f7f9);
+  font-size: 12.5px;
+  color: #3d4552;
+  white-space: nowrap;
+}
+
+
+@media (max-width: 600px) {
+  .maxRow { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* U-0441: the Percentage / Value radio group carries its own error line, tied to the group */
+.maxTypeWrap {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.radioError {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #b42318;
+}
+
+.annualTotal {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--st-info-bd);
+  border-radius: 6px;
+  background: var(--st-info-bg);
+  color: var(--st-info);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-2);
+}
+
+.footerSpacer {
+  flex: 1;
+}
+
+.footerNote {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+/* Expiry Type = Date: the recurring Month + Day pair (Shubham 6 Nov) */
+.monthDayRow {
+  display: flex;
+  gap: 6px;
+}
+
+.monthDayRow > :first-child {
+  flex: 1.4;
+  min-width: 0;
+}
+
+.monthDayRow > :last-child {
+  flex: 1;
+  min-width: 0;
+}

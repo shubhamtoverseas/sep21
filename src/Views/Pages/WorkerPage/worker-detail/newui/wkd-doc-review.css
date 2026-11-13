@@ -1,0 +1,69 @@
+/* ================================================================
+ * Worker Details — Profile › Doc Upload › selected document review
+ * (21 Sep prototype docsHTML review card, lines 1868-1905). Scoped
+ * under .wkd. Imported by newui/doc-review/WkdDocReview.js.
+ * ================================================================ */
+
+.wkd .wkd-docrv { background: #fff; border: 1px solid #e3e7ed; border-radius: 9px; padding: 18px 20px; }
+.wkd .wkd-docrv-head {
+  display: flex; align-items: center; gap: 10px;
+  padding-bottom: 14px; border-bottom: 1px solid #edf0f4;
+}
+.wkd .wkd-docrv-head .t { font-size: 14px; font-weight: 600; color: #171b22; }
+.wkd .wkd-docrv-head .note { font-size: 11.5px; color: #676e77; border-left: 1px solid #e3e7ed; padding-left: 10px; }
+
+/* body: the scan on the left, the 360px rail on the right */
+.wkd .wkd-docrv-body { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 20px; padding-top: 16px; align-items: start; }
+.wkd .wkd-docrv-body.is-single { grid-template-columns: minmax(0, 1fr); }
+.wkd .wkd-docrv-rail { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+
+/* preview pane: hatched surface, the viewer centred, its tool strip in the pane's corner */
+.wkd .wkd-docrv-preview {
+  position: relative; min-height: 380px; border: 1px solid #e3e7ed; border-radius: 8px; overflow: hidden;
+  background: repeating-linear-gradient(45deg, #f7f8fa, #f7f8fa 8px, #eef0f3 8px, #eef0f3 16px);
+  display: flex; align-items: center; justify-content: center;
+}
+.wkd .wkd-docrv-preview .image-controller-wrapper { max-height: none; margin: 0 !important; border: 0 !important; background: transparent; width: 100%; }
+.wkd .wkd-docrv-preview .image-container { min-height: 380px; display: flex; align-items: center; justify-content: center; }
+.wkd .wkd-docrv-preview .image-container img { max-width: 100%; height: 360px; object-fit: contain; border-radius: 6px; }
+.wkd .wkd-docrv-preview .image-controls {
+  left: auto; right: 10px; bottom: 10px; padding: 3px 6px; border-radius: 6px;
+  background: #fff; border: 1px solid #e3e7ed; box-shadow: none;
+}
+.wkd .wkd-docrv-preview .image-controls .zoom-percentage { font-family: var(--mono); font-size: 11px; color: #676e77; border-color: #e3e7ed; border-radius: 4px; }
+.wkd .wkd-docrv-pdf { width: 100%; height: 380px; border: 0; background: #fff; }
+.wkd .wkd-docrv-file { padding: 20px; width: 100%; max-width: 420px; }
+
+/* rail content */
+.wkd .wkd-docrv-grp { font-size: 13px; font-weight: 600; color: #171b22; }
+.wkd .wkd-docrv-grp .cmp { font-weight: 400; color: #676e77; }
+.wkd .wkd-docrv-field .lbl { display: block; font-size: 11.5px; font-weight: 500; color: #4a515c; margin-bottom: 5px; }
+.wkd .wkd-docrv-field .ctl { position: relative; }
+.wkd .wkd-docrv-in {
+  width: 100%; height: 32px; padding: 0 10px; border: 1px solid #d5dbe3; border-radius: 6px; background: #fff;
+  color: #171b22; font-family: var(--sans); font-size: 12.5px; outline: none;
+}
+.wkd .wkd-docrv-in.mono { font-family: var(--mono); font-weight: 600; }
+.wkd .wkd-docrv-in:focus { border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+.wkd .wkd-docrv-in:read-only { background: #fff; color: #171b22; cursor: default; }
+/* matched value: green tone box + the inline "Matches <central>" tag */
+.wkd .wkd-docrv-field.is-match .ctl input { border-color: #c9e8d3; background: #f4fbf6; padding-right: 132px; }
+.wkd .wkd-docrv-field .match {
+  position: absolute; right: 10px; top: 0; bottom: 0; display: inline-flex; align-items: center;
+  font-size: 11px; font-weight: 600; color: #1a7f37; white-space: nowrap; pointer-events: none;
+}
+.wkd .wkd-docrv-field.is-invalid .ctl input { border-color: #b42318; }
+.wkd .wkd-docrv-field .err { font-size: 11.5px; color: #b42318; margin-top: 4px; }
+.wkd .wkd-docrv-note { font-size: 12px; color: #676e77; line-height: 1.5; }
+.wkd .wkd-docrv-note.is-dashed { border: 1px dashed #e3e7ed; border-radius: 6px; padding: 10px 12px; }
+/* explicit Save under the captured fields (audit P38): disabled until something changed */
+.wkd .wkd-docrv-save { display: flex; justify-content: flex-end; }
+.wkd .wkd-docrv-rail .wkd-actflat { margin-bottom: 0; }
+/* footer: holding text beside Change Status, which opens upward here */
+.wkd .wkd-docrv-foot { display: flex; align-items: center; justify-content: flex-end; gap: 8px; border-top: 1px solid #edf0f4; padding-top: 12px; }
+.wkd .wkd-docrv-holding { font-size: 12px; color: #676e77; white-space: nowrap; }
+
+/* narrow containers (DET-12 rule): stack to one column */
+@media (max-width: 1180px) {
+  .wkd .wkd-docrv-body { grid-template-columns: minmax(0, 1fr); }
+}

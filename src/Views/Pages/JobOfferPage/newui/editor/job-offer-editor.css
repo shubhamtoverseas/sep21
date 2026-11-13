@@ -1,0 +1,140 @@
+/* Job Offer editor — port of handoff modules/job-offer-edit/parts/shell.css, scoped .joe (page) / .joe-drawer (Add panel) */
+/* prototype .shell: padding 24px 24px 92px — the 92px keeps the last card clear of the fixed footer */
+.joe { padding: 6px 4px 92px; max-width: 1760px; color: #171b22; font-size: 13px; line-height: 1.45; font-family: var(--mc-sans, 'Hanken Grotesk', 'Helvetica Neue', 'PingFang HK', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans HK', Arial, sans-serif); }
+.joe .mono { font-family: var(--mc-mono, 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace); font-size: 12px; font-variant-numeric: tabular-nums; }
+.joe .jor-routebar { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #6a6a72; min-height: 24px; margin-bottom: 12px; }
+.joe .jor-routebar .here { color: #131316; font-weight: 500; text-decoration: none; }
+.joe .jor-routebar .here:hover { text-decoration: underline; text-underline-offset: 3px; }
+.joe .jor-routebar .sep { color: #c3cad4; }
+.joe .jor-routebar .here-static { color: #131316; font-weight: 500; }
+.joe .jor-state { background: #fff; border: 1px solid #e3e7ed; border-radius: 10px; padding: 24px 20px; display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; color: #3d4552; max-width: 860px; margin: 0 auto; }
+.joe .jor-state b { font-size: 16px; font-weight: 600; color: #171b22; }
+
+/* shell: one column, 860px, centred on the page (prototype .shell { max-width: 860px; margin: 0 auto }) */
+.joe-shell { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+/* prototype .hd: the Back control sits beside the title block (gap 12px), not at the far edge */
+.joe-shell .hd { display: flex; align-items: flex-start; justify-content: flex-start; gap: 12px; margin-bottom: 6px; }
+.joe-shell .hd h1 { margin: 0; font-size: 21px; font-weight: 650; letter-spacing: -0.022em; line-height: 1.15; }
+.joe-shell .hd .sub { margin: 5px 0 0; font-size: 12px; color: #676e77; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.joe-shell .hd .joe-back { align-self: center; }
+
+.joe-form { display: flex; flex-direction: column; gap: 12px; }
+.joe-card { background: #fff; border: 1px solid #e3e7ed; border-radius: 9px; padding: 16px 18px; display: flex; flex-direction: column; gap: 13px; }
+.joe .eyebrow { font-size: 10.5px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; color: #676e77; font-family: var(--mc-mono, 'JetBrains Mono', monospace); }
+.joe .keyhd { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.joe .keyhd .right { margin-left: auto; }
+.joe .keytag, .joe .opttag { height: 20px; display: inline-flex; align-items: center; padding: 0 7px; border-radius: 4px; font-size: 10px; font-weight: 650; letter-spacing: .04em; border: 1px solid transparent; }
+.joe .keytag { background: #eff4ff; border-color: #cfe0ff; color: #1d4ed8; }
+.joe .opttag { background: #f4f6f8; border-color: #e3e7ed; color: #667080; }
+.joe .hint { font-size: 11px; color: #676e77; }
+.joe .lbl { font-size: 11.5px; font-weight: 500; color: #4a515c; }
+/* prototype .grouphint: 11px, --text-4 */
+.joe .grouphint { font-size: 11px; color: #676e77; line-height: 1.5; margin: -2px 0 8px; }
+.joe .fld { display: flex; flex-direction: column; gap: 6px; }
+.joe .linkbtn { border: 0; background: transparent; padding: 0; color: #1d4ed8; font-size: 11.5px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.joe .linkbtn:hover { text-decoration: underline; }
+.joe .counter { font-size: 10.5px; color: #676e77; text-align: right; margin-top: 4px; }
+
+/* controls (prototype .ctl 32px / #d5dbe3 / radius 6px) */
+.joe .joe-ctl { min-height: 32px; display: flex; align-items: center; gap: 6px; padding: 4px 9px; border: 1px solid #d5dbe3; border-radius: 6px; background: #fff; font-size: 12.5px; color: #171b22; }
+.joe .joe-ctl.disabled { background: #f6f7f9; color: #72777f; }
+.joe .joe-ctl.bad { border-color: #f0c4bd; background: #fef3f2; }
+/* typed field with a unit (prototype .ctl.mono.typein + .sfx): one bordered mono box, the unit right-aligned inside it */
+.joe-typein { display: flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 10px; border: 1px solid #d5dbe3; border-radius: 6px; background: #fff; font-family: var(--mono); font-size: 12px; cursor: text; }
+.joe-typein:focus-within { border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+.joe-typein.is-invalid { border-color: #b42318; }
+.joe-typein input { flex: 1; min-width: 1ch; height: 30px; padding: 0; border: 0; border-radius: 0; background: transparent; font: inherit; box-shadow: none; outline: none; }
+.joe-typein input:focus { border: 0; box-shadow: none; }
+.joe-typein .sfx { margin-left: auto; font-size: 11.5px; color: #676e77; white-space: nowrap; }
+
+/* chip multi-select */
+.joe-selwrap { position: relative; }
+.joe-chipbox { flex-wrap: wrap; cursor: pointer; padding-right: 26px; }
+.joe-chipbox .ph { color: #72777f; }
+.joe-chipbox .chev { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); color: #667080; }
+.joe-chipbox:focus-visible { outline: 2px solid #2f6fec; outline-offset: 2px; }
+.joe .chip { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 4px 0 8px; border-radius: 5px; background: #eaf1fd; color: #1d4ed8; font-size: 11.5px; font-weight: 500; white-space: nowrap; }
+.joe .chip.auto { background: #e8f5ee; color: #186a3b; padding-right: 8px; }
+.joe .chip .autotag { font-size: 10px; font-weight: 600; margin-left: 2px; }
+.joe .chip .chipx { border: 0; background: transparent; color: inherit; font-size: 14px; line-height: 1; padding: 0 3px; cursor: pointer; border-radius: 3px; }
+.joe .chip .chipx:hover { background: rgba(29, 78, 216, .12); }
+.joe-menu { position: absolute; left: 0; top: calc(100% + 4px); z-index: 60; min-width: 240px; max-height: 240px; overflow: auto; background: #fff; border: 1px solid #e3e7ed; border-radius: 8px; box-shadow: 0 10px 28px rgba(16, 24, 40, .14); padding: 4px; }
+.joe-menu .menunote { padding: 6px 8px; font-size: 11px; color: #676e77; border-bottom: 1px solid #edf0f4; margin-bottom: 4px; }
+.joe-menu button { width: 100%; height: 30px; display: flex; align-items: center; gap: 9px; padding: 0 8px; border: 0; border-radius: 6px; background: transparent; font-size: 12.5px; color: #171b22; text-align: left; cursor: pointer; font-family: inherit; }
+.joe-menu button:hover:not(:disabled) { background: #f4f6f8; }
+.joe-menu button[aria-selected="true"] { background: #eff4ff; color: #1d4ed8; }
+.joe-menu button:disabled { color: #a5adb8; cursor: not-allowed; }
+.joe-menu .tick { width: 15px; height: 15px; border-radius: 4px; border: 1.5px solid #cfd6df; display: inline-flex; align-items: center; justify-content: center; color: #fff; background: #fff; flex: none; }
+.joe-menu .tick.on { background: #2563eb; border-color: #2563eb; }
+
+/* duties rank row */
+.joe .ranklbl { display: flex; align-items: center; gap: 10px; }
+.joe .rankrow { display: flex; gap: 8px; flex-wrap: wrap; }
+.joe .rankslot { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 9px 0 6px; border: 1px dashed #d5dbe3; border-radius: 7px; background: #fbfcfd; }
+.joe .rankslot.empty { background: #fff; }
+.joe .rankslot .num { width: 18px; height: 18px; border-radius: 999px; background: #171b22; color: #fff; font-size: 10px; font-weight: 650; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.joe .rankslot .slotempty { font-size: 11.5px; color: #72777f; }
+.joe .rankup { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; margin-left: auto; border-radius: 5px; border: 1px solid #cfe0ff; background: #fff; color: #1d4ed8; cursor: pointer; padding: 0; }
+.joe .rankup:hover { background: #eff4ff; }
+/* read-only (Details View without Edit): native disabled controls keep the page's own look, only the cursor changes */
+.joe fieldset.joe-form { border: 0; margin: 0; padding: 0; min-width: 0; }
+.joe fieldset.joe-form[disabled] { cursor: default; }
+.joe .drivernote { font-size: 12px; color: #1d4ed8; background: #eff4ff; border-radius: 7px; padding: 8px 10px; line-height: 1.5; }
+
+/* household table */
+/* prototype care table: no outer frame, header row only underlined, no header wash */
+.joe .caretable { display: flex; flex-direction: column; }
+.joe .carehead, .joe .carerow, .joe .petrow { display: grid; grid-template-columns: 150px 88px minmax(0, 1fr); gap: 10px; align-items: center; padding: 8px 10px; }
+.joe .carehead { border-bottom: 1px solid #e3e7ed; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: #676e77; }
+.joe .carerow + .carerow { border-top: 1px solid #edf0f4; }
+.joe .carename { font-size: 12.5px; font-weight: 500; color: #171b22; }
+.joe .careages { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.joe .agepair { display: inline-flex; align-items: center; gap: 6px; }
+.joe .agepair .age { width: 64px; }
+.joe .agewarn { font-size: 11px; color: #b42318; background: #fef3f2; border-radius: 6px; padding: 3px 8px; }
+.joe .petdisc { display: flex; align-items: center; gap: 8px; border: 0; background: transparent; padding: 4px 0; cursor: pointer; font-family: inherit; color: #171b22; }
+.joe .petdisc-l { font-size: 12.5px; font-weight: 600; }
+.joe .pettable { border-top: 1px solid #e3e7ed; }
+.joe .petrow + .petrow { border-top: 1px solid #edf0f4; }
+
+/* salary note, missing panel */
+.joe .joe-note { font-size: 12px; color: #3d4552; background: #fbfcfd; border: 1px solid #e3e7ed; border-radius: 7px; padding: 8px 10px; line-height: 1.5; }
+.joe .fieldwarn { font-size: 11.5px; color: #b42318; background: #fef3f2; border-radius: 7px; padding: 8px 10px; }
+
+/* age slider */
+.joe .agerange { color: #171b22; font-weight: 600; }
+.joe .joe-slider { padding: 6px 8px 0; }
+.joe .joe-slider.anyage .rc-slider-track { opacity: .35; }
+.joe .scale { display: flex; justify-content: space-between; font-size: 10.5px; color: #676e77; padding: 0 2px; }
+
+/* copy card extras */
+.joe .copycard .gennote { display: flex; flex-direction: column; gap: 6px; }
+.joe .genfields { display: flex; gap: 6px; flex-wrap: wrap; }
+/* prototype .genfields chips: 5px radius, #eef1f5, 11px */
+.joe .genfields span { height: 20px; display: inline-flex; align-items: center; padding: 0 7px; border-radius: 5px; background: #eef1f5; color: #3d4552; font-size: 11px; font-weight: 600; }
+
+/* footer */
+.joe-foot { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; position: relative; }
+/* prototype .foot: fixed across the content area, starting after the 64px rail (AppShell collapses the rail under 768px) */
+.joe-foot.page { position: fixed; left: 64px; right: 0; bottom: 0; z-index: 50; margin: 0; padding: 12px 26px; background: rgba(255, 255, 255, .97); border-top: 1px solid #e3e7ed; backdrop-filter: blur(4px); max-width: none; }
+@media (max-width: 767px) { .joe-foot.page { left: 0; } }
+.joe-foot .spacer { flex: 1; }
+.joe-foot .discardbar { position: absolute; left: 0; right: 0; bottom: 100%; display: flex; align-items: center; gap: 8px; padding: 10px 22px; background: #fef3f2; border-top: 1px solid #f0c4bd; font-size: 12px; color: #912018; }
+.joe-foot .discardbar > span { flex: 1; }
+
+/* Add panel (drawer): its own .wkd scope without a box, and the Employer Details drawer width on every host */
+.joe-scope { display: contents; }
+/* prototype: "A side panel, not a page … max-width 860px" — 540 squeezed the two-column grids */
+.wkd.joe-scope .wkd-edit-drawer { width: min(860px, 100%); }
+/* the form owns the scroll and the footer: the drawer shell adds no padding, scroll or gap of its own */
+.wkd.joe-scope .wkd-edit-drawer-body { padding: 0; overflow: hidden; }
+.wkd.joe-scope .wkd-edit-drawer-body form.joe-drawer { gap: 0; }
+.joe-drawer { padding: 0; display: flex; flex-direction: column; min-height: 100%; }
+.joe-drawer .joe-drawer-body { flex: 1; min-height: 0; overflow: auto; padding: 16px 18px 12px; }
+.joe-drawer .joe-card { padding: 14px 16px; }
+.joe-drawer .joe-foot.drawer { padding: 12px 18px; border-top: 1px solid #e3e7ed; background: #fff; position: sticky; bottom: 0; }
+
+@media (max-width: 720px) {
+  .joe { padding: 6px 0 90px; }
+  .joe .carehead, .joe .carerow, .joe .petrow { grid-template-columns: 110px 72px minmax(0, 1fr); }
+}

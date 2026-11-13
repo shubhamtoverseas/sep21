@@ -1,0 +1,40 @@
+.activity-status-collapsible .activity-item:first-child .activity-wrap::before {
+ display: none;
+}
+.activity-status-collapsible .activity-wrap::before {
+    content: '';
+    position: absolute;
+    left: 13px;
+    top: -130%;
+    border: 1px dashed #666;
+    height: 60px;
+    z-index: 0;
+}
+
+.activity-status-collapsible .activity-wrap{
+    position: relative;
+}
+.activity-status-collapsible img {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    border-radius: 100%;
+}
+.collapsible-activity-body {
+    position: relative;
+}
+.activity-scroll-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.collapsible-activity-body::after {
+    position: absolute;
+    content: '';
+    height: calc(100% - 97px);
+    width: 2px;
+    background: transparent;
+    top: 32px;
+    left: 24px;
+    z-index: 0;
+    border-left: 2px dotted #d2d2d2;
+}

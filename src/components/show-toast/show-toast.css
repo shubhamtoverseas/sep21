@@ -1,0 +1,86 @@
+/* New-UI toast — surface card + status accent (design-token based) */
+.figma-toast-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.figma-toast-ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    flex-shrink: 0;
+}
+
+.figma-toast-ico--success {
+    background: var(--st-success-bg);
+    color: var(--st-success);
+    border: 1px solid var(--st-success-bd);
+}
+
+.figma-toast-ico--error {
+    background: var(--st-danger-bg);
+    color: var(--st-danger);
+    border: 1px solid var(--st-danger-bd);
+}
+
+.figma-toast-message {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-1);
+    font-family: var(--sans);
+    text-align: left;
+    line-height: 1.4;
+}
+
+.figma-toast-close-btn {
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-4);
+    padding: 0;
+    transition: background 80ms ease, color 80ms ease;
+}
+
+.figma-toast-close-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-1);
+}
+
+/* SweetAlert2 popup shell */
+.swal2-popup.figma-toast {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--line-1) !important;
+    border-radius: 8px !important;
+    box-shadow: var(--shadow-2) !important;
+    margin-top: 14px !important;
+    margin-right: 14px !important;
+    padding: 9px 10px 9px 12px !important;
+    width: auto !important;
+    max-width: 380px !important;
+}
+
+.swal2-popup.figma-toast--success {
+    border-left: 3px solid var(--st-success) !important;
+}
+
+.swal2-popup.figma-toast--error {
+    border-left: 3px solid var(--st-danger) !important;
+}
+
+.swal2-html-container {
+    margin: 0 !important;
+    padding: 0 !important;
+}

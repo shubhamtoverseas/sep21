@@ -1,0 +1,159 @@
+/* ================================================================
+ * WORKER DETAILS → DETAILS TAB (Basic / Passport / Consulate)
+ * Port of the 21 Sep prototype (worker-details/index.html: detSubBarHTML,
+ * dRead, dCardHead, detEditHead, detSaveBar, eTxt/eDate, dFileCard,
+ * dFileEmpty, detWorkExpTableHTML). Every rule is scoped under .wkd and
+ * to the Details-only classes so the Profile tab keeps its own skin.
+ * ================================================================ */
+
+/* ---------- sub-bar segments (detSubBarHTML) ---------- */
+.wkd .wkd-subtabs .g2-section-tab {
+  min-height: 26px; height: 26px; padding: 0 12px;
+  font-size: 12px; font-weight: 500;
+}
+.wkd .wkd-subtabs .g2-section-tab.is-active { font-weight: 600; }
+
+/* ---------- card chrome (detShell / detCard) ---------- */
+.wkd .g2-card.wkd-det-card { padding: 18px 20px; }
+.wkd .wkd-det-head {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding-bottom: 14px; border-bottom: 1px solid #edf0f4;
+}
+.wkd .wkd-det-head .g2-title { font-weight: 600; }
+/* head actions: Edit, then Send Template — 28px pills */
+.wkd .g2-button.wkd-det-headbtn {
+  min-height: 28px; height: 28px; padding: 0 11px; border-radius: 6px;
+  font-size: 12px; font-weight: 550;
+}
+
+/* hairlined sections inside a card: read 16px, edit 18px, last one open */
+.wkd .wkd-det-sec { padding: 16px 0; border-bottom: 1px solid #edf0f4; }
+.wkd .wkd-det-sec.is-edit,
+.wkd .wkd-det-form .wkd-det-sec { padding: 18px 0; }
+.wkd .wkd-det-sec.is-last { padding-bottom: 2px; border-bottom: 0; }
+.wkd .wkd-det-sec.is-edit.is-last,
+.wkd .wkd-det-form .wkd-det-sec.is-last { padding-bottom: 4px; }
+
+/* ---------- read fields (dRead) ---------- */
+.wkd .wkd-lbl.wkd-det-lbl {
+  font-size: 11.5px; font-weight: 500; letter-spacing: 0;
+  color: #4a515c; text-transform: none;
+}
+.wkd .wkd-lbl.wkd-det-lbl.is-missing { color: #b42318; }
+.wkd .wkd-det-hint { font-size: 11px; color: #7b828d; margin-top: 2px; }
+/* W-31: the passport block's single "Updated: name · date" line */
+.wkd .wkd-det-filemeta { padding: 0 0 12px; }
+.wkd .wkd-det-empty { font-size: 12.5px; color: #676e77; }
+
+/* Other Contact edit label + deferred Consulate copy */
+.wkd .wkd-det-card .wkd-ew-lbl { color: #4a515c; }
+.wkd .wkd-det-card .wkd-consulate-deferred span { color: #676e77; }
+
+/* ---------- edit fields (eWrap / eTxt / eDate) ---------- */
+.wkd .wkd-det-form { display: block; }
+.wkd .wkd-det-field { display: block; min-width: 0; }
+.wkd .wkd-det-elbl {
+  display: block; margin: 0 0 4px; font-size: 11.5px; font-weight: 500; color: #4a515c;
+}
+.wkd .wkd-det-elbl.required::after { content: "*"; color: #b42318; }
+.wkd .wkd-det-field .wkd-det-hint { margin: -2px 0 4px; }
+.wkd .wkd-det-radios {
+  min-height: 32px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+/* identifiers type in mono (HKID, Passport No, SSS/PhilHealth/Pag-IBIG, KTP);
+ * the shared edit skin pins 12.5px with !important, so this one does too */
+.wkd .wkd-det-form .form-control.mono {
+  font-family: var(--mono); font-weight: 600; font-size: 12px !important;
+}
+
+/* ---------- sticky Cancel / Save bar (detSaveBar) ---------- */
+.wkd .wkd-det-savebar {
+  position: sticky; bottom: 0; z-index: 10;
+  display: flex; justify-content: flex-end; gap: 8px;
+  padding: 12px 0; background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(4px); border-top: 1px solid #e3e7ed;
+}
+.wkd .wkd-det-btn {
+  height: 32px; display: inline-flex; align-items: center; padding: 0 14px;
+  border-radius: 7px; border: 1px solid #d5dbe3; background: #fff; color: #171b22;
+  font-size: 12.5px; font-weight: 550; cursor: pointer;
+}
+.wkd .wkd-det-btn:hover:not(:disabled) { background: #f7f8fa; }
+.wkd .wkd-det-btn.primary {
+  padding: 0 16px; border-color: #2563eb; background: #2563eb; color: #fff;
+}
+.wkd .wkd-det-btn.primary:hover:not(:disabled) { background: #1e51c9; }
+.wkd .wkd-det-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.wkd .wkd-det-btn:focus-visible { outline: 2px solid #87a8ef; outline-offset: 2px; }
+
+/* ---------- 28px icon buttons (download / delete / remove row) ---------- */
+.wkd .wkd-det-iconbtn {
+  width: 28px; height: 28px; padding: 0; border: 0; border-radius: 5px;
+  background: transparent; display: inline-grid; place-items: center; cursor: pointer;
+  flex-shrink: 0;
+}
+.wkd .wkd-det-iconbtn:hover { background: #f4f6f8; }
+.wkd a.wkd-det-iconbtn { color: inherit; text-decoration: none; }
+
+/* ---------- Work Experience table (detWorkExpTableHTML) ---------- */
+.wkd .wkd-det-wxwrap { overflow-x: auto; }
+.wkd .wkd-det-wx { width: 100%; border-collapse: collapse; }
+.wkd .wkd-det-wx th {
+  padding: 0 0 8px; border-bottom: 1px solid #e3e7ed; background: none;
+  text-align: left; white-space: nowrap; vertical-align: bottom;
+}
+.wkd .wkd-det-wx td {
+  padding: 11px 0; border-bottom: 1px solid #edf0f4;
+  font-size: 13px; color: #171b22; vertical-align: middle;
+}
+.wkd .wkd-det-wx th + th,
+.wkd .wkd-det-wx td + td { padding-left: 22px; }
+.wkd .wkd-det-wx td.nm { font-weight: 500; }
+.wkd .wkd-det-wx td.mono {
+  font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.wkd .wkd-det-wx .act { width: 34px; text-align: right; }
+.wkd .wkd-det-wx.is-edit td { vertical-align: top; }
+.wkd .wkd-det-wx.is-edit td .form-control { min-width: 110px; }
+.wkd .wkd-det-addbtn { margin-top: 10px; color: #1d4ed8; }
+.wkd .wkd-det-wxwrap > small.text-danger { display: block; margin-top: 8px; }
+
+/* ---------- uploads (dFileCard / dFileEmpty) ---------- */
+.wkd .wkd-det-filetitle {
+  font-size: 14px; font-weight: 600; color: #171b22; letter-spacing: -0.01em; margin-bottom: 10px;
+}
+.wkd .wkd-det-filetitle .req { color: #b42318; }
+.wkd .wkd-det-filecard {
+  display: flex; align-items: center; gap: 12px; max-width: 520px;
+  padding: 10px 12px; border: 1px solid #e3e7ed; border-radius: 8px; background: #fff;
+}
+.wkd .wkd-det-filecard .thumb {
+  width: 36px; height: 46px; flex-shrink: 0; border-radius: 4px; border: 1px solid #e3e7ed;
+  background: repeating-linear-gradient(45deg, #f7f8fa, #f7f8fa 6px, #eef1f4 6px, #eef1f4 12px);
+}
+.wkd .wkd-det-filecard .body { flex: 1; min-width: 0; }
+.wkd .wkd-det-filecard .nm {
+  display: block; font-size: 12.5px; font-weight: 550; color: #171b22; overflow-wrap: anywhere;
+}
+.wkd .wkd-det-filecard .meta {
+  display: block; margin-top: 2px; font-family: var(--mono); font-size: 10.5px; color: #676e77;
+}
+.wkd .wkd-det-awaiting {
+  display: flex; align-items: center; gap: 10px; max-width: 520px;
+  padding: 12px 14px; border: 1px dashed #e0c9a6; border-radius: 8px; background: #fcf5e9;
+}
+.wkd .wkd-det-awaiting span { font-size: 12.5px; font-weight: 500; color: #92610e; }
+
+/* drop zone: the shared UploadFile keeps its markup; the skin is scoped here.
+ * mx-auto / mb-3 are legacy !important utilities, hence the two !importants. */
+.wkd .wkd-det-drop .upload-file-wrapper { margin: 0; color: #667080; }
+.wkd .wkd-det-drop .upload-box {
+  max-width: 520px; margin-left: 0 !important; margin-right: 0 !important;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 20px; border: 1.5px dashed #c3cad4; border-radius: 8px; background: #fff; cursor: pointer;
+}
+.wkd .wkd-det-drop .upload-box img { width: 16px; height: 16px; margin: 0 !important; }
+.wkd .wkd-det-drop .upload-box p { display: none; }
+.wkd .wkd-det-drop .upload-box::after { content: "Drop file or browse"; font-size: 12.5px; color: #667080; }
+.wkd .wkd-det-drop.is-error .upload-box { border-color: #d92d20; }
+.wkd .wkd-det-sec > small.wkd-det-err { display: block; margin-top: 6px; font-size: 11.5px; color: #b42318; }

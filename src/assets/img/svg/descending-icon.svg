@@ -1,0 +1,7 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 10" width="12" height="10">
+	<title>lines-sorting-svg</title>
+	<style>
+		.s0 { fill: #aeaeb2 } 
+	</style>
+	<path class="s0" d="m8 1.7v-1.7h4v1.7zm-8 8.3v-1.7h12v1.7zm4-4.2v-1.6h8v1.6z"/>
+</svg>

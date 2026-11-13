@@ -1,0 +1,262 @@
+/* Add / Edit Agency (new UI) — page-specific layout on top of the shared
+   settings chrome (settings-newui.module.css) and the form kit
+   (components/ui/FormControls.module.css). */
+
+.singleField {
+  grid-column: 1 / -1;
+  max-width: calc((100% - 32px) / 3);
+}
+
+.span2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .singleField { max-width: calc((100% - 16px) / 2); }
+}
+
+@media (max-width: 600px) {
+  .singleField { max-width: none; }
+  .span2 { grid-column: 1 / -1; }
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.statusRow > label {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-surface);
+}
+
+/* ── Branch section ──────────────────────────────────────────────────────── */
+.branchSection {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line-2);
+}
+
+.branchCard {
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  background: var(--bg-canvas);
+}
+
+.branchCardHead {
+  margin-bottom: 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+/* ── Hours of operation ──────────────────────────────────────────────────── */
+.hoursBox {
+  margin-top: 16px;
+}
+
+.hoursTitle {
+  margin-bottom: 10px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.dayCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-surface);
+  transition: background var(--dur-2) var(--ease);
+}
+
+.dayCardOff {
+  background: var(--bg-subtle);
+}
+
+.dayHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-fg);
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.copyBtn:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.copyBtn:disabled {
+  color: var(--text-4);
+  cursor: default;
+}
+
+.errorLine,
+.errorList {
+  margin: 8px 0 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: #b42318;
+}
+
+.errorList {
+  padding-left: 16px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-2);
+}
+
+/* ── react-select (time zone) skinned to the form kit ────────────────────── */
+.reactSelect {
+  font-family: var(--sans);
+  font-size: 12.5px;
+}
+
+.reactSelect :global(.nuform__control) {
+  min-height: 32px;
+  height: 32px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  box-shadow: none;
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+
+.reactSelect :global(.nuform__control:hover) {
+  border-color: #d5dbe3;
+}
+
+.reactSelect :global(.nuform__control--is-focused) {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+.reactSelectInvalid :global(.nuform__control) {
+  border-color: #b42318;
+}
+
+.reactSelect :global(.nuform__value-container) {
+  height: 30px;
+  padding: 0 10px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.reactSelect :global(.nuform__input-container),
+.reactSelect :global(.nuform__single-value),
+.reactSelect :global(.nuform__placeholder) {
+  margin: 0;
+  padding: 0;
+  line-height: 30px;
+}
+
+.reactSelect :global(.nuform__input) {
+  height: 30px;
+  line-height: 30px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+}
+
+.reactSelect :global(.nuform__indicators) {
+  height: 30px;
+  align-items: center;
+}
+
+.reactSelect :global(.nuform__placeholder) {
+  color: #72777f;
+}
+
+.reactSelect :global(.nuform__single-value),
+.reactSelect :global(.nuform__input-container) {
+  color: var(--text-1);
+}
+
+.reactSelect :global(.nuform__indicator-separator) {
+  display: none;
+}
+
+.reactSelect :global(.nuform__indicator) {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  color: #6e757f;
+  cursor: pointer;
+}
+
+.reactSelect :global(.nuform__indicator:hover) {
+  color: var(--text-1);
+}
+
+.reactSelect :global(.nuform__indicator svg) {
+  width: 14px;
+  height: 14px;
+}
+
+.reactSelect :global(.nuform__dropdown-indicator) {
+  padding-right: 8px;
+}
+
+.reactSelect :global(.nuform__menu) {
+  margin-top: 4px;
+  border: 1px solid #e3e7ed;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(16, 24, 40, 0.14);
+  overflow: hidden;
+  z-index: var(--z-dropdown);
+}
+
+.reactSelect :global(.nuform__option) {
+  padding: 7px 12px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.reactSelect :global(.nuform__option--is-focused) {
+  background: #f4f6f8;
+}
+
+.reactSelect :global(.nuform__option--is-selected) {
+  background: #eff4ff;
+  color: #1d4ed8;
+}

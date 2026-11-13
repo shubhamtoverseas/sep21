@@ -1,0 +1,60 @@
+
+.job-offer-wrapper .infouser{
+      background-color: #1E88E5;
+}
+/* basic details tab */
+.basic-info .tab-title, .family-details .tab-title{
+    font-family: 'Roboto';
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 28px;
+    
+}
+.basic-info .main-title {
+    font-family: 'Roboto';
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 28px;
+}
+
+.basic-info .title {
+    font-family: 'Roboto';
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 18.75px;
+    color: #6D6D6D;
+}
+
+.basic-info .desc {
+    font-family: 'Roboto';
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 18.75px;
+}
+.job-offer-card .head-bar {
+    padding: 12px 16px;
+    border-bottom: 1px solid #E5E5EA
+}
+.job-offer-card .desc-bar{
+    padding: 12px 16px;
+}
+.job-offer-card .job-offer-detail{
+    border-radius: 12px;
+    border: 1px solid #E5E5EA
+}
+.floating-footer {
+    padding: 24px 38px;
+    border-radius: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.10);
+    box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.12);
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 0px;
+    background: #fff;
+}
+@media screen and (min-width: 1200px) {
+    .basic-info .left-border {
+        border-right: 1px dashed #E5E5EB
+    }
+}

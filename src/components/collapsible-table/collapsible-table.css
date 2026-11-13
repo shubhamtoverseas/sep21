@@ -1,0 +1,17 @@
+.collapsible-table th{
+    background-color: #f7f7f7;
+    border: 1px solid #0000000D;
+    color: #6d6d6d;
+  }
+  .collapsible-table th,  .collapsible-table td{
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .collapsible-table .collapsed-row .btn:focus,  .collapsible-table .collapsed-row .btn:hover{
+    border: none!important;
+    box-shadow: none!important;
+    text-decoration: none!important;
+  }
+  .collapse-head{
+    background-color: #E3F2FD;
+  }

@@ -1,0 +1,9 @@
+/* SR-06 listing geometry: a tracked table lays out from its declared tracks, not from row content,
+   so the columns never move with rows, filter, sort or page. The sum of the tracks is the table's
+   minimum width (set inline): a wider listing scrolls inside its card. Shubham, 2 Nov 2026: a
+   narrower one no longer leaves trailing space — the table fills the card and every column grows
+   in proportion to its track (fixed layout shares the spare width by declared width). */
+table.mc-tracks {
+  table-layout: fixed;
+  width: 100%;
+}

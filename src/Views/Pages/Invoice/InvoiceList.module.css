@@ -1,0 +1,1206 @@
+/* ── Page wrapper ────────────────────────────────────────────────────────── */
+.pageWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  font-family: var(--sans);
+}
+
+/* ── Page header (title + action buttons) ────────────────────────────────── */
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-1);
+}
+
+/* Bundle .page-head .body — lets the subtitle wrap so actions stay on the row */
+.pageHeaderBody {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Bundle .page-head h1 */
+.pageTitle {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  color: var(--text-1);
+  font-family: var(--sans);
+  margin: 0 0 4px;
+  line-height: 1.2;
+}
+
+.pageSubtitle {
+  font-size: 12.5px;
+  color: var(--text-3);
+  font-family: var(--sans);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Bundle .page-head .stats — "Last refresh HH:MM" */
+.pageStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-top: 5px;
+  font-size: 11.5px;
+  color: var(--text-3);
+  font-family: var(--sans);
+}
+
+.pageStats b {
+  color: var(--text-1);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.pageHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* ── New invoice dropdown ────────────────────────────────────────────────── */
+.newInvoiceWrap {
+  position: relative;
+}
+
+.newInvoiceMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 300;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  box-shadow: var(--shadow-2);
+  min-width: 220px;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.newInvoiceMenuHeader {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  padding: 4px 8px;
+  font-family: var(--sans);
+}
+
+.newInvoiceMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  font-family: var(--sans);
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  transition: background var(--dur-1);
+}
+
+.newInvoiceMenuItem:hover {
+  background: var(--bg-hover);
+  color: var(--text-1);
+  text-decoration: none;
+}
+
+.newInvoiceMenuItem svg { color: var(--text-3); flex-shrink: 0; }
+
+/* ── Stats strip ─────────────────────────────────────────────────────────── */
+.statsStrip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: stretch;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  /* reference .kpi-row margin-bottom 10px: the page gap is 12px */
+  margin-bottom: -2px;
+  overflow: hidden;
+}
+
+.statItem {
+  padding: 8px 14px;
+  background: var(--bg-surface);
+}
+
+/* reference .kpi-cell + .kpi-cell — a line-2 hairline between cells */
+.statItem + .statItem { border-left: 1px solid var(--line-2); }
+
+.statLabel {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  font-family: var(--sans);
+  margin-bottom: 2px;
+}
+
+.statValue {
+  font-family: var(--mono);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+}
+
+/* ── Selection bar (shown when rows are checked) ─────────────────────────── */
+/* Bundle .selection-bar */
+.selectionBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-ring);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.selectionBarInfo {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+  font-family: var(--sans);
+}
+
+/* ── Controls row (search + filter toggle + columns) ─────────────────────── */
+.filterPanelWrap {
+  position: relative;
+}
+
+/* Card wrapper around the filter controls row — matches reference .filter-bar.slim */
+.filterBar {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  /* overflow: visible so the columns panel can escape the card boundary */
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+/* MaidMatch spec: Columns sits left, right after Filters (no push-right) */
+.controlsRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Override global .dropdownMultiLevel block rules when used as the Columns trigger */
+.controlsRight :global(.dropdownMultiLevel) {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.controlsRight :global(.dropdownMultiLevel > li) {
+  display: inline-block !important;
+  width: auto !important;
+}
+
+/* MaidMatch spec: fixed-width search (360px, min 280px) */
+.controlsSearch {
+  flex: 0 1 360px;
+  width: 360px;
+  max-width: 360px;
+  min-width: 280px;
+  position: relative;
+}
+
+.controlsSearch i,
+.controlsSearch svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-4);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.controlsSearchInput {
+  width: 100%;
+  height: 36px;
+  background: #fff;
+  border: 1px solid #dfe4ea;
+  border-radius: 8px;
+  padding: 0 12px 0 34px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  font-family: var(--sans);
+  outline: none;
+  transition: border-color var(--dur-2);
+}
+
+.controlsRow .filterCtl {
+  height: 36px;
+  min-height: 36px;
+  border-radius: 8px;
+  font-size: 12.5px;
+}
+
+.controlsSearchInput:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-ring);
+}
+
+.controlsSearchInput::placeholder { color: var(--text-4); }
+
+/* Search help (reference .mc-shelp) — the ? button inside the search and its popover */
+.searchHelpWrap { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); display: inline-flex; z-index: 45; }
+.searchHelpWrap::before { content: ""; position: absolute; left: -8px; right: -8px; top: 100%; height: 10px; }
+.searchHelpBtn { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: 0; border-radius: 6px; background: none; color: var(--text-4); cursor: pointer; padding: 0; }
+.searchHelpBtn:hover, .searchHelpShow .searchHelpBtn { color: var(--text-2); background: var(--bg-hover); }
+.searchHelpBtn:focus-visible { outline: 2px solid var(--accent-ring); outline-offset: 1px; }
+.searchHelpPop { display: none; position: absolute; top: calc(100% + 8px); right: -6px; z-index: 40; width: 300px; max-width: min(300px, calc(100vw - 32px)); padding: 9px 11px; border-radius: 8px; background: var(--bg-surface); border: 1px solid var(--line-1); box-shadow: 0 6px 20px rgba(16, 24, 40, .12); font-size: 12px; line-height: 1.45; color: var(--text-2); white-space: normal; overflow-wrap: anywhere; text-align: left; font-family: var(--sans); }
+.searchHelpShow .searchHelpPop { display: block; }
+
+/* ── Filter dropdown (compact floating overlay below controls row) ────────── */
+/* Bundle .menu .filter-popover — 560px popover with .menu chrome */
+.filterDropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 200;
+  width: 540px;
+  max-width: calc(100vw - 32px);
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
+  /* keep the popup inside the viewport so the sticky footer is always reachable */
+  max-height: min(72vh, calc(100vh - 240px));
+  overflow-y: auto;
+  /* react-select menus portal to document.body so they escape this overflow */
+}
+
+/* Bundle .menu .group .label */
+.filterDropdownHeader {
+  padding: 12px var(--space-4) 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  font-family: var(--sans);
+}
+
+/* Anchor for the Filters button — the popover position is measured from it */
+.filterToggleWrap {
+  display: inline-flex;
+}
+
+/* Bundle .btn-secondary.has-pop[aria-expanded="true"] — open state stays secondary */
+button.filterToggleOpen {
+  background: var(--bg-hover);
+  border-color: var(--line-strong);
+}
+
+/* Bundle .filter-pop-grid — continuous 2-col grid, 10px rhythm, no row dividers */
+.filterGrid2Col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 5px var(--space-4);
+}
+
+.filterGrid2Col:first-of-type {
+  padding-top: 8px;
+}
+
+/* Sticky footer — Apply / Clear stay visible while the popup scrolls */
+.filterDropdownActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px var(--space-4) 12px;
+  border-top: 1px solid var(--line-1);
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-surface);
+  z-index: 1;
+}
+
+/* ── Filter bar card ─────────────────────────────────────────────────────── */
+.filterCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  overflow: hidden;
+}
+
+/* Top row: buttons + search + kabab */
+.filterTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  flex-wrap: wrap;
+}
+
+.filterSearch {
+  flex: 1;
+  min-width: 220px;
+  max-width: 480px;
+  position: relative;
+}
+
+.filterSearch i {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-4);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.filterSearchInput {
+  height: 32px;
+  width: 100%;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-2);
+  padding: 0 10px 0 30px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  font-family: var(--sans);
+  outline: none;
+  transition: border-color var(--dur-2);
+}
+
+.filterSearchInput::placeholder { color: var(--text-4); }
+.filterSearchInput:focus {
+  border-color: var(--accent);
+  background: var(--bg-surface);
+  box-shadow: 0 0 0 2px var(--accent-ring);
+}
+
+/* Filter grid */
+.filterGrid {
+  padding: var(--space-3) var(--space-4) var(--space-2);
+  border-top: 1px solid var(--line-2);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-2) var(--space-3);
+}
+
+.filterGrid3Col {
+  grid-template-columns: repeat(4, 1fr) auto;
+}
+
+/* Bundle .filter-pop-grid .field > label */
+.filterLabel {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  margin-bottom: 4px;
+  font-family: var(--sans);
+  white-space: nowrap;
+}
+
+.filterActions {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding-bottom: 2px;
+}
+
+/* Action bar — standalone row between filter card and table card */
+.actionBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ── Table card ──────────────────────────────────────────────────────────── */
+.tableCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  overflow: hidden;
+}
+
+.tableCard table {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text-1);
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableCard thead tr {
+  background: var(--bg-subtle);
+}
+
+/* MaidMatch shared listing contract — header 38px, 12px gutters */
+.tableCard thead th {
+  box-sizing: border-box !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4) !important;
+  padding: 0 12px !important;
+  height: 38px !important;
+  vertical-align: middle !important;
+  border-bottom: 1px solid var(--line-1) !important;
+  /* Spec: header cells carry a bottom border only — no vertical separators */
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-top: 0 !important;
+  white-space: nowrap;
+  user-select: none;
+  font-family: var(--sans) !important;
+}
+
+.tableCard tbody tr {
+  height: 44px; /* MaidMatch shared listing contract */
+  border-bottom: 1px solid var(--line-2);
+  transition: background var(--dur-1);
+  cursor: pointer;
+}
+
+.tableCard tbody tr:last-child {
+  border-bottom: none;
+}
+
+.tableCard tbody tr:hover td {
+  background: var(--bg-hover);
+}
+
+/* MaidMatch shared listing contract — 44px body rows (border-box: 44px total) */
+.tableCard tbody td {
+  box-sizing: border-box !important;
+  padding: 8px 12px !important;
+  height: 44px !important;
+  vertical-align: middle !important;
+  font-size: 13px;
+  color: var(--text-2);
+  font-family: var(--sans);
+  background: var(--bg-surface);
+  /* spec table.data tbody td */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Checkbox column — tighter horizontal padding so small checkbox fits */
+.tableCard thead th:first-child,
+.tableCard tbody td:first-child {
+  padding: 0 8px !important;
+  text-align: center;
+  width: 32px;
+}
+
+/* Sticky-left column — the checkbox column pinned at 0 */
+.tableCard thead .stickyCol {
+  position: sticky;
+  z-index: 6;
+  background: var(--bg-subtle);
+}
+
+/* Spec: no legacy vertical borders on the checkbox / sticky columns; the
+   ONLY separator is the .sticky-left hairline after the checkbox column
+   (spec: box-shadow 1px 0 0 var(--line-1)). */
+.tableCard thead th:first-child,
+.tableCard tbody td:first-child,
+.tableCard .stickyCol {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  box-shadow: none !important;
+}
+
+.tableCard thead th:first-child,
+.tableCard tbody td:first-child {
+  box-shadow: 1px 0 0 var(--line-1) !important;
+}
+
+.tableCard tbody .stickyCol {
+  position: sticky;
+  z-index: 4;
+}
+
+.stickyCol { left: 0; }
+
+/* Checkbox — reference `.cb`: 15px box, accent fill when checked, mixed bar */
+.cb {
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--bg-surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  color: #fff;
+  transition: background var(--dur-1), border-color var(--dur-1);
+  vertical-align: middle;
+}
+
+.cb:hover:not(:disabled) { border-color: var(--accent); }
+
+.cbOn {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.cb:disabled { opacity: 0.4; cursor: default; }
+
+.cbMixedBar {
+  width: 8px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+  display: block;
+}
+
+/* Selected-row highlight — target td because Bootstrap sets bg on td, not tr */
+.rowSelected td {
+  background: oklch(0.96 0.018 258) !important;
+}
+
+.rowSelected:hover td {
+  background: oklch(0.94 0.022 258) !important;
+}
+
+/* Table header inner layout */
+.thInner {
+  gap: 4px;
+  justify-content: flex-start;
+}
+
+/* Sort icon is an inline SVG rendered directly in InvoiceTable.js */
+
+/* Invoice Ref — plain mono text (.mc-invoice-ref-text) */
+.refCell {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+/* Employer / Worker Code — .mc-link-code (blue #1d4ed8, 600) */
+.codeLink {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #1d4ed8;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.codeLink:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+/* Neutral code — the record does not open for this user (spec .ecl-neutral) */
+.codeNeutral {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+/* MaidMatch status gallery tag (.mc-status-tag-v17): 20px, 11px / 650 / 16px, 6px dot; solid hides the dot and fills the
+   tag with its tone, hollow rings the dot. Shared: InvoiceStatusTag and the Insurance, Processing and Settings pills. */
+.statusTag {
+  --tag-fg: #6b6971;
+  --tag-bg: #f5f5f3;
+  --tag-bd: #dfdeda;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  max-width: 100%;
+  height: 20px;
+  padding: 1px 7px 1px 6px;
+  border: 1px solid var(--tag-bd);
+  border-radius: 4px;
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.statusTag::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.statusTag[data-treatment="solid"] {
+  padding-inline: 8px;
+  border-color: transparent;
+  background: var(--tag-fg);
+  color: #fff;
+}
+
+.statusTag[data-treatment="solid"]::before { display: none; }
+
+.statusTag[data-treatment="hollow"]::before {
+  background: transparent;
+  border: 1.5px solid currentColor;
+}
+
+.statusTag[data-tone="green"]      { --tag-fg: oklch(0.49 0.13 150); --tag-bg: oklch(0.965 0.03 150);  --tag-bd: oklch(0.84 0.05 150); }
+.statusTag[data-tone="orange"]     { --tag-fg: oklch(0.47 0.17 58);  --tag-bg: oklch(0.965 0.055 70);  --tag-bd: oklch(0.81 0.105 64); }
+.statusTag[data-tone="blue-1"]     { --tag-fg: oklch(0.50 0.14 220); --tag-bg: oklch(0.965 0.035 220); --tag-bd: oklch(0.82 0.07 220); }
+.statusTag[data-tone="purple"]     { --tag-fg: oklch(0.46 0.16 305); --tag-bg: oklch(0.965 0.035 305); --tag-bd: oklch(0.84 0.07 305); }
+/* teal (Insurance.html --st-teal): Insurance Additional coverage requests and the Starts later coverage tag (INS08) */
+.statusTag[data-tone="teal"]       { --tag-fg: oklch(0.45 0.1 195);  --tag-bg: oklch(0.962 0.028 195); --tag-bd: oklch(0.85 0.05 195); }
+.statusTag[data-tone="severe-red"] { --tag-fg: oklch(0.48 0.18 28);  --tag-bg: oklch(0.965 0.03 28);   --tag-bd: oklch(0.84 0.055 28); }
+.statusTag[data-tone="red"]        { --tag-fg: oklch(0.49 0.16 28);  --tag-bg: oklch(0.965 0.03 28);   --tag-bd: oklch(0.84 0.055 28); }
+.statusTag[data-tone="neutral"]    { --tag-fg: #6b6971; --tag-bg: #f5f5f3; --tag-bd: #dfdeda; }
+.statusTag[data-tone="dark"]       { --tag-fg: #3b3b41; --tag-bg: #f1f1f0; --tag-bd: #d4d3d2; }
+
+/* Amount cells */
+.amountCell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+
+/* Right-aligned (money) header cells */
+.thInnerRight { justify-content: flex-end; }
+
+/* ── Cell vocabulary — matches the new-UI reference (invoice.html) ────────── */
+
+/* Amounts — right-aligned mono, negatives red, empties muted */
+.amt {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+.amtNeg { color: var(--st-danger); }
+.amtDash { color: var(--text-4); }
+.amtSuccess { color: var(--st-success); font-weight: 600; }
+.amtWarn { color: var(--st-warning); font-weight: 600; }
+.amtAdjPos { color: var(--st-warning); }
+.amtAdjNeg { color: var(--st-success); }
+
+.mutedDash { color: var(--text-4); }
+
+/* Payment cell — plain method label + confirmed tick */
+.paymentCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+.paymentTick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--st-success);
+}
+
+/* Type / branch — plain text, never a coloured chip */
+.typeCell { font-size: 13px; color: var(--text-1); font-weight: 400; }
+
+/* Date — mono tabular */
+.dateCell {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Employer / Worker — plain entity text ("Name · 中文名" / "Name · CODE") */
+.entityCell { color: var(--text-1); font-size: 13px; font-weight: 500; line-height: 19.5px; }
+/* reference .employer-name.mc-person-name — 500; the Chinese suffix inherits the name's style */
+.employerCell { color: var(--text-1); font-size: 13px; font-weight: 500; line-height: 19.5px; }
+.zhSub { color: inherit; }
+
+/* Staff cell — initials avatar + name (the staff value itself is not a tag) */
+.staffCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.staffName {
+  font-size: 13px; /* spec .staff-cell .name */
+  color: var(--text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.csAvatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  font-size: 9.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
+.hueAzure   { background: oklch(0.965 0.025 240); color: oklch(0.55 0.12 240); border-color: oklch(0.85 0.05 240); }
+.hueRose    { background: oklch(0.965 0.025 10);  color: oklch(0.55 0.14 10);  border-color: oklch(0.85 0.05 10); }
+.hueEmerald { background: oklch(0.965 0.03 160);  color: oklch(0.52 0.11 160); border-color: oklch(0.85 0.05 160); }
+.hueViolet  { background: oklch(0.965 0.03 300);  color: oklch(0.52 0.14 300); border-color: oklch(0.85 0.05 300); }
+.hueAmber   { background: oklch(0.965 0.04 70);   color: oklch(0.55 0.12 70);  border-color: oklch(0.85 0.06 70); }
+
+/* Last Activity — relative mono timestamp */
+.lastActivity {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-2);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btnPrimary {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border-color: var(--accent);
+}
+
+.btnPrimary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--text-on-accent);
+  text-decoration: none;
+}
+
+.btnSecondary {
+  background: var(--bg-surface);
+  color: var(--text-1);
+  border-color: var(--line-1);
+}
+
+.btnSecondary:hover {
+  background: var(--bg-hover);
+  border-color: var(--line-strong);
+}
+
+.btnGhost {
+  background: transparent;
+  color: var(--accent-fg);
+  border-color: transparent;
+  padding: 0 8px;
+}
+
+.btnGhost:hover { background: var(--bg-hover); }
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+.emptyState {
+  padding: 48px;
+  text-align: center;
+  color: var(--text-4);
+  font-size: 13px;
+  font-family: var(--sans);
+}
+
+/* Empty table cell — reference: 220px tall, text-3 */
+.emptyStateCell {
+  height: 220px !important;
+  color: var(--text-3) !important;
+  font-size: 13px;
+  font-family: var(--sans);
+}
+
+/* ── Filters button count badge (reference accent .kbd) ──────────────────── */
+.filterCountBadge {
+  background: var(--accent-bg);
+  color: var(--accent-fg);
+  border: 1px solid var(--accent-ring);
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1;
+  padding: 1px 4px;
+}
+
+/* ── Applied-filter chips strip (reference .applied-strip) ───────────────── */
+.appliedStrip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-top: 1px solid var(--line-2);
+}
+
+.appliedLabel {
+  font-size: 12px;
+  color: var(--text-4);
+  margin-right: 4px;
+}
+
+.filterChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-1);
+  border-radius: 4px;
+  padding: 2px 4px 2px 8px;
+  font-size: 11.5px;
+  color: var(--text-1);
+  font-family: var(--sans);
+}
+
+.filterChipK { color: var(--text-3); margin-right: 4px; }
+
+.filterChipX {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  padding: 0;
+  border-radius: 3px;
+  color: var(--text-4);
+  cursor: pointer;
+}
+
+.filterChipX:hover { background: var(--bg-hover); color: var(--text-1); }
+
+.clearAll {
+  margin-left: auto;
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 11.5px;
+  color: var(--accent-fg);
+  cursor: pointer;
+  font-family: var(--sans);
+}
+
+.clearAll:hover { text-decoration: underline; }
+
+/* ── Selection bar internals (mono count · sep · right-aligned actions) ──── */
+/* Bundle .selection-bar .count — accent mono, 4px off the following text */
+.selectionCount {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--accent-fg);
+  font-variant-numeric: tabular-nums;
+  margin-right: 4px;
+}
+
+/* Bundle .selection-bar .sep */
+.selectionSep { margin: 0 3px; color: var(--text-4); }
+
+.selectionActions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Bundle uses the default 28px .btn in the selection bar (md 32px is header-only) */
+.selectionActions button {
+  height: 28px;
+  padding: 0 10px;
+}
+
+/* ── Table foot: legend row + pagination (reference .table-foot) ─────────── */
+.tableFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--line-1);
+  padding: 10px 16px;
+  background: var(--bg-surface);
+}
+
+/* PaginationBar carries its own padding for standalone use — flatten it here */
+.tableFoot > :last-child { padding: 0; }
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+  gap: 10px;
+  font-size: 11.5px;
+  color: var(--text-3);
+  font-family: var(--sans);
+}
+
+@media (max-width: 767px) {
+  .tableFoot { flex-wrap: wrap; }
+}
+
+.legendRow > :first-child { pointer-events: none; }
+
+.legendText { color: var(--text-2); font-weight: 500; }
+
+/* ── KPI strip responsive collapse (reference: ≤1100px → 3 columns) ──────── */
+@media (max-width: 1100px) {
+  .statsStrip { grid-template-columns: repeat(3, 1fr); }
+  .statItem:nth-child(3n + 1) { border-left: 0; }
+  .statItem:nth-child(n + 4) { border-top: 1px solid var(--line-2); }
+}
+
+/* ── Columns dropdown (click-based, escapes filterBar boundary) ──────────── */
+.columnsDropWrap {
+  position: relative;
+}
+
+/* Bundle .menu / .menu .group — columns chooser popover */
+.columnsPanel {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: var(--z-dropdown);
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  box-shadow: var(--shadow-2);
+  min-width: 220px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+/* Bundle .menu .group .label */
+.columnsPanelHeader {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  padding: 4px 8px;
+  font-family: var(--sans);
+  text-align: left;
+}
+
+/* Bundle .menu .item */
+.columnsItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 5px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  font-family: var(--sans);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--dur-1);
+}
+
+.columnsItem:hover {
+  background: var(--bg-hover);
+  color: var(--text-1);
+}
+
+/* a mandatory column is locked (U-0336 / U-0252: identity, code, status never leave) — read as fixed, not clickable */
+.columnsItem:disabled {
+  color: var(--text-4);
+  cursor: default;
+}
+
+.columnsItem:disabled:hover {
+  background: none;
+  color: var(--text-4);
+}
+
+.columnsItem:disabled .columnsItemCheck {
+  color: var(--text-4);
+}
+
+/* Bundle .menu .item .ico — 14px slot, accent when checked */
+.columnsItemCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--accent);
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  visibility: hidden;
+}
+
+.columnsItemCheckOn {
+  visibility: visible;
+}
+
+/* Bundle .menu .mfoot — the Columns chooser's "Clear" */
+.columnsFoot { border-top: 1px solid var(--line-2); margin-top: 4px; padding: 4px 4px 2px; }
+.columnsFoot button { border: none; background: transparent; cursor: pointer; font-family: var(--sans); font-size: 11.5px; color: var(--accent-fg); padding: 3px 5px; }
+.columnsFoot button:hover { text-decoration: underline; }
+
+/* Bundle .kbd — count chip on the Columns button */
+.columnsCount {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  padding: 1px 4px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+
+/* Thin border chevron for filter selects — bundle .multiselect::after */
+.selChevron {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid #6a6a72;
+  border-bottom: 1.5px solid #6a6a72;
+  transform: rotate(45deg);
+  margin-top: -4px;
+}
+
+/* Leading icon slot in filter menu rows — bundle .menu .item .ico */
+.optCheck {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* Sheet row 8: references are never truncated — no ellipsis on a cell that carries a reference or code. */
+.tableCard tbody td:has(> .refCell),
+.tableCard tbody td:has(> .codeLink),
+.tableCard tbody td:has(> .codeNeutral) {
+  text-overflow: clip;
+}
+
+/* Reduced motion — reference *, *::before, *::after { animation / transition 0.001ms } */
+@media (prefers-reduced-motion: reduce) {
+  .invoiceList *,
+  .invoiceList *::before,
+  .invoiceList *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ── The invoice list (Invoice.js root) ──────────────────────────────────────
+   This sheet is shared by the other listings (Employer, Insurance, Job Offer, Settings, Worker), so the invoice list's
+   own values — UI verification 14 Oct, Steps 1 and 8 — apply under its root class only. */
+/* reference .invoice-page 28px side gutters; AppShell .content gives 24px */
+.invoiceList { padding: 0 4px; }
+/* 16px from the header rule to the KPI strip (12px page gap + 4px) */
+.invoiceList .pageHeader { margin-bottom: 4px; }
+/* the shared dashboard title */
+.invoiceList .pageTitle { font-size: 24px; font-weight: 650; letter-spacing: -0.022em; line-height: 1.15; }
+/* the search: icon at 8px, text at 28px, 34px right for the help button, a light focus wash */
+.invoiceList .controlsSearch > svg { left: 8px; }
+.invoiceList .searchHelpBtn svg { position: static; transform: none; color: inherit; }
+.invoiceList .controlsSearchInput { padding: 0 34px 0 28px; }
+.invoiceList .controlsSearchInput:focus { box-shadow: 0 0 0 2px var(--accent-bg); }
+/* Filters / Columns at the base .btn padding and gap */
+.invoiceList .controlsRow .filterCtl { padding: 0 10px; gap: 6px; }
+/* the foot strip under the table card */
+.invoiceList .tableFoot { font-size: 12px; color: var(--text-3); }
+/* reference --mc-cell-inset 11px; the checkbox column keeps 0 8px */
+.invoiceList .tableCard thead th { padding: 0 11px !important; background: var(--bg-subtle) !important; }
+.invoiceList .tableCard tbody td { padding: 8px 11px !important; }
+.invoiceList .tableCard thead th:first-child,
+.invoiceList .tableCard tbody td:first-child { padding: 0 8px !important; width: 38px; }
+/* a sortable header: hover bg-sunken (label text-2 while unsorted); the sorted header's label text-1 (reference .th-sort) */
+.invoiceList .tableCard thead th.thSortable { cursor: pointer; }
+.invoiceList .tableCard thead th.thSortable:hover { background: var(--bg-sunken) !important; color: var(--text-2) !important; }
+.invoiceList .tableCard thead th.thSorted,
+.invoiceList .tableCard thead th.thSorted:hover { color: var(--text-1) !important; }
+/* rows open from the keyboard: the reference focus ring */
+.invoiceList .tableCard tbody tr:focus-visible { outline: 2px solid #2563eb; outline-offset: -2px; }
+/* the reference .cb: 16px, 1.5px border, 3px radius */
+.invoiceList .cb { width: 16px; height: 16px; border-width: 1.5px; border-radius: 3px; }
+/* selected rows on --bg-selected, unchanged on hover */
+.invoiceList .rowSelected td,
+.invoiceList .rowSelected:hover td { background: var(--bg-selected) !important; }
+/* code links: .mc-link-code 12px / 400 / 18px, never underlined, the focus ring and wash */
+.invoiceList .codeLink { font-size: 12px; font-weight: 400; line-height: 18px; }
+.invoiceList .codeLink:hover { text-decoration: none; }
+.invoiceList .codeLink:focus-visible { outline: 2px solid #2f6fec; outline-offset: 2px; border-radius: 2px; background: #edf2ff; }
+/* one neutral avatar for everyone, 10.5px initials (reference .mc-avatar) */
+.invoiceList .csAvatar { font-size: 10.5px; background: oklch(0.96 0.008 250); color: oklch(0.46 0.022 250); border-color: oklch(0.89 0.012 250); }
+
+/* Print: pinned columns in flow (sticky cells repeat or cover content across printed pages); cards never clip */
+@media print {
+  .tableCard { overflow: visible; }
+  .tableCard thead .stickyCol, .tableCard thead .stickyCol2, .tableCard tbody .stickyCol, .tableCard tbody .stickyCol2 { position: static; }
+}

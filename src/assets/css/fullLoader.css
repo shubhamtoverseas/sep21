@@ -1,0 +1,19 @@
+/* Full-screen blocking loader — new-UI ring spinner over a light scrim.
+   Uses its own class names so it no longer overrides .chat-loader-center
+   from listLoader.css (the two files used to redefine the same class). */
+.nu-full-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(1px);
+}
+
+.nu-full-loader .nu-spinner {
+    width: 28px;
+    height: 28px;
+    border-width: 2.5px;
+}

@@ -1,0 +1,129 @@
+.policies-and-terms {
+  font-family: 'Mabry Pro Normal';
+  padding: 0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.py-sm-5 {
+  padding-bottom: 3rem !important;
+  padding-top: 3rem !important;
+}
+
+.policy-terms-header {
+  display: flex;
+  height: 168px;
+  padding: 0 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: #E3F2FD;
+}
+
+.policies-and-terms {
+  font-size: 16px;
+}
+
+.policy-terms-header h1 {
+  color: #000;
+  font-family: "Cooper BT Normal";
+  font-size: 3.375em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 0;
+}
+
+.policy-terms-header p {
+  color: #000;
+  font-family: 'Mabry Pro Normal';
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 28.13px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-top: 0;
+
+}
+
+.policies-and-terms .container p {
+  color: #000;
+  font-family: 'Mabry Pro Normal';
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: 0.875em;
+  margin-top: 0;
+}
+
+.policies-and-terms .heading {
+  color: #000;
+  font-family: 'Mabry Pro Normal';
+  font-size: 1.25em;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.03px;
+}
+
+.policies-and-terms .sub-heading {
+  color: #000;
+  font-family: 'Mabry Pro Normal';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.875em;
+  line-height: normal;
+}
+
+.policies-and-terms ul {
+  font-size: 0.875em;
+  margin-top: 0;
+  margin-left: 15px;
+}
+
+.main-desc {
+  font-size: 1em !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .policy-terms-header h1 {
+    font-size: 2em;
+  }
+
+  .py-4 {
+    padding-bottom: 1.5rem !important;
+    padding-top: 1.5rem !important;
+  }
+
+  .policy-terms-header {
+    height: 140px;
+  }
+
+  .policy-terms-header p {
+    font-size: 1.2em;
+  }
+
+  .policies-and-terms ul {
+    margin-bottom: 10px;
+  }
+
+  .mb28 {
+    margin-bottom: 24px;
+  }
+
+  .mb12 {
+    margin-bottom: 10px;
+  }
+}

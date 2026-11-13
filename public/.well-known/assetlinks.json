@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "ai.maidmatch",
+    "sha256_cert_fingerprints": [
+      "A0:04:E8:74:81:5D:33:B3:D1:92:29:F3:82:7D:DC:91:0E:C0:84:6E:14:50:FD:D0:FD:DB:0C:E4:ED:D4:7F:0F"
+    ]
+  }
+}]

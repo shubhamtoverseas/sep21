@@ -1,0 +1,1740 @@
+/* Price List (new UI) — the 27 Oct package's pages to its reference Price List page: the frame (PL-UI1), the grid pages
+   (Local / Overseas / agency / Direct Hire / Pricing countries, PL-UI2) and the list pages (Items by service, Fixed items,
+   Skills, Promotions, PL-UI3); and the Worker promotions form, a separate module (OP-27-32). */
+
+/* ── Worker promotions form (unchanged; OP-27-32) ────────────────────────── */
+.indefiniteRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.itemsHeading {
+  grid-column: 1 / -1;
+  margin: 8px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-2);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.itemCard {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+}
+
+.itemTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.itemTitleRow > :first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.addItemBtn {
+  grid-column: 1 / -1;
+  justify-content: center;
+}
+
+.formError {
+  grid-column: 1 / -1;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: #b42318;
+}
+
+/* A page with nothing to show, or whose saved prices could not be loaded */
+.emptyState {
+    padding: 28px 16px;
+    text-align: center;
+    font-size: 12.5px;
+    color: #6e757f;
+}
+/* ── Price List · Local — Base fees (27 Oct package, PL-S1) ─────────────── */
+/* a section is a card (PL-UI2; the reference page's .sec): its head, ruled off, then its rows and grids */
+.plSection {
+  margin-bottom: 14px;
+  padding: 16px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+}
+
+.plSecHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.plSecTitle {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--text-1);
+}
+
+.plSecSub {
+  margin: 4px 0 0;
+  max-width: 680px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text-4);
+}
+
+/* a list inside a section card has no frame of its own */
+
+.plMeta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding-top: 2px;
+  font-size: 12px;
+  color: var(--text-4);
+  white-space: nowrap;
+}
+
+.plMetaErr { color: #b42318; font-weight: 600; }
+.plMetaChg { color: var(--accent-fg); font-weight: 550; }
+.plMetaMiss { color: #b42318; font-weight: 550; }
+.plMetaUnit { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-4); }
+
+/* Labelled single values (a shared %, a base shown read-only, No Overseas Experience, skill amounts): label | value rows
+   inside the section card; above a grid they end with a rule */
+.plRows {
+  --pl-label-w: 252px;
+}
+
+.plRow {
+  display: grid;
+  grid-template-columns: var(--pl-label-w) minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 0;
+}
+
+.plRow + .plRow {
+  border-top: 1px solid var(--line-2);
+}
+
+.plRows > .plRow:first-child {
+  padding-top: 0;
+}
+
+.plRowsShared {
+  margin: 0 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.plRowLabel {
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--text-1);
+}
+
+.plRowLabel small {
+  display: block;
+  margin-top: 1px;
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.plRowValue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  min-width: 0;
+}
+
+.plHint {
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+/* "Missing": not entered — never shown as 0, never as a dash that looks like 0 */
+.plMissing {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 550;
+  color: #b42318;
+}
+
+.plReview h4 {
+  margin: 12px 0 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.plReviewWho {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.plReviewRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line-2);
+  font-size: 13px;
+}
+
+.plReviewLabel { color: var(--text-2); }
+
+.plReviewValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+
+.plArrow { color: var(--text-4); }
+
+.plEffects p {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.plEffects .plWarn { color: #b54708; }
+
+.plSpacer { flex: 1; }
+
+/* ── Price List · Overseas, agency schedules, Direct Hire, Skills (PL-S3) ── */
+.plHelp {
+  margin: 0 0 14px;
+  max-width: 760px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-4);
+}
+
+.plSelect {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-1);
+  font-family: var(--sans);
+  font-size: 12.5px;
+}
+
+.plSelect:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+/* A link-looking button: agency codes, "Overseas", "Agency pricing", "Fixed Items" */
+.plLink {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  color: var(--accent-fg);
+  cursor: pointer;
+}
+
+.plLink:hover {
+  text-decoration: underline;
+}
+
+.plLink:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.plSwitch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.plSwitch .plSelect {
+  width: 520px;
+  max-width: 100%;
+}
+
+/* one strip under the page head, kept in view under the topbar while the schedule scrolls (below the topbar's menus) */
+.plFacts {
+  position: sticky;
+  top: var(--shell-topbar-h);
+  z-index: 4;
+  display: grid;
+  grid-template-columns: minmax(120px, auto) minmax(0, 1fr) auto;
+  column-gap: 36px;
+  align-items: start;
+  margin-bottom: 14px;
+  padding: 13px 20px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+}
+
+.plFact {
+  min-width: 0;
+}
+
+.plFactKey {
+  margin-bottom: 5px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-4);
+}
+
+.plFactValue {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-1);
+}
+
+.plFactValue .plCode {
+  font-weight: 500;
+  color: var(--text-4);
+  white-space: nowrap;
+}
+
+.plFactStatus .plFactValue {
+  display: flex;
+  align-items: center;
+  min-height: 22px;
+}
+
+.plCode {
+  margin-left: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.plForm {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.plVisuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Price List · Pricing countries (PL-S4) ─────────────────────────────── */
+
+.plGroupTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.plChips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.plChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 4px 0 9px;
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-2);
+  background: var(--bg-subtle);
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.plChipRo {
+  padding: 0 9px;
+}
+
+.plChip button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-4);
+  cursor: pointer;
+}
+
+.plChip button:hover {
+  background: var(--line-1);
+  color: var(--text-1);
+}
+
+/* a country added to the group, not yet saved */
+.plChipNew {
+  border-color: #8eabf2;
+  background: var(--accent-bg);
+}
+
+.plCombo {
+  position: relative;
+  width: 220px;
+}
+
+.plCombo > svg {
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  color: var(--text-4);
+  pointer-events: none;
+}
+
+.plCombo .plText {
+  padding-left: 30px;
+}
+
+.plComboList {
+  position: absolute;
+  z-index: var(--z-dropdown);
+  top: 36px;
+  left: 0;
+  width: 280px;
+  max-width: calc(100vw - 32px);
+  max-height: 260px;
+  margin: 0;
+  padding: 4px;
+  overflow: auto;
+  list-style: none;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  box-shadow: 0 12px 28px rgba(16, 24, 40, 0.14);
+}
+
+.plComboList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 32px;
+  padding: 6px 9px;
+  border-radius: 5px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.plComboList li[aria-disabled="true"] {
+  color: var(--text-4);
+  cursor: not-allowed;
+}
+
+.plComboList li small {
+  font-size: 12px;
+  color: var(--text-4);
+  white-space: nowrap;
+}
+
+.plComboActive,
+.plComboList li:not([aria-disabled="true"]):hover {
+  background: var(--accent-bg);
+  color: var(--accent-fg);
+}
+
+.plComboList li.plComboNone {
+  color: var(--text-4);
+  cursor: default;
+}
+
+.plReviewText {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-1);
+}
+
+/* Configuration status of an agency schedule: Complete / Incomplete (requirements section 15) */
+
+.plStat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* ── Price List · the frame (PL-UI1; the package's reference Price List page) ── */
+/* the page sits on the shell's padding; the footer bar ends where the scroll ends (as the Users form's save bar).
+   What the Price List keeps in view (the nav, the agency facts, the Local grid heads) sits under the shell's topbar
+   (--shell-topbar-h) */
+.plPageWithBar {
+  margin-bottom: -56px;
+}
+
+/* "View only" beside the title (the reference page's .ro-tag) */
+.plRoTag {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--line-1);
+  border-radius: 5px;
+  background: var(--bg-surface);
+  font-size: 12px;
+  font-weight: 550;
+  color: var(--text-3);
+}
+
+.plTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* the alert under the title: saved prices not loaded, or saving blocked with unsaved changes */
+.plAlert {
+  margin: 0 0 14px;
+  padding: 9px 12px;
+  border: 1px solid #fecdca;
+  border-radius: var(--radius-2);
+  background: #fef3f2;
+  font-size: 12.5px;
+  color: #b42318;
+}
+
+.plCrumbBtn {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--text-4);
+  cursor: pointer;
+}
+
+.plCrumbBtn:hover {
+  color: var(--text-2);
+}
+
+/* the section nav beside the page (the same look as the Users permissions editor's section nav) */
+.plLayout {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.plNavCol {
+  align-self: stretch;
+  min-width: 0;
+}
+
+.plNav {
+  position: sticky;
+  top: calc(var(--shell-topbar-h) + 16px);
+  padding: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+}
+
+.plNav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plNav button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--text-2);
+  text-align: left;
+  cursor: pointer;
+}
+
+.plNav button:hover {
+  background: var(--bg-subtle);
+  color: var(--text-1);
+}
+
+.plNav button[aria-current="page"] {
+  background: var(--accent-bg);
+  color: var(--accent-fg);
+  font-weight: 600;
+}
+
+.plNav button:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 1px;
+}
+
+.plNavMeta {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #b42318;
+  white-space: nowrap;
+}
+
+.plNavSep {
+  height: 1px;
+  margin: 6px 10px;
+  background: var(--line-1);
+}
+
+.plUnsaved {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* narrow screens: a select instead of the nav */
+.plNavSelect {
+  display: none;
+}
+
+.plContent {
+  min-width: 0;
+}
+
+/* a page's head: its name, and its actions on the right */
+.plPageHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 12px;
+  min-height: 34px;
+  margin-bottom: 10px;
+}
+
+.plPageTitle {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.plPageActions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* a list's tools inside its section: filters left, the section's status right */
+
+/* the footer bar (Cancel · Review changes): sticky at the bottom of the page, under the nav and the page */
+.plFootSlot {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+
+.plFootBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 9px;
+  min-height: 57px;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid var(--line-1);
+}
+
+.plFootStatus {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.plFootDirty {
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.plFootScope {
+  font-weight: 400;
+  color: var(--text-3);
+}
+
+.plFootError {
+  font-weight: 500;
+  color: #b42318;
+}
+
+.plFootActions {
+  display: flex;
+  gap: 9px;
+  margin-left: auto;
+}
+
+@media (max-width: 900px) {
+  .plLayout { grid-template-columns: minmax(0, 1fr); }
+  .plNav { display: none; }
+  .plNavSelect {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 14px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--text-3);
+  }
+}
+
+@media (max-width: 767px) {
+  .plPageWithBar { margin-bottom: -48px; }
+}
+
+/* ── Price List · grid pages (PL-UI2; the reference page's fields, grids, cell states and errors) ── */
+/* a single value's field box: HK$ before or % after; the box shows the entry's state */
+.plFbox {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  border: 1px solid #d5dbe3;
+  border-radius: var(--radius-2);
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+.plFboxAdorn {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 9px;
+  background: var(--bg-subtle);
+  border-right: 1px solid var(--line-1);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+.plFboxAdornAfter {
+  border-right: 0;
+  border-left: 1px solid var(--line-1);
+}
+
+.plFboxInput {
+  width: 120px;
+  height: 100%;
+  padding: 0 10px;
+  border: 0;
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--text-1);
+  outline: none;
+}
+
+.plFboxPct .plFboxInput {
+  width: 72px;
+}
+
+.plFboxInput::placeholder {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: #b42318;
+  opacity: 0.85;
+}
+
+.plFboxInput:disabled {
+  color: var(--text-3);
+  cursor: default;
+}
+
+.plFbox.plFboxMissing { background: #fdf3f1; border-color: #efc9c2; }
+.plFbox.plFboxChanged { background: var(--accent-bg); border-color: #8eabf2; }
+.plFboxMissing .plFboxAdorn,
+.plFboxChanged .plFboxAdorn { background: transparent; }
+.plFbox.plFboxInvalid { border-color: #b42318; box-shadow: 0 0 0 1px #b42318 inset; }
+
+.plFbox:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+/* a saved value, a calculated value, an entry's error, a note under a grid */
+.plVal,
+.plCalc {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-1);
+}
+
+.plFieldErr {
+  flex-basis: 100%;
+  font-size: 12px;
+  color: #b42318;
+}
+
+.plFieldErrBlock {
+  display: block;
+  margin: 8px 0 0;
+}
+
+.plNote {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-4);
+}
+
+.plNote + .plNote {
+  margin-top: 2px;
+}
+
+/* the grid entries to correct: each label takes staff to its entry */
+.plGerr {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  list-style: none;
+  border: 1px solid #fecdca;
+  border-radius: 7px;
+  background: #fef3f2;
+  font-size: 12.5px;
+  color: #b42318;
+}
+
+.plGerr li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.plGerrLink {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.plGerrLink:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* a price grid, straight on its section card; wider than the card, it scrolls inside it with its first columns in view */
+.plGridWrap {
+  overflow-x: auto;
+  margin: 0 -2px;
+  padding: 0 2px;
+}
+
+.plGridWrap + .plGridWrap {
+  margin-top: 18px;
+}
+
+.plGrid {
+  --pl-c1: 190px;
+  --pl-c2: 140px;
+  --pl-cmin: 90px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text-1);
+}
+
+.plGrid th,
+.plGrid td {
+  border-bottom: 1px solid var(--line-2);
+}
+
+.plGrid thead th {
+  height: 38px;
+  padding: 6px 11px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--line-1);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-align: left;
+  vertical-align: middle;
+  color: var(--text-4);
+}
+
+.plGrid thead tr:first-child th:first-child { border-top-left-radius: 6px; }
+.plGrid thead tr:first-child th:last-child { border-top-right-radius: 6px; }
+
+.plGrid thead th.plNum {
+  padding-right: 16px;
+  text-align: right;
+}
+
+/* Finished / Terminated over their columns; the columns' own names in sentence case */
+.plGrid thead th.plGrp {
+  text-align: center;
+  color: var(--text-2);
+}
+
+.plGrid thead th.plSub {
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: var(--bg-canvas);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.35;
+  text-transform: none;
+  color: var(--text-3);
+}
+
+.plGrid col.plC1 { width: var(--pl-c1); }
+.plGrid col.plC2 { width: var(--pl-c2); }
+
+.plGrid .plGl {
+  border-left: 1px solid var(--line-1);
+}
+
+.plGrid tbody th {
+  padding: 6px 11px;
+  background: var(--bg-surface);
+  font-weight: 500;
+  text-align: left;
+  vertical-align: middle;
+  color: var(--text-1);
+}
+
+.plGrid tbody th.plRg {
+  padding-top: 13px;
+  vertical-align: top;
+}
+
+.plGrid tbody th small {
+  display: block;
+  margin-top: 1px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-4);
+}
+
+.plGrid tbody th.plPos {
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+.plGrid tbody td {
+  height: 41px;
+  padding: 4px 6px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.plGrid tbody td.plRo {
+  padding: 4px 16px 4px 11px;
+}
+
+.plGrid td > .plVal,
+.plGrid td > .plMissing {
+  padding-right: 10px;
+}
+
+.plGrid tbody tr.plGrpEnd > * {
+  border-bottom: 1px solid var(--line-1);
+}
+
+.plGrid tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.plGrid td.plNone {
+  height: 56px;
+  color: var(--text-4);
+}
+
+/* the first columns stay in view while a wide grid scrolls inside its card */
+.plGrid .plStick1,
+.plGrid .plStick2 {
+  position: sticky;
+  z-index: 1;
+}
+
+.plGrid .plStick1 { left: 0; }
+.plGrid .plStick2 { left: var(--pl-c1); }
+
+.plGrid thead .plStick1,
+.plGrid thead .plStick2 {
+  z-index: 2;
+}
+
+.plScrolls .plStickEnd {
+  box-shadow: inset -1px 0 0 var(--line-1);
+}
+
+/* a price entry in a grid cell; blank shows Missing, its state on the cell */
+.plCell {
+  display: block;
+  width: 100%;
+  min-width: 84px;
+  max-width: 124px;
+  height: 32px;
+  margin-left: auto;
+  padding: 0 9px;
+  border: 1px solid #dfe4ea;
+  border-radius: var(--radius-2);
+  background: var(--bg-surface);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--text-1);
+  outline: none;
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+
+.plCell:hover { border-color: #b8c1cd; }
+
+.plCell::placeholder {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: #b42318;
+  opacity: 0.85;
+}
+
+.plCell:disabled {
+  color: var(--text-3);
+  cursor: default;
+}
+
+.plCell.plCellMissing { background: #fdf3f1; border-color: #efc9c2; }
+.plCell.plCellChanged { background: var(--accent-bg); border-color: #8eabf2; }
+.plCell.plCellInvalid { background: var(--bg-surface); border-color: #b42318; box-shadow: 0 0 0 1px #b42318 inset; }
+
+.plCell:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+/* the calculated Replacement row under each Local base: read-only values on a tinted row */
+.plGrid tr.plCalcRow > th,
+.plGrid tr.plCalcRow > td {
+  background: var(--bg-canvas);
+}
+
+.plGrid tr.plCalcRow .plCalc {
+  color: var(--text-2);
+}
+
+/* Local: each grid's heading and column names stay in view while its rows scroll (a grid that scrolls inside its card
+   keeps them at its top instead) */
+.plGridWrapHead:not(.plScrolls) {
+  overflow: visible;
+}
+
+.plGridLocal {
+  min-width: calc(var(--pl-c1) + var(--pl-c2) + var(--pl-n, 4) * var(--pl-cmin));
+}
+
+.plGridLocal thead th {
+  position: sticky;
+  top: calc(var(--shell-topbar-h) + 30px);
+  z-index: 3;
+}
+
+.plGridLocal thead th.plStick1,
+.plGridLocal thead th.plStick2 {
+  z-index: 5;
+}
+
+.plGridLocal thead tr.plGhRow th {
+  top: var(--shell-topbar-h);
+  z-index: 4;
+  height: 30px;
+  padding: 0 0 8px;
+  background: var(--bg-surface);
+  border-bottom: 0;
+  border-radius: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 22px;
+  text-transform: none;
+  vertical-align: top;
+  color: var(--text-1);
+}
+
+.plGridLocal thead tr.plGhRow + tr th:first-child { border-top-left-radius: 6px; }
+.plGridLocal thead tr.plGhRow + tr th:last-child { border-top-right-radius: 6px; }
+
+.plGhTitle {
+  position: sticky;
+  left: 0;
+  display: inline-block;
+}
+
+.plScrolls .plGridLocal thead th {
+  top: 0;
+}
+
+/* QA-27-031: in a grid that scrolls sideways (narrow screens, down to 640px) the header sticks inside the grid's own box,
+   not under the topbar: the group row ("Standard" / "Driver") at the box's top, the row under it below the group row's
+   30px, so neither covers the other or the first row's inputs */
+.plScrolls .plGridLocal thead tr.plGhRow th {
+  top: 0;
+}
+
+.plScrolls .plGridLocal thead tr.plGhRow + tr th {
+  top: 30px;
+}
+
+/* the agency's history rates */
+.plGridExp {
+  --pl-c1: 178px;
+  --pl-c2: 112px;
+  min-width: calc(var(--pl-c1) + var(--pl-c2) + 3 * var(--pl-cmin));
+}
+
+/* Overseas: one base fee per nationality, its cells spanning the nationality's partner agency codes */
+.plGridOb col.plObNat { width: 170px; }
+.plGridOb col.plObBase { width: 170px; }
+.plGridOb col.plObRepl { width: 200px; }
+.plGridOb col.plObAg { width: 150px; }
+
+.plGridOb tbody td.plObBaseCell {
+  padding-top: 4px;
+  vertical-align: top;
+}
+
+.plGridOb tbody td.plObBaseCell > .plVal,
+.plGridOb tbody td.plObBaseCell > .plMissing {
+  display: block;
+  padding: 9px 10px 0 0;
+}
+
+.plGridOb tbody td.plObReplCell {
+  padding: 13px 16px 6px 11px;
+  vertical-align: top;
+}
+
+.plGridOb tbody td.plObReplCell .plCalc {
+  display: block;
+  text-align: right;
+}
+
+.plGridOb tbody td.plObText {
+  padding: 4px 11px;
+  text-align: left;
+}
+
+.plGridOb tbody .plRgEnd {
+  border-bottom: 1px solid var(--line-1);
+}
+
+.plGridOb td.plNone {
+  text-align: left;
+}
+
+.plCodeLink {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 550;
+  letter-spacing: 0.02em;
+}
+
+/* Direct Hire: one fee per partner code, under nationality bands */
+.plGridFit {
+  width: auto;
+}
+
+.plGrid col.plColAgency { width: 440px; }
+.plGrid col.plColFee { width: 170px; }
+
+.plGrid tbody tr.plBand > th {
+  height: 30px;
+  padding: 0 11px;
+  background: var(--bg-canvas);
+  border-bottom: 1px solid var(--line-2);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.plGrid tbody th.plAgCell {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.plAgName {
+  display: block;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.plAgCode {
+  display: block;
+  margin-top: 1px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--text-4);
+}
+
+/* Pricing countries: one card per group (its name, its countries), Other countries last */
+.plGrpCard .plSecHead {
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.plSecHeadBare {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.plText {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #d5dbe3;
+  border-radius: var(--radius-2);
+  background: var(--bg-surface);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.plText.plTextChanged { background: var(--accent-bg); border-color: #8eabf2; }
+.plText.plTextInvalid { background: var(--bg-surface); border-color: #b42318; box-shadow: 0 0 0 1px #b42318 inset; }
+
+.plText:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+.plGrpName {
+  max-width: 340px;
+}
+
+.plRemoved {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.plRemoved s {
+  color: var(--text-2);
+}
+
+@media (max-width: 1299px) {
+  .plGridOb col.plObNat { width: 118px; }
+  .plGridOb col.plObBase { width: 140px; }
+  .plGridOb col.plObRepl { width: 150px; }
+  .plGridOb col.plObAg { width: 96px; }
+  .plGridOb thead th { white-space: normal; }
+  .plGridOb td.plObText .plStat { flex-wrap: wrap; row-gap: 2px; }
+}
+
+@media (max-width: 1279px) {
+  .plRows { --pl-label-w: 220px; }
+  .plGridExp { --pl-c1: 140px; }
+}
+
+@media (max-width: 1100px) {
+  .plGrid col.plColAgency { width: 340px; }
+}
+
+@media (max-width: 639px) {
+  .plSection { padding: 14px; }
+  .plSecHead { flex-direction: column; gap: 6px; }
+  .plRow { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
+  .plFacts { position: static; grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
+  .plGridLocal { --pl-c1: 104px; --pl-c2: 88px; }
+  .plGridExp { --pl-c1: 110px; --pl-c2: 84px; }
+  .plGrid col.plColAgency { width: 200px; }
+  .plGrpCard .plSecHead { align-items: stretch; }
+  .plGrpName { max-width: none; }
+  .plSwitch { flex-direction: column; align-items: stretch; }
+  .plSwitch .plSelect { width: 100%; }
+}
+
+/* ── Price List · list pages (PL-UI3; the reference page's lists, list tools, search and editors) ── */
+/* a page's search (the reference page's .search): the field with its icon */
+.plSearchField {
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  max-width: 100%;
+}
+
+.plSearchField > svg {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  margin-top: -7.5px;
+  color: var(--text-4);
+  pointer-events: none;
+}
+
+.plSearchField input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px 0 32px;
+  border: 1px solid #dfe4ea;
+  border-radius: var(--radius-3);
+  background: var(--bg-surface);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.plSearchField input::placeholder {
+  color: #8b929c;
+}
+
+.plSearchField input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+/* a list's tools inside its card: the filter and the search left, the list's status right */
+.plListTools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.plListTools .plMeta {
+  margin-left: auto;
+}
+
+/* a list on its section card (the reference page's .lst) */
+.plListWrap {
+  overflow-x: auto;
+}
+
+.plList {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text-1);
+}
+
+.plList th,
+.plList td {
+  padding: 0 11px;
+  border-bottom: 1px solid var(--line-2);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.plList thead th {
+  height: 38px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--line-1);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.plList thead th:first-child { border-top-left-radius: 6px; }
+.plList thead th:last-child { border-top-right-radius: 6px; }
+
+.plList td,
+.plList tbody th {
+  height: 52px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.plList .plNum {
+  text-align: right;
+}
+
+.plList tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.plList tbody tr.plBand > th {
+  height: 30px;
+  background: var(--bg-canvas);
+  border-bottom: 1px solid var(--line-2);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.plList tbody tr.plRowChanged > td {
+  background: var(--accent-bg);
+}
+
+.plList td.plNone {
+  height: 56px;
+  color: var(--text-4);
+}
+
+.plMuted {
+  color: var(--text-4);
+}
+
+.plNm {
+  font-weight: 500;
+}
+
+.plCodes {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+/* the second line under a value: where an amount comes from, "Skill · Overseas only" */
+.plAmtSrc {
+  display: block;
+  margin-top: 1px;
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.plList td.plAct {
+  padding-right: 14px;
+  text-align: right;
+}
+
+/* rows that wrap (Items by service, Fixed items): top-aligned */
+.plListTall td {
+  height: auto;
+  min-height: 52px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  line-height: 1.4;
+  vertical-align: top;
+}
+
+/* Items by service */
+.plList col.plColType { width: 150px; }
+.plList col.plColCodes { width: 190px; }
+.plList col.plColAdd { width: 170px; }
+.plList col.plColAmt { width: 150px; }
+.plList col.plColAct { width: 64px; }
+
+/* Fixed items: a card per item type, its name with Edit and Inactive, Add Item on the right */
+.plFiCard .plSecHead {
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.plTypeName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  min-width: 0;
+}
+
+.plList col.plColFiAmount { width: 160px; }
+.plList col.plColFiAct { width: 70px; }
+
+/* an inactive item type: its name and its rows greyed */
+.plCardOff .plSecTitle,
+.plCardOff .plList td,
+.plCardOff .plVal {
+  color: var(--text-4);
+}
+
+/* Promotions: columns sized by their content */
+.plPromos {
+  table-layout: auto;
+}
+
+.plPromos th,
+.plPromos td {
+  padding: 12px 10px;
+  line-height: 1.5;
+  vertical-align: top;
+}
+
+.plPromos td:nth-child(1) { min-width: 135px; }
+.plPromos td:nth-child(2) { padding-right: 16px; white-space: nowrap; }
+.plPromos td:nth-child(3) { min-width: 105px; }
+.plPromos td:nth-child(6) { min-width: 115px; }
+
+/* the Items by service editor: label | value rows, ruled */
+.plEdRows {
+  display: flex;
+  flex-direction: column;
+}
+
+.plEdRow {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  column-gap: 20px;
+  align-items: start;
+  padding: 10px 0;
+  border-top: 1px solid var(--line-2);
+  font-size: 13px;
+}
+
+.plEdRow:first-child {
+  padding-top: 2px;
+  border-top: 0;
+}
+
+.plEdLabel {
+  padding-top: 7px;
+  font-size: 13px;
+  color: var(--text-1);
+}
+
+.plEdValue {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  min-width: 0;
+}
+
+.plEdValue > .plHint:only-child {
+  padding-top: 7px;
+}
+
+.plEdSelect {
+  width: 100%;
+  max-width: 440px;
+}
+
+.plEdChips {
+  max-width: 440px;
+}
+
+.plEdAdd {
+  width: 220px;
+}
+
+.plCodeChip {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 550;
+  color: var(--text-1);
+}
+
+.plChip.plChipInvalid {
+  border-color: #b42318;
+  box-shadow: 0 0 0 1px #b42318 inset;
+  background: var(--bg-surface);
+}
+
+.plChkRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 12px;
+}
+
+.plCheck {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.plCheck input {
+  margin: 0;
+}
+
+/* how it's added / which amount: options as a list, not boxes */
+.plOpts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.plOpt {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-left: -8px;
+  padding: 6px 8px;
+  border-radius: var(--radius-2);
+  cursor: pointer;
+}
+
+.plOpt:hover {
+  background: var(--bg-subtle);
+}
+
+.plOpt input {
+  flex: none;
+  margin: 3px 0 0;
+}
+
+.plOpt b {
+  display: block;
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--text-1);
+}
+
+.plOpt small {
+  display: block;
+  margin-top: 1px;
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.plEdAmount {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin-left: 20px;
+}
+
+/* the dialogs' choice groups: Worker type, Applies to, Worker codes, Branches (a wide one takes both columns) */
+.plFieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.plFieldsetWide {
+  grid-column: 1 / -1;
+}
+
+.plFieldset legend {
+  margin-bottom: 2px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--text-1);
+}
+
+.plCheckGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  padding: 6px 0;
+}
+
+@media (max-width: 1100px) {
+  .plList col.plColType { width: 130px; }
+  .plList col.plColCodes { width: 150px; }
+  .plList col.plColAdd { width: 150px; }
+  .plList col.plColAmt { width: 130px; }
+}
+
+/* narrow screens: a list's rows become stacked cards; Items by service names each value */
+@media (max-width: 639px) {
+  .plSearchField { width: 100%; }
+  .plListTools .plMeta { margin-left: 0; }
+  .plStack colgroup,
+  .plStack thead { display: none; }
+  .plStack,
+  .plStack tbody,
+  .plStack tr,
+  .plStack td,
+  .plStack tbody th { display: block; width: auto; }
+  .plStack tr { padding: 10px 0; border-bottom: 1px solid var(--line-2); }
+  .plStack tbody tr:last-child { border-bottom: 0; }
+  .plStack tr.plBand { padding: 0; }
+  .plStack td,
+  .plStack tbody th { height: auto; padding: 3px 0; border: 0; text-align: left; }
+  .plStack tbody tr.plBand > th { height: auto; padding: 6px 8px; }
+  .plStack td.plKv { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 28px; }
+  .plStack td.plKv::before { content: attr(data-label); font-family: var(--sans); font-size: 12px; color: var(--text-4); text-align: left; }
+  .plPromos td { min-width: 0 !important; }
+  .plFiCard .plSecHead { align-items: stretch; }
+  .plEdRow { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
+  .plEdLabel { padding-top: 0; }
+  .plEdAdd { width: 100%; }
+}

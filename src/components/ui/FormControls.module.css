@@ -1,0 +1,323 @@
+/* New-UI form kit — 32px controls, 11.5px muted labels, 12.5px values.
+   Mirrors the employer New Employer form / drawer field contract so every
+   module renders the same inputs. */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.grid3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .grid4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .grid3,
+  .grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .grid,
+  .grid3,
+  .grid4 { grid-template-columns: minmax(0, 1fr); }
+}
+
+.field {
+  min-width: 0;
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.fieldLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #667080;
+}
+
+.required {
+  color: #b42318;
+  margin-left: 1px;
+}
+
+.fieldError {
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: #b42318;
+}
+
+.hint {
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: #6e757f;
+}
+
+.sectionDivider {
+  grid-column: 1 / -1;
+  padding: 6px 0;
+  margin-bottom: 2px;
+  border-bottom: 1px solid var(--line-2);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-1);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  outline: none;
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #72777f;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+.input:disabled,
+.select:disabled,
+.textarea:disabled,
+.readonly {
+  background: #f6f7f9;
+  color: #72777f;
+  cursor: default;
+}
+
+.invalid,
+.invalid .select {
+  border-color: #b42318;
+}
+
+.textarea {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 28px;
+  cursor: pointer;
+}
+
+.select:disabled {
+  cursor: default;
+}
+
+.selectChevron {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6e757f;
+  pointer-events: none;
+}
+
+/* ── Choice controls ─────────────────────────────────────────────────────── */
+.checkLabel,
+.radioLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0; /* bootstrap's label margin-bottom pushed the control above the row centre */
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.checkLabel.disabled,
+.radioLabel.disabled {
+  color: #72777f;
+  cursor: default;
+}
+
+.checkLabel .checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  position: static;
+  top: auto;
+  flex: none;
+  display: inline-grid;
+  place-content: center;
+  border: 1.5px solid #c3cad4;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.checkbox:checked {
+  border-color: #2563eb;
+  background: #2563eb;
+}
+
+.checkbox:checked::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 12 5 5L20 6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.checkbox:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.checkbox:focus-visible,
+.radio:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+.radioRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 18px;
+  min-height: 32px;
+}
+
+.radio {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  flex: none;
+  box-sizing: border-box;
+  border: 1.5px solid #c3cad4;
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.radio:checked {
+  border: 4.5px solid #2563eb;
+}
+
+.radio:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+/* ── Switch ──────────────────────────────────────────────────────────────── */
+.switchLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.switchLabel.disabled {
+  cursor: default;
+  color: #72777f;
+}
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+
+.switchInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.switchInput:disabled {
+  cursor: default;
+}
+
+.switchTrack {
+  position: relative;
+  display: block;
+  width: 36px;
+  height: 20px;
+  border-radius: 999px;
+  background: #c3cad4;
+  transition: background var(--dur-2) var(--ease);
+  pointer-events: none;
+}
+
+.switchKnob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.25);
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.switchInput:checked + .switchTrack {
+  background: #2563eb;
+}
+
+.switchInput:checked + .switchTrack .switchKnob {
+  transform: translateX(16px);
+}
+
+.switchInput:disabled + .switchTrack {
+  opacity: 0.55;
+}
+
+.switchInput:focus-visible + .switchTrack {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}

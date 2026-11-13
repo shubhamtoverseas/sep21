@@ -1,0 +1,187 @@
+/* MaidMatch shell — narrow icon rail. Exact values from the design bundle
+   (SHARED_SHELL_CSS, v17 rail). */
+
+.rail {
+  width: 64px;
+  min-width: 64px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 60;
+  background: oklch(0.235 0.018 275);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0 14px;
+  gap: 6px;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.brand {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  flex: none;
+  font-family: var(--sans);
+}
+
+.railBtn {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 10px;
+  padding: 0;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.52);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+}
+.railBtn:hover { background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.85); }
+.railBtn.active { background: rgba(255, 255, 255, 0.14); color: #fff; }
+.railBtn:focus-visible { outline: 2px solid var(--accent-ring); outline-offset: 2px; }
+
+.railBtn[data-l]::after,
+.railUser[data-l]::after {
+  content: attr(data-l);
+  position: absolute;
+  left: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  background: #171b22;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--sans);
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 80ms ease;
+  z-index: 4000;
+}
+.railBtn[data-l]:hover::after,
+.railUser[data-l]:hover::after { opacity: 1; }
+
+.badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 8px;
+  background: oklch(0.52 0.16 28);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 700;
+  font-family: var(--sans);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.sep {
+  width: 28px;
+  height: 1px;
+  background: oklch(0.30 0.02 275);
+  margin: 6px 0;
+  flex: none;
+}
+
+.spacer { flex: 1; }
+
+.userWrap { position: relative; flex: none; margin-top: 6px; }
+
+.railUser {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: oklch(0.45 0.09 275);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 600;
+  font-family: var(--sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  cursor: pointer;
+  position: relative;
+}
+.railUser:focus-visible { outline: 2px solid var(--accent-ring); outline-offset: 2px; }
+.railUserPhoto { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+
+.userMenu {
+  position: absolute;
+  left: 48px;
+  bottom: 0;
+  min-width: 210px;
+  padding: 6px 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  box-shadow: var(--shadow-3);
+  z-index: 4001;
+  font-family: var(--sans);
+}
+
+.menuHeader {
+  padding: 8px 14px 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-1);
+}
+.menuRole {
+  padding: 0 14px 6px;
+  font-size: 11px;
+  color: var(--text-4);
+}
+.menuDivider {
+  height: 1px;
+  background: var(--line-2);
+  margin: 4px 0;
+}
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 7px 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--text-1);
+  text-align: left;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.menuItem:hover { background: var(--bg-hover); color: var(--text-1); }
+.menuItemDanger { color: var(--st-danger); }
+.menuItemDanger:hover { color: var(--st-danger); }
+
+@media print {
+  .rail { display: none; }
+}

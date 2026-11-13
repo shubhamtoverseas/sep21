@@ -1,0 +1,95 @@
+/* Contract record drawers on the shared .ctx-drawer frame (prototype 540px inside a 1px left border): Manage owners
+   (ownersDrawerHTML; its reassign dialog's staff picks on the kit Modal), Remarks and Chat History (the delivered panels). */
+/* drawer and backdrop share the overlay layer: a dialog opened from the drawer (Change / Reassign) is rendered after it and paints above */
+.mcca-backdrop { position: fixed; inset: 0; background: rgba(16, 24, 40, .18); z-index: var(--z-overlay); }
+.mcca-drawer {
+  position: fixed; right: 0; top: 0; height: 100vh; width: calc(min(540px, 92vw) + 1px); background: var(--bg-surface); border-left: 1px solid var(--line-1);
+  box-shadow: 0 12px 32px rgba(16, 24, 40, .14); z-index: var(--z-overlay); display: flex; flex-direction: column; color: var(--text-1); outline: 0;
+  text-align: left; font-size: 14px; line-height: 1.5; font-family: var(--sans); -webkit-font-smoothing: antialiased;
+}
+.mcca-drawer *, .mcca-drawer *::before, .mcca-drawer *::after { box-sizing: border-box; }
+.mcca-drawer button { font-family: inherit; }
+.mcca-drawer .hd { padding: 16px 20px; border-bottom: 1px solid var(--line-1); display: flex; align-items: center; gap: 12px; background: transparent; margin: 0; position: static; height: auto; box-shadow: none; }
+.mcca-drawer .hd > div { flex: 1; min-width: 0; }
+.mcca-drawer .hd h2 { font-size: 16px; line-height: 1.25; margin: 0; font-weight: 600; letter-spacing: -0.01em; color: var(--text-1); }
+.mcca-drawer .hd .sub { font-size: 11.5px; color: var(--text-3); margin-top: 3px; line-height: normal; }
+.mcca-drawer .ctx-icon-btn { width: 30px; height: 30px; border: 0; background: transparent; border-radius: 6px; color: var(--text-3); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; margin: 0; flex: 0 0 auto; }
+.mcca-drawer .ctx-icon-btn:hover { background: var(--bg-hover); color: var(--text-1); }
+.mcca-drawer .bd { flex: 1; min-height: 0; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 0; }
+.mcca-drawer .orow { display: flex; align-items: center; gap: 11px; padding: 11px 0; border-bottom: 1px solid var(--line-2); }
+.mcca-drawer .orow .b { flex: 1; min-width: 0; }
+.mcca-drawer .orow .nm { font-size: 12.5px; font-weight: 500; color: var(--text-1); line-height: normal; }
+.mcca-drawer .orow .nm.unassigned { color: var(--text-4); }
+.mcca-drawer .orow .inactive { margin-left: 6px; font-size: 10.5px; color: #8a5a1f; background: #fdf1dd; border-radius: 3px; padding: 1px 5px; font-weight: 600; }
+.mcca-drawer .orow .rl { font-size: 11px; color: var(--text-4); margin-top: 1px; line-height: normal; }
+.mcca-drawer .orow .ctx-sm { height: 26px; min-height: 26px; padding: 0 10px; font-size: 11.5px; }
+.mcca-drawer .ctx-icon-btn:focus-visible { outline: 2px solid var(--accent-ring); outline-offset: 2px; }
+
+/* the reassign dialog's staff picks (radio list) and its collision note */
+.mcdt-dlg .ctx-picks { display: flex; flex-direction: column; gap: 4px; max-height: 232px; overflow: auto; margin-bottom: 12px; }
+/* flex: 0 0 auto — the picks column has max-height 232px; without it 7+ rows shrink to fit instead of scrolling */
+.mcdt-dlg .ctx-pick { display: flex; align-items: center; gap: 9px; height: 36px; flex: 0 0 auto; width: 100%; padding: 0 11px; border: 1px solid #d5dbe3; border-radius: 7px; background: var(--bg-surface); font: inherit; font-size: 12.5px; line-height: normal; color: var(--text-1); cursor: pointer; text-align: left; }
+.mcdt-dlg .ctx-pick:hover { background: #f7f9fc; }
+.mcdt-dlg .ctx-pick.on { border-color: #cfe0ff; background: #eff4ff; color: var(--link, #1d4ed8); font-weight: 550; }
+.mcdt-dlg .ctx-pick[aria-disabled="true"] { cursor: default; color: var(--text-4); }
+.mcdt-dlg .ctx-pick[aria-disabled="true"]:hover { background: var(--bg-surface); }
+.mcdt-dlg .ctx-pick em { margin-left: auto; font-style: normal; font-size: 10.5px; line-height: normal; color: var(--text-4); font-weight: 400; }
+.mcdt-dlg .ctx-pick-dot { width: 13px; height: 13px; border-radius: 999px; border: 1.5px solid #c3cad4; background: #fff; flex: none; box-sizing: content-box; }
+.mcdt-dlg .ctx-pick.on .ctx-pick-dot { border: 4.5px solid var(--accent); }
+.mcdt-dlg .ctx-pick:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mcdt-dlg .ctx-empty { font-size: 12.5px; line-height: 1.55; color: var(--text-2); background: var(--bg-subtle); border: 1px solid var(--line-1); border-radius: 8px; padding: 11px 12px; margin: 0 0 14px; }
+.mcdt-dlg .note.collide { border-color: #e8b054; background: #fdf6ea; }
+.mcdt-dlg .note .chk { margin-top: 8px; }
+.mcdt-dlg .note .err { margin: 6px 0 0; }
+
+/* buttons inside a drawer (prototype .ctx-btn: 30px); the owners rows keep their 26px variant above */
+.mcca-drawer .ctx-btn { height: 30px; border-radius: 6px; padding: 0 11px; font-size: 12px; font-weight: 550; cursor: pointer; font-family: inherit; line-height: 28px; white-space: nowrap; }
+.mcca-drawer .ctx-btn.primary { border: 1px solid #2563eb; background: #2563eb; color: #fff; }
+.mcca-drawer .ctx-btn.primary:hover { background: #1d4ed8; border-color: #1d4ed8; }
+.mcca-drawer .ctx-btn.secondary { border: 1px solid #d5dbe3; background: #fff; color: #171b22; }
+.mcca-drawer .ctx-btn.secondary:hover { background: #f4f6f8; }
+.mcca-drawer .ctx-btn:disabled { opacity: .45; cursor: not-allowed; }
+.mcca-drawer .ctx-btn.primary:disabled:hover { background: #2563eb; border-color: #2563eb; }
+
+/* ---- Remarks drawer (prototype .ctx-drawer-body gap 16px: remark-composer, remark-list / ctx-state) ---- */
+.mcca-remarks .hd .sub .mono { font-family: var(--mono, "JetBrains Mono", monospace); color: #667080; }
+.mcca-remarks .bd { gap: 16px; }
+.mcca-remarks .remark-composer { border: 1px solid #e3e7ed; border-radius: 8px; padding: 12px; background: #fafbfc; flex: 0 0 auto; font-size: 16px; line-height: normal; }   /* the prototype's line box under the inline textarea */
+.mcca-remarks .remark-composer label { display: block; font-size: 12.5px; font-weight: 600; margin: 0 0 7px; color: #171b22; line-height: normal; }
+.mcca-remarks .remark-composer textarea { display: inline-block; vertical-align: baseline; box-sizing: border-box; width: 100%; min-height: 84px; height: 84px; resize: vertical; margin: 0; border: 1px solid #d5dbe3; border-radius: 7px; padding: 9px 10px; font: 12.5px/1.45 var(--sans, "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif); color: #171b22; background: #fff; outline: none; box-shadow: none; }
+.mcca-remarks .remark-composer textarea:focus { border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+.mcca-remarks .remark-composer textarea:disabled { background: #f6f7f9; color: #667080; }
+.mcca-remarks .remark-compose-foot { display: flex; align-items: center; margin-top: 7px; }
+.mcca-remarks .remark-compose-foot > span { flex: 1; color: #676e77; font: 10.5px var(--mono, "JetBrains Mono", monospace); line-height: normal; }
+.mcca-remarks .remark-compose-foot .ctx-btn + .ctx-btn { margin-left: 8px; }
+.mcca-remarks .remark-list { display: flex; flex-direction: column; gap: 10px; }
+.mcca-remarks .remark-item { border: 1px solid #e3e7ed; border-radius: 8px; padding: 14px; background: #fff; margin: 0; }
+.mcca-remarks .remark-item.editing { border-color: #cfe0ff; background: #f7faff; }
+.mcca-remarks .remark-head { display: flex; align-items: flex-start; gap: 10px; }
+.mcca-remarks .role-avatar { width: 26px; height: 26px; border-radius: 999px; background: #eceff3; color: #667080; display: inline-flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 600; flex-shrink: 0; line-height: normal; }
+.mcca-remarks .remark-head .grow { flex: 1; min-width: 0; font-size: 16px; line-height: normal; }   /* the prototype's line box around the 12.5px name */
+.mcca-remarks .person-name { font-size: 12.5px; font-weight: 550; color: #171b22; overflow-wrap: anywhere; }
+.mcca-remarks .role-suffix { display: block; margin-top: 2px; font-size: 11.5px; color: #676e77; line-height: normal; }
+.mcca-remarks .remark-head time { font: 10.5px var(--mono, "JetBrains Mono", monospace); color: #676e77; line-height: normal; white-space: nowrap; flex: 0 0 auto; }
+.mcca-remarks .remark-body { font-size: 12.5px; line-height: 1.5; color: #3d4552; margin: 9px 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.mcca-remarks .remark-actions { display: flex; align-items: center; gap: 10px; padding-top: 8px; border-top: 1px solid #edf0f4; }
+.mcca-remarks .remark-actions span { flex: 1; font-size: 10.5px; color: #676e77; line-height: normal; }
+.mcca-remarks .remark-actions button { border: 0; background: transparent; padding: 0; font-size: 11.5px; font-weight: 550; color: #1d4ed8; cursor: pointer; font-family: inherit; line-height: normal; }
+.mcca-remarks .remark-actions button:hover { text-decoration: underline; }
+.mcca-remarks .remark-actions button.danger-text { color: #b42318; }
+.mcca-remarks .remark-actions button:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; border-radius: 2px; }
+.mcca-remarks .remark-lock { display: flex; align-items: center; gap: 5px; color: #676e77; font-size: 11px; margin-top: 7px; line-height: normal; }
+.mcca-remarks .remark-lock svg { flex: 0 0 auto; }
+/* loading / error / empty (prototype contextStateHTML / emptyPanel) */
+.mcca-remarks .ctx-state { min-height: 308px; /* prototype: 260px content + 24px padding */ display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 7px; color: #667080; padding: 24px; }
+.mcca-remarks .ctx-state strong { font-size: 13.5px; font-weight: 700; color: #171b22; line-height: normal; }
+.mcca-remarks .ctx-state > span:last-of-type:not(.ctx-state-icon):not(.ctx-spinner) { font-size: 12.5px; max-width: 340px; line-height: 1.5; }
+.mcca-remarks .ctx-state-icon { width: 32px; height: 32px; border-radius: 999px; background: #f0f1f3; color: #667080; display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: normal; }
+.mcca-remarks .ctx-spinner { width: 20px; height: 20px; border-radius: 999px; border: 2px solid #d5dbe3; border-top-color: #2563eb; animation: mcca-spin 1s linear infinite; }
+@keyframes mcca-spin { to { transform: rotate(360deg); } }
+
+/* ---- Chat History drawer: the shared WkdChatHistoryPanel (its .wkd stylesheet) inside the drawer body ---- */
+.mcca-chat .hd .sub .mono { font-family: var(--mono, "JetBrains Mono", monospace); color: #667080; }
+.mcca-chat .bd.wkd { gap: 16px; font-size: 14px; line-height: normal; }   /* the prototype drawer's line box (the Worker page's .wkd root is 1.5) */
+.mcca-chat .bd.wkd .ctx-state { min-height: 308px; }   /* prototype: 260px content + 24px padding */
+.mcca-chat .bd.wkd .chat-history-filtered-empty { min-height: 190px; }

@@ -1,0 +1,92 @@
+.home-page .banner-section {
+    /* background: url('../../../assets/img/home/home-banner.png') no-repeat center center; */
+    background: url('../../../assets/img/home/banner-image.png') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 540px;
+}
+
+.banner-title {
+    font-family: 'Cooper BT';
+    color: #000;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 133.73%;
+    letter-spacing: -1.68px;
+}
+
+.banner-description {
+    color: #000;
+    font-size: 1.5rem;
+    font-style: normal;
+    line-height: 133.73%;
+    letter-spacing: -0.84px;
+}
+
+/* Extra small devices */
+@media (max-width: 575.98px) {
+    .home-page header {
+        padding: 20px;
+    }
+
+    .banner-title {
+        font-size: 2rem;
+    }
+    .home-page .banner-section {
+        height: 330px;
+    }
+
+    .banner-text-wrapper{
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 0.7rem;
+    }
+     .banner-text-wrapper br{
+        display: none;
+    }
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+ .home-page header {
+        padding: 20px;
+    }
+
+    .banner-title {
+        font-size: 2rem;
+    }
+    .home-page .banner-section {
+        height: 330px;
+    }
+
+    .banner-text-wrapper{
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 0.7rem;
+    }
+     .banner-text-wrapper br{
+        display: none;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+.home-page header {
+        padding: 30px;
+    }
+
+    .banner-title {
+        font-size: 2rem;
+    }
+    .home-page .banner-section {
+        height: 400px;
+    }
+
+    .banner-text-wrapper{
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 0.7rem;
+    }
+     .banner-text-wrapper br{
+        display: none;
+    }
+}

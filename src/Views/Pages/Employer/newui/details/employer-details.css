@@ -1,0 +1,427 @@
+/* Employer Details (new UI) — employer-specific additions on top of the shared
+   .wkd page system (WorkerPage/worker-detail/newui/worker-details.css). */
+
+/* prototype employer-details JO listing template: ref · status · open · views · apply% (amount) · start (date) · stage · CS owner (staff) */
+.wkd.emd .emd-grid-jo {
+  display: grid;
+  grid-template-columns:
+    minmax(var(--mc-colc-ref-min), var(--mc-colc-ref-max))
+    minmax(var(--mc-colc-status-min), var(--mc-colc-status-max))
+    minmax(var(--mc-colc-amount-min), var(--mc-colc-amount-max))
+    minmax(var(--mc-colc-amount-min), var(--mc-colc-amount-max))
+    minmax(var(--mc-colc-amount-min), var(--mc-colc-amount-max))
+    minmax(var(--mc-colc-date-min), var(--mc-colc-date-max))
+    var(--mc-col-stage)
+    minmax(var(--mc-colc-staff-min), var(--mc-colc-staff-max));
+  gap: 0 var(--mc-col-gap);
+}
+
+.wkd.emd .emd-mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #171b22;
+  font-variant-numeric: tabular-nums;
+}
+
+.wkd.emd .emd-stage-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.wkd.emd .emd-stage {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: default;
+}
+
+.wkd.emd .emd-stage svg {
+  flex: none;
+}
+
+.wkd.emd .emd-stage.invited { color: var(--stage-invited); }
+.wkd.emd .emd-stage.applied { color: var(--stage-applied); }
+.wkd.emd .emd-stage.matched { color: var(--stage-matched); }
+.wkd.emd .emd-stage.pending { color: var(--stage-pending); }
+.wkd.emd .emd-stage.upcoming { color: var(--stage-upcoming); }
+.wkd.emd .emd-stage.completed { color: var(--stage-completed); }
+.wkd.emd .emd-stage.cancelled { color: var(--stage-cancelled); }
+
+/* audit D-03: Job Offer tab error row — copy + Retry */
+.wkd.emd .emd-jo-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.wkd.emd .emd-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* toolbar select matches the 30px listing search box (prototype .wkd-listing-select) */
+.wkd.emd .wkd-listing-toolbar .nus-trigger {
+  min-height: 30px;
+  height: 30px;
+  padding: 0 10px;
+  border-color: #e3e7ed;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.wkd.emd .emd-loading {
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
+}
+
+/* ── Details tab cards ───────────────────────────────────────────────────── */
+.wkd.emd .emd-details {
+  max-width: 1240px;
+}
+
+.wkd.emd .emd-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+
+/* the card-level server error is a grid child — without a full-row span it stole cell (1,1) and
+   pushed every field one column over (Mubin/user, 6 Nov) */
+.wkd.emd .emd-card-error {
+  grid-column: 1 / -1;
+}
+
+@container (max-width: 45rem) {
+  .wkd.emd .emd-grid-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.wkd.emd .emd-card-foot {
+  margin-top: 12px;
+}
+
+.wkd.emd .emd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.wkd.emd .emd-table th {
+  height: 34px;
+  padding: 0 12px;
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6e757f;
+  border-bottom: 1px solid #e3e7ed;
+  white-space: nowrap;
+}
+
+.wkd.emd .emd-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #edf0f4;
+  color: #171b22;
+  vertical-align: middle;
+}
+
+.wkd.emd .emd-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.wkd.emd .emd-primary {
+  font-weight: 500;
+}
+
+.wkd.emd .emd-row-actions {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.wkd.emd .emd-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #edf0f4;
+}
+
+.wkd.emd .emd-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #667080;
+}
+
+.wkd.emd .emd-count b {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: #171b22;
+}
+
+/* ── Job Offer record ────────────────────────────────────────────────────── */
+
+/* ── Legacy popup skin (interview / confirm / interpreter modals rendered
+      inside this page — same approach as chat's .gc-skin, scoped to .wkd.emd) ── */
+.wkd.emd .modalCustom {
+  font-family: var(--sans);
+  color: var(--text-1);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wkd.emd .modalCustom .modal-content {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(16, 24, 40, 0.22);
+  overflow: hidden;
+  background: #fff;
+}
+
+.wkd.emd .modalCustom .modal-header {
+  padding: 14px 18px !important;
+  border-bottom: 1px solid #e3e7ed !important;
+  background: #fff !important;
+}
+
+.wkd.emd .modalCustom .modal-title {
+  font-size: 14.5px !important;
+  font-weight: 650 !important;
+  color: #171b22 !important;
+}
+
+.wkd.emd .modalCustom .modal-body {
+  font-size: 13px;
+  color: #3d4552;
+}
+
+.wkd.emd .modalCustom .modal-footer,
+.wkd.emd .modalCustom .modal-bg-footer {
+  padding: 12px 18px !important;
+  border-top: 1px solid #e3e7ed;
+  background: #f8f9fb;
+}
+
+.wkd.emd .modalCustom .btn {
+  height: 32px;
+  padding: 0 14px !important;
+  border-radius: 7px !important;
+  font-family: var(--sans) !important;
+  font-size: 12.5px !important;
+  font-weight: 550 !important;
+  line-height: 30px !important;
+}
+
+.wkd.emd .modalCustom .btn.filled-btn,
+.wkd.emd .modalCustom .btn.btn-success {
+  background: #2563eb !important;
+  border: 1px solid #2563eb !important;
+  color: #fff !important;
+}
+
+.wkd.emd .modalCustom .btn.filled-btn:hover,
+.wkd.emd .modalCustom .btn.btn-success:hover {
+  background: #1e51c9 !important;
+  border-color: #1e51c9 !important;
+}
+
+.wkd.emd .modalCustom .btn.btn-outline,
+.wkd.emd .modalCustom .btn.btn-outline-primary {
+  background: #fff !important;
+  border: 1px solid #d5dbe3 !important;
+  color: #171b22 !important;
+}
+
+.wkd.emd .modalCustom .btn.btn-outline:hover,
+.wkd.emd .modalCustom .btn.btn-outline-primary:hover {
+  border-color: #2563eb !important;
+  color: #2563eb !important;
+}
+
+.wkd.emd .modalCustom .form-control {
+  border: 1px solid #d5dbe3 !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  font-size: 12.5px !important;
+  color: #171b22 !important;
+  background-color: #fff !important;
+  font-family: var(--sans);
+}
+
+.wkd.emd .modalCustom .form-control:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 2px #e8effd !important;
+}
+
+/* Change CS Owner — legacy .search-cs assumes a 44px input; re-centre the
+   prefix icon and search glyph on the 36px new-UI control */
+.wkd.emd .modalCustom .search-cs .form-control {
+  height: 36px !important;
+  padding: 0 36px 0 44px !important;
+}
+
+.wkd.emd .modalCustom .search-cs .cs-prefix-wrapper {
+  top: 50%;
+  left: 10px;
+  width: 24px;
+  height: 24px;
+  transform: translateY(-50%);
+  border-color: #d5dbe3;
+  border-radius: 4px;
+  background: #f6f7f9;
+}
+
+.wkd.emd .modalCustom .search-cs .cs-prefix-wrapper img {
+  width: 14px;
+  height: 14px;
+}
+
+.wkd.emd .modalCustom .search-cs > i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6e757f;
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.wkd.emd .wkd-main {
+  padding: 16px 28px 28px;
+  background: #f6f7f9;
+  border-top: 1px solid #e3e7ed;
+}
+
+.wkd.emd .wkd-avatar {
+  color: #4e5560;
+}
+
+.wkd.emd .wkd-tab {
+  padding: 11px 2px 13px;
+}
+
+.wkd.emd .emd-details .g2-card {
+  padding: 18px 20px;
+}
+
+.wkd.emd .emd-details .g2-card-header {
+  min-height: 0;
+  padding: 0 0 14px;
+}
+
+.wkd.emd .emd-details .g2-title {
+  font-weight: 600;
+}
+
+.wkd.emd .emd-details .g2-button {
+  min-height: 28px;
+  height: 28px;
+  gap: 6px;
+  padding: 0 11px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.wkd.emd .emd-details .wkd-card-body {
+  padding: 16px 0 0;
+}
+
+.wkd.emd .emd-details .wkd-lbl {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #667080;
+  text-transform: none;
+}
+
+.wkd.emd .emd-details .wkd-read-value.mono {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.wkd.emd .emd-details .emd-card-foot button {
+  font-size: 12.5px;
+}
+
+/* prototype tables are flush grids: no cell inset, 16px column gaps */
+.wkd.emd .emd-details .emd-table th {
+  height: auto;
+  padding: 0 16px 8px 0;
+}
+
+.wkd.emd .emd-details .emd-table td {
+  padding: 11px 16px 11px 0;
+}
+
+.wkd.emd .emd-details .emd-table th:last-child,
+.wkd.emd .emd-details .emd-table td:last-child {
+  padding-right: 0;
+}
+
+.wkd.emd .wkd-edit-drawer {
+  width: min(540px, 100%);
+}
+
+/* prototype employer .det-grid is two columns (worker system is three) */
+.wkd.emd .emd-details .det-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 32px;
+}
+
+@container (max-width: 45rem) {
+  .wkd.emd .emd-details .det-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.wkd.emd .emd-grid-oc {
+  gap: 14px 24px;
+}
+
+/* table cards (Current Worker / Family Details) */
+.wkd.emd .emd-details .wkd-card-body.emd-card-body-table {
+  padding: 14px 0 4px;
+}
+
+.wkd.emd .mc-worker-listing-grid {
+  width: 100%;
+}
+
+.wkd.emd .mc-worker-listing-row > div,
+.wkd.emd .mc-worker-listing-header > * {
+  min-width: 0;
+}
+
+.wkd.emd .mc-listing-primary,
+.wkd.emd .mc-listing-owner-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* U-0256: the denied-row tag beside the neutral reference (PERM: a denied row has a truthful unavailable state, not a dead link) */
+.wkd.emd .emd-row-unavailable {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: #f4f6f8;
+  color: #667080;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 16px;
+  vertical-align: middle;
+}

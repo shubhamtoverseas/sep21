@@ -1,0 +1,9 @@
+.manage-search-section .iphone14pro {
+    width: 234px;
+    height: 480px;
+    flex-shrink: 0;
+}
+
+.app-download-buttons img {
+    max-width: 154px;
+}

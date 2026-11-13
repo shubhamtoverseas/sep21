@@ -1,0 +1,357 @@
+
+.pms-wrap * {
+    box-sizing: border-box;
+}
+.pms-wrap .pms-tier-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.pms-wrap .pms-tier-label .pms-tier-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.pms-wrap .pms-tier-desc {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-bottom: 8px;
+    margin-left: 13px;
+    line-height: 1.45;
+}
+
+.pms-wrap .pms-mrow {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+    gap: 5px;
+}
+
+.pms-wrap .pms-mrow .pms-mbtn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 4px 7px;
+    border-radius: 6px;
+    border: 1.5px solid var(--line-1);
+    background: var(--bg-surface);
+    cursor: pointer;
+    transition: border-color 0.12s, background 0.12s, box-shadow 0.13s;
+    position: relative;
+    font-family: var(--sans);
+}
+
+.pms-wrap .pms-mrow .pms-mbtn:hover {
+    border-color: var(--accent);
+    background: var(--accent-bg);
+}
+
+.pms-wrap .pms-mrow .pms-mbtn.pms-mbtn--selected-t1 {
+    border-color: var(--accent);
+    background: var(--accent-bg);
+    box-shadow: 0 0 0 3px oklch(0.52 0.17 258 / 0.15);
+}
+
+.pms-wrap .pms-mrow .pms-mbtn.pms-mbtn--selected-t2 {
+    border-color: var(--st-warning);
+    background: var(--st-warning-bg);
+    box-shadow: 0 0 0 3px oklch(0.55 0.13 65 / 0.15);
+}
+
+.pms-wrap .pms-mrow .pms-mbtn.pms-mbtn--disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.pms-wrap .pms-mrow .pms-mbtn .pms-tier-dot-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.pms-wrap .pms-mrow .pms-mbtn .pms-mico {
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pms-wrap .pms-mrow .pms-mbtn .pms-mlbl {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: var(--text-2);
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.pms-wrap .pms-mrow .pms-mbtn.pms-mbtn--selected-t1 .pms-mlbl {
+    color: var(--accent);
+}
+
+.pms-wrap .pms-mrow .pms-mbtn.pms-mbtn--selected-t2 .pms-mlbl {
+    color: #92400E;
+}
+
+.pms-wrap .pms-fps-sub {
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-ring);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    animation: pmsFadeIn 0.15s ease;
+}
+
+.pms-wrap .pms-fps-sub .pms-fps-sub-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-fg);
+    margin-bottom: 9px;
+}
+
+.pms-wrap .pms-fps-sub .pms-fps-opts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.pms-wrap .pms-fps-sub .pms-fps-opts .pms-fps-opt {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1.5px solid var(--line-1);
+    background: var(--bg-surface);
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--sans);
+    transition: border-color 0.12s, background 0.12s;
+}
+
+.pms-wrap .pms-fps-sub .pms-fps-opts .pms-fps-opt:hover {
+    border-color: var(--accent);
+}
+
+.pms-wrap .pms-fps-sub .pms-fps-opts .pms-fps-opt.pms-fps-opt--t1 {
+    border-color: var(--accent);
+    background: var(--accent-bg);
+}
+
+.pms-wrap .pms-fps-sub .pms-fps-opts .pms-fps-opt.pms-fps-opt--t2 {
+    border-color: var(--st-warning);
+    background: var(--st-warning-bg);
+}
+
+.pms-wrap .pms-fps-sub .pms-fps-opts .pms-fps-opt .pms-fps-opt-ico {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.pms-wrap .pms-fps-sub .pms-fps-opts .pms-fps-opt .pms-fps-opt-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-1);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.pms-wrap .pms-fps-sub .pms-fps-opts .pms-fps-opt .pms-fps-opt-sub {
+    font-size: 10.5px;
+    color: var(--text-3);
+    display: block;
+    line-height: 1.4;
+}
+
+.pms-wrap .pms-callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 1.55;
+    animation: pmsFadeIn 0.18s ease;
+}
+
+.pms-wrap .pms-callout.pms-callout--t1 {
+    background: var(--st-success-bg);
+    border: 1px solid var(--st-success-bd);
+    color: var(--st-success);
+}
+
+.pms-wrap .pms-callout.pms-callout--t2 {
+    background: var(--st-warning-bg);
+    border: 1px solid var(--st-warning-bd);
+    color: #7A4500;
+}
+
+.pms-wrap .pms-callout .pms-callout-ico {
+    flex-shrink: 0;
+    font-size: 13px;
+    margin-top: 1px;
+}
+
+.pms-wrap .pms-divider {
+    border: none;
+    border-top: 1px solid var(--line-1);
+    margin: 12px 0;
+}
+
+.pms-modal-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+}
+
+.pms-modal-tag.pms-modal-tag--t1 {
+    background: var(--st-success-bg);
+    color: var(--st-success);
+    border: 1px solid var(--st-success-bd);
+}
+
+.pms-modal-tag.pms-modal-tag--t2 {
+    background: var(--st-warning-bg);
+    color: #7A4500;
+    border: 1px solid var(--st-warning-bd);
+}
+
+@keyframes pmsFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Payment summary card ────────────────────────────────────────────────── */
+
+.pms-wrap .payment-summary {
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 14px;
+    animation: pmsFadeIn 0.18s ease;
+}
+
+.pms-wrap .payment-summary.success {
+    background: var(--st-success-bg);
+    border: 1px solid var(--st-success-bd);
+}
+
+.pms-wrap .payment-summary.warning {
+    background: var(--st-warning-bg);
+    border: 1px solid var(--st-warning-bd);
+}
+
+.pms-wrap .payment-summary .sum-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+}
+
+.pms-wrap .payment-summary.success .sum-label {
+    color: oklch(0.40 0.10 145);
+}
+
+.pms-wrap .payment-summary.warning .sum-label {
+    color: #7A4500;
+}
+
+.pms-wrap .payment-summary .sum-amt {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: var(--mono);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+}
+
+.pms-wrap .payment-summary.success .sum-amt {
+    color: var(--st-success);
+}
+
+.pms-wrap .payment-summary.warning .sum-amt {
+    color: #92400E;
+}
+
+.pms-wrap .payment-summary .sum-note {
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.pms-wrap .payment-summary.success .sum-note {
+    color: var(--st-success);
+}
+
+.pms-wrap .payment-summary.warning .sum-note {
+    color: #7A4500;
+}
+
+/* ---- Payment entry form (reference RecordPaymentModal): the Pay Remaining Balance modal and the creation panel ---- */
+.invd .prb-modal .body { max-height: calc(100vh - 220px); overflow-y: auto; }
+.invd .pe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.invd .pe-field { display: flex; flex-direction: column; gap: 4px; min-width: 0; margin-bottom: 12px; }
+.invd .pe-field .pe-loading { display: flex; align-items: center; color: var(--text-3); }
+.invd .pe-field > label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-4); font-weight: 600; margin: 0; }
+.invd .pe-locked { display: flex; align-items: center; gap: 7px; background: var(--bg-subtle); }
+.invd .pe-locked svg { color: var(--text-4); flex-shrink: 0; }
+.invd .pe-hint { font-size: 11px; color: var(--text-3); }
+.invd .pe-load-error { align-items: center; margin-bottom: 12px; }
+.invd .pe-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.invd .pe-fields > .pe-span2, .invd .pe-fields > .cash-note { grid-column: 1 / -1; }
+.invd .cash-note { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; padding: 11px 13px; border-radius: 6px; background: var(--st-info-bg); border: 1px solid var(--st-info-bd); font-size: 12px; color: var(--text-2); line-height: 1.55; }
+.invd .cash-note .ic { color: var(--st-info); flex: 0 0 auto; margin-top: 1px; }
+.invd .cash-note .t { font-size: 12.5px; font-weight: 600; color: var(--text-1); margin-bottom: 3px; }
+.invd .cash-note p { font-size: 12px; color: var(--text-2); line-height: 1.55; margin: 0; }
+.invd .cash-note .after { margin-top: 6px; font-size: 12px; color: var(--text-3); }
+.invd .pe-form .pe-resultnote { margin: 0 0 14px; padding: 10px 12px; border-radius: 6px; font-size: 12px; line-height: 1.5; color: var(--text-2); }
+.invd .pe-form .pe-resultnote.paid { background: var(--st-success-bg); border: 1px solid var(--st-success-bd); }
+.invd .pe-form .pe-resultnote.pending { background: var(--st-warning-bg); border: 1px solid var(--st-warning-bd); }
+.invd .pe-form .pe-resultnote strong { color: var(--text-1); }
+.invd .pe-foot-note { font-size: 11.5px; color: var(--st-danger); margin-right: auto; align-self: center; }
+/* in a panel the actions sit under the form, as the modal's footer row */
+.invd .pe-panel-foot { display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding-top: 14px; border-top: 1px solid var(--line-2); }
+@media (max-width: 560px) {
+    .invd .pe-grid, .invd .pe-fields { grid-template-columns: 1fr; }
+}
+
+/* ---- Confirm Payment modal (bundle pay-modal) ---- */
+.invd .modal-card.pay-modal { width: 460px; max-width: 100%; padding: 0; }
+.invd .pay-modal .pm-head { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--line-2); }
+.invd .pay-modal .pm-head .sym { width: 40px; height: 40px; border-radius: 9px; background: var(--accent-bg); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.invd .pay-modal .pm-head.review .sym { background: var(--st-warning-bg); color: var(--st-warning); }
+.invd .pay-modal .pm-head h2 { margin: 0; font-size: 16px; font-weight: 600; color: var(--text-1); }
+.invd .pay-modal .pm-head .msub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+.invd .pay-modal .pm-body { padding: 14px 20px 0; }
+.invd .pay-modal .pm-foot { display: flex; gap: 8px; justify-content: flex-end; padding: 16px 20px 18px; }
+.invd .pay-modal .pm-instruct { margin: 12px 20px 0; font-size: 12px; color: var(--text-3); line-height: 1.5; }
+.invd .pay-modal .pm-foot { display: flex; flex-direction: column; gap: 10px; align-items: stretch; padding: 16px 20px 18px; }
+
+/* ---- Tier-2 proof-of-payment dropzone ---- */
+.pms-proof { border: 1.5px dashed var(--line-1); border-radius: 8px; padding: 18px; text-align: center; background: var(--bg-subtle); cursor: pointer; color: var(--text-3); }
+.pms-proof:not(.has-file):hover { border-color: var(--accent); background: var(--accent-bg); }
+.pms-proof > i { font-size: 22px; }
+.pms-proof .t { font-size: 13px; font-weight: 500; color: var(--text-1); margin-top: 6px; }
+.pms-proof .h { font-size: 11px; color: var(--text-3); margin-top: 4px; }
+.pms-proof.has-file { display: flex; align-items: center; gap: 10px; text-align: left; cursor: default; padding: 8px 10px; }
+.pms-proof.has-file .ic { width: 26px; height: 26px; border-radius: 5px; background: var(--bg-surface); border: 1px solid var(--line-1); display: inline-flex; align-items: center; justify-content: center; color: var(--text-3); flex-shrink: 0; }
+.pms-proof.has-file .meta { flex: 1; }
+.pms-proof.has-file .meta .nm { font-size: 12.5px; font-weight: 500; color: var(--text-1); }
+.pms-proof.has-file .meta .sz { font-size: 11px; color: var(--text-3); font-family: var(--mono); }
+.pms-proof-note { margin-top: 10px; padding: 8px 12px; background: var(--st-warning-bg); border: 1px solid var(--st-warning-bd); border-radius: 6px; font-size: 12px; color: var(--text-2); }

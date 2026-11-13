@@ -1,0 +1,57 @@
+/* remarks */
+.remarks-title{
+    font-family: 'Roboto';
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 33.6px;
+}
+.remarks-head {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 22.4px;
+    color: #5b5b5b;
+}
+.remarks-list{
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 200px;
+}
+.remarks-block{
+    border-bottom: 1px dashed #0000001A;
+}
+.remarks-block:last-child{
+    border: none;
+    margin-bottom: 0;
+}
+.remarks-block p{
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+}
+.remarks-box {
+    padding: 12px;
+}
+/* Remark row actions — new-UI line icons (delete / edit) */
+.remark-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.remark-act {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+.remark-act.del {
+    color: var(--st-danger, #dc2626);
+}
+.remark-act.del:hover {
+    color: var(--st-danger-strong, #b91c1c);
+}
+.remark-act.edit {
+    color: var(--accent, #2563eb);
+}
+.remark-act.edit:hover {
+    color: var(--accent-hover, #1d4ed8);
+}

@@ -1,0 +1,17 @@
+.table.dataTable {
+    margin: 0!important;
+}
+
+table.row-hover > tbody > tr:hover > td {
+    background-color: #f5f5f5;
+}
+
+.commonTable tbody tr.ct-row {
+    cursor: pointer;
+}
+
+/* Whole-row opening (SR-05): keyboard-activatable rows show the platform focus ring */
+.commonTable tbody tr[data-row-open]:focus-visible {
+    outline: 2px solid #2f6fec;
+    outline-offset: -2px;
+}

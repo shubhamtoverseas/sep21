@@ -1,0 +1,1996 @@
+/* Invoice Detail — new UI. Exact styles from the design bundle (invoice-detail.html).
+   Scoped under .invd to prevent leakage; detail components wrap content in a .invd container.
+   Tokens come from src/tokens.css. */
+
+.invd {
+  font-family: var(--sans);
+  /* reference --mc-* link / focus tokens (html[data-mc-module]), scoped to the invoice screens */
+  --mc-link: #1d4ed8;
+  --mc-focus: #2f6fec;
+  --mc-focus-bg: #edf2ff;
+  --mc-text-code: #3b3b41;
+  --mc-text-4: #676e77;
+}
+/* Detail page root (the .invd holding .detail-header): the reference body type for text that sets no size of its own
+   (Bootstrap's body is 16px / #000) and main.detail-page's 64px bottom padding */
+.invd:has(> .detail-header) {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-1);
+  padding-bottom: 64px;
+}
+
+.invd .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+}
+.invd .btn:focus-visible {
+  outline: 2px solid var(--accent-ring); outline-offset: 1px;
+}
+/* Bootstrap 4's .btn focus glow and pressed colours (.btn-secondary:active #545b62, .btn-primary:active #0062cc) — the
+   reference has hover and the focus-visible outline only, so a pressed button keeps its hover look */
+.invd .btn:focus,
+.invd .btn:not(:disabled):not(.disabled):active:focus {
+  box-shadow: none;
+}
+.invd .btn-primary:not(:disabled):not(.disabled):active {
+  background: var(--accent-hover); border-color: transparent; color: var(--text-on-accent);
+}
+.invd .btn-secondary:not(:disabled):not(.disabled):active {
+  background: var(--bg-hover); border-color: var(--line-strong); color: var(--text-1);
+}
+.invd .btn-danger:not(:disabled):not(.disabled):active {
+  background: var(--st-danger); border-color: transparent; color: #fff;
+}
+.invd .btn.md {
+  height: 32px; padding: 0 12px;
+}
+.invd .btn.lg {
+  height: 36px; padding: 0 14px; font-size: 13px;
+}
+.invd .btn-primary {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+.invd .btn-primary:hover {
+  background: var(--accent-hover);
+}
+.invd .btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-1);
+  border-color: var(--line-1);
+}
+.invd .btn-secondary:hover {
+  background: var(--bg-hover); border-color: var(--line-strong);
+}
+.invd .btn-ghost {
+  background: transparent;
+  color: var(--text-2);
+}
+.invd .btn-ghost:hover {
+  background: var(--bg-hover); color: var(--text-1);
+}
+.invd .btn-icon {
+  width: 28px;
+  padding: 0;
+  color: var(--text-3);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+.invd .btn-icon:hover {
+  background: var(--bg-hover); color: var(--text-1);
+}
+.invd .btn-icon.outlined {
+  border-color: var(--line-1); background: var(--bg-surface);
+}
+.invd .btn .caret {
+  width: 12px; height: 12px; color: var(--text-3);
+}
+.invd .btn-secondary.has-pop[aria-expanded="true"],
+.invd .btn-icon[aria-expanded="true"] {
+  background: var(--bg-hover); border-color: var(--line-strong);
+}
+.invd .input {
+  height: 28px;
+  padding: 0 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  font-family: var(--sans);
+  width: 100%;
+}
+.invd .input::placeholder {
+  color: var(--text-4);
+}
+.invd .input:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-bg);
+}
+.invd .input.md {
+  height: 32px;
+}
+.invd .input.with-icon {
+  padding-left: 28px;
+}
+.invd .field {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.invd .field > label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0; /* Bootstrap's global label margin would double the flex gap */
+}
+/* Detail action modals use the reference Field: label 10.5px / 600 / .08em / text-4, 12px below the field */
+.invd .action-modal-card .field {
+  margin-bottom: 12px;
+}
+.invd .action-modal-card .field > label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-4);
+  letter-spacing: 0.08em;
+}
+.invd .modal-veil,
+.invd.modal-veil {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: var(--z-overlay);
+  display: flex; align-items: center; justify-content: center;
+}
+.invd .modal-card {
+  background: var(--bg-surface);
+  border-radius: 12px;
+  box-shadow: var(--shadow-3);
+  width: 480px; max-width: 92vw;
+  overflow: hidden;
+}
+.invd .modal-card .head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line-2);
+}
+.invd .modal-card .head .ico {
+  width: 36px; height: 36px;
+  border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.invd .modal-card .head h2 {
+  margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-1); line-height: 1.5;
+}
+.invd .modal-card .body {
+  padding: 18px 22px;
+}
+.invd .modal-card .body p {
+  font-size: 13px; color: var(--text-2); line-height: 1.5; margin: 0 0 14px;
+}
+.invd .modal-card .foot {
+  padding: 14px 22px;
+  border-top: 1px solid var(--line-2);
+  display: flex; justify-content: flex-end; gap: 10px;
+  background: var(--bg-subtle);
+}
+.invd .input.invalid {
+  border-color: var(--st-danger) !important;
+}
+.invd .refund-type-btn {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 8px 16px; border-radius: 9px; cursor: pointer;
+  background: var(--bg-surface); border: 1px solid var(--line-1);
+  font-size: 13.5px; font-weight: 600; color: var(--text-1);
+  line-height: 1.3; text-align: center;
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.invd .refund-type-btn:hover:not(:disabled) {
+  border-color: var(--line-strong);
+}
+.invd .refund-type-btn.active {
+  border-color: var(--accent); background: var(--accent-bg); box-shadow: 0 0 0 2px var(--accent-bg);
+}
+.invd .refund-type-btn:disabled {
+  opacity: 0.42; cursor: not-allowed;
+}
+.invd .refund-type-btn .radio {
+  width: 15px; height: 15px; border-radius: 999px; border: 1.5px solid var(--line-strong);
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.invd .refund-type-btn.active .radio {
+  border-color: var(--accent); background: var(--accent); color: #fff;
+}
+.invd .fixture-bar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--line-1);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: var(--topbar-h);
+  z-index: var(--z-sticky);
+}
+.invd .fixture-bar .lbl {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  margin-right: 4px;
+}
+.invd .fixture-bar .pills {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  flex: 1;
+  padding-bottom: 2px;
+}
+.invd .fixture-bar .pills::-webkit-scrollbar {
+  height: 4px;
+}
+.invd .fixture-bar .pills::-webkit-scrollbar-thumb {
+  background: var(--line-1); border-radius: 999px;
+}
+.invd .fixture-bar .pill {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid var(--line-1);
+  background: var(--bg-surface);
+  font-size: 11.5px;
+  font-family: var(--mono);
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: border-color var(--dur-2) var(--ease), background var(--dur-2) var(--ease);
+}
+.invd .fixture-bar .pill:hover {
+  border-color: var(--line-strong); color: var(--text-1); background: var(--bg-hover);
+}
+.invd .fixture-bar .pill.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.invd .fixture-bar .pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.invd .fixture-bar .pill.active .dot {
+  opacity: 1;
+}
+.invd .fixture-bar .scenario {
+  margin-left: 10px;
+  font-size: 11.5px;
+  color: var(--text-3);
+  white-space: nowrap;
+  max-width: 460px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-left: 1px solid var(--line-2);
+  padding-left: 12px;
+}
+.invd .detail-header {
+  padding: 24px 28px 0;
+  max-width: 1500px;
+}
+.invd .detail-header .crumb-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+.invd .detail-header .crumb-row a {
+  color: var(--text-3); cursor: pointer;
+}
+.invd .detail-header .crumb-row a:hover {
+  color: var(--text-1);
+}
+.invd .detail-header .crumb-row .sep {
+  color: var(--text-4);
+}
+.invd .detail-header .crumb-row .here {
+  color: var(--text-1); font-weight: 500; font-family: var(--mono);
+}
+.invd .detail-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.invd .detail-title-row h1 {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.5;
+  color: var(--text-1);
+}
+.invd .detail-title-row .copy {
+  width: 24px; height: 24px;
+  border-radius: 5px;
+  border: 1px solid var(--line-1);
+  background: var(--bg-surface);
+  color: var(--text-3);
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.invd .detail-title-row .copy:hover {
+  background: var(--bg-hover); color: var(--text-1);
+}
+.invd .detail-title-row .actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+/* Follow Up launcher count — the reference sets it 6px after the label (the shared launcher uses 4px) */
+.invd .detail-title-row .actions .fu-count {
+  margin-left: 6px;
+}
+.invd .state-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 14px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.invd .state-strip .seg {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.invd .state-strip .seg .k {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+.invd .state-strip .sep {
+  width: 1px;
+  height: 28px;
+  background: var(--line-2);
+}
+.invd .state-strip .seg .v.plain {
+  font-size: 13px;
+  color: var(--text-1);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.invd .state-strip .seg .v.approval {
+  font-size: 13px;
+  font-weight: 500;
+}
+.invd .state-strip .seg .v.approval.approved {
+  color: var(--text-2);
+}
+.invd .state-strip .seg .v.approval.unapproved {
+  color: var(--st-warning);
+}
+.invd .header-context {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.invd .context-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.invd .context-card .k {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-4);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.invd .context-card .v {
+  font-size: 13.5px;
+  color: var(--text-1);
+  font-weight: 500;
+  line-height: 1.35;
+}
+.invd .context-card .v .ref {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  font-weight: 400;
+  margin-top: 2px;
+}
+/* Handling Staff — the reference avatar beside the name as stored */
+.invd .context-card .v.with-avatar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+/* Employer — the name (· 中文 muted) over its code (reference .id2) */
+.invd .context-card .v .id2 {
+  display: inline-flex; flex-direction: column; gap: 2px; min-width: 0; vertical-align: middle;
+}
+.invd .context-card .v .id2 .zh {
+  color: var(--text-3); font-weight: 500;
+}
+.invd .context-card .v.worker-id {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1px;
+}
+.invd .context-card .v.worker-id .worker-name-line {
+  font-size: 13.5px; font-weight: 500;
+}
+/* Record codes — reference .mc-link-code / .mc-code-text: mono 12px / 400 / 18px. Sheet row 8: a code that opens is the
+   record-code blue, never underlined (D-LINK-01); one that does not is neutral code text */
+.invd .context-card .code-link,
+.invd .context-card .code-text {
+  width: fit-content;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--mc-text-code);
+}
+.invd .context-card .code-link,
+.invd .context-card .code-link:hover {
+  color: var(--mc-link);
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Dates — Created / Updated as DD/MM/YYYY, mono text-1 */
+.invd .context-card .v.dates {
+  font-size: 12px; line-height: 1.5;
+}
+.invd .context-card .v.dates .date-v {
+  font-family: var(--mono); color: var(--text-1);
+}
+.invd .rib-ref-neutral { font-family: var(--mono); color: var(--text-2); }
+.invd .context-card.warning {
+  background: var(--st-warning-bg);
+  border-color: var(--st-warning-bd);
+}
+.invd .context-card.warning .k {
+  color: var(--st-warning);
+}
+.invd .context-card.danger {
+  background: var(--st-danger-bg);
+  border-color: var(--st-danger-bd);
+}
+.invd .context-card.danger .k {
+  color: var(--st-danger);
+}
+.invd .context-card.info {
+  background: var(--st-info-bg);
+  border-color: var(--st-info-bd);
+}
+.invd .context-card.info .k {
+  color: var(--st-info);
+}
+.invd .admin-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid;
+}
+.invd .admin-warning.attention {
+  background: var(--st-attention-bg);
+  border-color: var(--st-attention-bd);
+  color: var(--st-attention);
+}
+.invd .admin-warning.danger {
+  background: var(--st-danger-bg);
+  border-color: var(--st-danger-bd);
+  color: var(--st-danger);
+}
+.invd .admin-warning.warning {
+  background: var(--st-warning-bg);
+  border-color: var(--st-warning-bd);
+  color: var(--st-warning);
+}
+.invd .admin-warning .body {
+  flex: 1;
+  font-size: 13px;
+  color: var(--text-1);
+  line-height: 1.5;
+}
+.invd .admin-warning .body .title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.invd .admin-warning .body .desc {
+  color: var(--text-2); font-size: 12.5px;
+}
+.invd .admin-warning .ico {
+  flex-shrink: 0; margin-top: 1px;
+}
+.invd .detail-body {
+  padding: 0 28px;
+  max-width: 1500px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 24px;
+}
+@media (max-width: 1280px) {
+.invd .detail-body {
+  grid-template-columns: 1fr;
+}
+}
+.invd .detail-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.invd .detail-section > .head {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.invd .detail-section > .head h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.5;
+  color: var(--text-1);
+}
+.invd .detail-section > .head .helper {
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+.invd .detail-section > .body {
+  padding: 16px 18px;
+}
+.invd .fs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.invd .fs-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  padding: 8px 0;
+  gap: 12px;
+  border-bottom: 1px solid var(--line-2);
+}
+.invd .fs-row:last-child {
+  border-bottom: none;
+}
+.invd .fs-row .label {
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+.invd .fs-row .label .help-ico {
+  display: inline-flex;
+  margin-left: 4px;
+  color: var(--text-4);
+  vertical-align: -2px;
+  cursor: help;
+}
+/* Help tooltip (reference Tooltip): the dark bubble above the icon after 200ms; in the summary it opens from the icon
+   rightwards, so a long tip stays inside the section, which clips overflow */
+.invd .fs-row .label .help-ico.tt .tt-bubble {
+  left: -8px;
+  transform: none;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.invd .fs-row .v {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 13.5px;
+  color: var(--text-1);
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+.invd .fs-row.zero .v {
+  color: var(--text-4); font-weight: 400;
+}
+.invd .fs-row.adj-pos .v {
+  color: var(--st-warning);
+}
+.invd .fs-row.adj-neg .v {
+  color: var(--st-success);
+}
+.invd .fs-row.unset .v {
+  color: var(--st-danger);
+}
+.invd .fs-row.bd .v {
+  color: var(--st-danger);
+}
+.invd .fs-row.refunded .v {
+  color: var(--st-neutral);
+}
+.invd .fs-row.muted-line .label {
+  color: var(--text-4);
+}
+.invd .fs-row.muted-line .v {
+  color: var(--text-4);
+}
+.invd .fs-row.prominent {
+  padding: 10px 4px;
+  border-top: 1px solid var(--line-1);
+  margin-top: 4px;
+}
+.invd .fs-row.prominent .label {
+  color: var(--text-1); font-weight: 500; font-size: 13px;
+}
+.invd .fs-row.prominent .v {
+  font-size: 18px; font-weight: 600; letter-spacing: -0.01em;
+}
+.invd .fs-row.prominent.success .v {
+  color: var(--st-success);
+}
+.invd .fs-row.prominent.warning .v {
+  color: var(--st-warning);
+}
+.invd .fs-row.prominent.danger  .v {
+  color: var(--st-danger);
+}
+.invd .exchange-summary .fs-row.xs-strong .label {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .exchange-summary .fs-row.xs-strong .v {
+  color: var(--text-1); font-weight: 600;
+}
+.invd .exchange-summary .fs-row.xs-outcome-row .label {
+  color: var(--text-3);
+}
+.invd .exchange-summary .fs-row.xs-outcome-row .v {
+  color: var(--st-success); font-weight: 600; font-size: 12.5px;
+}
+.invd .exchange-summary .fs-row.xs-net {
+  border-top: 2px solid var(--text-1); margin-top: 2px; padding-top: 9px;
+}
+.invd .exchange-summary .fs-row.xs-net .label {
+  font-weight: 700;
+}
+.invd .exchange-summary .fs-row.xs-balance .label,
+.invd .exchange-summary .fs-row.xs-balance .v {
+  color: var(--text-3); font-size: 12px;
+}
+.invd .xs-note {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-top: 12px; padding: 10px 12px;
+  background: var(--st-success-bg, #ecfdf5);
+  border: 1px solid var(--st-success-bd, #a7f3d0);
+  border-radius: 8px;
+  font-size: 12px; line-height: 1.55; color: var(--text-2);
+}
+.invd .xs-note .ico {
+  color: var(--st-success); flex: 0 0 auto; margin-top: 2px;
+}
+.invd .fs-totals {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-ring);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px 24px;
+}
+.invd .fs-totals .col .k {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-fg);
+  margin-bottom: 4px;
+}
+.invd .fs-totals .col .v {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.005em;
+}
+.invd .fs-totals .col.balance .v.danger {
+  color: var(--st-danger);
+}
+.invd .fs-totals .col.balance .v.warning {
+  color: var(--st-warning);
+}
+.invd .fs-totals .col.balance .v.success {
+  color: var(--st-success);
+}
+.invd .fs-caption {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--bg-subtle);
+  border-left: 2px solid var(--accent-ring);
+  border-radius: 4px;
+  font-size: 11.5px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.invd .fs-caption .em {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .fs-formula {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: var(--bg-subtle);
+  border: 1px dashed var(--line-1);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.invd .items-mini {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12.5px;
+}
+.invd .items-mini thead th {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-4);
+  font-weight: 600;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line-2);
+  text-align: left;
+}
+.invd .items-mini thead th.right {
+  text-align: right;
+}
+.invd .items-mini tbody td {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line-2);
+  color: var(--text-2);
+}
+.invd .items-mini tbody td.primary {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .items-mini tbody td.right {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-1);
+}
+.invd .line-adjust {
+  display: inline-block;
+  font-size: 11.5px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  background: var(--bg-subtle);
+  color: var(--text-2);
+}
+.invd .line-adjust.discount {
+  border-color: #c7e3d4; background: #ecf7f1; color: #1f7a4d;
+}
+.invd .line-adjust.promo {
+  border-color: #cdddf5; background: #eef4fd; color: #2a5db0;
+}
+.invd .line-adjust.credit {
+  border-color: #e6d6b8; background: #faf3e2; color: #936a17;
+}
+.invd .items-adjust tbody tr.items-total-row td {
+  border-bottom: none;
+  border-top: 2px solid var(--text-1);
+  padding-top: 10px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+.invd .audit-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.invd .audit-list::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 16px;
+  bottom: 16px;
+  width: 1px;
+  background: var(--line-1);
+}
+.invd .audit-item {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: 12px;
+  padding: 10px 0;
+  position: relative;
+}
+.invd .audit-item .glyph {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  z-index: 1;
+  flex-shrink: 0;
+}
+.invd .audit-item.success .glyph {
+  background: var(--st-success-bg); border-color: var(--st-success-bd); color: var(--st-success);
+}
+.invd .audit-item.warning .glyph {
+  background: var(--st-warning-bg); border-color: var(--st-warning-bd); color: var(--st-warning);
+}
+.invd .audit-item.danger  .glyph {
+  background: var(--st-danger-bg);  border-color: var(--st-danger-bd);  color: var(--st-danger);
+}
+.invd .audit-item.info    .glyph {
+  background: var(--st-info-bg);    border-color: var(--st-info-bd);    color: var(--st-info);
+}
+.invd .audit-item.attention .glyph {
+  background: var(--st-attention-bg); border-color: var(--st-attention-bd); color: var(--st-attention);
+}
+.invd .audit-item .body .title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 1px;
+}
+.invd .audit-item .body .note {
+  font-size: 11.5px;
+  color: var(--text-3);
+  line-height: 1.5;
+}
+.invd .audit-item .body .meta {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-4);
+  font-family: var(--mono);
+}
+.invd .audit-item .amt {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-1);
+  white-space: nowrap;
+}
+.invd .audit-item .amt.neg {
+  color: var(--st-danger);
+}
+.invd .audit-item .amt.dash {
+  color: var(--text-4); font-weight: 400;
+}
+.invd .related-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.invd .related-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line-2);
+}
+.invd .related-row:last-child {
+  border-bottom: none;
+}
+/* Related invoice reference — reference .mc-link-code: mono 12px / 400 / 18px, record-code blue, never underlined */
+.invd .related-row .info .ref {
+  width: fit-content;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--mc-link);
+  cursor: pointer;
+}
+/* sheet row 8: a reference this user may not open is neutral text */
+.invd .related-row .info .ref.neutral,
+.invd .related-row .info .ref.neutral:hover {
+  color: var(--mc-text-code);
+  cursor: default;
+  text-decoration: none;
+}
+/* Record codes that open — reference .mc-link-code:focus-visible ring and wash */
+.invd .context-card .code-link:focus-visible,
+.invd .related-row .info .ref:not(.neutral):focus-visible {
+  outline: 2px solid var(--mc-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+  background: var(--mc-focus-bg);
+}
+.invd .related-row .info .label {
+  font-size: 11.5px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+.invd .related-row .amt {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+.invd .related-row .amt.neg {
+  color: var(--st-danger);
+}
+.invd .side-stack {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.invd .action-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  padding: 14px;
+}
+.invd .action-card .group {
+  margin-bottom: 14px;
+}
+.invd .action-card .group:last-child {
+  margin-bottom: 0;
+}
+.invd .action-card .group + .group {
+  padding-top: 14px;
+  border-top: 1px solid var(--line-2);
+}
+.invd .action-card .group .lbl {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-4);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.invd .action-card .group.danger .lbl {
+  color: var(--st-danger);
+}
+.invd .action-card .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.invd .action-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-1);
+  font-size: 12.5px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  position: relative;
+}
+.invd .action-btn:hover {
+  background: var(--bg-hover);
+}
+.invd .action-btn .ico {
+  width: 16px; height: 16px;
+  color: var(--text-3);
+  flex-shrink: 0;
+}
+.invd .action-btn:hover .ico {
+  color: var(--text-1);
+}
+.invd .action-btn .label {
+  flex: 1;
+}
+.invd .action-btn .sub {
+  font-size: 10.5px;
+  color: var(--text-4);
+  font-weight: 400;
+  margin-top: 1px;
+}
+.invd .action-btn.primary {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+.invd .action-btn.primary .ico {
+  color: #fff;
+}
+.invd .action-btn.primary:hover {
+  background: var(--accent-hover);
+}
+.invd .action-btn.primary .sub {
+  color: rgba(255,255,255,0.7);
+}
+.invd .action-btn.destructive {
+  color: var(--st-danger);
+}
+.invd .action-btn.destructive .ico {
+  color: var(--st-danger);
+}
+.invd .action-btn.destructive:hover {
+  background: var(--st-danger-bg);
+}
+.invd .action-btn.disabled {
+  color: var(--text-4);
+  cursor: not-allowed;
+  background: transparent;
+}
+.invd .action-btn.disabled .ico {
+  color: var(--text-4);
+}
+.invd .action-btn.disabled .blocked {
+  position: absolute;
+  bottom: -6px;
+  left: 36px;
+  right: 10px;
+  font-size: 10.5px;
+  color: var(--text-3);
+  font-weight: 400;
+  line-height: 1.4;
+}
+.invd .action-btn.disabled + .action-btn.disabled {
+  margin-top: 18px;
+}
+.invd .action-btn.disabled.with-reason {
+  padding-bottom: 22px;
+}
+.invd .deadline-side {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid;
+}
+.invd .deadline-side.warning {
+  background: var(--st-warning-bg); border-color: var(--st-warning-bd);
+}
+.invd .deadline-side.danger {
+  background: var(--st-danger-bg);  border-color: var(--st-danger-bd);
+}
+.invd .deadline-side .head-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.invd .deadline-side.warning .head-row {
+  color: var(--st-warning);
+}
+.invd .deadline-side.danger  .head-row {
+  color: var(--st-danger);
+}
+.invd .deadline-side .when {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-top: 6px;
+}
+.invd .deadline-side .relative {
+  font-size: 11.5px; color: var(--text-3); margin-top: 2px;
+}
+.invd .deadline-side .hint {
+  font-size: 11px; color: var(--text-3); margin-top: 8px; line-height: 1.5;
+}
+.invd .context-side {
+  padding: 14px;
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  background: var(--bg-surface);
+}
+.invd .context-side .head-row {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--text-4);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.invd .context-side .row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 0; 
+  flex-wrap: nowrap;
+  padding: 4px 0;
+  font-size: 12.5px;
+}
+.invd .context-side .row .k {
+  color: var(--text-3);
+}
+.invd .context-side .row .v {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .context-side .row .v.mono {
+  font-family: var(--mono); font-size: 12px;
+}
+.invd .context-side .link {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--accent-fg);
+  cursor: pointer;
+}
+.invd .context-side .link:hover {
+  text-decoration: underline;
+}
+.invd .context-side .rf-hold-note {
+  margin-top: 9px;
+  padding-top: 9px;
+  border-top: 1px dashed var(--line-2);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+/* Proof preview (reference ViewProofModal) */
+.invd .proof-preview { border: 1px solid var(--line-1); border-radius: 8px; overflow: hidden; margin-bottom: 12px; }
+.invd .proof-preview .area { height: 220px; background: repeating-linear-gradient(45deg, var(--bg-subtle), var(--bg-subtle) 10px, var(--bg-surface) 10px, var(--bg-surface) 20px); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--text-4); }
+.invd .proof-preview .area img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.invd .proof-preview .area .nm { font-family: var(--mono); font-size: 12px; }
+.invd .proof-preview .strip { padding: 10px 12px; border-top: 1px solid var(--line-1); display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 12px; color: var(--text-3); }
+.invd .proof-preview .strip .nm { font-family: var(--mono); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.invd .proof-preview .strip .link { display: inline-flex; align-items: center; gap: 4px; flex: none; border: 0; background: transparent; padding: 0; color: var(--mc-link); font-size: 12px; font-weight: 500; cursor: pointer; }
+.invd .proof-preview-note { padding: 10px; background: var(--bg-subtle); border: 1px solid var(--line-1); border-radius: 6px; font-size: 12px; color: var(--text-2); }
+/* Delete proof: the state-impact warning (reference DeleteProofModal) */
+.invd .proof-delete-warn { padding: 12px; background: var(--st-danger-bg); border: 1px solid var(--st-danger-bd); border-radius: 8px; font-size: 12.5px; color: var(--text-1); line-height: 1.6; margin-bottom: 14px; }
+.invd .proof-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-1);
+  background: var(--bg-subtle);
+  border-radius: 6px;
+  font-size: 12px;
+}
+.invd .proof-pill .ico {
+  width: 26px; height: 26px;
+  border-radius: 5px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--text-3);
+}
+.invd .proof-pill .meta {
+  flex: 1; min-width: 0;
+}
+.invd .proof-pill .meta .name {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .proof-pill .meta .sub {
+  color: var(--text-3); font-size: 11px; font-family: var(--mono);
+}
+.invd .proof-actions {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.invd .btn.sm {
+  height: 28px; padding: 0 10px; font-size: 12px; gap: 5px;
+}
+.invd .proof-actions .proof-del {
+  color: var(--st-danger);
+}
+.invd .proof-actions .proof-del:hover {
+  border-color: var(--st-danger-bd); background: var(--st-danger-bg);
+}
+.invd .remarks-list {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.invd .remark-item {
+  padding: 10px 12px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+}
+.invd .remark-item .head-row {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11.5px; color: var(--text-3); margin-bottom: 4px;
+}
+.invd .remark-item .head-row .who {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .remark-item .text {
+  font-size: 12.5px; color: var(--text-2); line-height: 1.5;
+}
+.invd .remark-empty {
+  text-align: center;
+  padding: 18px 0;
+  font-size: 12.5px;
+  color: var(--text-4);
+}
+/* Not available / failed to load (reference RecordDenied): the message card under the header */
+.invd .detail-section.record-unavailable {
+  margin: 16px 28px 0;
+  max-width: 1444px;
+}
+.invd .remark-empty.unavailable {
+  padding: 18px 16px;
+  font-size: 13px;
+  color: var(--mc-text-4);
+}
+.invd .intro-callout {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--text-3);
+  line-height: 1.5;
+  margin: 0 28px 16px;
+  max-width: calc(1500px - 0px);
+}
+.invd .intro-callout strong {
+  color: var(--text-1);
+}
+/* Double class outranks new-ui-review.css's `.invd .modal-card` (480px),
+   which otherwise wins by load order — reference width is 540px */
+.invd .modal-card.action-modal-card {
+  width: 540px;
+  max-width: 92vw;
+}
+.invd .modal-card.action-modal-card.wide {
+  width: 720px;
+}
+.invd .action-modal-card .impact {
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin: 12px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 18px;
+}
+.invd .action-modal-card .impact .k {
+  font-size: 11px; color: var(--text-3);
+}
+.invd .action-modal-card .impact .v {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.invd .action-modal-card .impact .v.delta-pos {
+  color: var(--st-success);
+}
+.invd .action-modal-card .impact .v.delta-neg {
+  color: var(--st-danger);
+}
+.invd .action-modal-card .upload-zone {
+  border: 1.5px dashed var(--line-1);
+  border-radius: 8px;
+  padding: 18px;
+  text-align: center;
+  background: var(--bg-subtle);
+  cursor: pointer;
+}
+.invd .action-modal-card .upload-zone:hover {
+  border-color: var(--accent); background: var(--accent-bg);
+}
+.invd .action-modal-card .upload-zone .ico {
+  color: var(--text-3); margin-bottom: 6px;
+}
+.invd .action-modal-card .upload-zone .title {
+  font-size: 13px; font-weight: 500; color: var(--text-1);
+}
+.invd .action-modal-card .upload-zone .hint {
+  font-size: 11px; color: var(--text-3); margin-top: 4px;
+}
+.invd .refund-items {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12.5px;
+  margin: 10px 0 12px;
+}
+.invd .refund-items thead th {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-4);
+  font-weight: 600;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line-2);
+  text-align: left;
+}
+.invd .refund-items thead th.right {
+  text-align: right;
+}
+.invd .refund-items tbody td {
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--line-2);
+  vertical-align: top;
+}
+.invd .refund-items tbody td.primary {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .refund-items tbody td.right {
+  text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums;
+}
+.invd .refund-items tbody input.amount {
+  width: 100px;
+  height: 28px;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+.invd .refund-items .cap {
+  color: var(--text-3); font-size: 11px; margin-top: 2px;
+}
+.invd .refund-items tfoot td {
+  padding: 10px 6px;
+  font-weight: 600;
+  color: var(--text-1);
+  border-top: 2px solid var(--line-1);
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.invd .printout-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  padding: 18px;
+  background: var(--bg-subtle);
+}
+.invd .printout-doc {
+  background: #fff;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  box-shadow: var(--shadow-1);
+  padding: 32px;
+  font-family: var(--sans);
+  color: var(--text-1);
+  min-height: 600px;
+  position: relative;
+}
+.invd .printout-doc h3 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-4);
+  font-weight: 600;
+}
+.invd .printout-doc .doc-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 4px;
+}
+.invd .printout-doc .doc-sub {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-3);
+  margin-bottom: 18px;
+}
+.invd .printout-doc .doc-section {
+  margin-top: 22px;
+}
+.invd .printout-doc .doc-section .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-4);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.invd .printout-doc .doc-section .value {
+  font-size: 13px; color: var(--text-1); line-height: 1.5;
+}
+.invd .printout-doc table.doc-items {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 0;
+}
+.invd .printout-doc table.doc-items th {
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-4);
+  font-weight: 600;
+  border-bottom: 1px solid var(--text-1);
+  padding: 8px 0;
+}
+.invd .printout-doc table.doc-items th.right {
+  text-align: right;
+}
+.invd .printout-doc table.doc-items td {
+  border-bottom: 1px solid var(--line-2);
+  padding: 8px 0;
+  font-size: 13px;
+}
+.invd .printout-doc table.doc-items td.right {
+  text-align: right;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.invd .printout-doc table.doc-items tr.total td {
+  border-bottom: 2px solid var(--text-1);
+  border-top: 2px solid var(--text-1);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 0;
+}
+.invd .printout-doc .void-stamp {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-18deg);
+  font-size: 90px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--st-danger);
+  opacity: 0.18;
+  border: 6px solid var(--st-danger);
+  padding: 8px 24px;
+  border-radius: 8px;
+  pointer-events: none;
+  user-select: none;
+}
+.invd .printout-doc.bad-debt-doc {
+  border-top: 4px solid var(--st-danger);
+}
+.invd .printout-pane-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-4);
+  font-weight: 600;
+  padding: 0 6px 6px;
+}
+.invd .printout-pane-label.admin {
+  color: var(--accent);
+}
+.invd .printout-pane-label.customer {
+  color: var(--st-success);
+}
+.invd .detail-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--line-1);
+  margin-bottom: 16px;
+  padding: 0 28px;
+}
+.invd .detail-tabs .tab {
+  padding: 10px 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.invd .detail-tabs .tab.active {
+  color: var(--text-1);
+  border-bottom-color: var(--accent);
+}
+.invd .detail-tabs .tab:hover:not(.active) {
+  color: var(--text-1);
+}
+.invd .detail-tabs .tab .count {
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--bg-subtle);
+  color: var(--text-4);
+  font-size: 10.5px;
+  font-family: var(--mono);
+}
+
+/* ---- RemixIcon <i> adjustments (bundle used inline SVGs sized by width/height;
+   RemixIcon glyphs are fonts sized by font-size). ---- */
+.invd i[class^="ri-"], .invd i[class*=" ri-"] { font-style: normal; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+.invd .action-btn .ico { width: 16px; height: 16px; font-size: 15px; }
+.invd .crumb-row i, .invd .detail-title-row .copy i { font-size: 13px; }
+.invd .admin-warning .ico i { font-size: 18px; }
+.invd .deadline-side .head-row i, .invd .context-side .head-row i, .invd .context-side .link i { font-size: 12px; }
+.invd .fs-row .label .help-ico i { font-size: 11px; }
+.invd .proof-pill .ico i { font-size: 14px; }
+.invd .audit-item .glyph i { font-size: 11px; }
+.invd .modal-card .head .ico i { font-size: 18px; }
+
+/* Avatar (Handling Staff) — the reference Avatar at 20px: neutral fill, 1px border, sans 10.5px initials */
+.invd .avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 999px;
+  background: oklch(0.96 0.008 250); color: oklch(0.46 0.022 250); border: 1px solid oklch(0.89 0.012 250);
+  font-family: var(--sans); font-size: 10.5px; font-weight: 600; flex-shrink: 0;
+  letter-spacing: 0; line-height: 1;
+}
+
+
+/* ── Activity Timeline "Load more" — centered pill with divider lines ────── */
+.invd .audit-more {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+}
+.invd .audit-more::before,
+.invd .audit-more::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--line-1);
+}
+.invd .audit-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line-1);
+  background: var(--bg-surface);
+  color: var(--accent-fg);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.invd .audit-more-btn:hover:not(:disabled) {
+  background: var(--accent-bg);
+  border-color: var(--accent-ring);
+}
+.invd .audit-more-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.invd .audit-more-btn i {
+  font-size: 14px;
+}
+
+/* ── Activity Timeline footer note (reference inline style) ──────────────── */
+.invd .audit-note {
+  margin-top: 10px;
+  padding: 10px;
+  background: var(--bg-subtle);
+  border: 1px dashed var(--line-1);
+  border-radius: 6px;
+  font-size: 11.5px;
+  color: var(--text-3);
+  line-height: 1.55;
+  z-index: 1;
+}
+
+/* ── Remarks tab — restyle the shared Remarks component to the new-UI
+      remark-item look without touching the component itself ─────────────── */
+/* the reference list grows with its remarks (the shared remarks.css caps it at 200px with a scroll) */
+.invd .remarks-host .remarks-wrapper .remarks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: none;
+  overflow: visible;
+}
+.invd .remarks-host .action-btns {
+  margin-bottom: 14px;
+}
+.invd .remarks-host textarea.form-control {
+  min-height: 90px;
+  padding: 8px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  font-family: var(--sans);
+  line-height: 1.5;
+  box-shadow: none;
+}
+.invd .remarks-host textarea.form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+.invd .remarks-host .text-muted {
+  font-size: 11px;
+}
+.invd .remarks-host .remarks-block {
+  padding: 10px 12px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+}
+/* the author — reference .remark-item .who: 11.5px / 500, text-1 */
+.invd .remarks-host .remarks-block h6 {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-1);
+  font-family: var(--sans);
+  margin: 0 0 2px;
+}
+.invd .remarks-host .remarks-block .grey.fz14 {
+  font-size: 11.5px !important;
+  color: var(--text-3) !important;
+  font-family: var(--mono);
+}
+.invd .remarks-host .remarks-block p.grey {
+  font-size: 12.5px !important;
+  color: var(--text-2) !important;
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin: 4px 0 0;
+  font-family: var(--sans);
+}
+
+/* Add Remark modal — subtitle under title (bundle .msub) */
+.invd .modal-card .head .msub {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+/* Global style.css ships `.total { background:#FEF3C7 !important }` — neutralise
+   it inside the printout document so total rows keep the reference's plain
+   double-rule look. */
+.invd .printout-doc table.doc-items tr.total {
+  background: transparent !important;
+}
+
+/* Remarks tab — reference layout: "who · date" inline at left (not spread),
+   edit/delete revealed on hover only (the prototype shows none at rest). */
+.invd .remarks-host .remarks-block {
+  position: relative;
+}
+.invd .remarks-host .remarks-block .d-flex.justify-content-between {
+  justify-content: flex-start !important;
+  align-items: baseline;
+  gap: 8px;
+}
+.invd .remarks-host .remarks-block h6 {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.invd .remarks-host .remarks-block h6::after {
+  content: "·";
+  color: var(--text-3);
+  font-weight: 400;
+}
+.invd .remarks-host .remarks-block > .remark-actions {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  margin: 0 !important;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.invd .remarks-host .remarks-block:hover > .remark-actions,
+.invd .remarks-host .remarks-block:focus-within > .remark-actions {
+  opacity: 1;
+}
+.invd .remarks-host .remarks-block > .remark-actions img {
+  width: 14px;
+  height: auto;
+}
+.invd .remarks-host .remarks-block > .remark-actions i {
+  font-size: 14px !important;
+}
+/* Muted new-UI icon buttons — overrides the legacy red/blue .remark-act colors */
+.invd .remarks-host .remarks-block > .remark-actions .remark-act {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 5px;
+  color: var(--text-3);
+  transition: background var(--dur-1), color var(--dur-1);
+}
+.invd .remarks-host .remarks-block > .remark-actions .remark-act:hover {
+  background: var(--bg-hover);
+  color: var(--text-1);
+}
+.invd .remarks-host .remarks-block > .remark-actions .remark-act.del:hover {
+  color: var(--st-danger);
+}
+
+.invd .refund-type-row { display: flex; gap: 10px; }
+/* Empty-state text (NotFoundMessage) — new-UI muted look inside the detail page */
+.invd .not-found-msg {
+  text-align: center;
+  padding: 18px 0 !important;
+  font-size: 12.5px;
+  color: var(--text-4);
+  font-family: var(--sans);
+}
+.invd .not-found-msg .mw232 { max-width: none; }
+
+/* ── Refund wizard modal (new-UI) ──────────────────────────────────────────── */
+.invd .modal-card.wide { width: 760px; }
+.invd .refund-stepper {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 16px; flex-wrap: wrap;
+}
+.invd .refund-stepper .sep { color: var(--text-4); font-size: 12px; }
+.invd .refund-stepper .st { font-size: 11.5px; font-weight: 500; color: var(--text-4); }
+.invd .refund-stepper .st.done { color: var(--text-2); }
+.invd .refund-stepper .st.on { font-weight: 600; color: var(--accent-fg); }
+.invd .rf-p { font-size: 13px; color: var(--text-2); margin: 0 0 14px; }
+.invd .rf-choice-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.invd .rf-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.invd .rf-span2 { grid-column: 1 / -1; }
+.invd .rf-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.invd .amount-locked { display: flex; align-items: center; gap: 7px; background: var(--bg-subtle); }
+.invd .amount-locked svg { color: var(--text-4); flex-shrink: 0; }
+.invd .rf-lbl {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600;
+  margin-bottom: 0;
+}
+.invd .rf-hint { font-size: 11px; color: var(--text-3); }
+.invd .rf-note {
+  padding: 8px 10px; border-radius: 6px; font-size: 12px; color: var(--text-2);
+  background: var(--bg-subtle); border: 1px solid var(--line-1);
+}
+.invd .rf-note.warn { background: var(--st-warning-bg); border-color: var(--st-warning-bd); }
+.invd .rf-note.danger { background: var(--st-danger-bg); border-color: var(--st-danger-bd); color: var(--st-danger); }
+.invd .rf-note.subtle { background: var(--bg-subtle); border-color: var(--line-1); color: var(--text-3); }
+.invd .rf-note.small { font-size: 11.5px; }
+.invd .rf-note.retained { padding: 10px 12px; color: var(--text-2); }
+.invd .rf-note.callout { padding: 10px 12px; border-radius: 7px; font-size: 12.5px; }
+.invd .rf-note.confirm-note { padding: 12px; color: var(--text-2); line-height: 1.55; margin-bottom: 14px; }
+.invd .rf-stat-row { display: flex; gap: 14px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
+.invd .rf-stat {
+  padding: 8px 12px; background: var(--bg-subtle); border: 1px solid var(--line-2); border-radius: 6px;
+}
+.invd .rf-stat .k {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-4); font-weight: 600;
+}
+.invd .rf-stat .v { font-family: var(--mono); font-size: 14px; color: var(--text-1); font-weight: 600; }
+.invd .rf-stat .v.success { color: var(--st-success); }
+.invd .rf-path-col { display: flex; flex-direction: column; gap: 10px; }
+.invd .path-card {
+  text-align: left; background: var(--bg-surface); border: 1px solid var(--line-1);
+  border-radius: 9px; padding: 12px 14px; cursor: pointer;
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.invd .path-card:hover { border-color: var(--line-strong); }
+.invd .path-card.active { border-color: var(--accent); background: var(--accent-bg); box-shadow: 0 0 0 2px var(--accent-bg); }
+.invd .path-card .pt {
+  display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--text-1);
+}
+.invd .path-card .pd { font-size: 11px; color: var(--text-3); margin-top: 3px; }
+.invd .path-card .radio {
+  width: 15px; height: 15px; border-radius: 999px; border: 1.5px solid var(--line-strong);
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.invd .path-card.active .radio { border-color: var(--accent); background: var(--accent); color: #fff; }
+.invd .path-card .radio i { font-size: 10px; line-height: 1; }
+.invd .rf-locked {
+  display: flex; align-items: center; gap: 7px; background: var(--bg-subtle);
+}
+.invd .rf-later-on { border-color: var(--st-warning-bd); color: var(--st-warning); }
+.invd .rf-dropzone {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 18px; border: 1px dashed var(--line-strong); border-radius: 8px;
+  background: var(--bg-subtle); color: var(--text-3); font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: border-color var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+}
+.invd .rf-dropzone:hover { border-color: var(--accent); color: var(--text-1); }
+.invd .rf-summary {
+  display: grid; grid-template-columns: 180px 1fr; row-gap: 7px; column-gap: 12px;
+  font-size: 12.5px; margin-bottom: 14px;
+}
+.invd .rf-sk {
+  color: var(--text-4); text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: 10.5px; font-weight: 600; padding-top: 2px;
+}
+.invd .rf-sv { color: var(--text-1); }
+.invd .rf-impact { border: 1px solid var(--line-1); border-radius: 6px; padding: 12px; margin-top: 12px; }
+.invd .rf-impact .hd {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600; margin-bottom: 8px;
+}
+.invd .rf-impact .rw {
+  display: grid; grid-template-columns: 1fr auto 16px auto; align-items: center;
+  gap: 8px; font-size: 12.5px;
+}
+.invd .rf-impact .rw .f { color: var(--text-3); }
+.invd .rf-impact .rw .b { color: var(--text-3); text-align: right; }
+.invd .rf-impact .rw .ar { color: var(--text-4); text-align: center; }
+.invd .rf-impact .rw .a { color: var(--text-1); font-weight: 600; text-align: right; }
+/* Same box as the reference `.impact` container: line-2 border, 6px radius, 12px stack margin */
+.invd .appr-impact { background: var(--bg-subtle); border: 1px solid var(--line-2); border-radius: 6px; padding: 12px 14px; margin: 12px 0; }
+.invd .appr-impact .hd {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600; margin-bottom: 8px;
+}
+.invd .appr-impact .rw {
+  display: grid; grid-template-columns: 1fr auto 110px; align-items: center;
+  gap: 12px; font-size: 12.5px; padding: 4px 0;
+}
+.invd .appr-impact .rw .f { color: var(--text-2); }
+.invd .appr-impact .rw .b { color: var(--text-3); text-align: right; font-family: var(--mono); font-size: 12px; }
+.invd .appr-impact .rw .a { color: var(--text-1); font-weight: 600; text-align: right; }
+.invd .appr-impact .rw.head .f,
+.invd .appr-impact .rw.head .b,
+.invd .appr-impact .rw.head .a {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-4); font-weight: 600; font-family: var(--sans);
+}
+
+/* Header row with its own class — `.rw.head` collides with the modal `.head`
+   flex rule, which breaks the grid; `.rw-head` avoids that entirely */
+.invd .appr-impact .rw-head {
+  display: grid; grid-template-columns: 1fr auto 110px; align-items: center;
+  gap: 12px; padding: 4px 0;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-4); font-weight: 600; font-family: var(--sans);
+}
+.invd .appr-impact .rw-head .b,
+.invd .appr-impact .rw-head .a { text-align: right; }
+
+/* Initiate Exchange modal — attention icon + Source invoice (A1) card */
+.invd .modal-card .head .ico.attention { background: var(--st-attention-bg); color: var(--st-attention); }
+.invd .exch-blocked {
+  padding: 10px; background: var(--st-danger-bg); border: 1px solid var(--st-danger-bd);
+  border-radius: 6px; color: var(--st-danger); font-size: 12px; margin-bottom: 14px;
+}
+.invd .exch-src {
+  background: var(--bg-subtle); border: 1px solid var(--line-1); border-radius: 8px; padding: 14px;
+}
+.invd .exch-src .src-head {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600; margin-bottom: 8px;
+}
+.invd .exch-src .src-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 4px 0; font-size: 12.5px;
+}
+.invd .exch-src .src-row .k { font-size: 12px; color: var(--text-3); }
+.invd .exch-src .src-row .v { color: var(--text-1); font-weight: 500; text-align: right; }
+.invd .exch-src .src-row .v.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.invd .exch-src .src-row .v.success { color: var(--st-success); font-weight: 600; }
+
+/* Applied-credit line item — negative amount in success green */
+.invd .items-mini td.credit-amt {
+  color: var(--st-success);
+  font-weight: 600;
+}
+
+/* ── Change Handling Staff modal ─────────────────────────────────────────── */
+/* The staff dropdown must escape the card (base .modal-card is overflow:hidden);
+   head/foot keep their own radii so corners stay rounded */
+.invd .modal-card.cs-modal { overflow: visible; }
+.invd .modal-card.cs-modal .head { border-radius: 12px 12px 0 0; }
+.invd .modal-card.cs-modal .foot { border-radius: 0 0 12px 12px; }
+.invd .cs-kv {
+  display: flex; flex-direction: column; gap: 4px;
+  margin-bottom: 12px; font-size: 12.5px; color: var(--text-2);
+}
+.invd .cs-kv b { color: var(--text-1); font-weight: 600; }
+.invd .cs-search-wrap { position: relative; }
+.invd .cs-search-wrap .search-ico {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  color: var(--text-4); pointer-events: none; display: inline-flex; z-index: 1;
+}
+/* Double class outranks the base `.invd .input` padding (load-order safe) */
+.invd .input.cs-search-input { width: 100%; padding-left: 30px; }
+.invd .cs-staff-list {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 60;
+  background: var(--bg-surface); border: 1px solid var(--line-1); border-radius: 8px;
+  box-shadow: 0 4px 20px oklch(0 0 0 / 0.12);
+  max-height: 220px; overflow-y: auto; padding: 4px 0; margin: 0; list-style: none;
+}
+.invd .cs-staff-list li { padding: 7px 12px; font-size: 12.5px; color: var(--text-1); cursor: pointer; }
+.invd .cs-staff-list li:hover { background: var(--bg-hover); }
+.invd .cs-staff-list li.muted { color: var(--text-3); cursor: default; }
+.invd .cs-staff-list li.muted:hover { background: transparent; }
+.invd .cs-note { font-size: 12.5px; color: var(--text-2); margin: 10px 0 0; }
+.invd .cs-note b { color: var(--accent-fg); font-weight: 600; }
+.invd .cs-check {
+  display: flex; align-items: center; gap: 8px;
+  margin: 12px 0 0; font-size: 12.5px; color: var(--text-2); cursor: pointer;
+  background: none; border: none; padding: 0; font-family: var(--sans);
+}
+/* Same box as the listing-page table checkbox (.cb in InvoiceList.module.css) */
+.invd .cs-check .cb {
+  width: 15px; height: 15px;
+  border: 1px solid var(--line-strong); border-radius: 4px;
+  background: var(--bg-surface);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+  transition: background var(--dur-1), border-color var(--dur-1);
+}
+.invd .cs-check:hover .cb { border-color: var(--accent); }
+.invd .cs-check .cb.cb-on { background: var(--accent); border-color: var(--accent); }
+
+/* Impact-preview table — 4 columns (Field | Before | → | After), reference layout */
+.invd .appr-impact .impact-tbl { width: 100%; font-size: 12.5px; border-collapse: collapse; }
+.invd .appr-impact .impact-tbl th {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600; padding: 4px 0;
+  text-align: right; font-family: var(--sans);
+  background: transparent; border: 0;
+}
+.invd .appr-impact .impact-tbl th:first-child { text-align: left; }
+.invd .appr-impact .impact-tbl th.arw { text-align: center; width: 24px; padding: 4px 8px; }
+.invd .appr-impact .impact-tbl td { padding: 4px 0; color: var(--text-1); background: transparent; border: 0; }
+.invd .appr-impact .impact-tbl td.b { text-align: right; font-family: var(--mono); color: var(--text-3); }
+.invd .appr-impact .impact-tbl td.arw { text-align: center; color: var(--text-4); }
+.invd .appr-impact .impact-tbl td.a { text-align: right; font-family: var(--mono); font-weight: 600; }
+.invd .appr-impact .impact-tbl td.none { padding: 8px; text-align: center; color: var(--text-4); }
+/* State rows (Status / Payment review) — plain text, not mono, per reference */
+.invd .appr-impact .impact-tbl td.txt { font-family: var(--sans); }
+
+/* Impact-preview footnote (italic, muted — matches reference: marginTop 10,
+   fontSize 11, text-4). Extra .modal-card level outranks the generic
+   `.modal-card .body p` rule (13px / text-2 / 14px bottom margin). */
+.invd .modal-card .appr-impact .note {
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-4);
+  font-style: italic;
+}
+
+/* Void invoice modal */
+.invd .modal-card .head .head-col { flex: 1; }
+.invd .void-intro { margin-bottom: 12px; }
+.invd .void-warn-banner {
+  padding: 10px; background: var(--st-warning-bg); border: 1px solid var(--st-warning-bd);
+  border-radius: 6px; color: var(--st-warning); font-size: 12px; margin-bottom: 12px;
+}
+/* Double class outranks the fixed 28px `.invd .input` height (load-order safe) —
+   matches the reference textarea inline style: height auto, padding 8 */
+.invd .input.void-reason-textarea { height: auto; padding: 8px; }
+.invd .appr-impact.void-impact .hd { margin-bottom: 6px; }
+.invd .void-impact-note { font-size: 12.5px; color: var(--text-2); }
+.invd .void-impact-note strong { color: var(--st-danger); }
+.invd .btn.btn-danger { background: var(--st-danger); color: #fff; }
+.invd .btn.btn-danger:hover:not(:disabled) { filter: brightness(0.95); }
+
+/* ── Related Invoice — brief popup (rib-) ─────────────────────────────────── */
+.invd .modal-card.brief-modal-card { width: 520px; max-width: 92vw; }
+.invd .rib-strip { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.invd .rib-strip .spacer { flex: 1; }
+.invd .rib-approval { font-size: 12.5px; font-weight: 500; color: var(--text-2); }
+.invd .rib-type { font-size: 12.5px; color: var(--text-3); }
+.invd .rib-grid { border-top: 1px solid var(--line-2); margin-bottom: 14px; }
+.invd .rib-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line-2); font-size: 12.5px; }
+.invd .rib-row .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; color: var(--text-4); flex-shrink: 0; }
+.invd .rib-row .v { color: var(--text-1); text-align: right; }
+.invd .rib-row .v.mono { font-family: var(--mono); }
+.invd .rib-row .v.neg { color: var(--st-danger); font-family: var(--mono); }
+.invd .rib-link { background: none; border: 0; padding: 0; font: inherit; font-family: var(--mono); color: var(--accent-fg); cursor: pointer; }
+.invd .rib-link:hover { text-decoration: underline; }
+.invd .rib-loading { padding: 28px 0; text-align: center; font-size: 12.5px; color: var(--text-3); }
+.invd .rib-foot { justify-content: space-between; }

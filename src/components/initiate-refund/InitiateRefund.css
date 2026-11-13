@@ -1,0 +1,174 @@
+/* Initiate Refund panel — new-UI theme (design tokens via src/tokens.css) */
+.wrap {
+  color: var(--text-1);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.refund-grid {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 20px;
+  align-items: start;
+}
+/* The panel renders inside a review-card / modal — no extra chrome of its own */
+.refund-panel {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.detail-card {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+}
+.detail-card-hdr {
+  background: transparent;
+  color: var(--text-1);
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--line-1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.detail-hdr-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.detail-hdr-req {
+  font-size: 12px;
+  color: var(--text-3);
+}
+.detail-card-body {
+  padding: 16px 0 0;
+}
+.refund-inv-summary {
+  background: var(--bg-subtle);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  border: 1px solid var(--line-2);
+}
+.refund-inv-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 12.5px;
+}
+.refund-inv-row:last-child {
+  margin-bottom: 0;
+}
+.ril {
+  color: var(--text-3);
+  font-size: 12px;
+}
+.riv {
+  color: var(--text-1);
+  font-weight: 600;
+}
+.refund-rule-box {
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.rrb-g {
+  background: var(--st-success-bg);
+  border: 1px solid var(--st-success-bd);
+  color: var(--st-success);
+}
+.rrb-a {
+  background: var(--st-warning-bg);
+  border: 1px solid var(--st-warning-bd);
+  color: var(--st-warning);
+}
+.rrb-b {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-ring);
+  color: var(--accent-fg);
+}
+.refund-method-sel {
+  margin-bottom: 18px;
+}
+.rms-lbl {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-4);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 8px;
+}
+.rms-opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.rms-opt {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid var(--line-1);
+  background: var(--bg-surface);
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  transition: all var(--dur-1);
+}
+.rms-opt:hover:not(.rms-fixed) {
+  border-color: var(--line-strong);
+}
+.rms-opt.rms-sel {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+.rms-opt.rms-fixed {
+  border-color: var(--st-success-bd);
+  background: var(--st-success-bg);
+  cursor: default;
+}
+.rms-nm {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-1);
+  display: block;
+  margin-bottom: 1px;
+}
+.rms-sub {
+  font-size: 10.5px;
+  color: var(--text-4);
+  display: block;
+}
+.rms-opt.rms-sel .rms-nm, .rms-opt.rms-sel .rms-sub {
+  color: var(--accent-fg);
+}
+.rms-opt.rms-fixed .rms-nm {
+  color: var(--st-success);
+}
+.rms-opt.rms-fixed .rms-sub {
+  color: var(--st-success);
+  opacity: .8;
+}
+.auto-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--st-success);
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.refund-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}

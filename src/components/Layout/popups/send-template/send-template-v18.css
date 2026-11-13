@@ -1,0 +1,109 @@
+/* ================================================================
+ * SEND TEMPLATE (DET-11) — v18.6 skin + compaction on the legacy shared
+ * popup, scoped to worker detail (:is(.wkd, .gcp) .modalCustom.sendTemplate chain
+ * out-guns every legacy modal rule).
+ * ================================================================ */
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-dialog { max-width: 600px; }
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-content {
+  border: 0 !important; border-radius: 12px !important; overflow: hidden;
+  box-shadow: 0 24px 48px rgba(16, 24, 40, .24); font-family: var(--sans);
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-header {
+  padding: 16px 20px !important; border-bottom: 1px solid #edf0f4 !important; margin: 0 !important;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate h5.modal-title {
+  font-size: 16px !important; font-weight: 600 !important;
+  letter-spacing: -0.01em; color: #171b22 !important; margin: 0 !important;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-body { padding: 14px 20px !important; }
+
+/* rhythm: kill the airy legacy gaps — 12px rows everywhere */
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-body .row { margin-bottom: 0 !important; }
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-body .row > [class*="col"] { margin-bottom: 12px !important; }
+:is(.wkd, .gcp) .modalCustom.sendTemplate .mb24 { margin-bottom: 12px !important; }
+:is(.wkd, .gcp) .modalCustom.sendTemplate .mb48 { margin-bottom: 12px !important; }
+
+/* labels 11.5/500 grey */
+:is(.wkd, .gcp) .modalCustom.sendTemplate .form-label,
+:is(.wkd, .gcp) .modalCustom.sendTemplate .form-label.grey {
+  font-size: 11.5px !important; font-weight: 500 !important; color: #667080 !important;
+  margin-bottom: 4px !important; font-family: var(--sans) !important;
+}
+/* the "WORKER : name" line reads as the mockup's context line */
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-body .col-6 > .d-flex > .form-label {
+  font-size: 11.5px !important; color: #6e757f !important; font-weight: 500 !important;
+  margin: 0 !important;
+}
+
+/* controls 32px / #d5dbe3 / r6 / 12.5px */
+:is(.wkd, .gcp) .modalCustom.sendTemplate .form-control,
+:is(.wkd, .gcp) .modalCustom.sendTemplate select.form-control,
+:is(.wkd, .gcp) .modalCustom.sendTemplate .form-control.ht44 {
+  height: 32px !important; min-height: 32px !important; padding: 0 10px !important;
+  font-size: 12.5px !important; border: 1px solid #d5dbe3 !important; border-radius: 6px !important;
+  background-color: #fff !important; color: #171b22 !important; font-family: var(--sans) !important;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate textarea.form-control,
+:is(.wkd, .gcp) .modalCustom.sendTemplate .message-box textarea {
+  height: auto !important; min-height: 96px !important; padding: 8px 10px !important;
+  line-height: 1.5; font-size: 12.5px !important;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .form-control:focus { border-color: #2563eb !important; box-shadow: 0 0 0 2px #e8effd; }
+:is(.wkd, .gcp) .modalCustom.sendTemplate .form-control:disabled { background: #f4f6f8 !important; color: #6e757f !important; }
+:is(.wkd, .gcp) .modalCustom.sendTemplate small.text-danger { font-size: 11.5px !important; color: #b42318 !important; }
+
+/* channel pickers: 36px circles, 16px icons */
+:is(.wkd, .gcp) .modalCustom.sendTemplate figure.channel-box {
+  width: 36px !important; height: 36px !important; min-width: 36px !important;
+  border-radius: 999px !important; border: 1px solid #d5dbe3 !important;
+  display: inline-flex !important; align-items: center; justify-content: center;
+  margin: 0 8px 0 0 !important; padding: 0 !important; cursor: pointer; background: #fff;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate figure.channel-box.blue {
+  border-color: #2563eb !important; background: #e8effd !important;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate figure.channel-box img { width: 16px; height: 16px; object-fit: contain; }
+
+/* radios: v18.6 15px circle + blue ring */
+:is(.wkd, .gcp) .modalCustom.sendTemplate .custom-radio.compact { margin-right: 16px !important; }
+:is(.wkd, .gcp) .modalCustom.sendTemplate .custom-radio input[type="radio"] + .radio-label:before {
+  width: 15px !important; height: 15px !important;
+  border: 1.5px solid #c3cad4 !important; background: #fff !important;
+  margin-right: 6px !important; top: 2px !important; box-shadow: none !important;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .custom-radio input[type="radio"]:checked + .radio-label:before {
+  border: 5px solid #2563eb !important; background: #fff !important; box-shadow: none !important;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .custom-radio .radio-label {
+  font-family: var(--sans) !important; font-size: 12.5px !important; color: #171b22 !important;
+}
+
+/* header "+ New" / "Edit" → 28px */
+:is(.wkd, .gcp) .modalCustom.sendTemplate .template-cruds .btn {
+  height: 28px !important; min-height: 28px !important; padding: 0 11px !important;
+  border-radius: 6px !important; font-size: 12px !important; font-weight: 550 !important;
+  display: inline-flex !important; align-items: center;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .template-cruds .btn.filled-btn {
+  background: #2563eb !important; border: 0 !important; color: #fff !important;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .template-cruds .btn i { font-size: 13px !important; margin-right: 5px !important; }
+
+/* footer bar */
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-footer.send-template-bottom-bar {
+  padding: 12px 20px !important; background: #fafbfc !important;
+  border-top: 1px solid #edf0f4 !important; margin: 0 !important; gap: 8px;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-footer .btn {
+  height: 36px !important; min-height: 36px !important; margin: 0 !important;
+  border-radius: 8px !important; font-size: 12.5px !important; font-weight: 550 !important;
+  display: inline-flex !important; align-items: center;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-footer .btn.btn-outline {
+  padding: 0 16px !important; border: 1px solid #d5dbe3 !important;
+  background: #fff !important; color: #171b22 !important;
+}
+:is(.wkd, .gcp) .modalCustom.sendTemplate .modal-footer .btn.filled-btn {
+  padding: 0 18px !important; background: #2563eb !important; border: 0 !important; color: #fff !important;
+}
+

@@ -1,0 +1,93 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build output
+build/
+dist/
+coverage/
+.tmp/
+.temp/
+.cache/
+.next/
+out/
+
+# dotenv environment variables
+.env
+.env.*
+!.env.example
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Misc
+*.log
+*.tgz
+
+# React specific
+public/static/
+public/build/
+*.local
+
+# Storybook
+.storybook-out/
+storybook-static/
+
+# Mac system files
+.AppleDouble
+.LSOverride
+
+# Windows system files
+ehthumbs.db
+Desktop.ini
+
+# Optional npm cache directory
+.npm/
+
+# Parcel-bundler cache
+.cache/
+
+# SASS cache
+.sass-cache/
+
+# IDEs and editors
+*.swp
+*.swo
+
+# VSCode settings
+.vscode/*
+
+# JetBrains IDEs
+.idea/
+
+# Local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Miscellaneous
+*.orig
+MaidMatch_Frontend_Package/
+MatchCare_Frontend_Package/
+docs
+insurance-revamp/

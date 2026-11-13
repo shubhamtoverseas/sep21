@@ -1,0 +1,16 @@
+/* Update Profile Photo dialog (kit Modal body): empty state, original + crop panes, zoom */
+.fileInput { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.center { display: flex; justify-content: center; padding: 48px 0; }
+.empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 40px 20px; text-align: center; color: #676e77; font-family: var(--sans); }
+.emptyTitle { margin: 0; font-size: 14px; font-weight: 600; color: #171b22; }
+.emptyHint { margin: 0; font-size: 12px; color: #676e77; }
+.panes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pane { border: 1px solid #e3e7ed; border-radius: 8px; padding: 14px; background: #fafbfc; display: flex; flex-direction: column; gap: 10px; }
+.paneTitle { margin: 0; font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: #171b22; }
+.original { display: flex; align-items: center; justify-content: center; min-height: 400px; background: #fff; border-radius: 6px; overflow: hidden; }
+.original img { max-width: 100%; max-height: 400px; object-fit: contain; }
+.cropArea { position: relative; height: 400px; border-radius: 6px; overflow: hidden; background: #f0f0f0; }
+.zoom { display: flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 12px; color: #4a515c; }
+.zoom input[type="range"] { flex: 1; cursor: pointer; accent-color: #2563eb; }
+.grow { flex: 1; }
+@media (max-width: 720px) { .panes { grid-template-columns: 1fr; } .original, .cropArea { min-height: 260px; height: 260px; } }

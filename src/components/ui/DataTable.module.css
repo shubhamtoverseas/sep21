@@ -1,0 +1,152 @@
+/* Generic new-UI listing table — the MaidMatch shared listing contract
+   (38px uppercase header, 44px rows, 11px gutters, sticky first column,
+   skeleton / empty / error rows, count + pagination foot). Card chrome comes
+   from Invoice/InvoiceList.module.css (tableCard / tableFoot / stickyCol). */
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+.tableRefreshing {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.table th,
+.table td {
+  white-space: nowrap;
+}
+
+.tableScroll .table thead th {
+  padding: 0 11px !important;
+  background: var(--bg-subtle) !important;
+}
+
+.tableScroll .table tbody td {
+  padding: 8px 11px !important;
+}
+
+.tableScroll .table thead th:first-child {
+  padding: 0 11px 0 14px !important;
+  text-align: left;
+  width: auto;
+  box-shadow: none !important;
+  border-right: 1px solid var(--line-1) !important;
+}
+
+.tableScroll .table tbody td:first-child {
+  padding: 8px 11px 8px 14px !important;
+  text-align: left;
+  width: auto;
+  box-shadow: none !important;
+  border-right: 1px solid var(--line-1) !important;
+}
+
+.tableScroll .table th.alignCenter,
+.tableScroll .table td.alignCenter {
+  text-align: center;
+}
+
+.tableScroll .table th.alignRight,
+.tableScroll .table td.alignRight {
+  text-align: right;
+}
+
+.stickyName {
+  left: 0;
+  box-shadow: 1px 0 0 var(--line-1);
+}
+
+.static tbody tr {
+  cursor: default;
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: -2px;
+}
+
+.thSortBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.thSortBtn svg {
+  color: var(--text-4);
+}
+
+.thSortBtn:hover,
+.thSortActive {
+  color: var(--text-1);
+}
+
+.thSortActive svg {
+  color: var(--accent);
+}
+
+.thSortBtn:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ── States ──────────────────────────────────────────────────────────────── */
+.stateCell,
+.tableScroll .table tbody td.stateCell {
+  text-align: center !important;
+  box-shadow: none !important;
+  border-right: 0 !important;
+}
+
+.stateBody {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.skeletonRow td {
+  height: 44px;
+}
+
+.skeletonBar {
+  display: block;
+  width: 70%;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--bg-subtle) 25%, var(--bg-hover) 50%, var(--bg-subtle) 75%);
+  background-size: 200% 100%;
+  animation: dataTableSkeleton 1.2s ease-in-out infinite;
+}
+
+@keyframes dataTableSkeleton {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonBar { animation: none; }
+}
+
+/* ── Foot ────────────────────────────────────────────────────────────────── */
+.footCount {
+  font-size: 12px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}

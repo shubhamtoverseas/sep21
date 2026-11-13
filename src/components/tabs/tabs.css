@@ -1,0 +1,106 @@
+.custom-tabs .nav-item {
+    border: 0 !important;
+}
+
+.custom-tabs .nav-item a {
+    box-shadow: none !important;
+    border: 0 !important;
+    border-bottom: 1px solid #D3D3D3 !important;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    color: #FF5963 !important;
+    font-family: 'Roboto';
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 18.75px;
+}
+
+.custom-tabs .nav-item a.active {
+    background-color: #E5FAEA !important;
+    color: #20893C !important;
+}
+
+.custom-tabs .white-btns.nav-item {
+    padding: 16px 8px;
+}
+
+.custom-tabs .white-btns.nav-item.disabled {
+    background-color: #ddd !important;
+    opacity: 0.9;
+}
+
+.custom-tabs .white-btns.nav-item a {
+    padding: 10px 12px !important;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 4px !important;
+    text-align: center !important;
+    background-color: #fff !important;
+}
+
+/* incomplete */
+.custom-tabs .red-fill.flex-fill.nav-item {
+    background: #FFE3E4;
+}
+
+.custom-tabs .red-fill.nav-item.active {
+    border-bottom: 3px solid #FF5963 !important;
+}
+
+.custom-tabs .red-fill.nav-item a {
+    color: #E53935 !important;
+}
+
+/* in review */
+.custom-tabs .blue-fill.flex-fill.nav-item {
+    background: #E3F2FD;
+}
+
+.custom-tabs .blue-fill.nav-item.active {
+    border-bottom: 3px solid #1E88E5 !important;
+}
+
+.custom-tabs .blue-fill.nav-item a {
+    color: #1E88E5 !important;
+}
+
+/* action required */
+.custom-tabs .purple-fill.flex-fill.nav-item {
+    background: #F2E7FF;
+}
+
+.custom-tabs .purple-fill.nav-item.active {
+    border-bottom: 3px solid #9020FF !important;
+}
+
+.custom-tabs .purple-fill.nav-item a {
+    color: #9020FF !important;
+}
+
+/* approved */
+.custom-tabs .green-fill.flex-fill.nav-item {
+    background: #E5FAEA;
+}
+
+.custom-tabs .green-fill.nav-item.active {
+    border-bottom: 3px solid #20893C !important;
+}
+
+.custom-tabs .green-fill.nav-item a {
+    color: #20893C !important;
+}
+
+/* approved */
+.custom-tabs .yellow-fill.flex-fill.nav-item {
+    background: #FFF9E3;
+}
+
+.custom-tabs .yellow-fill.nav-item.active {
+    border-bottom: 3px solid #FFD600 !important;
+}
+
+.custom-tabs .yellow-fill.nav-item a {
+    color: #af960f !important;
+}

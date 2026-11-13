@@ -1,0 +1,674 @@
+/* Contract record — values from implementation/prototype/Contract_Details.html (app.css g1-* / mc-* classes and the
+   inline values of headerHTML, railHTML, stageRail, v28ActiveWorkHTML). Layout: rail 340px (#fafbfc) · main (#f6f7f9)
+   with a white record header. Scoped under .mcdt. */
+.mcdt { --accent:#2563eb; --link:#1d4ed8; --line:#e3e7ed; --line2:#edf0f4; --t1:#171b22; --t2:#3d4552; --t3:#4a515c; --t4:#676e77; --t5:#667080;
+  font-family:var(--sans, "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif); color:var(--t1);
+  display:flex; align-items:stretch; min-width:0; margin:0; min-height:calc(100vh - 52px); background:#f6f7f9; -webkit-font-smoothing:antialiased; line-height:normal; }
+.mcdt *, .mcdt *::before, .mcdt *::after { box-sizing:border-box; }
+.mcdt button { font-family:inherit; }
+.mcdt-loading { font-size:13px; color:var(--t4); padding:30px; text-align:center; }
+/* the neutral denial surface (prototype cdNeutralDeniedHTML): title and message, nothing else */
+.mcdt-denied { padding:56px 28px; max-width:620px; }
+.mcdt-denied .ic { width:34px; height:34px; border-radius:999px; background:#f2f4f7; display:flex; align-items:center; justify-content:center; margin-bottom:14px; color:#8a919c; }
+.mcdt-denied h1 { font-size:17px; font-weight:600; color:var(--t1); margin:0 0 6px; }
+.mcdt-denied p { font-size:12.5px; color:var(--t4); line-height:1.6; margin:0; }
+/* rail */
+/* the rail stays put while the record scrolls (prototype .pd-rail: sticky under the 48px top bar; the app's top bar is
+   52px) - its own body scrolls (.body overflow-y:auto); the page scroll belongs to the record on the right */
+.mcdt-side { width:340px; flex-shrink:0; background:#fafbfc; border-right:1px solid var(--line); display:flex; flex-direction:column; min-height:0;
+  position:sticky; top:52px; height:calc(100vh - 52px); align-self:flex-start; overflow:hidden;
+  /* sticky traps its fixed descendants in its own stacking context at z auto, so .mcdt-main (later in the DOM) painted OVER
+     any dialog/drawer mounted in the rail (Employer Contact Details bleed, 6 Nov). z 10 lifts the rail's context above the
+     main column's static content while staying under popovers (60+) and overlays (1000+) mounted in main. */
+  z-index:var(--z-sticky, 10); }
+.mcdt-side .seg { display:flex; background:#eceff3; border-radius:7px; padding:3px; margin:12px 12px 8px; }
+.mcdt-side .seg button { flex:1; height:26px; display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; font-weight:500; color:#5a626e; background:transparent; border:0; border-radius:5px; box-shadow:none; cursor:pointer; }
+.mcdt-side .seg button.on { font-weight:600; color:var(--t1); background:#fff; box-shadow:0 1px 2px rgba(16,24,40,.08); }
+.mcdt-side .body { flex:1; border-top:1px solid var(--line); background:#fafbfc; min-height:0; overflow-y:auto; padding:13px; display:flex; flex-direction:column; gap:11px; }
+.mcdt-card { background:#fff; border:1px solid var(--line); border-radius:9px; padding:13px 14px; margin:0; min-width:0; }
+.mcdt-card .lbl { font-size:11.5px; font-weight:500; color:var(--t3); white-space:nowrap; }
+.mcdt-card .val { font-size:14px; font-weight:600; color:var(--t1); margin-top:3px; }
+.mcdt-card .ref { font-family:var(--mono); font-size:12px; font-weight:600; margin-top:4px; line-height:21px; }
+.mcdt-card .ref a { color:var(--link); text-decoration:none; }
+.mcdt-card .ref a:hover { text-decoration:underline; }
+.mcdt-card .ref .plain { color:#3b3b41; font-weight:400; }
+.mcdt-two { display:grid; grid-template-columns:1fr 1fr; gap:11px; align-items:stretch; }
+.mcdt-two .mcdt-card .val { font-size:16px; font-weight:650; letter-spacing:-0.01em; margin-top:4px; }
+.mcdt-two .mcdt-card .val.empty { color:var(--t4); }
+.mcdt-two [data-delay] .val { line-height:1.3; }
+.mcdt-two [data-delay] .val.small { font-size:13px; }
+.mcdt-card.warn { background:oklch(.965 .055 70); border-color:oklch(.81 .105 64); }
+.mcdt-card.warn .lbl, .mcdt-card.warn .val { color:oklch(.47 .17 58); }
+.mcdt-reqrow { display:flex; align-items:center; gap:6px; margin-top:4px; }
+.mcdt-reqrow .val, .mcdt-two .mcdt-reqrow .val { flex:1; margin-top:0; }
+.mcdt-reqrow .val.empty { color:var(--t4); }
+.mcdt-reqedit { margin-top:6px; display:flex; flex-direction:column; gap:6px; }
+.mcdt-reqedit .bt { display:flex; gap:6px; justify-content:flex-end; }
+/* prototype reqStartCardsHTML: Cancel / Save are the rail's small 26px buttons, not the 32px kit size */
+.mcdt-reqedit .bt > button { height:26px; min-height:0; padding:0 9px; font-size:11.5px; }
+.mcdt .ctx-icon-btn { width:22px; height:22px; margin:-2px -6px -2px 0; border:0; background:none; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:var(--t5); }
+.mcdt .ctx-icon-btn:hover { background:#f1f3f6; }
+/* avatars (prototype owner avatars): 22px in the pill (white ring), 26px in the popover, 30px in the chat list */
+.mcdt-av { border-radius:999px; display:inline-flex; align-items:center; justify-content:center; font-weight:600; flex-shrink:0; line-height:normal; }
+.mcdt-av.sm { width:22px; height:22px; font-size:9px; }
+.mcdt-av.md { width:26px; height:26px; font-size:9.5px; }
+.mcdt-av.lg { width:30px; height:30px; font-size:10.5px; }
+.mcdt-av.cs { background:#e8effd; color:#2058c9; }
+.mcdt-av.assistant { background:#e0f0ee; color:#1f6f64; }
+.mcdt-av.prepared { background:#e7e0f6; color:#5b4a9e; }
+.mcdt-av.ready { background:#f6e7d7; color:#8a5a1f; }
+.mcdt-av.none { background:#f2f4f7; color:#8a919c; }
+.mcdt-ownpop .inactive { margin-left:6px; font-size:10.5px; color:#8a5a1f; background:#fdf1dd; border-radius:3px; padding:1px 5px; font-weight:600; }
+/* main */
+.mcdt-main { flex:1; min-width:0; display:flex; flex-direction:column; background:#f6f7f9; border:0; border-radius:0; padding:0; }
+.mcdt-rec { padding:20px 28px 0; background:#fff; }
+.mcdt-head { display:flex; gap:16px; align-items:center; flex-wrap:wrap; row-gap:12px; }
+.mcdt-head .hl { flex:1; min-width:0; }
+.mcdt-head h1 { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:0; font-size:19px; font-weight:650; color:var(--t1); letter-spacing:-0.01em; line-height:normal; }
+.mcdt-pill { box-sizing:border-box; height:22px; display:inline-flex; align-items:center; gap:6px; padding:0 9px; border-radius:4px; background:#f4f6f8; border:1px solid var(--line); color:var(--t3); font-size:11px; font-weight:600; white-space:nowrap; }
+.mcdt-pill .dot { width:6px; height:6px; border-radius:999px; background:currentColor; }
+.mcdt-pill.processing { background:oklch(.965 .055 70); border-color:oklch(.81 .105 64); color:oklch(.47 .17 58); font-weight:650; }
+.mcdt-pill.active { background:oklch(.965 .03 150); border-color:oklch(.84 .05 150); color:oklch(.49 .13 150); font-weight:650; }
+.mcdt-pill.completed { background:#f4f6f8; border-color:var(--line); color:#5a626e; font-weight:650; }   /* workbook #7: Completed is grey */
+.mcdt-pill.cancelled { background:oklch(.97 .02 28); border-color:oklch(.88 .035 28); color:oklch(.5 .1 28); font-weight:650; }
+.mcdt-ref { display:flex; align-items:center; gap:8px; margin-top:4px; }
+.mcdt-ref .code { font-family:var(--mono); font-size:12px; font-weight:600; color:#3b3b41; }   /* a reference is neutral unless it opens a permitted record */
+.mcdt-ref .code.link { color:var(--link); text-decoration:none; }
+.mcdt-ref .code.link:hover { text-decoration:underline; }
+.mcdt .mcdt-ref .copy { height:18px; padding:0 6px; font-size:10px; color:var(--t5); border-color:var(--line); }
+.mcdt-summary { margin-top:14px; padding:11px 0; border-top:1px solid var(--line2); border-bottom:1px solid var(--line2); }
+.mcdt-grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:12px 28px; margin:0; padding:0; border:0; }
+.mcdt-grid > div { min-width:0; max-width:320px; }
+.mcdt-grid .lbl { font-size:11.5px; font-weight:500; color:var(--t3); }
+.mcdt-grid .val { font-size:13px; font-weight:500; color:#131316; margin-top:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mcdt-grid .val.empty { color:var(--t4); }
+.mcdt-grid .val.mono { font-family:var(--mono); font-size:12.5px; font-weight:600; }
+.mcdt-grid .val.wrap { white-space:normal; }
+.mcdt-grid .val.tagged { display:flex; align-items:center; gap:8px; min-width:0; }
+.mcdt-grid .val.tagged .txt { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mcdt-tag { display:inline-flex; align-items:center; height:20px; padding:0 8px; border-radius:4px; font-size:11px; font-weight:500; white-space:nowrap; background:#f4f6f8; border:1px solid var(--line); color:#5a626e; }
+/* the Active-contract work band (prototype v28ActiveWorkHTML): above the record tabs */
+.mcdt-band { margin-top:12px; }
+.mcdt-band .bk { font-size:10.5px; font-weight:650; letter-spacing:.08em; color:var(--t4); text-transform:uppercase; margin-bottom:6px; }
+.mcdt-band .bl { display:flex; flex-direction:column; gap:6px; }
+.mcdt-band .bi { display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:8px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+.mcdt-band .bt { font-size:12.5px; font-weight:600; color:var(--t1); }
+.mcdt-band .bx { font-size:12px; color:var(--t3); }
+.mcdt-band .bi .grow { flex:1; }
+.mcdt-band .bn { font-size:11px; color:var(--t4); }
+.mcdt-band .bi .g1-btn { height:28px; padding:0 11px; font-size:12px; }
+.mcdt-band .mcdt-tok.inline { padding:2px 9px; font-size:11.5px; gap:5px; }
+.mcdt-band .xvcases { flex-basis:100%; display:flex; flex-wrap:wrap; gap:6px; margin-top:2px; }
+.mcdt-band .g1-btn.xvcase { height:26px; padding:0 10px; font-size:11.5px; gap:6px; }
+.mcdt-band .xvcase .dot { width:7px; height:7px; border-radius:999px; background:#98a0ab; }
+.mcdt-band .xvcase .dot.green { background:oklch(.49 .13 150); } .mcdt-band .xvcase .dot.red { background:oklch(.5 .1 28); } .mcdt-band .xvcase .dot.teal { background:oklch(.45 .1 195); }
+.mcdt-tabs { display:flex; gap:28px; margin:8px 0 0; border:0; }
+.mcdt-tabs button { border:0; background:none; padding:11px 2px; font-size:13px; font-weight:500; color:var(--t5); box-shadow:none; cursor:pointer; }
+.mcdt-tabs button.on { font-weight:600; color:var(--t1); box-shadow:inset 0 -2px 0 #2563eb; }
+.mcdt-content { flex:1; border-top:1px solid var(--line); }
+.mcdt-body { padding:16px 28px 44px; }
+.mcdt-body > .col { max-width:1120px; display:flex; flex-direction:column; gap:14px; padding:0; width:auto; flex:none; position:static; }
+/* stage rail (prototype stageRail / g1-stage-card) */
+.mcdt-hist { font-size:10.5px; font-weight:650; letter-spacing:.08em; color:var(--t4); text-transform:uppercase; }
+.mcdt-stages { display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:10px; margin:0; }
+.mcdt-stages[data-stages="7"] { grid-template-columns:repeat(7, minmax(0,1fr)); gap:6px; }
+.mcdt-stages[data-stages="7"] .mcdt-stage { padding:12px 8px 13px; }
+.mcdt-stages[data-stages="7"] .mcdt-tok { font-size:10.5px; gap:4px; padding:0 3px; }
+.mcdt-stage { min-width:0; text-align:left; background:#fff; border-radius:9px; padding:12px 13px 13px; cursor:pointer; border:1px solid var(--line); font-family:inherit; }
+.mcdt-stage:hover { border-color:#c9d4ea; }
+.mcdt-stage.on, .mcdt-stage.on:hover { border-color:#2563eb; box-shadow:0 0 0 3px #e8effd; background:#fff; }
+.mcdt-stage .n { font-size:11px; font-weight:650; letter-spacing:.06em; text-transform:uppercase; color:var(--t2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.mcdt-stage.on .n { color:var(--link); }
+.mcdt-stage .d { font-size:11.5px; font-weight:500; color:var(--t5); margin:3px 0 0; }
+.mcdt-stage .mcdt-tok { margin-top:9px; height:28px; }
+.mcdt-tok { height:28px; display:flex; align-items:center; justify-content:center; gap:7px; border-radius:6px; font-size:11.5px; font-weight:650; border:1px solid transparent; width:100%; padding:0 6px; }
+.mcdt-tok span { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+/* inline = the prototype tag (tagHTML / .g1-tag): 20px, 11px / 500, 4px radius */
+.mcdt-tok.inline { width:auto; height:20px; display:inline-flex; padding:0 8px; gap:6px; border-radius:4px; font-size:11px; font-weight:500; }
+.mcdt-tok.red, .mcdt-tok.muted { background:oklch(.97 .02 28); border-color:oklch(.88 .035 28); color:oklch(.5 .1 28); }
+.mcdt-tok.green { background:oklch(.965 .03 150); border-color:oklch(.84 .05 150); color:oklch(.49 .13 150); }
+.mcdt-tok.blue { background:oklch(.965 .03 230); border-color:oklch(.84 .05 230); color:oklch(.5 .13 230); }
+.mcdt-tok.purple { background:oklch(.965 .035 305); border-color:oklch(.84 .07 305); color:oklch(.5 .16 305); }
+.mcdt-tok.teal { background:oklch(.962 .028 195); border-color:oklch(.85 .05 195); color:oklch(.45 .1 195); }
+.mcdt-tok.orange { background:oklch(.965 .055 70); border-color:oklch(.81 .105 64); color:oklch(.47 .17 58); }
+.mcdt-tok.gray { background:oklch(.97 .003 250); border-color:#d5dbe3; color:#5a626e; }
+@media (max-width:1360px) and (min-width:1081px) { .mcdt-stages { gap:6px; } .mcdt-stage { padding:12px 8px 13px; } .mcdt-tok { font-size:10.5px; gap:4px; height:auto; min-height:24px; padding:2px 3px; } .mcdt-tok span, .mcdt-stage .n { white-space:normal; } }
+@media (max-width:1080px) { .mcdt-stages { display:flex; overflow-x:auto; padding-bottom:4px; } .mcdt-stage { flex:0 0 auto; width:150px; } }
+.mcdt-lock > [role="status"] { margin:0; }
+/* the terminal-flow wrapper usually renders nothing — an empty child must not take a 14px column gap (prototype has no such row) */
+.mcdt-lock:empty { display:none; }
+.mcdt-panel { border:0; border-radius:0; padding:0; }
+.mcdt-note { font-size:13px; color:var(--t4); padding:30px; text-align:center; }
+.mcdt-empty { padding:26px 4px; font-size:12.5px; color:var(--t5); }
+@media (max-width:1100px) { .mcdt { flex-direction:column; } .mcdt-side { width:auto; border-right:0; border-bottom:1px solid var(--line); position:static; height:auto; overflow:visible; } }
+/* lifecycle dialogs on the kit Modal (prototype dlgFrame fields, notes and the review step) */
+/* The kit Modal card carries .mcdt-dlg. The Contract prototype's dialog shell (.mc-ov) differs from the kit's in its padding
+   rhythm and has no footer divider, so the three Modal regions (head · body · foot — Modal.jsx order) are re-spaced here;
+   the document previews keep the kit shell. */
+/* margin auto: the prototype .mc-ov is vertically centered; the kit scrim top-anchors (align-items:flex-start) */
+.mcdt-dlg:not(.g1-preview-modal):not(.fx-preview) { border:0; box-shadow:0 16px 38px rgba(16,24,40,.24); margin-top:auto; margin-bottom:auto; }
+.mcdt-dlg:not(.g1-preview-modal):not(.fx-preview) > div:first-child { padding:18px 20px 0; }
+.mcdt-dlg:not(.g1-preview-modal):not(.fx-preview) > div:first-child > button { width:30px; height:30px; margin:-6px -8px 0 0; }
+.mcdt-dlg:not(.g1-preview-modal):not(.fx-preview) > fieldset > div:first-child { padding:10px 20px 2px; }
+.mcdt-dlg:not(.g1-preview-modal):not(.fx-preview) > fieldset > div:last-child:not(:first-child) { margin-top:0; padding:16px 20px 18px; border-top:0; }
+/* prototype .ctx-btn.primary[aria-disabled]: a disabled primary is grey, not faded blue (kit Btn uses opacity) */
+.mcdt-dlg:not(.g1-preview-modal):not(.fx-preview) button[class*="primary"]:disabled { opacity:1; background:#e8ebf0; border-color:#e8ebf0; color:#8a929e; }
+.mcdt-dlg .grow { flex:1; }
+.mcdt-dlg .intro { font-size:12.5px; line-height:1.5; color:var(--t5); margin:0 0 4px; }
+/* `row` is also Bootstrap 5's grid row (global): its negative gutters and per-child padding are cancelled here so the
+   dialog fields sit on the body's 20px padding like the title */
+.mcdt-dlg .row { --bs-gutter-x:0; --bs-gutter-y:0; display:flex; gap:6px 16px; flex-wrap:wrap; align-items:flex-start; margin:10px 0 0; width:auto; }
+.mcdt-dlg .row > * { padding:0; margin-top:0; width:auto; max-width:none; flex-shrink:1; }
+/* two fields sharing the dialog's width (Edit Details: Requested Start Date · Arrival Date) */
+.mcdt-dlg .row.two > * { flex:1 1 180px; width:auto; min-width:0; }
+.mcdt-dlg .f-m { width:220px; max-width:100%; }
+.mcdt-dlg .f-date { width:220px; max-width:100%; }
+/* Edit record dialog: a field the lifecycle keeps read-only shows its value in the control's box (PROCESS §3.3.2 by status) */
+.mcdt-dlg .mcdt-ro { height:32px; display:flex; align-items:center; padding:0 10px; border:1px solid var(--line); border-radius:6px; background:#f6f7f9; color:var(--t2); font-size:12.5px; font-family:var(--mono, ui-monospace, monospace); }
+.mcdt-dlg .f-full { flex:1 1 100%; width:100%; margin-top:10px; }
+.mcdt-dlg .note { font-size:12.5px; line-height:1.55; color:var(--t2); background:#f6f7f9; border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:10px 0 0; }
+.mcdt-dlg .note b { font-weight:700; color:var(--t1); }
+.mcdt-dlg .note .gap { margin-top:6px; }
+.mcdt-dlg .note ul.plain { margin:6px 0 0; padding-left:18px; }
+.mcdt-dlg .note ul.plain li { margin:2px 0; }
+.mcdt-dlg .note.warn { background:oklch(.965 .055 70); border-color:oklch(.81 .105 64); color:oklch(.35 .12 58); }
+/* duplicate phone warn step (E-1 / U-0032) inside the Employer Contact dialog */
+.mcdt-dlg .note .ttl { font-weight:700; }
+.mcdt-dlg .note .src { display:inline-block; min-width:60px; margin-right:8px; font-size:10.5px; font-weight:650; letter-spacing:.06em; text-transform:uppercase; }
+.mcdt-dlg .note .num { margin-left:8px; font-family:var(--mono); font-size:11.5px; }
+.mcdt-dlg .note.danger { background:oklch(.965 .03 28); border-color:oklch(.85 .05 28); color:oklch(.42 .16 28); }
+.mcdt-dlg .err { font-size:12.5px; line-height:1.5; color:#b42318; margin:0 0 10px; }
+.mcdt-dlg .help { font-size:11px; color:var(--t4); line-height:18px; margin:10px 0 0; }
+.mcdt-dlg .checks { display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:2px; }
+/* PAOS dialog (prototype dlgField sizes l · date · xs · s · m · full; recorded session; histories) */
+.mcdt-dlg .f-l { flex:1 1 240px; min-width:220px; max-width:100%; }
+.mcdt-dlg .f-s { width:150px; max-width:100%; }
+.mcdt-dlg .f-xs { width:110px; max-width:100%; }
+/* Employer Contact Details · Edit (K-14): country code + number on one line; the rail block's header row */
+.mcdt-dlg .mcdt-phone { display:flex; gap:6px; } .mcdt-dlg .mcdt-phone > select { width:150px; flex:0 0 150px; } .mcdt-dlg .mcdt-phone > input { flex:1; min-width:0; }
+.mcdt-contact .hd { display:flex; justify-content:space-between; align-items:center; }
+.mcdt-dlg .f-full .lbl { font-size:11.5px; font-weight:500; color:var(--t3); margin-bottom:4px; }
+.mcdt-dlg .f-full .val { font-size:12.5px; color:var(--t1); }
+.mcdt-dlg .note.hist { display:flex; flex-direction:column; gap:4px; font-size:12px; margin-top:0; }
+.mcdt-dlg .note.hist .soft { color:var(--t4); }
+.mcdt-paos input.mono { font-family:var(--mono); }
+
+/* ---- embedded Processing stage tab inside the Contract Details panel = prototype .g1-panel ---- */
+.mcdt-embed { font-size:13px; }
+/* lifecycle lock (TERMINAL §1): outside Processing the stage status menu is read-only for everyone; Send Template stays */
+.mcdt-embed[data-stage-locked] .change-status { display:none; }
+.mcdt-embed > div.wrap-div, .mcdt-embed > .tab-pane > div.wrap-div, .mcdt-embed .wrap-div.br12 { background:#fff !important; border:1px solid var(--line) !important; border-radius:9px !important; padding:18px 20px !important; margin:0 !important; }
+.mcdt-embed .row.mb24 { display:flex; flex-wrap:wrap; gap:8px 10px; margin:0 !important; padding-bottom:14px; border-bottom:1px solid var(--line2); align-items:center; }
+.mcdt-embed .row.mb24 > .col { flex:1 1 0%; width:auto; max-width:none; min-width:0; padding:0; }
+.mcdt-embed .row.mb24 > .col-auto { flex:0 0 auto; padding:0; }
+.mcdt-embed .mcdt-stagehead { display:flex; align-items:center; gap:8px 10px; flex-wrap:wrap; }
+.mcdt-embed .mcdt-stagehead h2 { font-size:16px; font-weight:600; margin:0; letter-spacing:-0.01em; color:var(--t1); line-height:normal; }
+.mcdt-embed .mcdt-stagepill { display:inline-flex; align-items:center; gap:6px; height:22px; padding:0 8px; border-radius:4px; font-size:11px; font-weight:500; border:1px solid transparent; white-space:nowrap; }
+.mcdt-embed .mcdt-stagepill.green { background:oklch(.965 .03 150); border-color:oklch(.84 .05 150); color:oklch(.49 .13 150); }
+.mcdt-embed .mcdt-stagepill.red, .mcdt-embed .mcdt-stagepill.muted { background:oklch(.97 .02 28); border-color:oklch(.88 .035 28); color:oklch(.5 .1 28); }
+.mcdt-embed .mcdt-stagepill.blue { background:oklch(.965 .03 230); border-color:oklch(.84 .05 230); color:oklch(.5 .13 230); }
+.mcdt-embed .mcdt-stagepill.purple { background:oklch(.965 .035 305); border-color:oklch(.84 .07 305); color:oklch(.5 .16 305); }
+.mcdt-embed .mcdt-stagepill.teal { background:oklch(.962 .028 195); border-color:oklch(.85 .05 195); color:oklch(.45 .1 195); }
+.mcdt-embed .mcdt-stagepill.gray { background:oklch(.97 .003 250); border-color:#d5dbe3; color:#5a626e; }
+.mcdt-embed .mcdt-stagepill.orange { background:oklch(.965 .055 70); border-color:oklch(.81 .105 64); color:oklch(.47 .17 58); }
+.mcdt-embed .mcdt-stagemeta { font-size:11.5px; color:var(--t4); border-left:1px solid var(--line); padding-left:10px; white-space:nowrap; }
+.mcdt-embed .col-auto { padding-left:0; }
+.mcdt-embed .col-auto.d-flex { gap:8px; align-items:center; }
+.mcdt-embed button.btn, .mcdt-embed label.btn, .mcdt-embed a.btn { height:28px; display:inline-flex; align-items:center; gap:6px; border-radius:6px; font-size:12.5px; font-weight:550; padding:0 11px; background:#fff; border:1px solid #d5dbe3; color:#171b22; margin:0 !important; line-height:1; box-shadow:none; }
+.mcdt-embed .btn-primary, .mcdt-embed button.btn-primary, .mcdt-embed label.btn-primary, .mcdt-embed a.btn-primary { background:#2563eb; border-color:#2563eb; color:#fff; padding:0 12px; }
+.mcdt-embed .upload-btn .btn.filled-btn, .mcdt-embed .upload-btn label.filled-btn { background:#2563eb !important; border-color:#2563eb !important; color:#fff !important; padding:0 12px; height:28px; display:inline-flex; align-items:center; gap:6px; border-radius:6px; font-size:12.5px; font-weight:550; }
+.mcdt-embed .upload-btn .btn.filled-btn img, .mcdt-embed .upload-btn .btn.filled-btn svg { display:none; }
+.mcdt-embed .upload-btn .btn.filled-btn::before { content:""; display:inline-block; width:11px; height:11px; background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='1.8'><path d='M8 11V4M5 6.5 8 3.5l3 3'/><path d='M3 12.5h10'/></svg>") no-repeat center / 11px 11px; }
+.mcdt-embed .btn-primary:hover { background:#1d4fd0; border-color:#1d4fd0; color:#fff; }
+.mcdt-embed .form-row { margin-top:16px; }
+.mcdt-embed .form-label { font-size:11.5px; font-weight:500; color:var(--t3); margin-bottom:4px; }
+.mcdt-embed .form-control, .mcdt-embed input.form-control, .mcdt-embed select.form-control { font-size:12.5px; height:32px !important; border-radius:6px; border:1px solid #d5dbe3; }
+.mcdt-embed table { font-size:13px; border:1px solid var(--line); border-radius:0 0 8px 8px; overflow:hidden; margin-bottom:18px; background:#fff; width:100%; }
+.mcdt-embed table thead th:first-child { text-align:left; }
+.mcdt-embed table thead th { font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--t4); background:oklch(.97 .005 250); height:38px; padding:0 14px !important; border-bottom:1px solid var(--line); }
+.mcdt-embed table td { padding:0 14px !important; height:46px; border-bottom:1px solid var(--line2); font-size:13px; font-weight:500; color:var(--t1); vertical-align:middle; }
+/* prototype g1-cell: 70px cells 24px apart (14px cell margin + the row's 10px gap), the last one 72px from the row's right
+   edge — the mark sits in the cell's centre */
+.mcdt-embed table th:not(:first-child), .mcdt-embed table td:not(:first-child) { width:94px; padding:0 12px !important; text-align:center; white-space:nowrap; }
+.mcdt-embed table td:last-child, .mcdt-embed table th:last-child { width:154px; padding:0 72px 0 12px !important; }
+.mcdt-embed table th, .mcdt-embed table td { border-left:0 !important; border-right:0 !important; border-top:0 !important; }
+.mcdt-embed table thead th { border-bottom:1px solid var(--line) !important; }
+.mcdt-embed table tr:last-child td { border-bottom:0; }
+.mcdt-embed table input[type="checkbox"] { width:16px; height:16px; accent-color:#2563eb; border-radius:3px; margin:0; vertical-align:middle; }
+.mcdt-embed .mb120 { margin-bottom:0 !important; }
+/* ---- Insurance panel (prototype i-03 / i-04 / i-05): the g1-form field grid, the policy badge, the pending note ---- */
+/* the foot flows after the body inside the panel padding (see the g1-foot rule below), so the body reserves nothing */
+.mcdt-embed .mcdt-insbody { margin:18px 0 0; }
+.mcdt-embed .mcdt-insform { display:grid; gap:16px 20px; margin:0; }
+.mcdt-embed .mcdt-insform > div { min-width:0; }
+.mcdt-embed .mcdt-insform .lb { font-size:11.5px; font-weight:500; color:var(--t3); margin-bottom:4px; white-space:nowrap; }
+.mcdt-embed .mcdt-insform .vl { font-size:13px; font-weight:500; color:var(--t1); overflow-wrap:anywhere; }
+.mcdt-embed .mcdt-insform .vl.empty { color:var(--t4); }
+.mcdt-embed .mcdt-insform .vl.mono, .mcdt-embed .mcdt-insform .mono { font-family:var(--mono); font-size:12.5px; font-weight:600; }
+.mcdt-embed .mcdt-insform .vl a { color:var(--link); text-decoration:none; }
+.mcdt-embed .mcdt-insform .sub { font-size:11.5px; color:var(--t4); font-weight:500; }
+.mcdt-embed .mcdt-insnote { margin:12px 0 0; font-size:11px; color:#667080; }
+.mcdt-embed .mcdt-insbadge { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:0 0 14px; }
+
+/* ---- Immigration · "Additional requirements" (prototype v210ImmPanel g1-listing): one compact group, the assessment per
+   section, an applicable section's rows beneath it (AdditionalRequirements.js) ---- */
+.mcdt-embed p.grey3.fz18 { display:none; } /* "Updated: … ago" — shown in the stage header */
+.mcdt-embed .fz24, .mcdt-embed .fz18 { font-size:15px !important; }
+.mcdt-embed .mb32 { margin-bottom:16px !important; }
+
+/* ---- Details · Forms · Invoice · Activity tabs (prototype detSubBar / det-body / cards) ---- */
+/* = prototype .g1-subtabs / .g1-subtab (detSubBar: 8px above the card) */
+.mcdt-subtabs { display:inline-flex; gap:2px; background:#eceff3; border-radius:7px; padding:3px; margin:0 0 8px; }
+.mcdt-subtabs button { height:26px; display:inline-flex; align-items:center; gap:7px; border:0; background:transparent; border-radius:5px; padding:0 12px; font-size:12px; font-weight:500; color:#667080; cursor:pointer; font-family:inherit; }
+.mcdt-subtabs button.on { background:#fff; color:#1d4ed8; font-weight:600; box-shadow:0 1px 2px rgba(16,24,40,.08); }
+.mcdt-subtabs .dot { width:7px; height:7px; border-radius:999px; background:#b4b2a9; }
+/* prototype sub-tab dot = the tone's text colour (TONE.*.c) */
+.mcdt-subtabs .dot.green { background:oklch(.49 .13 150); } .mcdt-subtabs .dot.blue { background:oklch(.5 .13 230); } .mcdt-subtabs .dot.purple { background:oklch(.5 .16 305); } .mcdt-subtabs .dot.teal { background:oklch(.45 .1 195); } .mcdt-subtabs .dot.red, .mcdt-subtabs .dot.muted { background:oklch(.5 .1 28); } .mcdt-subtabs .dot.orange { background:oklch(.47 .17 58); } .mcdt-subtabs .dot.gray { background:#5a626e; }
+.mcdt-dcard { background:#fff; border:1px solid #e3e7ed; border-radius:9px; padding:18px 20px; }
+.mcdt-dcard .h { display:flex; align-items:center; gap:10px; padding-bottom:14px; border-bottom:1px solid #edf0f4; margin-bottom:16px; }
+.mcdt-dcard .h .t { font-size:16px; font-weight:600; color:#171b22; letter-spacing:-0.01em; }
+.mcdt-dcard .h .grow { flex:1; }
+/* card-head actions are the prototype's 28px buttons (Passport → Edit), not the 32px record-header size */
+.mcdt-dcard .h .g1-btn { height:28px; padding:0 11px; font-size:12px; }
+.mcdt-dcard .g .mcdt-visa-edit { margin-top:6px; }
+.mcdt-warn { display:flex; align-items:flex-start; gap:8px; margin:0 0 14px; padding:9px 12px; border-radius:8px; font-size:12px; line-height:1.5; background:oklch(.965 .055 70); border:1px solid oklch(.81 .105 64); color:oklch(.35 .12 58); }
+.mcdt-warn svg { flex-shrink:0; margin-top:2px; color:oklch(.47 .17 58); }
+/* listing cards (prototype .mc-worker-listing-card): the header and rows run inside the card's 18px side padding */
+.mcdt-dcard.flush { padding:8px 18px 0; }
+.mcdt-dcard .g.bt { border-top:1px solid #edf0f4; padding-top:14px; }
+.mcdt-dcard .g { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:14px 22px; }
+.mcdt-dcard .g > div { min-width:0; max-width:320px; }
+.mcdt-dcard .g.six { grid-template-columns:repeat(6, minmax(0, 1fr)); }
+.mcdt-dcard .l { font-size:11.5px; font-weight:500; color:#4a515c; }
+.mcdt-dcard .v { font-size:13px; font-weight:500; color:#171b22; margin-top:4px; }
+.mcdt-dcard .v.mono { font-family:var(--mono); font-size:12.5px; font-weight:600; }
+/* = prototype listing kit (.mc-worker-listing-header 38px · -row 44px · -sort 10.5px caps · cells 12.5px #3b3b41) */
+.mcdt-list { width:100%; border-collapse:collapse; font-size:12.5px; color:#3b3b41; }
+.mcdt-list th { text-align:left; height:38px; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:#676e77; font-weight:600; padding:0 16px 0 0; border-bottom:1px solid var(--line); white-space:nowrap; }
+.mcdt-list td { height:44px; padding:0 16px 0 0; border-bottom:1px solid var(--line2); white-space:nowrap; vertical-align:middle; }
+.mcdt-list th:last-child, .mcdt-list td:last-child { padding-right:0; }
+.mcdt-list tr:last-child td { border-bottom:0; }
+.mcdt-list .mono { font-family:var(--mono); font-size:12.5px; }
+/* ---- Context panel: Remarks · Follow Up · Chat History (prototype rail cards) ---- */
+.mcdt-rail { padding:0; }
+.mcdt-rail .rh { display:flex; align-items:center; gap:8px; padding:13px 14px; cursor:pointer; }
+.mcdt-rail .rt { font-size:13px; font-weight:600; color:var(--t1); } .mcdt-rail .rc { font-size:11.5px; color:var(--t4); font-weight:400; margin-left:0; font-family:var(--mono); }
+.mcdt-rail .rv { color:#667080; font-size:14px; margin-left:auto; line-height:1; display:inline-flex; }
+.mcdt-rail .rv.open svg { transform:rotate(90deg); }
+.mcdt-rail .rs { padding:0 14px 13px; font-size:11.5px; color:#667080; margin-top:-8px; line-height:1.5; }
+.mcdt-rail.act { cursor:pointer; } .mcdt-rail.act:hover { background:#f4f6f8; } /* prototype h-bg-lt: the whole card is the button */
+.mcdt-rail.act:focus-visible, .mcdt-rail .rh:focus-visible { outline:2px solid #2563eb; outline-offset:2px; }
+.mcdt-rail .rs .prev { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere; } /* the latest remark, two lines at most */
+
+/* ---- Context panel → Follow Up inline (prototype rail: ‹ · Follow Up / ref · + Add Follow Up · OUTSTANDING / HISTORY) ---- */
+/* Follow Up pane (prototype Contract_Details.html data-v29-fu-pane): replaces the rail body — ‹ · Follow Up / ref · + Add Follow Up,
+   OUTSTANDING · n rows, HISTORY · n rows; a selected follow-up: "‹ All follow-ups" + the task detail card. The FollowUpSheet
+   is the Processing / Invoice sheet in `inline` mode: its drawer rules (.cal-sheet, .fu-sheet) are reset here. */
+.mcdt-fupane { display:flex; flex-direction:column; min-width:0; }
+.mcdt-fupane .fu-sheet.fu-inline { position:static; width:auto; max-width:none; height:auto; padding:0; margin:0; border:0; box-shadow:none; background:transparent; overflow:visible; display:flex; flex-direction:column; gap:10px; font-size:13px; line-height:normal; color:#171b22; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-inline-head { display:flex; align-items:center; gap:8px; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-inline-back { width:28px; height:28px; padding:0; flex:none; border:1px solid #e3e7ed; border-radius:6px; background:#fff; color:#3d4552; font-size:13.33px; line-height:1; cursor:pointer; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-inline-back:hover { background:#f7f8fa; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-inline-title { flex:1; min-width:0; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-inline-title .t { font-size:13px; font-weight:600; color:#171b22; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-inline-title .r { font-family:var(--mono); font-size:11px; font-weight:400; color:#3b3b41; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-inline-add { height:30px; flex:none; border:1px solid #2563eb; border-radius:7px; background:#2563eb; color:#fff; font-size:12px; font-weight:600; padding:0 10px; cursor:pointer; white-space:nowrap; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-inline-add:hover { background:#1d4ed8; border-color:#1d4ed8; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-inline-kicker { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#676e77; margin:4px 0 0; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-list + .fu-inline-kicker { margin-top:8px; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-list { display:flex; flex-direction:column; gap:8px; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-row, .mcdt-fupane .fu-sheet.fu-inline .fu-row.task-overdue, .mcdt-fupane .fu-sheet.fu-inline .fu-row.task-cancelled { display:flex; gap:10px; align-items:flex-start; background:#fff; border:1px solid #e3e7ed; border-radius:8px; padding:10px 12px; color:#171b22; margin:0; }
+.mcdt-fupane .fu-sheet.fu-inline [data-fu-hist] .fu-row { opacity:.75; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-row .cal-check { width:16px; height:16px; border-width:1.5px; border-radius:4px; margin-top:2px; font-size:11px; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-main { flex:1; min-width:0; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-title { display:block; width:100%; border:0; background:transparent; padding:0; text-align:left; cursor:pointer; font-size:12.5px; font-weight:600; color:#171b22; white-space:normal; overflow-wrap:anywhere; line-height:normal; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-row.task-overdue .fu-title { color:oklch(0.40 0.15 28); text-decoration:none; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-row.task-completed .fu-title, .mcdt-fupane .fu-sheet.fu-inline .fu-row.task-cancelled .fu-title { text-decoration:line-through; color:#9096a0; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-meta, .mcdt-fupane .fu-sheet.fu-inline .fu-row.task-overdue .fu-meta { font-size:11.5px; color:#676e77; margin-top:2px; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-meta .mono, .mcdt-fupane .fu-sheet.fu-inline .fu-row.task-overdue .fu-meta .mono { font-family:var(--mono); font-size:11.5px; font-weight:400; color:#3b3b41; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-row.task-overdue .fu-meta .mono { color:oklch(0.49 0.16 28); }
+.mcdt-fupane .fu-sheet.fu-inline .fu-empty { font-size:12px; color:#676e77; padding:0; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-to-list { align-self:flex-start; border:0; background:transparent; padding:0; margin:0 0 4px; color:#1d4ed8; font-size:12px; font-weight:600; cursor:pointer; font-family:inherit; }
+.mcdt-fupane .fu-sheet.fu-inline .fu-detail { background:#fff; border:1px solid #e3e7ed; border-radius:9px; padding:12px 14px; }
+.mcdt-fupane .fu-sheet.fu-inline .cal-state { padding:8px 0; }
+.mcdt-fu-note { font-size:12px; color:#676e77; }
+
+/* ---- header controls (prototype ownersButtonHTML / actionsMenuHTML): Owners pill + popover, Edit, Actions menu ---- */
+.mcdt-hact { display:flex; gap:8px; align-items:flex-start; position:relative; padding-top:2px; }
+.mcdt-ownwrap, .mcdt-actwrap { position:relative; }
+.mcdt-ownpill { height:32px; display:inline-flex; align-items:center; gap:8px; padding:0 10px; border:1px solid #e3e7ed; border-radius:7px; background:#fff; color:#171b22; font-size:12.5px; font-weight:550; cursor:pointer; font-family:inherit; }
+.mcdt-ownpill.on { border-color:#2563eb; box-shadow:0 0 0 2px #e8effd; }
+.mcdt-ownpill .avs { display:flex; align-items:center; }
+.mcdt-ownpill .avs .mcdt-av { margin-left:-7px; border:2px solid #fff; box-sizing:content-box; }
+.mcdt-ownpill .avs .mcdt-av:first-child { margin-left:0; }
+.mcdt-ownpill .n { font-family:var(--mono); font-size:11.5px; font-weight:600; color:#676e77; }
+.mcdt-ownpill svg { color:#676e77; }
+.mcdt-ownpop { position:absolute; right:0; top:40px; width:292px; background:#fff; border:1px solid #e3e7ed; border-radius:10px; box-shadow:0 8px 24px rgba(16,24,40,.16); z-index:60; text-align:left; cursor:default; }
+.mcdt-ownpop .hd { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid #edf0f4; font-size:13px; font-weight:600; color:#171b22; }
+.mcdt-ownpop .hd .r { font-size:11px; color:#676e77; font-weight:400; text-transform:lowercase; }
+.mcdt-ownpop .bd { padding:10px 14px; }
+.mcdt-ownpop .k { font-size:10px; font-weight:600; letter-spacing:.08em; color:#676e77; text-transform:uppercase; }
+.mcdt-ownpop .orow { display:flex; align-items:center; gap:9px; margin-top:9px; }
+.mcdt-ownpop .k + .orow { margin-top:7px; }
+.mcdt-ownpop .nm { font-size:12.5px; font-weight:500; color:#171b22; }
+.mcdt-ownpop .nm.unassigned { color:#676e77; }
+.mcdt-ownpop .rl { font-size:11px; color:#676e77; margin-top:1px; }
+.mcdt .g1-btn, .mcdt-g1 { height:32px; display:inline-flex; align-items:center; gap:7px; padding:0 13px; border-radius:6px; background:#fff; border:1px solid #d5dbe3; color:#171b22; font-size:12.5px; font-weight:550; white-space:nowrap; cursor:pointer; font-family:inherit; text-decoration:none; }
+.mcdt .g1-btn:hover { background:#f7f8fa; color:#171b22; }
+.mcdt .g1-btn.on { border-color:#2563eb; background:#f5f8ff; }
+.mcdt .g1-btn:disabled { color:#a6adb8; cursor:default; background:#fff; }
+.mcdt .g1-btn svg { color:#667080; }
+.mcdt .g1-btn.primary { background:#2563eb; border-color:#2563eb; color:#fff; }
+.mcdt .g1-btn.primary:hover { background:#1d4fd0; }
+.mcdt .g1-btn.primary svg { color:#fff; }
+.mcdt .g1-btn.primary:disabled { background:#e8ebf0; border-color:#e8ebf0; color:#8a929e; }
+/* Contract panel edit mode (prototype ctEdit): Cancel / Save changes at the panel's foot, above Send Template */
+.mcdt .g1-btn svg + * { margin-left:0; }
+.mcdt .g1-btn.mcdt-actbtn { padding:0 12px; }
+.mcdt .g1-btn.mcdt-actbtn.on { background:#f4f6f8; border-color:#b9c2ce; }
+.mcdt-menu { position:absolute; right:0; top:38px; width:236px; box-sizing:border-box; background:#fff; border:1px solid #e3e7ed; border-radius:8px; box-shadow:0 8px 24px rgba(16,24,40,.16); z-index:70; padding:5px; text-align:left; }
+.mcdt-menu .k { font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#676e77; padding:7px 10px 5px; line-height:normal; }
+.mcdt-menu .cur { height:30px; display:flex; align-items:center; justify-content:space-between; padding:0 10px; border-radius:5px; font-size:12.5px; color:#676e77; line-height:normal; }
+.mcdt-menu .cur-tag { font-size:10.5px; color:#676e77; text-transform:lowercase; }
+.mcdt-menu .it { display:flex; align-items:center; width:100%; height:30px; border:0; background:none; text-align:left; padding:0 10px; border-radius:5px; font-size:12.5px; color:#171b22; cursor:pointer; font-family:inherit; }
+.mcdt-menu .it:hover { background:#f4f6f8; }
+.mcdt-menu .it-owners { height:32px; }
+.mcdt-menu .sep { height:1px; background:#edf0f4; margin:5px 4px; }
+.mcdt .ctx-btn { height:26px; padding:0 9px; font-size:11.5px; border-radius:6px; border:1px solid #d5dbe3; background:#fff; color:#171b22; cursor:pointer; font-family:inherit; font-weight:550; }
+.mcdt .ctx-btn.primary { background:#2563eb; border-color:#2563eb; color:#fff; }
+.mcdt .g1-in { height:32px; width:100%; box-sizing:border-box; border:1px solid #d5dbe3; border-radius:6px; padding:0 10px; background:#fff; font-size:12.5px; color:#171b22; font-family:inherit; }
+
+/* Chat rail */
+.mcdt-chatlist { display:flex; flex-direction:column; gap:11px; }
+.mcdt-chatrow { display:flex; align-items:center; gap:10px; text-align:left; cursor:pointer; width:100%; font-family:inherit; }
+.mcdt-chatrow:hover { border-color:#c9d2de; }
+.mcdt-chatrow .b { flex:1; min-width:0; }
+.mcdt-chatrow .nm { font-size:13px; font-weight:600; color:#171b22; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.mcdt-chatrow .rl { font-size:11.5px; color:#676e77; margin-top:2px; }
+/* the scoped thread in the rail (prototype chatThreadHTML): back row + Global Chat link, then the mini thread filling the rail */
+.mcdt-side .body:has(.mcdt-railchat) { padding:0; gap:0; overflow:hidden; }
+.mcdt-railchat { flex:1; min-height:0; display:flex; flex-direction:column; background:#fff; }
+.mcdt-chathead { display:flex; align-items:center; gap:8px; padding:8px 10px; border-bottom:1px solid var(--line); background:#fafbfc; flex-shrink:0; }
+.mcdt-chatback { display:inline-flex; align-items:center; gap:6px; height:26px; padding:0 6px; border:0; background:transparent; color:var(--t1); font-size:13px; font-weight:600; cursor:pointer; border-radius:5px; min-width:0; flex:1; }
+.mcdt-chatback:hover { background:#f0f2f5; }
+.mcdt-chatback .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mcdt-gclink { font-family:var(--mono); font-size:11.5px; font-weight:600; color:#1d4ed8; text-decoration:none; white-space:nowrap; flex-shrink:0; }
+.mcdt-gclink:hover { text-decoration:underline; }
+.mcdt-railchat .gcp.gc-mini { flex:1; min-height:0; }
+/* Invoice / Insurance tables */
+.mcdt-invtype { font-size:13px; color:#131316; font-weight:500; }
+.mcdt-list .sub { font-family:var(--mono); font-size:11.5px; font-weight:500; color:#3b3b41; margin-top:2px; }   /* the reference is neutral code text (prototype .mc-listing-ref-sub) */
+.mcdt-owner { display:inline-flex; align-items:center; gap:5px; font-size:11.5px; color:#3b3b41; min-width:0; }
+.mcdt-owner .mcdt-av { margin-left:0; width:20px; height:20px; font-size:8.5px; border:0; background:#eceff3; color:#667080; }
+.mcdt-emptyrow { height:92px; padding:0 !important; text-align:center; color:#676e77; font-size:12.5px; }
+
+/* ---- the other stage panels inside Contract Details (Consulate · Immigration · Visa · Insurance · Deployment · Pre-Departure · Medical)
+   = prototype g1-panel / g1-subtabs / g1-form / g1-foot, applied to the Processing tabs' existing markup ---- */
+.mcdt-embed .tab-content { background:transparent; border:0; padding:0; }
+.mcdt-embed .mcdt-embed-tab > .wrap-div, .mcdt-embed .tab-pane > .mcdt-embed-tab > .wrap-div { margin-top:0 !important; }
+/* sub-stage pill tablist (Visa: Authorization Letter · E-Visa; Deployment: DHL · Flight Details · HKID · Medical · Pick Up; Pre-Departure) */
+/* panel head rows that are not the Contract tab's */
+.mcdt-embed .row.mb32, .mcdt-embed .row.align-items-center.mb32 { display:flex; flex-wrap:wrap; gap:8px 10px; margin:0 !important; padding-bottom:14px; border-bottom:1px solid var(--line2); align-items:center; }
+.mcdt-embed .row.mb32 > .col, .mcdt-embed .row.mb32 > .col-auto { padding:0; }
+.mcdt-embed .row.mb32 > .col { flex:1 1 0%; width:auto; max-width:none; min-width:0; }
+.mcdt-embed .row.mb32 > .col-auto { flex:0 0 auto; }
+.mcdt-embed .col.d-flex > .btn.chip.small.ml12 { display:none; } /* the legacy status chip — StageTitle shows the prototype tag */
+.mcdt-embed .wrap-div > .row:first-child + .row, .mcdt-embed .wrap-div > .row.mb32 + .row, .mcdt-embed .wrap-div > .row.mb32 + form, .mcdt-embed .wrap-div > .row.mb32 + .form-row, .mcdt-embed .wrap-div > .row.mb24 + .row { margin-top:18px; }
+.mcdt-embed .btn-outline-primary, .mcdt-embed a.btn-outline-primary, .mcdt-embed .btn-outline { height:28px; display:inline-flex; align-items:center; gap:7px; padding:0 11px; border-radius:6px; background:#fff; border:1px solid #d5dbe3; color:var(--t1); font-size:12.5px; font-weight:550; white-space:nowrap; cursor:pointer; margin:0 !important; line-height:1; }
+.mcdt-embed .btn-outline-primary:hover, .mcdt-embed .btn-outline:hover { background:#f7f8fa; color:var(--t1); }
+/* forms = g1-form: 11.5px labels, 32px inputs */
+.mcdt-embed form .row, .mcdt-embed .form-row, .mcdt-embed .row.align-items-end { row-gap:0; }
+.mcdt-embed .form-label, .mcdt-embed label.form-label, .mcdt-embed label.fz20 { display:block; font-size:11.5px !important; font-weight:500 !important; color:#4a515c !important; margin-bottom:4px !important; line-height:1.4; }
+.mcdt-embed .form-control, .mcdt-embed input.form-control, .mcdt-embed select.form-control, .mcdt-embed textarea.form-control, .mcdt-embed .form-control.ht44, .mcdt-embed .ht44 { height:32px !important; min-height:32px; border:1px solid #d5dbe3 !important; border-radius:6px !important; padding:0 10px !important; font-size:12.5px !important; color:#171b22; background:#fff; box-shadow:none !important; }
+.mcdt-embed textarea.form-control { height:auto !important; padding:6px 10px !important; }
+.mcdt-embed select.form-control { appearance:none; padding-right:26px !important; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16'><path d='M3.5 6 8 10.5 12.5 6' fill='none' stroke='%23667080' stroke-width='1.8'/></svg>"); background-repeat:no-repeat; background-position:right 9px center; }
+.mcdt-embed .form-control:disabled, .mcdt-embed .form-control[readonly] { background:#f6f7f9 !important; color:#667080; }
+.mcdt-embed .mb32, .mcdt-embed .mb24, .mcdt-embed .mb-3, .mcdt-embed .mb20 { margin-bottom:16px !important; }
+.mcdt-embed .mb22 { margin-bottom:12px !important; }
+.mcdt-embed .mode-radio-buttons label { display:inline-flex; font-size:12.5px !important; color:#171b22 !important; font-weight:500 !important; }
+/* checklists = g1-listing (ProcessingTable) */
+.mcdt-embed table thead th { height:38px; line-height:1.2; vertical-align:middle; }
+.mcdt-embed table thead th:first-child, .mcdt-embed table td:first-child { text-align:left; }
+.mcdt-embed table td:first-child img { width:14px; height:14px; margin-right:8px; vertical-align:-2px; }
+.mcdt-embed .custom-checkbox label:before { width:16px; height:16px; padding:0; border:1.5px solid #c3cad4; border-radius:3px; box-sizing:border-box; margin:0; }
+.mcdt-embed .custom-check-input:checked + label:before { background-color:#2563eb !important; border-color:#2563eb !important; }
+.mcdt-embed .custom-checkbox input:checked + label:after { display:none !important; }
+.mcdt-embed .custom-check-input:checked + label:before { background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='m4 12 5 5L20 6'/></svg>"); background-repeat:no-repeat; background-position:center; }
+.mcdt-embed .custom-check-input:disabled + label:before { background-color:#f2f4f7 !important; border-color:#d5dbe3 !important; }
+.mcdt-embed .custom-check-input:disabled:checked + label:before { background-color:#9db4e8 !important; border-color:#9db4e8 !important; }
+.mcdt-embed table .fz12, .mcdt-embed table .grey3 { font-size:12.5px !important; }
+/* footer = g1-foot: Send Template · Change Status ▾ — in flow, not the legacy absolute strip (custom.css .table-wrapper-footer
+   pins it to the panel's bottom edge with no inset, so the buttons sat on the border); inside the panel's 18px 20px padding */
+.mcdt-embed .table-wrapper-footer { position:static !important; margin:20px 0 0 !important; padding:14px 0 0 !important; border-top:1px solid var(--line2); border-radius:0; background:transparent !important; display:flex; justify-content:flex-end; gap:8px; }
+.mcdt-embed .table-wrapper-footer .d-flex { gap:8px; align-items:center; }
+.mcdt-embed .table-wrapper-footer .btn-outline { margin:0 !important; }
+.mcdt-embed .customSelect.change-status { margin:0 !important; }
+.mcdt-embed .customSelect.change-status .abc, .mcdt-embed .customSelect.change-status .abc.bg-blue { height:28px !important; min-height:28px; display:inline-flex; align-items:center; padding:0 11px; border-radius:6px; background:#fff !important; border:1px solid #d5dbe3; color:#171b22 !important; font-size:12.5px; font-weight:550; }
+.mcdt-embed .customSelect.change-status .abc * { color:#171b22 !important; font-size:12.5px !important; }
+.mcdt-embed .customSelect.change-status .custom_drop_holder { margin-top:0 !important; gap:6px; }
+/* no inline activity list inside the panel — the page has its own Activity tab */
+.mcdt-embed .activity-status-collapsible { display:none; }
+.mcdt-embed .wrap-div > .mb120, .mcdt-embed .wrap-div > .mb-3:empty { display:none; }
+/* immigration / consulate helper copy */
+.mcdt-embed .fz16, .mcdt-embed .fz14 { font-size:13px !important; }
+.mcdt-embed .grey2.fz16, .mcdt-embed .fz16.grey2 { font-size:12.5px !important; color:#4a515c !important; }
+/* Insurance tab: the legacy "Processing step · tag" next to the title is replaced by the StageTitle tag */
+.mcdt-embed .col.d-flex > .mcdt-stagehead ~ span { display:none; }
+.mcdt-embed .col.mb24.d-flex { margin-bottom:0 !important; padding:0; }
+
+/* ===== Documents view (prototype openDocs: g1-docs-* · g1-folder-* · g1-file-* · g1-listing · g1-menu-file · g1-modal-preview) =====
+   The record is replaced by this view (?docs=<folder>); the rail stays. Values from modules/contract-details/parts/app.css. */
+.mcdt-docs .g1-btn { height:28px; padding:0 11px; }
+.mcdt-docs .g1-btn.primary { background:#2563eb; border-color:#2563eb; color:#fff; gap:6px; padding:0 12px; }
+.mcdt-docs .g1-btn.primary:hover { background:#1d4fd0; }
+.mcdt-docs .g1-btn.primary:disabled { background:#e8ebf0; border-color:#e8ebf0; color:#8a929e; cursor:not-allowed; }
+.mcdt-docs .g1-docs-head { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.mcdt-docs .g1-docs-back { width:28px; height:28px; padding:0; display:inline-flex; align-items:center; justify-content:center; border-radius:6px; border:1px solid #d5dbe3; background:#fff; cursor:pointer; }
+.mcdt-docs .g1-docs-back:hover { background:#f7f8fa; }
+.mcdt-docs .g1-docs-title { font-size:16px; font-weight:650; color:#171b22; letter-spacing:-0.01em; }
+.mcdt-docs .g1-docs-seg { display:flex; background:#eceff3; border-radius:7px; padding:3px; gap:2px; }
+.mcdt-docs .g1-docs-seg button { height:24px; display:inline-flex; align-items:center; gap:6px; padding:0 10px; border:0; border-radius:5px; font-size:11.5px; font-weight:500; color:#5a626e; background:transparent; box-shadow:none; cursor:pointer; }
+.mcdt-docs .g1-docs-seg button.on { font-weight:600; color:#171b22; background:#fff; box-shadow:0 1px 2px rgba(16,24,40,.08); }
+.mcdt-docs .g1-folder-chips { display:flex; gap:8px; flex-wrap:wrap; }
+.mcdt-docs .g1-folder-chip { height:30px; display:inline-flex; align-items:center; gap:8px; padding:0 12px; border-radius:7px; border:1px solid #d5dbe3; background:#fff; font-size:12.5px; font-weight:550; color:#171b22; cursor:pointer; }
+.mcdt-docs .g1-folder-chip[aria-selected="true"] { border-color:#2563eb; background:#eef4fd; color:#1d4ed8; }
+.mcdt-docs .g1-folder-chip .ct { font-family:var(--mono); font-size:11px; color:#676e77; }
+.mcdt-docs .g1-docs-empty { border:1px dashed #c9d1dc; border-radius:8px; padding:22px; display:flex; align-items:center; gap:10px; background:#fbfcfe; font-size:12.5px; color:#667080; }
+/* gallery */
+.mcdt-docs .g1-files-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:12px; }
+.mcdt-docs .g1-file-card { background:#fff; border:1px solid #e3e7ed; border-radius:9px; padding:12px; display:flex; flex-direction:column; gap:10px; min-width:0; }
+.mcdt-docs .g1-file-thumb { height:98px; /* prototype: 96px content-box + 1px borders */ border-radius:6px; border:1px solid #e3e7ed; background:repeating-linear-gradient(45deg, #f7f8fa, #f7f8fa 7px, #eef1f4 7px, #eef1f4 14px); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.mcdt-docs .g1-file-thumb img { max-width:100%; max-height:100%; object-fit:contain; }
+.mcdt-docs .g1-file-name { font-size:12.5px; font-weight:550; color:#171b22; overflow-wrap:anywhere; }
+.mcdt-docs .g1-file-meta { font-size:11px; color:#676e77; margin-top:2px; }
+.mcdt-docs .g1-file-actions { display:flex; gap:6px; flex-wrap:wrap; }
+.mcdt-docs .g1-file-actions .g1-btn { height:26px; padding:0 9px; font-size:11.5px; }
+.mcdt-docs .g1-file-actions .g1-menu-wrap { display:inline-flex; }
+/* More ▾ */
+.mcdt-docs .g1-menu-wrap { position:relative; }
+.mcdt-docs .g1-menu { position:absolute; right:0; top:34px; min-width:170px; /* 160px content-box + 4px padding + 1px borders */ background:#fff; border:1px solid #e3e7ed; border-radius:8px; box-shadow:0 8px 24px rgba(20,25,34,.12); padding:4px; z-index:30; }
+.mcdt-docs .g1-menu-item { width:100%; display:flex; align-items:center; gap:8px; min-height:32px; padding:0 10px; border:0; border-radius:6px; background:transparent; text-align:left; font-size:12.5px; font-weight:500; color:#171b22; cursor:pointer; font-family:inherit; }
+.mcdt-docs .g1-menu-item:hover { background:#f4f6fa; }
+.mcdt-docs .g1-menu-item.danger { color:#b42318; }
+.mcdt-docs .g1-menu-item[aria-disabled="true"] { cursor:not-allowed; opacity:.55; }
+.mcdt-docs .g1-menu-item[aria-disabled="true"]:hover { background:transparent; }
+/* listing: files (list view) and the folder's "… DOCUMENTS n / n — UPLOADED" declaration */
+.mcdt-docs .g1-listing { border:1px solid #e3e7ed; border-radius:8px; overflow:hidden; background:#fff; }
+.mcdt-docs .g1-listing-head { display:flex; align-items:center; gap:10px; min-height:39px; /* 38px content-box + 1px border */ padding:0 14px; background:oklch(.97 .005 250); border-bottom:1px solid #e3e7ed; }
+.mcdt-docs .g1-listing-title { flex:1; display:flex; align-items:baseline; gap:8px; min-width:0; }
+.mcdt-docs .g1-listing-title b { font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#3f4552; }
+.mcdt-docs .g1-listing-title i { font-style:normal; font-size:11px; font-weight:500; color:#676e77; white-space:nowrap; }
+.mcdt-docs .g1-col { width:88px; text-align:center; font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#676e77; flex-shrink:0; }
+.mcdt-docs .g1-listing-body { padding:2px 0 4px; }
+.mcdt-docs .g1-listing-group { padding:10px 14px 4px; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#3f4552; border-top:1px solid #edf0f4; }
+.mcdt-docs .g1-row { display:flex; align-items:stretch; gap:10px; padding:0 14px; }
+.mcdt-docs .g1-row + .g1-row { border-top:1px solid #edf0f4; }
+.mcdt-docs .g1-row-name { flex:1; min-width:0; display:flex; align-items:center; gap:10px; min-height:46px; padding:7px 0; }
+.mcdt-docs .g1-row-name .nm { font-size:13px; font-weight:500; color:#171b22; line-height:1.45; }
+.mcdt-docs .g1-row-name .meta { font-size:11px; color:#676e77; white-space:nowrap; }
+.mcdt-docs .g1-row-name .nm .g1-tag { display:inline-flex; align-items:center; height:20px; margin-left:6px; padding:0 8px; border-radius:4px; font-size:11px; font-weight:500; vertical-align:middle; border:1px solid #e3e7ed; background:#f4f6f8; color:#5a626e; white-space:nowrap; }
+.mcdt-docs .g1-cell { width:88px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.mcdt-docs .g1-cell.auto { width:auto; }
+.mcdt-docs .g1-ro { font-size:11.5px; font-weight:550; color:#676e77; } /* Immigration: Uploaded is derived from the linked file (read-only) */
+.mcdt-docs .g1-ro.yes { color:#1d4ed8; }
+.mcdt-docs .g1-ro.no { color:#b42318; }
+.mcdt-docs select.g1-in { appearance:none; -webkit-appearance:none; -moz-appearance:none; padding-right:26px; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16'><path d='M3.5 6 8 10.5 12.5 6' fill='none' stroke='%23667080' stroke-width='1.8'/></svg>"); background-repeat:no-repeat; background-position:right 9px center; }
+.mcdt-docs .g1-in.sm { height:26px; font-size:11.5px; padding:0 22px 0 8px; }
+.mcdt-docs .g1-in:focus { outline:none; border-color:#2563eb; box-shadow:0 0 0 2px #e8effd; }
+.mcdt-docs .g1-in:disabled { background-color:#f6f7f9; color:#667080; cursor:not-allowed; }
+/* Immigration file ↔ requirement link (RequirementLinkSelect) in the prototype's control sizes */
+.mcdt-docs .g1-file-link { margin-top:6px; }
+.mcdt-docs .g1-file-link .mb-2 { margin-bottom:0 !important; }
+.mcdt-docs .g1-file-link .form-label { display:block; font-size:11px; font-weight:400; color:#676e77; margin:0 0 3px; line-height:1.3; }
+.mcdt-docs .g1-file-link .form-control { height:26px; width:100%; border:1px solid #d5dbe3; border-radius:6px; padding:0 22px 0 8px; font-size:11.5px; line-height:24px; color:#171b22; background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16'><path d='M3.5 6 8 10.5 12.5 6' fill='none' stroke='%23667080' stroke-width='1.8'/></svg>") no-repeat right 9px center; appearance:none; -webkit-appearance:none; box-shadow:none; }
+.mcdt-docs .g1-file-link p { font-size:11px; color:#676e77; margin:0; }
+.mcdt-docs .g1-row-name .g1-file-link { margin-top:0; width:220px; flex-shrink:0; }
+/* preview */
+.mcdt-docs .g1-modal-backdrop { position:fixed; inset:0; background:rgba(16,20,28,.44); z-index:1010; }
+.mcdt-docs .g1-modal { position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width:min(560px, 92vw); max-height:86vh; display:flex; flex-direction:column; background:#fff; border-radius:12px; box-shadow:0 24px 64px rgba(16,20,28,.35); z-index:1011; overflow:hidden; }
+.mcdt-docs .g1-modal-preview { width:min(960px, 92vw); max-height:90vh; }
+.mcdt-docs .g1-modal-head { display:flex; align-items:center; gap:10px; padding:14px 18px; border-bottom:1px solid #edf0f4; }
+.mcdt-docs .g1-modal-head h2 { margin:0; font-size:14px; font-weight:650; color:#171b22; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; line-height:normal; }
+.mcdt-docs .g1-modal-head .ctx-icon-btn { width:30px; height:30px; margin:0; color:#667080; }
+.mcdt-docs .g1-modal-body { padding:18px; overflow:auto; }
+.mcdt-docs .g1-preview-body { padding:16px 18px 18px; }
+.mcdt-docs .g1-preview-page { border:1px solid #e3e7ed; border-radius:8px; min-height:342px; background:repeating-linear-gradient(45deg, #f9fafc, #f9fafc 9px, #eef1f4 9px, #eef1f4 18px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+.mcdt-docs .g1-preview-page .nm { font-size:13px; font-weight:550; color:#4a515c; padding:0 20px; text-align:center; }
+.mcdt-docs .g1-preview-page .hint { font-size:11.5px; color:#667080; }
+.mcdt-docs .g1-preview-page img { max-width:100%; max-height:60vh; object-fit:contain; }
+.mcdt-docs .g1-preview-large { min-height:62vh; max-height:78vh; }
+.mcdt-docs .g1-preview-large img { max-height:74vh; }
+.mcdt-docs .g1-preview-page.frame { display:block; padding:0; height:74vh; }
+.mcdt-docs .g1-preview-page.frame iframe { width:100%; height:100%; border:0; display:block; background:#fff; }
+
+/* ---- Documents view additions (kit Icon in place of the inline SVGs; the hidden picker; the Upload classification) ---- */
+.mcdt-docs .g1-file-input { display: none; }
+.mcdt-docs .g1-docs-head .grow { flex: 1; }
+.mcdt-docs .g1-docs-back svg { color: var(--t1); }
+.mcdt-docs .g1-docs-seg button svg { color: currentColor; }
+.mcdt-docs .g1-btn.primary svg { color: #fff; }
+.mcdt-docs .g1-folder-chip svg { color: #98a8c4; }
+.mcdt-docs .g1-folder-chip[aria-selected="true"] svg { color: #2563eb; }
+.mcdt-docs .g1-file-thumb svg, .mcdt-docs .g1-docs-empty svg, .mcdt-docs .g1-row-name > svg, .mcdt-docs .g1-preview-page > svg { color: #98a8c4; flex-shrink: 0; }
+.mcdt-docs .g1-row-name > svg.linked { color: #2563eb; }
+.mcdt-docs .g1-file-body { min-width: 0; }
+.mcdt-docs .g1-cell .g1-decl { width: 88px; }
+.mcdt-docs .g1-cell .g1-decl select { height: 26px; font-size: 11.5px; padding: 0 22px 0 8px; }
+.g1-preview-modal .g1-preview-page { border: 1px solid #e3e7ed; border-radius: 8px; min-height: 342px; background: repeating-linear-gradient(45deg, #f9fafc, #f9fafc 9px, #eef1f4 9px, #eef1f4 18px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; overflow: hidden; }
+.g1-preview-modal .g1-preview-page .nm { font-size: 13px; font-weight: 550; color: #4a515c; padding: 0 20px; text-align: center; }
+.g1-preview-modal .g1-preview-page .hint { font-size: 11.5px; color: #667080; }
+.g1-preview-modal .g1-preview-page img { max-width: 100%; max-height: 74vh; object-fit: contain; }
+.g1-preview-modal .g1-preview-large { min-height: 62vh; max-height: 78vh; }
+.g1-preview-modal .g1-preview-page.frame { display: block; padding: 0; height: 74vh; }
+.g1-preview-modal .g1-preview-page.frame iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
+
+/* ---- Activity tab (prototype activityHTML: .activity-card / -filters / -day / -line / -entry) ---- */
+.mcdt-act { padding:0; max-width:1120px; overflow:visible; }
+.mcdt-act .ah { min-height:55px; padding:11px 18px; border-bottom:1px solid #edf0f4; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.mcdt-act .ah .t { font-size:16px; font-weight:600; color:#171b22; letter-spacing:-0.01em; }
+.mcdt-act .ah .s { font-size:11.5px; color:#667080; }
+.mcdt-act .ah .f { margin-left:auto; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+/* the two filters are the prototype's .activity-dropdown-trigger (30px, #e3e7ed, 6px, 12px #3d4552), not the 36px dashboard control */
+.mcdt-act .ah .f .mcdt-actsel > button:first-of-type { height:30px; min-width:clamp(150px, 16vw, 190px); border:1px solid #e3e7ed; border-radius:6px; font-size:12px; color:#3d4552; padding:0 10px; }
+.mcdt-act .ab { padding:8px 18px 20px; min-height:320px; }
+.mcdt-act .ab .mcdt-note { padding:26px 4px; text-align:left; }
+.mcdt-act .ag { position:relative; }
+.mcdt-act .ad { position:sticky; top:0; z-index:2; background:#fff; padding:12px 0 7px; font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#676e77; font-family:var(--sans); }
+.mcdt-act .al { position:relative; padding-left:24px; }
+.mcdt-act .al::before { content:""; position:absolute; left:9px; top:10px; bottom:8px; width:1px; background:#e3e7ed; }
+.mcdt-act .ai { position:relative; padding:8px 0 10px; }
+.mcdt-act .ai .dot { position:absolute; left:-19px; top:12px; width:8px; height:8px; border-radius:999px; border:2px solid #fff; box-sizing:border-box; background:#b4b2a9; }
+/* prototype dotColor(): the activity dot is the tone's text colour; gray is #6b6971 */
+.mcdt-act .ai .dot.green { background:oklch(.49 .13 150); }
+.mcdt-act .ai .dot.teal { background:oklch(.45 .1 195); }
+.mcdt-act .ai .dot.orange, .mcdt-act .ai .dot.amber { background:oklch(.47 .17 58); }
+.mcdt-act .ai .dot.red { background:oklch(.5 .1 28); }
+.mcdt-act .ai .dot.blue { background:oklch(.5 .13 230); }
+.mcdt-act .ai .dot.purple { background:oklch(.5 .16 305); }
+.mcdt-act .ai .dot.gray, .mcdt-act .ai .dot.grey { background:#6b6971; }
+.mcdt-act .ai .m { font-size:12.5px; color:#171b22; font-weight:500; line-height:1.45; }
+.mcdt-act .ai .b { font-size:11.5px; color:#676e77; margin-top:2px; }
+.mcdt-act .ai .b b { color:#171b22; font-weight:500; }
+.mcdt-act .ai .b .r { color:#676e77; }
+.mcdt-act .ai .b .mono { font-family:var(--mono); }
+
+/* ---- Details → Passport document blocks (prototype tpl-passport-card) ---- */
+.mcdt-doc { padding:16px 0; border-bottom:1px solid #edf0f4; }
+.mcdt-doc .dt { font-size:14px; font-weight:600; color:#171b22; letter-spacing:-0.01em; margin-bottom:10px; }
+.mcdt-doc .dc { display:flex; align-items:center; gap:12px; border:1px solid #e3e7ed; border-radius:8px; padding:10px 12px; background:#fff; max-width:520px; }
+.mcdt-doc .dc.empty { color:#667080; font-size:12.5px; border-style:dashed; }
+.mcdt-doc .th { width:36px; height:46px; border-radius:4px; border:1px solid #e3e7ed; background:repeating-linear-gradient(45deg, #f7f8fa, #f7f8fa 6px, #eef1f4 6px, #eef1f4 12px); flex-shrink:0; }
+.mcdt-doc .dn { flex:1; min-width:0; }
+.mcdt-doc .fn { font-size:12.5px; font-weight:550; color:#171b22; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mcdt-doc .dl { width:28px; height:28px; border-radius:5px; display:grid; place-items:center; color:#667080; text-decoration:none; font-size:14px; }
+.mcdt-doc .dl:hover { background:#f2f4f7; color:#171b22; }
+/* the facts grid after the document blocks (prototype: a 16px 0 4px block under the last block's border, 28px column gap) */
+.mcdt-dcard .mcdt-doc + .g.bt { margin-top:0; border-top:0; padding:16px 0 4px; gap:14px 28px; }
+.mcdt-act .ai .m .xvlink { margin-left:8px; font-family:var(--mono); font-size:11.5px; font-weight:600; color:#1d4ed8; text-decoration:none; }
+.mcdt-act .ai .m .xvlink:hover { text-decoration:underline; }
+.mcdt-dlg .val { font-size:13px; font-weight:500; color:var(--t1); line-height:30px; }
+.mcdt-dlg .val.mono { font-family:var(--mono); font-size:12.5px; font-weight:600; }
+.mcdt-dlg .val.g1-derived { display:inline-flex; align-items:center; gap:6px; }
+.mcdt-dlg .val.g1-derived .g1-tag { display:inline-flex; align-items:center; height:18px; padding:0 6px; border-radius:4px; font-size:10.5px; font-weight:600; border:1px solid #e3e7ed; background:#f4f6f8; color:#676e77; }
+/* Documents · Immigration rows: the linked file's name (opens the preview) and the Link / Unlink / Remove controls */
+.mcdt-docs .g1-row-name .g1-doc-file { border:0; background:transparent; padding:0; font-family:var(--mono); font-size:11.5px; font-weight:600; color:#1d4ed8; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:260px; }
+.mcdt-docs .g1-row-name .g1-doc-file:hover { text-decoration:underline; }
+.mcdt-docs .g1-doc-rowacts { display:flex; align-items:center; gap:6px; }
+.mcdt-docs .g1-doc-rowacts .g1-btn.sm { height:24px; padding:0 9px; font-size:11px; }
+.mcdt-docs .g1-doc-rowacts .g1-btn.sm.danger { color:oklch(.5 .1 28); }
+.mcdt-docs .g1-doc-link { width:180px; }
+
+/* Print: the rail is a normal column at its natural height; the record is not viewport-sized */
+@media print {
+  .mcdt { min-height: 0; }
+  .mcdt-side { position: static; height: auto; overflow: visible; }
+  .mcdt-side .body { overflow: visible; }
+}
+
+/* PROCESS §3.3.1 indicator tiles (U-0278) and the Employer Contact Details block (U-0276) */
+.mcdt-card.tint-green { background:#f0fdf4; border-color:#bbf7d0; } .mcdt-card.tint-green .lbl { color:#15803d; }
+.mcdt-card.tint-blue { background:#eff6ff; border-color:#bfdbfe; } .mcdt-card.tint-blue .lbl { color:#1d4ed8; }
+.mcdt-card .lbl svg { vertical-align:-2px; margin-right:2px; }
+.mcdt-contact { margin-top:8px; display:flex; flex-direction:column; gap:3px; } .mcdt-contact > div { display:flex; justify-content:space-between; gap:8px; font-size:12px; } .mcdt-contact .lbl { font-size:11.5px; color:var(--t3); } .mcdt-contact .mono { font-family:var(--mono); font-size:12px; color:var(--t1); }
+
+/* ---- legacy-UI sweep 2026-10-22: Insurance step on the stage-panel kit (field-grid column sets, successor row) ---- */
+.mcdt-embed .mcdt-insform[data-cols="policy"] { grid-template-columns:130px 150px minmax(220px, 280px) 150px; }
+.mcdt-embed .mcdt-insform[data-cols="request"] { grid-template-columns:130px 150px minmax(220px, 280px) 170px; }
+.mcdt-embed .mcdt-insform[data-cols="empty"] { grid-template-columns:130px 150px 150px; }
+.mcdt-embed .mcdt-insafter { margin:14px 0 0; }
+.mcdt-embed .g1-panel > .mcdt-insbody { padding:0 18px; }
+.mcdt-embed .g1-panel > .mcdt-insafter { padding:0 18px; }
+/* Documents — Convert to PDF dialog list; the file-card requirement link on the kit select */
+.mcdt-dlg .g1-convert-list { list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; }
+.mcdt-dlg .g1-convert-list li { display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--t1); min-width:0; }
+.mcdt-dlg .g1-convert-list .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mcdt-dlg .g1-convert-list .ext { font-size:11px; color:var(--t4); }
+.mcdt-dlg .intro.mono { font-family:var(--mono); }
+.mcdt-docs .g1-file-linkrow { display:flex; flex-direction:column; gap:4px; margin:6px 0 0; }
+.mcdt-docs .g1-file-linkrow .lb { font-size:11px; font-weight:500; color:var(--t3); }
+
+/* Employer Contact Details dialog (rail Edit): one grid — Title · Name · Surname, Chinese Name across, then the two phone
+   groups and Alternate · Email in equal halves so the code boxes line up; the kit select is a wrapped div, not a bare <select> */
+.mcdt-dlg .mcdt-cform { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin-top:4px; }
+.mcdt-dlg .mcdt-cform > * { min-width:0; }
+.mcdt-dlg .mcdt-cform .span2, .mcdt-dlg .mcdt-cform-name { grid-column:1 / -1; }
+.mcdt-dlg .mcdt-cform-name { display:grid; grid-template-columns:110px 1fr 1fr; gap:10px 16px; }
+.mcdt-dlg .mcdt-cform .mcdt-phone > div { flex:0 0 136px; min-width:0; }
+.mcdt-dlg .mcdt-cform .mcdt-phone > div select { text-overflow:ellipsis; }
+.mcdt-dlg .mcdt-cform .mcdt-phone > input { flex:1; min-width:0; }
+/* work order 22 Oct: Email is display-only in the contact dialog (sans, not the mono read-only value) */
+.mcdt-dlg .mcdt-cform .mcdt-ro.text { font-family:var(--sans); }
+
+/* Details → Visa History (prototype b30DetVisaCard inline styles; open point 18) */
+.mcdt-dcard .h .mcdt-vh-tag, .mcdt-vh-tag { display:inline-flex; align-items:center; height:20px; padding:0 8px; border-radius:4px; font-size:11px; font-weight:500; background:#f4f6f8; border:1px solid #e3e7ed; color:#4a515c; white-space:nowrap; }
+.mcdt-vh-tag.green { background:oklch(.965 .03 150); border-color:oklch(.84 .05 150); color:oklch(.49 .13 150); }
+.mcdt-vh { margin-top:14px; display:flex; flex-direction:column; gap:8px; }
+.mcdt-vh-item { border:1px solid #e3e7ed; border-radius:8px; background:#fbfcfd; padding:10px 14px; }
+.mcdt-vh-item.current { background:#fff; }
+.mcdt-vh-head { display:flex; align-items:center; gap:8px; font-size:12px; color:#171b22; flex-wrap:wrap; }
+.mcdt-vh-head .grow { flex:1; }
+.mcdt-vh-meta { font-size:11px; color:#676e77; }
+.mcdt-vh-lines { display:flex; gap:22px; flex-wrap:wrap; margin-top:8px; font-size:12px; color:#4a515c; }
+.mcdt-vh-vals .mono { font-family:var(--mono); font-size:11.5px; }
+.mcdt-vh-corr { margin-top:6px; display:flex; flex-direction:column; gap:3px; font-size:11.5px; color:#676e77; }
+.mcdt-vh-empty { font-size:12px; color:#676e77; }

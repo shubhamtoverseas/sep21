@@ -1,0 +1,236 @@
+/* Job Offer Details — port of handoff modules/job-offer-details/parts/module.css (header, route bar, states), scoped .jor */
+/* the app shell content already pads 16px 24px 56px; the prototype page is 22px 28px (max 1760px) */
+.jor { padding: 6px 4px 16px; max-width: 1760px; display: flex; flex-direction: column; gap: 14px; color: #171b22; font-size: 13px; line-height: 1.45; font-family: var(--mc-sans, 'Hanken Grotesk', 'Helvetica Neue', 'PingFang HK', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans HK', Arial, sans-serif); }
+.jor .mono, .jor .mc-code-text { font-family: var(--mc-mono, 'JetBrains Mono', monospace); }
+.jor .mc-unavailable { color: #676e77; }
+
+/* route bar: "Job Offers / Job Offer Details  /job-offers/… " */
+.jor-routebar { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #6a6a72; min-height: 24px; }
+.jor-routebar .here { color: #131316; font-weight: 500; text-decoration: none; }
+.jor-routebar .here:hover { text-decoration: underline; text-underline-offset: 3px; }
+.jor-routebar .back { border: 0; background: transparent; padding: 0; color: #1d4ed8; font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.jor-routebar .sep { color: #c3cad4; }
+.jor-routebar .here-static { color: #131316; font-weight: 500; }
+.jor-routebar code { font-size: 12px; color: #3b3b41; margin-left: 4px; }
+
+/* header card */
+.jor-head { background: #fff; border: 1px solid #e3e7ed; border-radius: 10px; padding: 14px 20px 0; }
+.jor-head .row1 { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.jor-head .regicon { width: 40px; height: 40px; border-radius: 99px; background: #f1f3f6; border: 1px solid #e3e7ed; display: inline-flex; align-items: center; justify-content: center; flex: none; color: #3b3b41; }
+.jor-head .regicon .mc-engagement { width: auto; height: auto; border: 0; background: transparent; }
+.jor-head .ident { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.jor-head .idline { display: flex; align-items: center; gap: 10px; min-width: 0; flex-wrap: wrap; }
+.jor-head .empname { font-size: 19px; font-weight: 650; color: #171b22; letter-spacing: -0.01em; line-height: 1.3; }
+.jor-head .refline { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #3d4552; }
+.jor-head .refline .mc-code-text { font-size: 12px; color: #3d4552; }
+.jor-head .refline .dot { color: #9aa1ab; }
+.jor-head .r { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none; flex-wrap: wrap; justify-content: flex-end; }
+.jor-head .jor-fu { display: inline-flex; }
+/* prototype module.css .fu[aria-pressed=true]: accent border, text and wash while the panel is open */
+.jor-head .jor-fu [aria-pressed="true"] { border-color: oklch(0.52 0.17 258); color: oklch(0.45 0.17 258); background: oklch(0.965 0.025 258); }
+/* owner identity chip (header CS Owner, profile Interpreter): one definition for the whole record */
+.jor .wd-owner { height: 32px; display: inline-flex; align-items: center; gap: 7px; padding: 0 10px; border: 1px solid #e3e7ed; border-radius: 7px; background: #fff; font-size: 12.5px; font-weight: 550; color: #171b22; white-space: nowrap; }
+.jor .wd-owner .av { width: 22px; height: 22px; border-radius: 99px; background: #e7e0f6; color: #5b4a9e; font-size: 8.5px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; letter-spacing: 0.02em; flex: none; }
+.jor .wd-owner .role { color: #667080; font-weight: 500; }
+.jor .wd-owner b { font-weight: 600; color: #171b22; }
+/* prototype .wd-owner is 32px with a 22px avatar in the profile toolbar too — no compact override */
+
+/* Change JO Status: kit button + a menu under it, right-aligned to the header group */
+.jor-statusmenu { position: relative; display: inline-flex; }
+.jor-statusmenu-pop { position: absolute; right: 0; top: calc(100% + 6px); min-width: 200px; background: #fff; border: 1px solid #e3e7ed; border-radius: 8px; box-shadow: 0 8px 24px rgba(16, 24, 40, .16); padding: 5px; z-index: 60; display: flex; flex-direction: column; }
+.jor-statusmenu-pop button { height: 32px; display: flex; align-items: center; padding: 0 10px; border: 0; border-radius: 5px; background: transparent; font-size: 12.5px; color: #171b22; text-align: left; cursor: pointer; font-family: inherit; white-space: nowrap; }
+.jor-statusmenu-pop button:hover, .jor-statusmenu-pop button:focus-visible { background: #f4f6f8; outline: none; }
+.jor-statusmenu-pop button.is-disabled { color: #a5adb8; cursor: not-allowed; }
+.jor-statusmenu-pop button.is-disabled:hover { background: transparent; }
+/* compact fact row (U-0137 typography): 12.5px / 400 / code colour; a fact's value carries the same routine emphasis as the words
+   around it; only the label is muted */
+.jor-head .row2 { margin-top: 12px; padding: 10px 0; border-top: 1px solid #edf0f4; display: flex; align-items: center; gap: 7px; row-gap: 6px; font-size: var(--mc-fact-size, 12.5px); font-weight: var(--mc-fact-weight, 400); color: var(--mc-text-code, #3b3b41); flex-wrap: wrap; }
+.jor-head .row2 .fact { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.jor-head .row2 .fact .lbl { color: var(--mc-text-4, #676e77); }
+.jor-head .row2 .fact b { font-weight: inherit; color: inherit; font-family: inherit; }
+.jor-head .row2 .fact svg { width: 14px; height: 14px; color: #4a515c; flex: none; }
+.jor-head .row2 .secondary { color: var(--mc-text-code, #3b3b41); }
+.jor-head .vsep { width: 1px; height: 14px; background: #dfe4ea; margin: 0 6px; }
+
+/* ---- shared controls (WD card-head button, owner identity, profile tags) ---- */
+.jor .wd-btn { height: 28px; display: inline-flex; align-items: center; gap: 6px; padding: 0 11px; border-radius: 6px; background: #fff; border: 1px solid #d5dbe3; color: #171b22; font-size: 12px; font-weight: 550; cursor: pointer; white-space: nowrap; font-family: inherit; }
+.jor .wd-btn:hover { background: #f4f6f8; }
+.jor .wd-btn svg { width: 14px; height: 14px; flex: none; }
+.jor .wd-btn[data-mc-actions="none"] { color: #676e77; }
+.jor .wd-owner[data-mc-honest="deferred"] { cursor: default; }
+.jor .wd-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.jor .wd-tag { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 4px; font-size: 11.5px; font-weight: 500; color: #3d4552; background: #f4f6f8; border: 1px solid #e3e7ed; white-space: nowrap; }
+.jor .mc-link-code { border: 0; background: transparent; padding: 0; font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 12px; color: oklch(0.38 0.19 258); cursor: pointer; text-decoration: none; }
+.jor .mc-link-code:hover { text-decoration: underline; text-underline-offset: 3px; }
+.jor .mc-code-plain { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 12px; color: #3b3b41; }
+.jor .mc-person-name { color: #131316; }
+
+/* ---- split: listing left, profile / conversation right (D-JO-1024-01 geometry) ---- */
+.jor-split { display: grid; grid-template-columns: minmax(830px, 1.02fr) minmax(360px, 1fr); gap: 12px; align-items: start; }
+.jor-listing { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+
+/* ---- filter bar: six stage chips, then Filters + Suggest ---- */
+.jor-filterbar { background: #fff; border: 1px solid #e3e7ed; border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; }
+.jor-filterbar .pipechips { display: flex; gap: 8px; flex-wrap: wrap; min-width: 0; }
+.jor-filterbar .chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 6px; background: #fff; border: 1px solid #e3e7ed; font-size: 12px; font-weight: 550; color: #3b3b41; cursor: pointer; white-space: nowrap; font-family: inherit; }
+.jor-filterbar .chip:hover { border-color: #cfd6df; background: #f6f7f9; }
+.jor-filterbar .chip .n { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 10.5px; color: #676e77; font-variant-numeric: tabular-nums; }
+.jor-filterbar .chip.on { background: oklch(0.52 0.17 258); border-color: oklch(0.52 0.17 258); color: #fff; }
+.jor-filterbar .chip.on .n { color: rgba(255,255,255,.85); }
+.jor-filterbar .chip .sdot { width: 6px; height: 6px; border-radius: 50%; flex: none; }
+.jor-filterbar .chip.on .sdot { background: #fff; }
+.jor .sdot.stage-applied { background: var(--stage-applied); } .jor .sdot.stage-matched { background: var(--stage-matched); }
+.jor .sdot.stage-pending { background: var(--stage-pending); } .jor .sdot.stage-upcoming { background: var(--stage-upcoming); }
+.jor .sdot.stage-completed { background: var(--stage-completed); } .jor .sdot.stage-cancelled { background: var(--stage-cancelled); }
+.jor .sdot.stage-invited { background: var(--stage-invited); }
+.jor-filterbar .fr { display: flex; align-items: center; gap: 8px; }
+.jor-filterbar .fclear { height: 28px; display: inline-flex; align-items: center; gap: 6px; padding: 0 10px; background: transparent; border: 1px solid #dfe4ea; border-radius: 6px; font-size: 12px; color: #6a6a72; cursor: pointer; white-space: nowrap; font-family: inherit; }
+.jor-filterbar .fclear svg { width: 13px; height: 13px; flex: none; }
+.jor-filterbar .fclear:hover, .jor-filterbar .fclear.on { background: #f6f7f9; color: #131316; border-color: #cfd6df; }
+.jor-filterbar .fclear .n { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 10.5px; }
+.jor-filterbar .jor-suggest { height: 28px; padding: 0 10px; border-radius: 6px; font-size: 12px; }
+.jor-filters-wrap { position: relative; }
+.jor-filters-pop { position: absolute; left: 0; top: calc(100% + 6px); z-index: 70; width: 220px; background: #fff; border: 1px solid #e3e7ed; border-radius: 8px; box-shadow: 0 8px 24px rgba(16,24,40,.16); padding: 5px; display: flex; flex-direction: column; }
+.jor-filters-pop .opt { height: 32px; display: flex; align-items: center; padding: 0 10px; border-radius: 5px; font-size: 12.5px; color: #171b22; background: none; border: 0; text-align: left; cursor: pointer; font-family: inherit; }
+.jor-filters-pop .opt:hover { background: #f4f6f8; }
+.jor-filters-pop .opt.on { background: oklch(0.965 0.025 258); color: oklch(0.42 0.18 258); font-weight: 600; }
+
+/* ---- listing table (compact-panel column profile) ---- */
+.jor-tablecard { background: #fff; border: 1px solid #e3e7ed; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+.jor-tablecard .tscroll { overflow: auto; }
+/* the declared tracks are the table's minimum width; above it the table fills the card and every column grows in proportion (Shubham, 2 Nov 2026 — overrides ACCEPTANCE "no column absorbs spare width") */
+.jor .wtable { width: 100%; min-width: calc(var(--mc-colc-name) + var(--mc-colc-ref) + var(--mc-colc-status) + var(--mc-colc-datex-max) + var(--mc-colc-status)); table-layout: fixed; border-collapse: separate; border-spacing: 0; }
+.jor .wtable th:nth-child(1), .jor .wtable td:nth-child(1) { width: var(--mc-colc-name); min-width: var(--mc-colc-name); }
+.jor .wtable th:nth-child(2), .jor .wtable td:nth-child(2) { width: var(--mc-colc-ref); min-width: var(--mc-colc-ref); }
+.jor .wtable th:nth-child(3), .jor .wtable td:nth-child(3) { width: var(--mc-colc-status); min-width: var(--mc-colc-status); }
+.jor .wtable th:nth-child(4), .jor .wtable td:nth-child(4) { width: var(--mc-colc-datex-max); min-width: var(--mc-colc-datex-max); }
+.jor .wtable thead th { position: sticky; top: 0; z-index: 2; background: oklch(0.97 0.005 250); border-bottom: 1px solid #e3e7ed; text-align: left; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: #676e77; padding: 0 11px; height: 38px; white-space: nowrap; user-select: none; }
+.jor .wtable th.wname, .jor .wtable td.wname { padding-left: 14px; }
+.jor .wtable .thwrap { display: inline-flex; align-items: center; gap: 3px; max-width: 100%; }
+.jor .wtable .thsort { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 4px; border: 0; padding: 0; background: transparent; color: #676e77; cursor: pointer; }
+.jor .wtable .thsort:hover { color: #131316; background: #f3f4f6; }
+.jor .wtable th.sorted .thlbl { color: #131316; }
+.jor .wtable th.sorted .thsort { color: oklch(0.52 0.17 258); }
+.jor .wtable tbody td { height: 44px; padding: 0 11px; border-bottom: 1px solid oklch(0.945 0.004 250); font-size: 13px; color: #3b3b41; vertical-align: middle; white-space: nowrap; background: #fff; }
+.jor .wtable tbody tr:last-child td { border-bottom: 0; }
+.jor .wtable tbody tr { cursor: pointer; }
+.jor .wtable tbody tr:hover td { background: oklch(0.965 0.007 250); }
+.jor .wtable tbody tr.sel td { background: oklch(0.965 0.025 258); }
+.jor .wtable tbody tr:focus-visible { outline: 2px solid oklch(0.86 0.06 258); outline-offset: -2px; }
+.jor .wtable .nm { font-size: 13px; font-weight: 500; line-height: 19.5px; color: #131316; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.jor .wtable tr.sel .nm { color: oklch(0.42 0.18 258); }
+.jor .wtable .na { color: #676e77; }
+.jor .wtable td.empty { text-align: center; height: 200px; color: #676e77; }
+.jor .wtable td.empty span { display: block; margin-top: 8px; font-size: 13px; }
+.jor .ivd { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 12px; color: #3b3b41; font-variant-numeric: tabular-nums; }
+.jor .ivd svg { width: 14px; height: 14px; color: #676e77; flex: none; }
+.jor .ivd [role="img"] { display: inline-flex; }
+.jor .wtable th.c-act, .jor .wtable td.c-act { text-align: left; width: var(--mc-colc-status); min-width: var(--mc-colc-status-min); white-space: nowrap; padding-right: 14px; }
+.jor .wtable td .wd-tag.archived { margin-left: 6px; height: 20px; font-size: 11px; }
+.jor .stbadge { display: inline-flex; align-items: center; gap: 5px; height: 20px; padding: 0 7px 0 6px; border-radius: 4px; font-size: 11px; font-weight: 500; border: 1px solid transparent; white-space: nowrap; }
+.jor .stbadge::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: currentColor; flex-shrink: 0; }
+.jor .stbadge.stage-invited { color: var(--stage-invited); background: var(--stage-invited-bg); }
+.jor .stbadge.stage-applied { color: var(--stage-applied); background: var(--stage-applied-bg); }
+.jor .stbadge.stage-matched { color: var(--stage-matched); background: var(--stage-matched-bg); }
+.jor .stbadge.stage-pending { color: var(--stage-pending); background: var(--stage-pending-bg); }
+.jor .stbadge.stage-upcoming { color: var(--stage-upcoming); background: var(--stage-upcoming-bg); }
+.jor .stbadge.stage-completed { color: var(--stage-completed); background: var(--stage-completed-bg); }
+.jor .stbadge.stage-offer { color: var(--stage-offer); background: var(--stage-offer-bg); }
+.jor .stbadge.stage-cancelled { color: var(--stage-cancelled); background: var(--stage-cancelled-bg); }
+.jor .tfoot { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 14px; border-top: 1px solid #e3e7ed; flex-wrap: wrap; }
+.jor .footcount { font-size: 12px; color: #6a6a72; font-variant-numeric: tabular-nums; }
+.jor .footcount b { color: #131316; font-weight: 600; }
+.jor .linkbtn { border: 0; background: transparent; cursor: pointer; font-size: 12px; font-weight: 600; color: oklch(0.42 0.18 258); padding: 3px 5px; border-radius: 4px; font-family: inherit; }
+.jor .linkbtn:hover { text-decoration: underline; }
+.jor .tfoot .pager { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #6a6a72; }
+
+/* ---- row Action menu (fixed to the trigger; WD actionsPop anatomy) ---- */
+.jor-menu { position: fixed; width: 236px; background: #fff; border: 1px solid #e3e7ed; border-radius: 8px; box-shadow: 0 8px 24px rgba(16,24,40,.16); padding: 5px; z-index: 1080; text-align: left; font-family: var(--mc-sans, 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif); }
+.jor-menu[data-ready="false"] { visibility: hidden; }
+.jor-menu [role="menuitem"] { height: 32px; display: flex; align-items: center; gap: 8px; padding: 0 10px; border-radius: 5px; font-size: 12.5px; color: #171b22; cursor: pointer; background: none; border: 0; width: 100%; text-align: left; font-family: inherit; }
+.jor-menu [role="menuitem"]:hover, .jor-menu [role="menuitem"]:focus-visible { background: #f4f6f8; outline: none; }
+.jor-menu [role="menuitem"][disabled] { color: #676e77; cursor: default; }
+.jor-menu [role="menuitem"][disabled]:hover { background: none; }
+.jor-menu .none { padding: 9px 10px; font-size: 12px; color: #676e77; }
+
+/* ---- profile pane (WD record header + profile containers) ---- */
+.jor-profile { min-width: 0; background: #fff; border: 1px solid #e3e7ed; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; position: sticky; top: 0; max-height: calc(100vh - 96px); overflow-y: auto; scrollbar-width: thin; }
+.jor-profile .tools { display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-bottom: 1px solid #edf0f4; flex-wrap: wrap; }
+.jor-profile .tools .sp { flex: 1; }
+.jor-profile .hero { display: flex; gap: 16px; align-items: flex-start; padding: 20px 20px 16px; border-bottom: 1px solid #e3e7ed; }
+.jor-profile .avatar { width: 64px; height: 64px; border-radius: 999px; background: oklch(0.945 0.008 250); color: #667080; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 600; flex-shrink: 0; overflow: hidden; }
+.jor-profile .avatar .photo { width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: zoom-in; }
+.jor-profile .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.jor-profile .idm { flex: 1; min-width: 0; }
+.jor-profile .name { font-size: 19px; font-weight: 650; color: #171b22; letter-spacing: -.01em; line-height: 1.3; }
+.jor-profile .codeline { display: flex; align-items: center; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+.jor-profile .codeline .meta { font-size: 12px; color: #676e77; }
+.jor-profile .idm .wd-tags { margin-top: 10px; }
+.jor-profile .contract { padding: 12px 20px 0; }
+.jor-profile .sec { padding: 14px 20px 16px; border-bottom: 1px solid #edf0f4; }
+.jor-profile .sec:last-child { border-bottom: 0; }
+.jor-profile .sec > h3 { margin: 0 0 12px; font-size: 16px; font-weight: 600; color: #171b22; letter-spacing: -.01em; }
+.jor .fgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 32px; }
+.jor .fgrid .f { min-width: 0; }
+.jor .fgrid .f.span { grid-column: 1 / -1; }
+.jor .f .l { font-size: 11.5px; font-weight: 500; color: #4a515c; }
+.jor .f .v { font-size: 13px; font-weight: 500; color: #171b22; margin-top: 4px; overflow-wrap: anywhere; white-space: pre-line; }
+.jor-profile p { margin: 0; font-size: 13px; font-weight: 500; color: #171b22; line-height: 1.5; }
+.jor .mc-profile-subheading { font-size: 14px; font-weight: 600; color: #171b22; letter-spacing: -.005em; }
+.jor .mc-main-duties-label { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #667080; margin-bottom: 6px; }
+.jor-profile .job { padding: 16px 0 0; margin-top: 16px; border-top: 1px solid #edf0f4; }
+.jor-profile .job:first-of-type { padding-top: 0; margin-top: 0; border-top: 0; }
+.jor-profile .job .dates { font-size: 12px; color: #676e77; margin: 2px 0 12px; }
+.jor-profile .job .duties { margin-top: 12px; }
+.jor-profile .expects { display: flex; flex-direction: column; gap: 8px; }
+.jor-profile .expect-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 340px; font-size: 13px; font-weight: 500; color: #171b22; }
+.jor-profile .expect-row .mc-yes { color: #18864b; font-weight: 700; }
+.jor-profile .expect-row .mc-no { color: #d92d20; font-weight: 700; }
+.jor-profile .mc-skill-detail { border-top: 1px solid #edf0f4; padding: 12px 0 0; margin-top: 12px; }
+.jor-profile .mc-skill-detail:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+.jor-profile .mc-skill-detail > summary { cursor: pointer; list-style: none; font-size: 14px; font-weight: 600; color: #171b22; letter-spacing: -.005em; display: flex; align-items: center; gap: 8px; }
+.jor-profile .mc-skill-detail > summary::-webkit-details-marker { display: none; }
+.jor-profile .mc-skill-detail > summary::after { content: ""; width: 8px; height: 8px; border-right: 1.6px solid #667080; border-bottom: 1.6px solid #667080; transform: rotate(45deg) translateY(-2px); margin-left: auto; transition: transform .15s; }
+.jor-profile .mc-skill-detail[open] > summary::after { transform: rotate(-135deg) translateY(-2px); }
+.jor-profile .mc-skill-detail-body { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+.jor-profile .mc-skill-detail-body small { display: block; font-size: 11px; font-weight: 500; color: #676e77; margin-bottom: 3px; }
+.jor-profile .mc-skill-detail-body p { margin: 0; }
+.jor .list-empty { padding: 14px 20px; font-size: 12.5px; color: #676e77; line-height: 1.5; }
+/* the conversation replaces the profile in the right column (one view) */
+.jor-chat-host .tools b { font-size: 13px; font-weight: 600; }
+.jor-chat-host .gcp.gc-mini { border: 0; border-radius: 0; min-height: 520px; }
+
+/* ---- Applicant View dialog body (GC joWorkerViewHTML structure in WD profile typography) ---- */
+.jor-wv .tools { display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-bottom: 1px solid #edf0f4; flex-wrap: wrap; margin: -16px -20px 0; }
+.jor-wv .tools .sp { flex: 1; }
+.jor-wv .tools .wd-btn { height: 28px; }
+/* prototype .wd-owner: 32px / 22px avatar in the Applicant View toolbar too */
+.jor-wv .tools .wd-owner { height: 32px; gap: 7px; padding: 0 10px; border: 1px solid #e3e7ed; border-radius: 6px; font-size: 12.5px; font-weight: 550; display: inline-flex; align-items: center; background: #fff; }
+.jor-wv .tools .wd-owner .av { width: 22px; height: 22px; border-radius: 99px; background: #e7e0f6; color: #5b4a9e; font-size: 8.5px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+.jor-wv .tools .wd-owner .role { color: #667080; font-weight: 500; }
+.jor-wv .title { padding: 16px 0 14px; border-bottom: 1px solid #edf0f4; display: flex; flex-direction: column; gap: 4px; }
+.jor-wv .title .ref { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 12px; color: #3d4552; align-self: flex-start; }
+.jor-wv .title .h { font-size: 16px; font-weight: 650; color: #171b22; letter-spacing: -.01em; line-height: 20px; }
+.jor-wv .title .fam { font-size: 12.5px; font-weight: 500; color: #3d4552; }
+.jor-wv .title .loc { font-size: 12px; color: #676e77; }
+.jor-wv .sec { padding: 14px 0 16px; border-bottom: 1px solid #edf0f4; }
+.jor-wv .sec:last-child { border-bottom: 0; }
+.jor-wv .para { margin: 0; font-size: 13px; font-weight: 500; color: #171b22; line-height: 1.5; white-space: pre-line; }
+.jor-wv .kv { display: flex; flex-direction: column; gap: 12px; }
+.jor-wv .kv .f { display: grid; grid-template-columns: minmax(120px, 150px) minmax(0, 1fr); gap: 4px 16px; align-items: start; }
+.jor-wv .kv .f .l, .jor-wv .kv .f .v { margin: 0; line-height: 1.5; }
+.jor-wv .kv .f .v { white-space: pre-line; }
+.jor-wv-modal .mc-code-text { font-family: var(--mc-mono, 'JetBrains Mono', monospace); font-size: 12px; }
+
+/* neutral states (adapter showDenied / renderMissing) */
+.jor-state { background: #fff; border: 1px solid #e3e7ed; border-radius: 10px; padding: 24px 20px; display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; color: #3d4552; max-width: 860px; }
+.jor-state b { font-size: 16px; font-weight: 600; color: #171b22; }
+.jor-state code { font-size: 12px; color: #3b3b41; }
+
+@media (max-width: 1400px) { .jor-split { grid-template-columns: minmax(690px, 1.02fr) minmax(360px, 1fr); } }
+@media (max-width: 1120px) { .jor-split { grid-template-columns: minmax(0, 1fr); } .jor-profile { position: static; max-height: none; } }
+@media (max-width: 900px) {
+  .jor { padding: 16px; }
+  .jor-head .r { margin-left: 0; width: 100%; justify-content: flex-start; }
+  .jor .fgrid { grid-template-columns: minmax(0, 1fr); }
+}

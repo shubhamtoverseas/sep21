@@ -1,0 +1,41 @@
+
+.legend-wrapper{
+    font-size: 0.875rem;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 100px;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 5px;
+    justify-content: center;
+}
+.legend-wrapper.invited{
+    border: 1px solid #1E88E51A;
+    color: #1E88E5;
+}
+.legend-wrapper.applied{
+    border: 1px solid #EC407A1A;
+    color: #EC407A;
+}
+.legend-wrapper.matched{
+    border: 1px solid #20893C1A;
+    color: #20893C;
+}
+.legend-wrapper.interview_upcoming{
+    border: 1px solid #607FD71A;
+    color: #607FD7;
+}
+.legend-wrapper.interview_pending{
+    border: 1px solid #8464C51A;
+    color: #8464C5;
+}
+.legend-wrapper.interview_completed{
+    border: 1px solid #FF8B511A;
+    color: #FF8B51;
+}
+.legend-wrapper.cancelled{
+    border: 1px solid #FB37371A;
+    color: #FB3737;
+}

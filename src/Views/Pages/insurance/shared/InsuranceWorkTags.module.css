@@ -1,0 +1,34 @@
+/* Open requests + Needs attention (Insurance.html .request-tags / .attention-note) */
+.work {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* warning text, not a tag: the icon carries the design system's orange tone, the words stay ordinary text */
+.attention {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.attention > svg {
+  flex: none;
+  color: oklch(0.47 0.17 58);
+}

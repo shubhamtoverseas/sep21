@@ -1,0 +1,66 @@
+.filters-list .filter-date {
+    font-family: 'Roboto';
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 28px;
+    color: #334D6E;
+}
+
+.filters-list {
+    border-bottom: 1px solid #00000033;
+}
+
+.filter-date {
+    font-family: 'Roboto';
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 28px;
+}
+
+.filter-item .icon-circle {
+    min-height: 36px;
+    min-width: 36px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filter-text-date{
+    font-family: 'Roboto';
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 22.4px;
+    color: #6D6D6D;
+}
+.email-activity{
+    background-color: #FFF1BC!important;
+    color: #FECA00;
+}
+.phone-activity{
+    background-color: #BAE1C4!important;
+    color: #1FB325;
+}
+.phone1-activity{
+    background-color: #F3E0FF!important;
+    color: #B241F7;
+}
+.activity-list .filter-item{
+    z-index: 1;
+    position: relative;
+}
+.activity-list::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    border: 1px dashed #e5e5e5;
+    height: 80%;
+    z-index: 0;
+}
+.activities-box .date-range-picker {
+    right: 0;
+}
+.activities-box {
+    max-height: 485px;
+    overflow-y: auto;
+}

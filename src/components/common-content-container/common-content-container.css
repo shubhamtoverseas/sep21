@@ -1,0 +1,14 @@
+.content-section {
+    box-shadow: 0px 3px 4px 0px #00000029 inset;
+    background: #FFFFFF;
+    padding: 40px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.content-section-no-shadow {
+    background: #FFFFFF;
+    padding: 40px;
+    border-radius: 12px;
+    overflow: hidden;
+}

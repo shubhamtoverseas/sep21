@@ -1,0 +1,142 @@
+/* MaidMatch shell — topbar. Exact values from the design bundle
+   (SHARED_SHELL_CSS, v17 topbar). */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  height: var(--shell-topbar-h);
+  min-height: var(--shell-topbar-h);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--line-1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px;
+  box-sizing: border-box;
+  font-family: var(--sans);
+}
+
+.search {
+  width: min(420px, 55vw);
+  height: 32px;
+  border: 1px solid var(--line-1);
+  border-radius: 7px;
+  background: oklch(0.97 0.005 250);
+  color: var(--text-4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 12.5px;
+  font-family: var(--sans);
+}
+.search:hover { border-color: var(--line-strong); color: var(--text-2); }
+.search svg { flex: none; }
+.search span {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.search kbd {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 1px 5px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  color: var(--text-3);
+}
+
+.spacer { flex: 1; }
+
+.iconBtn,
+.lang {
+  height: 32px;
+  border: 1px solid var(--line-1);
+  border-radius: 7px;
+  background: var(--bg-surface);
+  color: #475160;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: 500;
+  font-family: var(--sans);
+  position: relative;
+}
+.iconBtn { width: 32px; padding: 0; }
+.iconBtn:hover,
+.lang:hover { border-color: var(--line-strong); background: var(--bg-hover); }
+.iconBtn:focus-visible,
+.lang:focus-visible { outline: 2px solid var(--accent-ring); outline-offset: 1px; }
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 8px;
+  background: oklch(0.52 0.16 28);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.dropdownWrap { position: relative; }
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 170px;
+  padding: 6px 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  box-shadow: var(--shadow-3);
+  z-index: var(--z-dropdown);
+}
+
+.dropdownHeader {
+  padding: 6px 14px;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+  color: var(--text-4);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 7px 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--text-1);
+  text-align: left;
+  font-family: var(--sans);
+  box-sizing: border-box;
+}
+.dropdownItem:hover { background: var(--bg-hover); }
+.dropdownItem.active { color: var(--accent-fg); font-weight: 600; }
+
+@media print {
+  .topbar { display: none; }
+}

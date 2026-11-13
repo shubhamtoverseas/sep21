@@ -1,0 +1,25 @@
+.worker-page .tableboxHeder {
+    border: 1px solid #0000001A;
+}
+.worker-page .tableHead{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+.worker-page .worker-img{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.worker-page .worker-name{
+    line-height: 17px;
+}
+.load-more-row {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.doc-status-disabled {
+  filter: grayscale(1);
+  opacity: 0.5;
+  pointer-events: none;
+}

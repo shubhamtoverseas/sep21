@@ -1,0 +1,1104 @@
+/* invoice-create.html blocks 4 — exact bundle CSS, scoped under .invd. Tokens via src/tokens.css. */
+
+.invd .cs-setup {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 1180px) {
+.invd .cs-setup {
+  grid-template-columns: 1fr;
+}
+}
+.invd .cs-setup.single {
+  grid-template-columns: 1fr;
+}
+.invd .cs-metastrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line-2);
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.invd .cs-metastrip .cell {
+  background: var(--bg-surface);
+  padding: 12px 16px;
+}
+.invd .cs-metastrip .k {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600; margin-bottom: 4px;
+}
+.invd .cs-metastrip .v {
+  font-size: 13px; color: var(--text-1); font-weight: 500;
+}
+.invd .cs-metastrip .v.mono {
+  font-family: var(--mono); font-size: 12px;
+}
+@media (max-width: 720px) {
+.invd .cs-metastrip {
+  grid-template-columns: repeat(2, 1fr);
+}
+}
+.invd .party-card {
+  border: 1px solid var(--line-1);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.invd .party-card .pc-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--line-2);
+}
+.invd .party-card .pc-head .role {
+  font-size: 13px; font-weight: 600; color: var(--text-1);
+}
+.invd .party-card .pc-head .req {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--st-danger); font-weight: 600;
+  padding: 1px 6px; border-radius: 4px;
+  background: var(--st-danger-bg); border: 1px solid var(--st-danger-bd);
+}
+.invd .party-card .pc-head .ok {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--st-success); font-weight: 600;
+  padding: 1px 6px 1px 5px; border-radius: 4px;
+  background: var(--st-success-bg); border: 1px solid var(--st-success-bd);
+}
+.invd .party-card .pc-head .spacer {
+  flex: 1;
+}
+.invd .party-card .pc-body {
+  padding: 16px 18px;
+}
+.invd .party-empty {
+  display: flex; align-items: center; gap: 14px;
+}
+.invd .party-empty .glyph {
+  width: 40px; height: 40px; border-radius: 9px;
+  background: var(--bg-subtle); border: 1px dashed var(--line-strong);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--text-4); flex-shrink: 0;
+}
+.invd .party-empty .txt {
+  flex: 1;
+}
+.invd .party-empty .txt .t {
+  font-size: 13px; color: var(--text-2); font-weight: 500;
+}
+.invd .party-empty .txt .h {
+  font-size: 11.5px; color: var(--text-4); margin-top: 2px;
+}
+.invd .party-detail {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px;
+}
+.invd .party-detail .lead {
+  grid-column: 1 / -1;
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+}
+.invd .party-detail .lead .nm {
+  font-size: 17px; font-weight: 600; color: var(--text-1); letter-spacing: -0.01em;
+}
+.invd .party-detail .lead .zh {
+  font-size: 14px; color: var(--text-2);
+}
+.invd .party-detail .lead .code {
+  font-family: var(--mono); font-size: 12px; color: var(--text-3);
+}
+.invd .party-detail .kv .k {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--text-4); font-weight: 600;
+}
+.invd .party-detail .kv .v {
+  font-size: 12.5px; color: var(--text-1); margin-top: 2px;
+}
+.invd .party-detail .kv .v.mono {
+  font-family: var(--mono); font-size: 12px;
+}
+.invd .party-note {
+  margin-top: 12px; padding: 9px 12px;
+  background: var(--bg-subtle); border: 1px solid var(--line-2);
+  border-radius: 6px; font-size: 11.5px; color: var(--text-3);
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.invd .party-note .ico {
+  color: var(--text-4); flex-shrink: 0; margin-top: 1px;
+}
+.invd .attr-chips {
+  display: flex; flex-wrap: wrap; gap: 6px; grid-column: 1 / -1;
+}
+.invd .attr-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; color: var(--text-2);
+  padding: 2px 9px; border-radius: 999px;
+  background: var(--bg-subtle); border: 1px solid var(--line-1);
+}
+.invd .attr-chip .lab {
+  color: var(--text-4); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em;
+}
+/* Contract setup · the reference page's three cards (27 Oct package, INV-C2, OP-27-43). "Employer and worker": the two
+   pickers side by side, then the worker's facts (Worker Code · Worker Type · Nationality · Contract Category or Partner
+   agency); "Invoice": Invoice Date · Branch · CS Owner (the header's cells, rendered into the card) */
+.invd .setup-pickers {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start;
+}
+.invd .setup-pickers .party-card {
+  margin-bottom: 0;
+}
+.invd .setup-facts {
+  grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 16px;
+}
+.invd .setup-facts .code {
+  font-family: var(--mono); font-size: 12px; color: var(--text-3); margin-left: 4px;
+}
+@media (max-width: 900px) {
+.invd .setup-pickers {
+  grid-template-columns: 1fr;
+}
+.invd .setup-facts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+.invd .cs-metastrip.setup-invoice {
+  margin-bottom: 0;
+}
+/* Contract setup · the Service card (INV-C2): the application's choices and the route facts the profile names, the
+   pricing code the engine used, and its note — enough to price (ok) or what stops the invoice (danger) */
+.invd .setup-service .svc-row {
+  display: flex; flex-wrap: wrap; gap: 14px 32px;
+}
+.invd .setup-service .svc-fact {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-height: 32px; font-size: 13px; color: var(--text-1);
+}
+.invd .setup-service .svc-fact .code {
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+}
+.invd .setup-service .svc-fact .sm {
+  font-size: 12px; color: var(--text-3);
+}
+.invd .setup-service .svc-facts {
+  margin-top: 14px;
+}
+.invd .setup-service .svc-facts .mono {
+  font-family: var(--mono); font-size: 12px;
+}
+.invd .setup-service .svc-facts small {
+  color: var(--text-4); margin-left: 6px;
+}
+.invd .setup-service .svc-pricing {
+  margin-top: 10px;
+}
+.invd .setup-service .svc-problem {
+  display: block; margin-top: 2px;
+}
+.invd .setup-service .svc-retry {
+  margin-left: auto; flex-shrink: 0;
+}
+.invd .callout.ok {
+  background: var(--st-success-bg); border: 1px solid var(--st-success-bd); color: var(--text-2);
+}
+.invd .callout.ok .ico {
+  color: var(--st-success);
+}
+.invd .review-foot .why {
+  align-self: center; margin-right: 4px; font-size: 12px; color: var(--text-3);
+}
+.invd .pp-rows {
+  width: 100%; font-size: 12.5px; border-collapse: collapse;
+}
+.invd .pp-rows td {
+  padding: 7px 0; border-bottom: 1px solid var(--line-2); vertical-align: top;
+}
+.invd .pp-rows tr:last-child td {
+  border-bottom: none;
+}
+.invd .pp-rows .it {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .pp-rows .ds {
+  color: var(--text-4); font-size: 11px; margin-top: 1px;
+}
+.invd .pp-rows .amt {
+  text-align: right; font-family: var(--mono); color: var(--text-1); white-space: nowrap;
+}
+.invd .pp-rows .amt.neg {
+  color: var(--st-danger);
+}
+.invd .lock-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; color: var(--text-3); font-weight: 500;
+  padding: 1px 6px 1px 5px; border-radius: 999px;
+  background: var(--bg-subtle); border: 1px solid var(--line-1);
+}
+.invd .lock-chip svg {
+  width: 11px; height: 11px;
+}
+.invd .takeover-veil {
+  position: fixed; inset: 0;
+  background: rgba(19,19,22,0.42);
+  z-index: var(--z-overlay);
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px;
+}
+.invd .takeover {
+  background: var(--bg-surface);
+  border-radius: 14px;
+  /* box-shadow: var(--shadow-3); */
+  /* width: 940px; max-width: 100%; */
+  /* max-height: calc(100vh - 56px); */
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.invd .takeover .tk-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 22px; border-bottom: 1px solid var(--line-2);
+}
+.invd .takeover .tk-head h2 {
+  margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-1);
+}
+.invd .takeover .tk-head .sub {
+  font-size: 12px; color: var(--text-3); margin-top: 1px;
+}
+.invd .takeover .tk-head .spacer {
+  flex: 1;
+}
+.invd .takeover .tk-tools {
+  padding: 14px 22px; border-bottom: 1px solid var(--line-2);
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+}
+.invd .tk-search {
+  position: relative; flex: 1; min-width: 280px;
+}
+.invd .tk-search .ico {
+  position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text-4); pointer-events: none;
+}
+.invd .tk-search input {
+  height: 36px; padding-left: 34px; width: 100%;
+}
+.invd .takeover .tk-body {
+  flex: 1; overflow-y: auto; padding: 6px 10px;
+}
+.invd .takeover .tk-foot {
+  padding: 13px 22px; border-top: 1px solid var(--line-2);
+  background: var(--bg-subtle);
+  display: flex; align-items: center; gap: 10px;
+}
+.invd .takeover .tk-foot .spacer {
+  flex: 1;
+}
+.invd .takeover .tk-foot .selnote {
+  font-size: 12px; color: var(--text-3);
+}
+.invd .takeover .tk-foot .selnote strong {
+  color: var(--text-1);
+}
+.invd .result-table {
+  width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12.5px;
+}
+.invd .result-table thead th {
+  position: sticky; top: 0; z-index: 1;
+  background: var(--bg-subtle);
+  text-align: left; padding: 8px 12px;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--text-4); font-weight: 600;
+  border-bottom: 1px solid var(--line-1);
+}
+.invd .result-table thead th.right {
+  text-align: right;
+}
+.invd .result-table tbody td {
+  padding: 11px 12px; border-bottom: 1px solid var(--line-2);
+  color: var(--text-2); vertical-align: middle;
+}
+.invd .result-table tbody tr {
+  cursor: pointer;
+}
+.invd .result-table tbody tr:hover td {
+  background: var(--bg-hover);
+}
+.invd .result-table tbody tr.sel td {
+  background: var(--accent-bg);
+}
+.invd .result-table tbody tr.sel td:first-child {
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+.invd .result-table tbody tr.disabled {
+  cursor: not-allowed; opacity: 0.66;
+}
+.invd .result-table tbody tr.disabled:hover td {
+  background: transparent;
+}
+.invd .result-table .pri {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .result-table .mono {
+  font-family: var(--mono); font-size: 11.5px;
+}
+.invd .result-table .muted {
+  color: var(--text-4);
+}
+.invd .result-table .radio {
+  width: 16px; height: 16px; border-radius: 999px;
+  border: 1.5px solid var(--line-strong);
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.invd .result-table tr.sel .radio {
+  border-color: var(--accent); background: var(--accent); color: #fff;
+}
+.invd .result-table tr.sel .radio svg {
+  width: 10px; height: 10px;
+}
+.invd .elig {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 500; padding: 2px 8px 2px 7px; border-radius: 999px; border: 1px solid;
+  white-space: nowrap;
+}
+.invd .elig::before {
+  content: ""; width: 6px; height: 6px; border-radius: 999px; background: currentColor;
+}
+.invd .elig.eligible {
+  color: var(--st-success); background: var(--st-success-bg); border-color: var(--st-success-bd);
+}
+.invd .elig.blocked {
+  color: var(--st-danger);  background: var(--st-danger-bg);  border-color: var(--st-danger-bd);
+}
+.invd .elig.missing {
+  color: var(--st-warning); background: var(--st-warning-bg); border-color: var(--st-warning-bd);
+}
+.invd .row-reason {
+  font-size: 11px; color: var(--st-danger); margin-top: 3px;
+}
+.invd .row-reason.warn {
+  color: var(--st-warning);
+}
+.invd .tk-empty {
+  text-align: center; padding: 48px 24px;
+}
+.invd .tk-empty .glyph {
+  width: 48px; height: 48px; border-radius: 999px; margin: 0 auto 14px;
+  background: var(--bg-subtle); border: 1px solid var(--line-1);
+  display: inline-flex; align-items: center; justify-content: center; color: var(--text-4);
+}
+.invd .tk-empty .t {
+  font-size: 14px; font-weight: 600; color: var(--text-1);
+}
+.invd .tk-empty .h {
+  font-size: 12.5px; color: var(--text-3); margin: 6px auto 0; max-width: 46ch; line-height: 1.55;
+}
+.invd .ne-form {
+  padding: 20px 22px;
+}
+.invd .ne-section {
+  margin-bottom: 22px;
+}
+.invd .ne-section .sec-h {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--text-4); font-weight: 600; margin-bottom: 10px;
+  padding-bottom: 6px; border-bottom: 1px solid var(--line-2);
+}
+.invd .ne-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 14px;
+}
+.invd .ne-grid .span2 {
+  grid-column: span 2;
+}
+@media (max-width: 720px) {
+.invd .ne-grid {
+  grid-template-columns: 1fr 1fr;
+}
+}
+.invd .dup-warn {
+  margin-top: 12px; padding: 10px 12px;
+  background: var(--st-warning-bg); border: 1px solid var(--st-warning-bd);
+  border-radius: 7px; font-size: 12px; color: var(--text-2);
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.invd .dup-warn .ico {
+  color: var(--st-warning); flex-shrink: 0; margin-top: 1px;
+}
+.invd .items-section {
+  margin-bottom: 22px;
+}
+.invd .items-section .sec-head {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 4px;
+}
+.invd .items-section .sec-head h3 {
+  margin: 0; font-size: 13.5px; font-weight: 600; color: var(--text-1);
+}
+.invd .items-section .sec-help {
+  font-size: 11.5px; color: var(--text-3); margin: 0 0 12px; line-height: 1.5;
+}
+.invd .locked-table {
+  width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12.5px;
+}
+.invd .locked-table thead th {
+  text-align: left; padding: 8px 10px;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--text-4); font-weight: 600; border-bottom: 1px solid var(--line-1);
+}
+.invd .locked-table thead th.right {
+  text-align: right;
+}
+.invd .locked-table tbody td {
+  padding: 11px 10px; border-bottom: 1px solid var(--line-2); vertical-align: middle; color: var(--text-2);
+}
+.invd .locked-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.invd .locked-table tbody tr.locked td {
+  background: var(--bg-subtle);
+}
+.invd .locked-table .it {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .locked-table .ds {
+  color: var(--text-4); font-size: 11px; margin-top: 1px;
+}
+.invd .locked-table .amt {
+  text-align: right; font-family: var(--mono); color: var(--text-1); white-space: nowrap;
+}
+.invd .locked-table .amt.neg {
+  color: var(--st-danger);
+}
+.invd .locked-table .amt.final {
+  font-weight: 600;
+}
+.invd .add-row {
+  display: grid; gap: 10px; align-items: end;
+  padding: 12px; border: 1px solid var(--line-1); border-radius: 8px; margin-bottom: 8px;
+}
+.invd .add-row.custom {
+  grid-template-columns: 1.4fr 1fr 120px 28px;
+}
+.invd .add-row.credit {
+  grid-template-columns: 1.4fr 1fr 120px 28px; background: var(--accent-bg); border-color: var(--accent-ring);
+}
+.invd .add-row .tag-lab {
+  font-size: 12px; font-weight: 600; color: var(--text-1); margin-bottom: 4px;
+}
+.invd .add-row.credit .tag-lab {
+  color: var(--accent-fg);
+}
+.invd .add-row .hint {
+  font-size: 10.5px; color: var(--text-3); margin-top: 3px;
+}
+.invd .add-actions {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+}
+.invd .line-table tbody td {
+  vertical-align: top;
+}
+.invd .input.sm {
+  padding: 5px 7px; font-size: 12px; height: auto;
+}
+.invd .input.sm.right {
+  text-align: right;
+}
+.invd .select.sm {
+  display: block;
+}
+.invd .select.sm .input,
+.invd .select.sm select {
+  padding: 5px 22px 5px 7px; font-size: 12px;
+}
+.invd .adj-cell {
+  display: flex; flex-direction: column; gap: 5px;
+}
+.invd .adj-cell .input.sm {
+  width: 100%;
+}
+.invd .adj-off {
+  font-family: var(--mono); font-size: 11px; color: var(--st-danger);
+}
+.invd .line-table tbody tr.credit-line td {
+  background: color-mix(in srgb, var(--st-success) 7%, transparent);
+}
+/* Saved credit rows (Saved Credit rules, 22 Oct 2026): what is available, the amount applied, Keep / Write off */
+.invd .credit-avail { margin-top: 2px; font-size: 11px; color: var(--text-3); }
+.invd .line-table tbody tr.credit-remainder td { padding-top: 4px; }
+.invd .credit-choice { display: flex; flex-wrap: wrap; gap: 18px; font-size: 12px; color: var(--text-2); }
+.invd .credit-choice label { display: inline-flex; align-items: center; gap: 6px; margin: 0; cursor: pointer; }
+.invd .credit-choice input[type="radio"] { accent-color: var(--accent); }
+.invd .credit-choice input[type="radio"]:disabled { cursor: not-allowed; }
+.invd .credit-split { margin-top: 4px; font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+.invd .modal-card .credit-reason-lbl { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 600; color: var(--text-2); }
+.invd .modal-card .credit-reason { width: 100%; min-height: 64px; resize: vertical; }
+.invd .credit-tag {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--st-success); background: color-mix(in srgb, var(--st-success) 12%, transparent);
+  padding: 2px 6px; border-radius: 4px;
+}
+.invd .callout {
+  padding: 10px 12px; border-radius: 7px; font-size: 12px; line-height: 1.5;
+  display: flex; gap: 8px; align-items: flex-start; margin-top: 10px;
+}
+.invd .callout .ico {
+  flex-shrink: 0; margin-top: 1px;
+}
+.invd .callout.info {
+  background: var(--bg-subtle);    
+  /* border: 1px solid var(--st-info-bd);     */
+  color: var(--text-2);
+}
+.invd .callout.warn {
+  background: var(--st-warning-bg); border: 1px solid var(--st-warning-bd); color: var(--text-2);
+}
+.invd .callout.danger {
+  background: var(--st-danger-bg);  border: 1px solid var(--st-danger-bd);  color: var(--text-2);
+}
+.invd .callout.info .ico {
+  color: var(--st-info);
+}
+.invd .callout.warn .ico {
+  color: var(--st-warning);
+}
+.invd .callout.danger .ico {
+  color: var(--st-danger);
+}
+.invd .path-seg {
+  display: flex; gap: 8px;
+  padding: 16px 22px 0;
+}
+.invd .path-card {
+  flex: 1; text-align: left; cursor: pointer;
+  padding: 12px 14px; border-radius: 9px;
+  background: var(--bg-surface); border: 1px solid var(--line-1);
+  transition: border-color var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease);
+}
+.invd .path-card:hover {
+  border-color: var(--line-strong);
+}
+.invd .path-card.active {
+  border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-bg); background: var(--accent-bg);
+}
+.invd .path-card .pt {
+  font-size: 13px; font-weight: 600; color: var(--text-1); display: flex; align-items: center; gap: 7px;
+}
+.invd .path-card .pd {
+  font-size: 11px; color: var(--text-3); margin-top: 3px;
+}
+.invd .path-card .radio {
+  width: 15px; height: 15px; border-radius: 999px; border: 1.5px solid var(--line-strong);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.invd .path-card.active .radio {
+  border-color: var(--accent); background: var(--accent); color: #fff;
+}
+.invd .path-card.active .radio svg {
+  width: 9px; height: 9px;
+}
+.invd .path-card .radio i {
+  font-size: 10px; line-height: 1;
+}
+.invd .method-summary {
+  margin-top: 14px; padding: 13px 15px; border-radius: 9px;
+  background: var(--bg-subtle); border: 1px solid var(--line-2);
+}
+.invd .method-summary .row {
+  display: flex; justify-content: space-between; gap: 12px; font-size: 12.5px; padding: 3px 0;
+  margin: 0; flex-wrap: nowrap; 
+}
+.invd .method-summary .row .k {
+  color: var(--text-3);
+}
+.invd .method-summary .row .v {
+  color: var(--text-1); font-weight: 500;
+}
+.invd .method-summary .row .v.mono {
+  font-family: var(--mono);
+}
+.invd .method-summary .res {
+  margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--line-2);
+  font-size: 12px; color: var(--text-2); line-height: 1.5;
+}
+.invd .pay-modal {
+  width: 480px; max-width: 92vw; max-height: calc(100vh - 56px); overflow-y: auto;
+}
+.invd .pay-modal .pm-head {
+  display: flex; align-items: center; gap: 13px;
+  padding: 20px 24px 16px;
+}
+.invd .pay-modal .pm-head .sym {
+  width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-ring);
+}
+.invd .pay-modal .pm-head.review .sym {
+  background: var(--st-warning-bg); color: var(--st-warning); border-color: var(--st-warning-bd);
+}
+.invd .pay-modal .pm-head h2 {
+  margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-1);
+}
+.invd .pay-modal .pm-head .msub {
+  font-size: 12px; color: var(--text-3); margin-top: 2px;
+}
+.invd .pm-amount {
+  margin: 0 24px 14px;
+  padding: 14px 16px; border-radius: 10px;
+  background: var(--bg-subtle); border: 1px solid var(--line-2);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.invd .pm-amount .lbl {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-4); font-weight: 600;
+}
+.invd .pm-amount .lock {
+  display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--text-3); margin-top: 4px;
+}
+.invd .pm-amount .lock svg {
+  width: 11px; height: 11px;
+}
+.invd .pm-amount .amt {
+  font-family: var(--mono); font-size: 26px; font-weight: 700; color: var(--text-1); letter-spacing: -0.01em;
+}
+.invd .pm-instruct {
+  /* padding: 0 24px;  */
+  font-size: 12.5px; color: var(--text-2); line-height: 1.55; margin: 0 0 14px;
+}
+.invd .pm-body {
+  padding: 0 24px 4px;
+}
+.invd .method-label {
+  font-size: 10.5px; color: var(--text-4); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em; margin: 2px 0 6px;
+}
+.invd .pm-amount .lock-row {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--text-3); margin-top: 5px;
+}
+.invd .pm-amount .lock-row svg {
+  color: var(--text-4);
+}
+.invd .child-outcome {
+  margin-top: 12px; padding: 9px 11px; border-radius: 7px;
+  background: var(--bg-subtle); border: 1px solid var(--line-2);
+  font-size: 11.5px; color: var(--text-2); line-height: 1.5;
+}
+.invd .pm-foot {
+  margin-top: 16px; padding: 14px 24px 18px;
+  border-top: 1px solid var(--line-2); background: var(--bg-subtle);
+  display: flex; flex-direction: column; gap: 9px;
+}
+.invd .pm-foot .btnrow {
+  display: flex; gap: 10px; justify-content: flex-end;
+}
+.invd .pm-missing {
+  font-size: 11.5px; color: var(--st-danger);
+  display: flex; gap: 6px; align-items: flex-start;
+}
+.invd .pm-missing svg {
+  flex-shrink: 0; margin-top: 2px;
+}
+.invd .pm-resultnote {
+  margin: 0 24px 18px; padding: 11px 13px; border-radius: 8px;
+  font-size: 12px; line-height: 1.5;
+}
+.invd .pm-resultnote.paid {
+  background: var(--st-success-bg); border: 1px solid var(--st-success-bd); color: var(--text-2);
+}
+.invd .pm-resultnote.pending {
+  background: var(--st-warning-bg); border: 1px solid var(--st-warning-bd); color: var(--text-2);
+}
+.invd .pm-resultnote strong {
+  color: var(--text-1);
+}
+.invd .pm-done {
+  padding: 26px 24px; text-align: center;
+}
+.invd .pm-done .ring {
+  width: 56px; height: 56px; border-radius: 999px; margin: 0 auto 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.invd .pm-done .ring.paid {
+  background: var(--st-success-bg); color: var(--st-success); border: 1px solid var(--st-success-bd);
+}
+.invd .pm-done .ring.pending {
+  background: var(--st-warning-bg); color: var(--st-warning); border: 1px solid var(--st-warning-bd);
+}
+.invd .pm-done h2 {
+  margin: 0 0 6px; font-size: 18px; font-weight: 600; color: var(--text-1);
+}
+.invd .pm-done p {
+  font-size: 12.5px; color: var(--text-3); line-height: 1.55; margin: 0 auto 14px; max-width: 40ch;
+}
+.invd .pm-done .reframe {
+  font-family: var(--mono); font-size: 12px; color: var(--text-2);
+  background: var(--bg-subtle); border: 1px solid var(--line-2); border-radius: 7px;
+  padding: 9px 12px; margin-bottom: 4px;
+}
+.invd .added-banner {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 14px; padding: 9px 13px;
+  background: var(--st-success-bg); border: 1px solid var(--st-success-bd);
+  border-radius: 8px; font-size: 12.5px; color: var(--text-2);
+}
+.invd .added-banner strong {
+  color: var(--st-success);
+}
+.invd .req-star {
+  color: var(--st-danger); margin-left: 2px;
+}
+/* Required-field indicator — add "required" to any field label to append an asterisk */
+.invd .required::after {
+  content: " *"; color: var(--st-danger);
+}
+.invd .field .input.invalid {
+  border-color: var(--st-danger);
+}
+.invd .pm-head .sym.brand-sym {
+  background: transparent !important; border: none !important; padding: 0;
+}
+.invd .btn:disabled {
+  opacity: 0.45; cursor: not-allowed; pointer-events: none;
+}
+.invd .btn-icon:disabled {
+  opacity: 0.45; cursor: not-allowed; pointer-events: none;
+}
+
+/* ---- Fallback: style legacy Bootstrap form-controls that live inside .invd
+   (e.g. the embedded EntityContactDetailsForm) to match the new-UI .input. ---- */
+.invd .form-control,
+.invd select.form-control,
+.invd textarea.form-control {
+  height: 32px;
+  padding: 0 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: var(--text-1);
+  font-family: var(--sans);
+  width: 100%;
+  box-shadow: none;
+}
+.invd textarea.form-control { height: auto; min-height: 64px; padding: 8px 10px; }
+.invd .form-control::placeholder { color: var(--text-4); }
+.invd .form-control:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-bg); }
+.invd select.form-control { appearance: none; padding-right: 26px; cursor: pointer; background-image: none; }
+.invd .form-label {
+  display: block; font-size: 11px; font-weight: 500; color: var(--text-3);
+  text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px;
+}
+.invd .form-row { margin-top: 10px; }
+.invd .form-row:first-child { margin-top: 0; }
+.form-label{
+  display: inline-block;
+}
+/* Neutralise the legacy absolute-positioned star (style.css) inside new-UI forms */
+.invd .form-label.required::after {
+  content: " *"; color: var(--st-danger);
+  position: static; right: auto;
+  font-size: inherit; font-family: inherit; font-weight: inherit;
+}
+
+/* OTP verify block — normalise legacy sizing/spacing to the new-UI form scale */
+.invd .send-varify-otp .wrap-div { margin: 8px 0 4px; }
+.invd .send-varify-otp .wrap-div > span {
+  font-size: 12px; font-weight: 500; color: var(--text-3); margin-top: 0;
+}
+.invd .send-varify-otp .wrap-div .row { margin-top: 8px; }
+.invd .send-varify-otp a { font-size: 12px; font-weight: 500; color: var(--accent-fg); }
+.invd .send-varify-otp .d-flex a { margin-left: 10px; white-space: nowrap; }
+/* New-employer page header */
+.invd .ne-page-head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; padding: 0 2px; }
+.invd .ne-page-head .back { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line-1); background: var(--bg-surface); color: var(--text-3); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.invd .ne-page-head .back:hover { background: var(--bg-hover); color: var(--text-1); }
+.invd .ne-page-head h2 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--text-1); }
+
+/* ---- Layout helpers (replace inline styles; keep markup clean per standards) ---- */
+.invd.tk-page,
+.invd .tk-page { display: flex; justify-content: center; padding: 12px 16px 24px; }
+/* Mockup takeover width is 940px — .wide kept for markup compatibility. */
+.invd .takeover.wide { width: 100%; }
+.invd .takeover.form-takeover { width: 980px; }
+.invd .tk-search.grow { flex: 1; }
+.invd .cs-layout { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 20px; align-items: start; }
+@media (max-width: 1100px) { .invd .cs-layout { grid-template-columns: 1fr; } }
+.invd .cs-metastrip.mb { margin-bottom: 18px; }
+.invd .amt-inline { display: inline-flex; align-items: center; gap: 3px; justify-content: flex-end; }
+.invd .amt-inline .input.sm { width: 90px; }
+.invd .lock-chip.ml { margin-left: 6px; }
+.invd .pp-total { border-top: 2px solid var(--text-1); margin-top: 6px; padding: 11px 0 4px; display: flex; justify-content: space-between; align-items: baseline; }
+.invd .pp-total .k { font-weight: 700; font-size: 13px; color: var(--text-1); }
+.invd .pp-total .k .k-hint { font-weight: 400; font-size: 11px; color: var(--text-3); }
+.invd .pp-total .v { font-family: var(--mono); font-weight: 700; font-size: 19px; color: var(--text-1); }
+.invd .pp-actions { display: flex; gap: 6px; justify-content: flex-end; margin-top: 14px; }
+
+.invd .total-preview { position: sticky; top: 80px; height: min-content; }
+.invd .total-preview .pp-body { padding: 0; }
+.invd .total-preview .pp-rows td { padding: 5px 0; border-bottom: none; }
+.invd .total-preview .pp-rows .it { color: var(--text-3); font-weight: 400; }
+.invd .tp-title { margin: 0 0 12px; font-size: 14px; font-weight: 600; color: var(--text-1); }
+.invd .tp-note { margin-top: 12px; padding: 10px; background: var(--bg-subtle); border-radius: 6px; font-size: 11.5px; color: var(--text-3); line-height: 1.5; }
+.invd .tp-note strong { color: var(--text-1); }
+
+.invd .line-table thead th:nth-child(4) { width: 230px; }
+.invd .line-table thead th:last-child { width: 30px; }
+.invd .pp-cancel { text-align: center; margin-top: 8px; }
+.invd .tick-mark-text {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px !important; font-weight: 500;
+  color: var(--st-success);
+  font-family: var(--sans);
+  line-height: 1;
+}
+.invd .tick-mark-text img { width: 13px; height: 13px; margin: 0 !important; }
+
+/* ---- New-UI skin for native radios on invoice forms (mockup .radio) ---- */
+/* Legacy style.css zooms .radioList inputs 1.4× — undo inside new-UI pages */
+.invd .radioList input { zoom: 1; }
+.invd .radioList label { margin-top: 0; }
+
+.invd .form-check-input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px; height: 15px;
+  margin-top: 0;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--bg-surface);
+  vertical-align: middle;
+  cursor: pointer;
+  transition: border-color var(--dur-2) var(--ease), background var(--dur-2) var(--ease);
+}
+.invd .form-check-input[type="radio"]:hover { border-color: var(--accent); }
+.invd .form-check-input[type="radio"]:focus,
+.invd .form-check-input[type="radio"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+.invd .form-check-input[type="radio"]:checked {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 12 5 5L20 6'/%3E%3C/svg%3E");
+  background-size: 9px 9px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.invd .form-check .form-check-label {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-1);
+  font-family: var(--sans);
+  cursor: pointer;
+}
+
+/* ---- New-UI skin for react-datepicker popups on invoice pages ---- */
+.invd .react-datepicker-wrapper { width: 100%; }
+.invd .react-datepicker {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  box-shadow: var(--shadow-2);
+  color: var(--text-2);
+}
+.invd .react-datepicker__triangle { display: none; }
+.invd .react-datepicker__header {
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--line-2);
+  border-radius: 8px 8px 0 0;
+}
+.invd .react-datepicker__current-month,
+.invd .react-datepicker-time__header {
+  font-size: 12.5px; font-weight: 600; color: var(--text-1); font-family: var(--sans);
+}
+.invd .react-datepicker__day-name { color: var(--text-4); font-size: 10.5px; width: 26px; line-height: 26px; }
+.invd .react-datepicker__day { width: 26px; line-height: 26px; border-radius: 5px; color: var(--text-2); font-size: 12px; }
+.invd .react-datepicker__day:hover { background: var(--bg-hover); border-radius: 5px; }
+.invd .react-datepicker__day--selected,
+.invd .react-datepicker__day--keyboard-selected { background: var(--accent); color: #fff; }
+.invd .react-datepicker__day--outside-month { color: var(--text-4); }
+.invd .react-datepicker__day--disabled { color: var(--line-strong); }
+.invd .react-datepicker__navigation { top: 6px; }
+.invd .react-datepicker__time-container .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+  font-size: 12px; color: var(--text-2); font-family: var(--sans);
+  display: flex; align-items: center; justify-content: center;
+}
+.invd .react-datepicker__time-container .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover {
+  background: var(--bg-hover);
+}
+.invd .react-datepicker__time-container .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background: var(--accent) !important; color: #fff !important;
+}
+
+.invd .res-grid { margin-top: 14px; grid-template-columns: 1fr 1fr; }
+.invd .res-grid .field { min-width: 0; }
+.invd .res-grid .span2 { grid-column: 1 / -1; }
+.invd .res-grid .input { width: 100%; }
+.invd .res-grid .err { color: var(--st-danger); font-size: 12px; margin-top: -4px; }
+.invd .res-note { max-width: 420px; }
+.invd .form-link-sm { font-size: 11px; align-self: flex-end; margin-top: 2px; }
+.invd .ne-form-area { padding: 0; }
+.invd textarea.input { height: auto; padding: 8px 10px; resize: vertical; min-height: 64px; }
+.invd .input.sm.w110 { width: 110px; }
+.invd .td-action { text-align: center; width: 28px; }
+.invd .callout.mt { margin-top: 12px; }
+.invd .tk-body.tk-body-pad { padding: 6px 18px; }
+.invd .tk-body.tk-body-flush { padding: 0; }
+.invd .party-card .pc-body .type-field { margin-top: 14px; max-width: 260px; }
+.invd .result-table tr.sel .radio i { color: #fff; font-size: 11px; line-height: 1; }
+.invd .result-table .radio i { font-size: 11px; line-height: 1; }
+/* ---- Select Worker filter row (result-table) ---- */
+.invd .tk-filters { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; padding: 0 0 12px; }
+.invd .tk-filters .field { margin: 0; min-width: 150px; }
+.invd .tk-filters .field > label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-4); font-weight: 600; margin-bottom: 5px; display: block; }
+.invd .tk-filters .filter-note { font-size: 11.5px; color: var(--text-4); align-self: center; margin-left: auto; }
+.invd .result-table td .elig { font-size: 11.5px; }
+/* ---- Select Employer / Worker as modal takeover over the setup page ---- */
+.invd .takeover-veil { position: fixed; inset: 0; z-index: 1100; background: rgba(20, 22, 28, 0.55); display: flex; align-items: flex-start; justify-content: center; padding: 44px 20px; overflow: auto; }
+.invd .takeover-veil .takeover { margin: auto; }
+/* Select Employer / Worker modal — fixed 940px width per mockup */
+.invd .takeover.select-modal { width: 940px; max-width: 100%; max-height: calc(100vh - 88px); box-shadow: var(--shadow-3); }
+@media (max-width: 600px) { .invd .takeover-veil { padding: 14px; } }
+/* ---- Contract-setup header: editable cells inside cs-metastrip ---- */
+.invd .cs-metastrip .cell .meta-input { width: 100%; height: 32px; margin-top: 5px; border: 1px solid var(--line-1); border-radius: 6px; background: var(--bg-surface); padding: 0 8px; font-size: 13px; color: var(--text-1); font-family: inherit; }
+.invd .cs-metastrip .cell input.meta-input { font-family: var(--mono); }
+.invd .cs-metastrip .cell .meta-date { margin-top: 5px; }
+.invd .cs-metastrip .cell .meta-date input { font-family: var(--mono); }
+.invd .cs-metastrip .cell select.meta-input { cursor: pointer; appearance: none; padding-right: 26px; }
+/* the header selects sit in the shared .select wrapper so they draw the same chevron as the body selects; the wrapper carries the top gap */
+.invd .cs-metastrip .cell .select { margin-top: 5px; }
+.invd .cs-metastrip .cell .select .meta-input { margin-top: 0; }
+.invd .cs-metastrip .cell .meta-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-bg); }
+/* Handling Staff is locked until a Branch is chosen: muted, not clickable, chevron dimmed with it */
+.invd .cs-metastrip .cell select.meta-input:disabled { cursor: not-allowed; color: var(--text-3); background: var(--bg-canvas); opacity: .7; }
+.invd .cs-metastrip .cell .select:has(select:disabled)::after { opacity: .5; }
+.invd .review-head .left .badge { margin-left: 6px; }
+/* ---- Settings-pricing preview: generated-items header ---- */
+.invd .pricing-panel .pp-genhead { display: flex; align-items: center; justify-content: space-between; margin: 16px 0 8px; }
+.invd .pricing-panel .pp-genhead > span:first-child { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-4); font-weight: 600; }
+.invd .items-section .sec-head .lock-chip.head-chip { margin-left: auto; }
+
+/* ---- Inline Discount / Promo cell (Step 2 line item · mockup adj-cell) ---- */
+.invd .adj-cell { min-width: 170px; }
+.invd .adj-line { display: flex; align-items: center; gap: 5px; }
+.invd .adj-line .select.sm { flex: 1; min-width: 0; }
+.invd .adj-line > .input { flex: 1; min-width: 0; }
+.invd .adj-mode { display: inline-flex; border: 1px solid var(--line-1); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+.invd .adj-mode button { width: 26px; height: 28px; border: none; background: var(--bg-surface); font-size: 12px; color: var(--text-3); cursor: pointer; }
+.invd .adj-mode button + button { border-left: 1px solid var(--line-1); }
+.invd .adj-mode button.active { background: var(--accent); color: #fff; }
+.invd .adj-apply { flex-shrink: 0; width: 28px; height: 28px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: none; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; }
+.invd .adj-apply:hover { background: var(--accent-hover); }
+.invd .adj-err { font-size: 11px; color: var(--st-danger); }
+
+/* ---- Applied discount / promo sub-rows under a line item ---- */
+.invd .line-table tr.offer-row td { background: var(--bg-subtle); font-size: 11.5px; }
+.invd .line-table tr.offer-row .ds { color: var(--text-3); margin-top: 0; }
+
+/* Contract Invoice · Invoice items (27 Oct package, INV-C3; the Combined doc's line table and the reference page's panels):
+   the context strip, the full-width five-column table (ordered steps, "· locked", detail lines, struck removed rows, the
+   cross live or disabled), the empty Add Item / Add Custom Item rows (ITEMS-ROW-1) and the focused panels' choices and
+   Result preview */
+.invd .items-stage .items-ctx {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.invd .items-stage .items-ctx .code { font-family: var(--mono); font-size: 12px; color: var(--text-3); }
+.invd .items-stage .items-ctx .v2 { font-size: 11.5px; color: var(--text-3); margin-top: 2px; }
+.invd .items-stage .callout { margin-top: 0; margin-bottom: 10px; }
+.invd .items-stage .items-card { padding: 16px 18px; margin-top: 4px; }
+.invd .items-stage .items-card .sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.invd .items-stage .items-card .sec-head h3 { margin: 0; font-size: 14px; font-weight: 600; color: var(--text-1); }
+.invd .items-stage .items-card .helper { font-size: 12px; color: var(--text-3); }
+.invd .items-stage .add-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.invd .inv-lines td.de .dt { display: block; font-size: 11.5px; color: var(--text-4); margin-top: 2px; }
+.invd .inv-lines .inv-steps { display: flex; flex-direction: column; gap: 3px; font-size: 11.5px; min-width: 150px; }
+.invd .inv-lines .inv-step { display: flex; justify-content: space-between; gap: 10px; }
+.invd .inv-lines .inv-step .sl { color: var(--text-3); font-family: inherit; text-align: left; white-space: normal; }
+.invd .inv-lines .inv-step .lk { color: var(--text-4); font-size: 10.5px; }
+.invd .inv-lines .inv-step .sv { color: var(--text-2); white-space: nowrap; }
+.invd .inv-lines .miss-amt { color: var(--st-danger); font-family: inherit; font-size: 12px; }
+.invd .inv-lines tr.rm-row td { opacity: .58; }
+.invd .inv-lines tr.rm-row td.de { text-decoration: line-through; }
+.invd .inv-lines .zero { color: var(--text-4); font-family: inherit; }
+.invd .inv-lines td.act { width: 1%; white-space: nowrap; text-align: right; }
+.invd .inv-lines .acts { display: inline-flex; align-items: center; gap: 8px; }
+.invd .inv-lines .lnk {
+  display: inline-flex; align-items: center; gap: 4px; border: 0; background: none; padding: 0;
+  font-size: 12px; color: var(--accent); cursor: pointer;
+}
+.invd .inv-lines .ibtn {
+  display: inline-grid; place-items: center; width: 22px; height: 22px; padding: 0;
+  border: 1px solid var(--line-1); border-radius: 5px; background: var(--bg-surface); color: var(--text-3); cursor: pointer;
+}
+.invd .inv-lines .ibtn:disabled { opacity: .35; cursor: not-allowed; }
+.invd .inv-lines tfoot td {
+  padding: 12px 0 0; font-weight: 600; color: var(--text-1); border-top: 1px solid var(--line-1);
+}
+.invd .inv-lines tfoot td + td { padding-left: 12px; }
+.invd .inv-lines tfoot td.right { text-align: right; }
+.invd .inv-lines .sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.invd .inv-lines tr.draft-row td { vertical-align: middle; background: var(--bg-subtle); }
+.invd .inv-lines tr.draft-row td.primary, .invd .inv-lines tr.draft-row td.de { min-width: 180px; }
+.invd .inv-lines .draft-amt { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); color: var(--text-3); }
+.invd .inv-lines .draft-amt input { width: 110px; text-align: right; font-family: var(--mono); }
+.invd .inv-lines .draft-err { color: var(--st-danger); }
+.invd .pnote { margin: 10px 0 0; font-size: 12px; color: var(--text-3); }
+.invd .pid {
+  display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; padding: 10px 12px;
+  border-radius: 7px; background: var(--bg-subtle); font-size: 13px; color: var(--text-1);
+}
+.invd .pid .n span { color: var(--text-3); }
+.invd .pid .a { font-family: var(--mono); }
+.invd .chlist { display: flex; flex-direction: column; gap: 6px; }
+.invd .choice {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 8px 12px; border: 1px solid var(--line-1); border-radius: 7px; font-size: 12.5px;
+}
+.invd .choice.on { border-color: var(--accent); }
+.invd .choice.locked { background: var(--bg-subtle); color: var(--text-3); }
+.invd .choice .t { color: var(--text-1); }
+.invd .choice .d { display: block; font-size: 11px; color: var(--text-4); }
+.invd .choice .a { font-family: var(--mono); color: var(--text-2); white-space: nowrap; }
+.invd .choice.confirmrow { margin-top: 12px; background: var(--st-warning-bg); border-color: var(--st-warning-bd); }
+.invd .preview { margin-top: 14px; border: 1px solid var(--line-1); border-radius: 7px; padding: 10px 12px; font-size: 12.5px; }
+.invd .preview .ph { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-4); font-weight: 600; margin-bottom: 6px; }
+.invd .preview .pr { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; color: var(--text-2); }
+.invd .preview .pr .a { font-family: var(--mono); white-space: nowrap; }
+.invd .preview .pr.refused { color: var(--st-danger); }
+.invd .preview .pr.tot { border-top: 1px solid var(--line-2); margin-top: 4px; padding-top: 6px; font-weight: 600; color: var(--text-1); }
+
+/* Contract Invoice · Invoice Review (27 Oct package, INV-C4): one column — the read-only line table with the credit
+   entries and the amount due, the financial summary boxes, Apply Credit, then Payment below the table */
+.invd .review-stage .callout { margin-top: 0; margin-bottom: 10px; }
+.invd .review-stage .items-card, .invd .review-stage .credit-card, .invd .review-stage .pay-block { padding: 16px 18px; margin-top: 12px; }
+.invd .review-stage .sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.invd .review-stage .sec-head h3 { margin: 0; font-size: 14px; font-weight: 600; color: var(--text-1); }
+.invd .inv-lines tr.credit-row td { color: var(--st-success); }
+.invd .inv-lines tr.due-row td { font-weight: 600; color: var(--text-1); padding-top: 8px; }
+.invd .fin-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; padding: 14px 18px; margin-top: 12px; }
+.invd .fin-summary .fs-box { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border: 1px solid var(--line-1); border-radius: 8px; }
+.invd .fin-summary .fs-box .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-4); font-weight: 600; }
+.invd .fin-summary .fs-box .v { font-family: var(--mono); font-size: 15px; color: var(--text-1); }
+.invd .fin-summary .fs-box.due { border-color: var(--accent); background: var(--accent-bg); }
+.invd .fin-summary .fs-box.due .v { font-weight: 700; }
+.invd .credit-card .credit-table { margin-top: 10px; }
+.invd .pay-block .head h2 { margin: 0; font-size: 15px; font-weight: 600; }
+.invd .pay-block .head .sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+.invd .pay-block .pay-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 16px; margin: 14px 0; align-items: start; }
+.invd .pay-block .fl { display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-4); font-weight: 600; margin-bottom: 6px; }
+.invd .pay-block .path-seg { display: flex; flex-wrap: wrap; gap: 10px; }
+.invd .pay-block .path-card { text-align: left; background: var(--bg-surface); cursor: pointer; }
+.invd .pay-block .path-card.dis { cursor: not-allowed; opacity: .6; }
+.invd .pay-block .paydue { display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 8px; background: var(--bg-subtle); }
+.invd .pay-block .paydue .dueamt { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--text-1); }
+.invd .pay-block .paydue .duesub { font-size: 12px; color: var(--text-3); }
+/* R-P2 (OP-27-54): Amount due now = 0, the reference page's no-payment note and its create button */
+.invd .pay-block .nopay { display: flex; align-items: center; gap: 12px; }
+.invd .pay-block .nopay .t { font-size: 14px; font-weight: 600; color: var(--text-1); }
+.invd .pay-block .nopay .d { font-size: 12.5px; color: var(--text-3); }
+.invd .pay-block .pay-foot { display: flex; justify-content: flex-end; }
+@media (max-width: 900px) {
+.invd .pay-block .pay-grid { grid-template-columns: 1fr; }
+.invd .pay-block .nopay { flex-direction: column; align-items: flex-start; gap: 4px; }
+}

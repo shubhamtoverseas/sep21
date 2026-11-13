@@ -1,0 +1,30 @@
+.sendTemplate .form-check-label {
+    font-family: 'Roboto';
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 18.75px;
+    letter-spacing: 0.005em;
+    text-align: left;
+    color: #2C2C2E;
+}
+
+.send-template-bottom-bar {
+    position: sticky;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.message-box {
+    background: #f8f9fa;
+    border: 1px solid #e3e6ea;
+    border-radius: 6px;
+    padding: 16px;
+    min-height: 120px;
+    font-size: 15px;
+    color: #222;
+    word-break: break-word;
+    margin-bottom: 8px;
+    line-height: 1.7;
+    overflow-x: auto;
+}

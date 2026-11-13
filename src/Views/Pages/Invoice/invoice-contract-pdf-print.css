@@ -1,0 +1,95 @@
+@media print {
+    .d-flex {
+        display: flex !important;
+    }
+
+    .form-row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .form-row .col,
+    .form-row [class*="col-"] {
+        flex: 1 !important;
+        width: auto !important;
+        max-width: none !important;
+        display: block !important;
+    }
+
+    .row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+
+    .col-auto {
+        flex: 0 0 auto !important;
+        width: auto !important;
+    }
+
+    .col-md-7,
+    .col-md-12 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    .align-items-center {
+        align-items: center !important;
+    }
+
+    .invoice-container {
+        page-break-inside: avoid;
+    }
+
+    table {
+        width: 100% !important;
+    }
+
+    .invoice-chip.pending-paid {
+        background-color: #FFECB3;
+        color: #FFA000;
+    }
+
+    .invoice-chip.reservation_fee {
+        background-color: #BBDEFB;
+        color: #1565C0;
+
+    }
+
+    .invoice-chip.partial-payment {
+        background-color: #FFF9C4;
+        color: #F9A825;
+    }
+
+    .invoice-chip.paid,
+    .btn.insurance-active {
+        background-color: #DEFBEA !important;
+        color: #34A853 !important;
+    }
+
+    .invoice-chip.unsettled {
+        background-color: #FECDD2;
+        color: #D72B27;
+    }
+
+    .invoice-chip.refunded,
+    .btn.insurance-submitted {
+        background-color: #FFE0B2;
+        color: #EF6C00;
+    }
+
+    .invoice-chip.exchange {
+        background-color: #FFE0B2;
+        color: #EF6C00;
+    }
+
+    .invoice-chip.bad-debt {
+        background-color: #cb95ed;
+        color: #6a1b9a;
+    }
+
+    .invoice-chip.void,
+    .btn.insurance-expired {
+        background-color: #F0F0F0;
+        color: #757575;
+    }
+}

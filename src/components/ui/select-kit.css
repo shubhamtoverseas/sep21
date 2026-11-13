@@ -1,0 +1,105 @@
+/* ================================================================
+ * Single-select dropdowns — the prototype select (job-offer-edit .ctl.sel + .menu):
+ * trigger with a blue ring while open, a rounded shadowed list, hover row grey,
+ * selected row tinted blue. Applied to every native <select> by the customizable
+ * select (`appearance: base-select`, Chromium 135+); browsers without it keep
+ * their own picker. Scoped by route on <body data-mc-select="kit"> (utils/selectScope.js):
+ * Invoice, Insurance and Chat stay as they are. Imported by index.js.
+ * Each ::picker / ::checkmark rule stands alone so an unsupported selector
+ * cannot drop its neighbours.
+ * ================================================================ */
+
+body[data-mc-select="kit"] select:not([multiple]):not([size]) {
+  appearance: base-select;
+  /* the trigger is a flex box now: keep the selected text centred in whatever height the host gives the control */
+  display: inline-flex;
+  align-items: center;
+  line-height: normal;
+}
+body[data-mc-select="kit"] select:not([multiple]):not([size]) selectedcontent {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body[data-mc-select="kit"] select:not([multiple]):not([size])::picker(select) {
+  appearance: base-select;
+}
+
+/* trigger while the list is open (prototype .ctl.sel[aria-expanded=true]) */
+body[data-mc-select="kit"] select:not([multiple]):not([size]):open {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px #e8effd;
+}
+
+/* the browser's own chevron stays only where the control draws none of its own: the kit SelectBox has its svg, and
+   these classes paint a chevron as a background image (stage panels / Documents `.g1-in`, the embedded record
+   `select.form-control`, the Forms tab `.fx-in`, Job Offer Suggest `.mc-sw-ctl`, bootstrap `.custom-select`) —
+   without this they showed two carets (Mubin / user, DHL Contract Current Location, 3 Nov) */
+body[data-mc-select="kit"] select:not([multiple]):not([size])::picker-icon {
+  width: 10px;
+  height: 10px;
+  color: #667080;
+  margin-left: 6px;
+}
+body[data-mc-select="kit"] select:has(+ svg)::picker-icon,
+body[data-mc-select="kit"] select.g1-in::picker-icon,
+body[data-mc-select="kit"] select.fx-in::picker-icon,
+body[data-mc-select="kit"] select.mc-sw-ctl::picker-icon,
+body[data-mc-select="kit"] select.custom-select::picker-icon,
+body[data-mc-select="kit"] .mcdt-embed select.form-control::picker-icon {
+  display: none;
+}
+
+/* the list (prototype .menu) */
+body[data-mc-select="kit"] select:not([multiple]):not([size])::picker(select) {
+  margin: 4px 0 0;
+  padding: 5px;
+  min-width: anchor-size(width);
+  max-height: 240px;
+  overflow: auto;
+  border: 1px solid #e3e7ed;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.14);
+}
+
+/* the rows (prototype .menu button) */
+body[data-mc-select="kit"] select:not([multiple]):not([size]) option {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 9px;
+  border-radius: 5px;
+  background: #fff;
+  color: #3d4552;
+  font-family: var(--sans, 'Hanken Grotesk', sans-serif);
+  font-size: 12.5px;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+}
+body[data-mc-select="kit"] select:not([multiple]):not([size]) option + option {
+  margin-top: 1px;
+}
+body[data-mc-select="kit"] select:not([multiple]):not([size]) option:hover,
+body[data-mc-select="kit"] select:not([multiple]):not([size]) option:focus-visible {
+  background: #f4f6f8;
+  color: #171b22;
+  outline: none;
+}
+body[data-mc-select="kit"] select:not([multiple]):not([size]) option:checked {
+  background: #eff4ff;
+  color: #1d4ed8;
+  font-weight: 550;
+}
+body[data-mc-select="kit"] select:not([multiple]):not([size]) option:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+/* the prototype marks the selected row by tint alone */
+body[data-mc-select="kit"] select:not([multiple]):not([size]) option::checkmark {
+  display: none;
+}

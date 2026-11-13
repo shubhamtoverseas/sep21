@@ -1,0 +1,50 @@
+.spacer {
+  flex: 1;
+}
+
+.intro {
+  margin: 4px 0 14px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.visaBlock {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--st-danger-bd);
+  border-radius: var(--radius-2);
+  background: var(--st-danger-bg);
+}
+
+.visaBlockMessage {
+  margin: 0 0 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--st-danger);
+}
+
+.factList {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 12px;
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.factList dt {
+  font-weight: 600;
+}
+
+.factList dd {
+  margin: 0;
+  font-family: var(--mono);
+}
+
+.note {
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-3);
+}

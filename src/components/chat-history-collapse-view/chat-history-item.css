@@ -1,0 +1,59 @@
+.chat-history-box {
+    padding: 20px;
+  }
+  
+  .chat-history-box .chat-item {
+    margin-bottom: 15px;
+  }
+  
+  .chat-meta {
+    margin-right: 10px;
+  }
+  
+  .avatar {
+    border-radius: 100%;
+    position: relative;
+    top: -4px;
+  }
+  
+  .sender {
+    margin-right: 5px;
+  }
+  
+  .time {
+    color: gray;
+  }
+  
+  .chat-message {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    line-height: 16px;
+  }
+  
+  .chat-message i {
+    margin-right: 5px;
+  }
+  
+  .chat-message.whatsapp {
+    background-color: #E5FAEA;
+  }
+  
+  .chat-message.system {
+    background-color: #F7F7F7;
+  }
+  
+  .chat-message.wechat {
+    background-color: #F2F2F7;
+  }
+  
+  .chat-message.phone{
+    background-color: #E3F2FD;
+  }
+  .chat-history-box .message-wrapper {
+    display: flex;
+    justify-content: end;
+  }
+  

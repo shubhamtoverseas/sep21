@@ -1,0 +1,279 @@
+/* Job Offer copy generator (handoff v2.0) — all rules scoped under .jocopy */
+
+.jocopy {
+  --jocopy-blue: #315fc9;
+  --jocopy-border: #d5dbe3;
+  --jocopy-muted-bg: #fbfcfd;
+  --jocopy-text: #1c222b;
+  --jocopy-subtext: #667080;
+  --jocopy-notice-bg: #f3f7ff;
+  --jocopy-notice-border: #cfe0ff;
+  --jocopy-fail-bg: #fef3f2;
+  --jocopy-fail-border: #f2c6c2;
+  --jocopy-fail-text: #b3261e;
+  --jocopy-green-bg: #edf8f2;
+  --jocopy-green-text: #1c7c4d;
+  font-size: 14px;
+  color: var(--jocopy-text);
+}
+
+/* ---- empty / generating panel ---- */
+.jocopy .jocopy-genpanel {
+  border: 1.5px dashed var(--jocopy-border);
+  border-radius: 12px;
+  background: var(--jocopy-muted-bg);
+  padding: 18px 20px;
+  text-align: left;
+}
+.jocopy .jocopy-genhead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.jocopy .jocopy-gentitle {
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--jocopy-text);
+}
+.jocopy .jocopy-gentext {
+  color: var(--jocopy-subtext);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.jocopy .jocopy-spin {
+  animation: jocopy-spin 1.1s linear infinite;
+  color: var(--jocopy-blue);
+  /* prototype generating panel: an 18px spinner */
+  width: 18px;
+  height: 18px;
+}
+@keyframes jocopy-spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jocopy .jocopy-spin { animation: none; }
+}
+
+/* ---- version bar ---- */
+.jocopy .jocopy-roundbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  border: 1px solid var(--jocopy-border);
+  border-radius: 10px;
+  background: #fff;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+.jocopy .jocopy-roundtag {
+  font-family: var(--mc-mono, 'JetBrains Mono', monospace);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--jocopy-blue);
+  background: var(--jocopy-notice-bg);
+  border: 1px solid var(--jocopy-notice-border);
+  border-radius: 999px;
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+.jocopy .jocopy-roundhint {
+  color: var(--jocopy-subtext);
+  font-size: 12.5px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.jocopy .jocopy-roundacts {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* ---- language package ---- */
+.jocopy .jocopy-pkg {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.jocopy .jocopy-pkg.jocopy-muted { opacity: 0.55; pointer-events: none; }
+.jocopy .jocopy-langcard {
+  border: 1px solid var(--jocopy-border);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 16px;
+}
+.jocopy .jocopy-langcard.jocopy-aid {
+  border-style: dashed;
+  background: var(--jocopy-muted-bg);
+}
+.jocopy .jocopy-langhd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.jocopy .jocopy-langname { font-weight: 600; font-size: 14px; }
+.jocopy .jocopy-langtag {
+  font-size: 11.5px;
+  font-weight: 500;
+  border-radius: 999px;
+  padding: 1px 8px;
+  background: #eef0f3;
+  color: var(--jocopy-subtext);
+}
+.jocopy .jocopy-langtag.jocopy-pub {
+  background: var(--jocopy-green-bg);
+  color: var(--jocopy-green-text);
+}
+.jocopy .jocopy-langsync {
+  margin-left: auto;
+  color: var(--jocopy-subtext);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.jocopy .jocopy-copyhead {
+  font-weight: 600;
+  font-size: 14.5px;
+  margin-bottom: 6px;
+  overflow-wrap: anywhere;
+}
+.jocopy .jocopy-copybody {
+  font-size: 13.5px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.jocopy .jocopy-langcard[data-language="zh"] .jocopy-copyhead { font-size: 15.5px; }
+.jocopy .jocopy-langcard[data-language="zh"] .jocopy-copybody { font-size: 14.5px; }
+.jocopy .jocopy-copymeta {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  color: var(--jocopy-subtext);
+  font-size: 11.5px;
+}
+.jocopy .jocopy-pkgnote {
+  color: var(--jocopy-subtext);
+  font-size: 12.5px;
+  margin-top: 12px;
+}
+
+/* ---- copy review notice ---- */
+.jocopy .jocopy-reviewnotice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--jocopy-notice-bg);
+  border: 1px solid var(--jocopy-notice-border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+.jocopy .jocopy-noticetext { flex: 1 1 260px; font-size: 13px; }
+.jocopy .jocopy-noticeacts { display: flex; gap: 8px; margin-left: auto; }
+
+/* ---- failure panel ---- */
+.jocopy .jocopy-failpanel {
+  background: var(--jocopy-fail-bg);
+  border: 1px solid var(--jocopy-fail-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+.jocopy .jocopy-failhead { font-weight: 600; color: var(--jocopy-fail-text); font-size: 13.5px; }
+.jocopy .jocopy-faildetail { color: var(--jocopy-subtext); font-size: 12.5px; margin: 4px 0 10px; }
+.jocopy .jocopy-failacts { display: flex; gap: 8px; }
+
+/* ---- footer note (rendered in the host panel footer) ---- */
+.jocopy-footnote {
+  color: #667080;
+  font-size: 12.5px;
+}
+
+/* ---- small buttons ---- */
+.jocopy .jocopy-btn-sm {
+  font-size: 12.5px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  line-height: 1.4;
+}
+
+/* ---- dialogs ---- */
+.jocopy-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.jocopy-popup {
+  background: #fff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 560px;
+  padding: 22px 24px;
+  box-shadow: 0 12px 40px rgba(16, 24, 40, 0.22);
+}
+.jocopy-popup .jocopy-popup-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.jocopy-popup .jocopy-popup-body { font-size: 13.5px; color: #1c222b; }
+.jocopy-popup .jocopy-popup-hint { font-size: 12.5px; color: #667080; margin-top: 6px; }
+.jocopy-popup .jocopy-reasons { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 10px; }
+.jocopy-popup .jocopy-reason { height: 26px; padding: 0 10px; border-radius: 999px; border: 1px solid #d5dbe3; background: #fff; font-size: 12px; font-weight: 500; color: #171b22; cursor: pointer; font-family: inherit; }
+.jocopy-popup .jocopy-reason:hover { background: #f4f6f8; }
+.jocopy-popup .jocopy-reason.on { background: #eff4ff; border-color: #2563eb; color: #1d4ed8; }
+.jocopy-popup .jocopy-popup-acts {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+.jocopy-popup .jocopy-regen-ta {
+  width: 100%;
+  min-height: 72px;
+  border: 1px solid #d5dbe3;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  margin-top: 6px;
+  resize: vertical;
+}
+.jocopy-popup .jocopy-field-label { font-weight: 500; font-size: 13.5px; margin-top: 12px; display: block; }
+
+/* ---- versions dialog ---- */
+.jocopy-popup .jocopy-histpanel {
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid #e4e8ee;
+  border-radius: 10px;
+  margin-top: 12px;
+}
+.jocopy-popup .jocopy-histrow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef0f3;
+}
+.jocopy-popup .jocopy-histrow:last-child { border-bottom: 0; }
+.jocopy-popup .jocopy-histmain { font-size: 13px; }
+.jocopy-popup .jocopy-histmeta { font-size: 12px; color: #667080; margin-top: 2px; }
+.jocopy-popup .jocopy-histbody { flex: 1 1 auto; min-width: 0; }
+.jocopy-popup .jocopy-histside {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  white-space: nowrap;
+}
+.jocopy-popup .jocopy-roundtag.jocopy-failedtag {
+  color: #b3261e;
+  background: #fef3f2;
+  border-color: #f2c6c2;
+}
+.jocopy-popup .jocopy-histhint { font-size: 11.5px; color: #98a2b3; }

@@ -1,0 +1,28 @@
+/* .breadcrumb {
+    display: flex;
+    align-items: center;
+  } */
+  
+  .breadcrumb-cutom-item {
+    font-family: 'Roboto';
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.15px;
+    text-transform: uppercase;
+  }
+  
+  .breadcrumb-cutom-link {
+    color: #1E88E5;
+  }
+  
+  .breadcrumb-cutom-link:hover {
+    text-decoration: underline;
+  }
+  
+ 
+  .breadcrumb-cutom-separator {
+    margin: 0 3px;
+  }
+  

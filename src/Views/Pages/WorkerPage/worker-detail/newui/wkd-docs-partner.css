@@ -1,0 +1,146 @@
+/* ================================================================
+ * Worker Details — Profile › Doc Upload / Assign Partner / Partner (PT)
+ * chrome from the 21 Sep prototype (docsHTML list, g2AssignmentHTML,
+ * g2AssignedSummaryHTML, g2ReassignmentHTML, g2UploadSectionHTML,
+ * g2SubmitDocumentsHTML, dFileCard/dFileEmpty). Scoped under .wkd.
+ * The selected document's review card is wkd-doc-review.css.
+ * Imported by WorkerDocUploadDetails.js, AssignPT.js and PTtab.js.
+ * ================================================================ */
+
+/* ---------------- Doc Upload list (docsHTML 1837-1865) ---------------- */
+/* right-aligned mono meta column: "Uploaded DD Mon YYYY" / Awaiting upload / Not Applicable */
+.wkd .wkd-docws-row .meta {
+  font-family: var(--mono); font-size: 11px; color: #676e77;
+  width: 150px; text-align: right; flex-shrink: 0; white-space: nowrap;
+}
+/* Path A passport: Not Applicable row — excluded from completion */
+.wkd .wkd-docws-row.na { opacity: .72; cursor: default; }
+.wkd .wkd-docws-row.na .nm { color: #8a8a90; }
+.wkd .wkd-docws-row .wkd-chip-na { background: #f4f4f3; border: 1px solid #e2e2df; color: #8a8a90; }
+
+/* flat activity list (ActivityStatusCollapsible variant="flat") */
+.wkd .wkd-actflat {
+  border-top: 1px solid #edf0f4; padding-top: 12px; margin-bottom: 12px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.wkd .wkd-actflat:empty { display: none; }
+.wkd .wkd-actflat-item { display: flex; gap: 8px; align-items: baseline; }
+/* NOTE: not class "dot" — a global loader .dot carries a bounce animation */
+.wkd .wkd-actflat-dot {
+  width: 7px; height: 7px; border-radius: 999px; flex-shrink: 0;
+  position: relative; top: -1px; background: #2563eb; display: inline-block;
+}
+.wkd .wkd-actflat-dot.blue { background: #2563eb; }
+.wkd .wkd-actflat-dot.green { background: #1a7f37; }
+.wkd .wkd-actflat-dot.violet { background: oklch(0.46 0.16 305); }
+.wkd .wkd-actflat-dot.red { background: #b42318; }
+.wkd .wkd-actflat-t { font-size: 12px; font-weight: 500; color: #171b22; }
+.wkd .wkd-actflat-m { font-size: 11px; color: #676e77; margin-top: 1px; }
+.wkd .wkd-actflat-when { font-family: var(--mono); }
+
+/* ---------------- Assign Partner (g2AssignmentHTML / g2AssignedSummaryHTML) ---------------- */
+.wkd .wkd-g2-spacer { flex: 1; }
+.wkd .wkd-g2 .wkd-g2-code { font-family: var(--mono); font-weight: 600; }
+.wkd .wkd-g2 .wkd-g2-body .wkd-actflat { margin-top: 16px; margin-bottom: 0; }
+/* footer strip: Cancel + primary as g2 buttons */
+.wkd .wkd-g2 .bottom-bar .g2-button + .g2-button { margin-left: 8px; }
+.wkd .wkd-g2 .bottom-bar > div, .wkd .wkd-g2 .bottom-bar > div > div { display: inline-flex; align-items: center; }
+/* Change Partner: callout sits directly above the footer strip */
+.wkd .wkd-g2 .wkd-g2-change-note { margin: 16px 0 0; }
+.wkd .wkd-g2 .wkd-g2-change-note svg { flex: 0 0 auto; margin-top: 1px; }
+
+/* ---------------- Partner (PT) sections (g2UploadSectionHTML / g2SubmitDocumentsHTML) ---------------- */
+.wkd .wkd-g2sec-body { padding: 18px 20px; }
+.wkd .wkd-g2sec .wkd-g2sec-head .g2-title { font-size: 14px; font-weight: 600; }
+.wkd .wkd-g2sec .wkd-g2sec-head .wkd-g2-count { font-size: 11.5px; font-weight: 550; color: #9a6415; }
+.wkd .wkd-g2sec .wkd-g2sec-head .wkd-g2-count.done { color: #1a7f37; }
+.wkd .wkd-g2sec .g2-field-label { margin-bottom: 6px; }
+/* compact file card (dFileCard) */
+.wkd .wkd-g2-file {
+  display: flex; align-items: center; gap: 12px; max-width: 520px;
+  border: 1px solid #e3e7ed; border-radius: 8px; padding: 10px 12px; background: #fff;
+}
+.wkd .wkd-g2-file .thumb {
+  width: 36px; height: 46px; border-radius: 4px; border: 1px solid #e3e7ed; flex-shrink: 0; overflow: hidden;
+  background: repeating-linear-gradient(45deg, #f7f8fa, #f7f8fa 6px, #eef1f4 6px, #eef1f4 12px);
+}
+.wkd .wkd-g2-file .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.wkd .wkd-g2-file .info { flex: 1; min-width: 0; }
+.wkd .wkd-g2-file .nm { font-size: 12.5px; font-weight: 550; color: #171b22; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wkd .wkd-g2-file .meta { font-family: var(--mono); font-size: 10.5px; color: #676e77; margin-top: 2px; }
+.wkd .wkd-g2-file .ic {
+  width: 28px; height: 28px; padding: 0; border: 0; border-radius: 5px; background: transparent;
+  display: grid; place-items: center; cursor: pointer; color: #667080; flex-shrink: 0;
+}
+.wkd .wkd-g2-file .ic:hover { background: #f4f6f8; }
+.wkd .wkd-g2-file .ic.del { color: #b42318; }
+.wkd .wkd-g2-file .again {
+  font-size: 11.5px; font-weight: 550; color: #1d4ed8; background: transparent; border: 0;
+  padding: 0 4px; cursor: pointer; white-space: nowrap; font-family: var(--sans);
+}
+/* read-state empty (dFileEmpty, not editable): amber Awaiting upload */
+.wkd .wkd-g2-await {
+  display: flex; align-items: center; gap: 10px; max-width: 520px;
+  border: 1px dashed #e0c9a6; border-radius: 8px; padding: 12px 14px; background: #fcf5e9;
+  color: #92610e; font-size: 12.5px; font-weight: 500;
+}
+.wkd .wkd-g2-await svg { flex: 0 0 auto; }
+/* legacy UploadFile drop box, constrained to the card column */
+.wkd .wkd-g2-upload { max-width: 520px; }
+.wkd .wkd-g2-upload .upload-file-wrapper { margin-bottom: 6px; }
+.wkd .wkd-g2-upload .upload-box { border: 1.5px dashed #c3cad4; border-radius: 8px; padding: 20px; }
+.wkd .wkd-g2-upload .upload-file-wrapper p { font-family: var(--sans); font-size: 12.5px; color: #667080; }
+.wkd .wkd-g2sec .g2-upload-format { margin-bottom: 12px; }
+.wkd .wkd-g2sec .g2-upload-audit { margin-top: 8px; }
+.wkd .wkd-g2sec .wkd-g2-uploadblock { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+/* Submit Documents checklist rows (.g2-check) */
+.wkd .wkd-g2sec .g2-check { font-family: var(--sans); }
+.wkd .wkd-g2sec .g2-check .lbl { font-size: 12.5px; font-weight: 550; }
+
+/* ---- Assign Partner: legacy search + agency/branch + staff tables reskinned to the
+   listing tokens (the prototype has two selects here — pending flow decision) ---- */
+.wkd .assign-pt-view .customInputGroup {
+  display: flex; align-items: center; gap: 8px; width: 320px; max-width: 100%;
+  height: 36px; padding: 0 11px; border: 1px solid #dfe4ea; border-radius: 8px; background: #fff;
+}
+.wkd .assign-pt-view .customInputGroup .input-group-prepend,
+.wkd .assign-pt-view .customInputGroup .input-group-text { padding: 0; height: auto; line-height: 0; }
+.wkd .assign-pt-view .customInputGroup .input-group-text i { font-size: 14px; color: #667080; }
+.wkd .assign-pt-view .customInputGroup .form-control {
+  height: 34px; padding: 0; font-size: 12.5px; color: #171b22; box-shadow: none;
+}
+.wkd .assign-pt-view .customInputGroup .form-control::placeholder { color: #8a919c; }
+.wkd .assign-pt-view .customInputGroup:focus-within { border-color: #2563eb; box-shadow: 0 0 0 2px #e8effd; }
+
+.wkd .assign-pt-view .collapsible-table { border: 0; border-collapse: collapse; margin-bottom: 0; }
+.wkd .assign-pt-view .collapsible-table th {
+  height: 38px; padding: 0 12px; border: 0; border-bottom: 1px solid #e3e7ed; background: transparent;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #667080;
+  white-space: nowrap; vertical-align: middle;
+}
+.wkd .assign-pt-view .collapsible-table td {
+  height: 44px; padding: 0 12px; border: 0; border-bottom: 1px solid #edf0f4;
+  font-size: 13px; color: #171b22; vertical-align: middle; background: transparent;
+}
+.wkd .assign-pt-view .collapsible-table th:first-child,
+.wkd .assign-pt-view .collapsible-table td:first-child { width: 44px; padding: 0; text-align: center; }
+.wkd .assign-pt-view .collapsible-table .collapse-head { background: transparent; }
+.wkd .assign-pt-view .collapsible-table .collapse-head td { font-weight: 600; }
+.wkd .assign-pt-view .collapsible-table .collapse-head .btn-link { padding: 0; color: #676e77; line-height: 0; }
+.wkd .assign-pt-view .collapsible-table .collapse-head .btn-link i { font-size: 14px; }
+.wkd .assign-pt-view .collapsible-table a { color: #171b22; text-decoration: none; }
+.wkd .assign-pt-view .collapsible-table tbody tr:not(.collapse-head):hover td { background: #fafbfc; }
+.wkd .assign-pt-view .collapsible-table .form-check { margin: 0; padding: 0; min-height: 0; display: flex; justify-content: center; }
+.wkd .assign-pt-view .collapsible-table .form-check-input {
+  position: static; margin: 0; width: 15px; height: 15px; accent-color: #2563eb; cursor: pointer;
+}
+.wkd .assign-pt-view .collapsible-table tr:has(.form-check-input:checked) td { background: #f7faff; }
+.wkd .assign-pt-view .collapsible-table tr:has(.form-check-input:checked) td:first-child { box-shadow: inset 2px 0 0 #2563eb; }
+.wkd .assign-pt-view .collapsible-table .ri-whatsapp-fill { font-size: 16px; }
+
+/* ---------------- audit 2026-10-16 (A3) additions ---------------- */
+/* Doc Upload loading / no-rows state (P36) */
+.wkd .wkd-docws-state { min-height: 120px; align-items: center; justify-content: center; }
+.wkd .wkd-docws-empty { font-size: 12.5px; color: #676e77; padding: 24px 0; text-align: center; }
+/* Partner (PT) sections: staged Save / Cancel after a picked file or a delete (P55) */
+.wkd .wkd-g2sec .wkd-g2-stagebar { display: flex; justify-content: flex-end; gap: 8px; max-width: 520px; margin-top: 4px; }

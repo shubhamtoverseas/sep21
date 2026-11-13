@@ -1,0 +1,13 @@
+.plus-circle-btn i {
+    border: 2px solid #666;
+    border-radius: 100%;
+}
+
+.minus-circle-btn i {
+    border: 2px solid #666;
+    border-radius: 100%;
+}
+
+.inc-span {
+    margin: 0 8px;
+}

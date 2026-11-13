@@ -1,0 +1,225 @@
+.deeplink-button button,
+.deeplink-button a{
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deeplink-button .light-btn {
+    background-color: #E5F5FE;
+}
+
+.job-detail-deeplink .skill-box {
+    background: #fff;
+    background: var(--Main-Color-White,#fff);
+    border: 1px solid #eaeaea;
+    border: 1px solid var(--Main-Color-Outline,#eaeaea);
+    border-radius: 44px;
+    box-shadow: 0 0 10px 0 #0000000f;
+    height: auto;
+    padding: 8px 15px;
+    width: max-content;
+}
+.title-desc-wrapper {
+    margin-bottom: 30px;
+}
+
+.marginbottom40 {
+margin-bottom: 40px;
+}
+
+.blue-info-badge {
+    display: flex;
+    padding: 13px 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    background: #CCEBFE;
+}
+
+.mobile-banner-deeplink {
+    width: 412px;
+}
+
+.mobile-banner-deeplink .detailRow {
+    font-family: 'Mabry Pro';
+}
+
+.mobile-banner-deeplink header {
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+    font-weight: 600;
+    padding: 17px 18px;
+    background-color: #fff;
+}
+
+.mobile-banner-deeplink .worker-profile-img {
+    width: 134px;
+    height: 134px;
+    background-size: cover;
+    display: inline-block;
+    border-radius: 100%;
+    border: 5px solid #fff;
+    box-shadow: 1px 1px 11px #cecece;
+    background-color: #fff;
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.mobile-banner-deeplink .worker-profile-img.img-compact {
+    width: 98px;
+    height: 98px;
+    border: 3px solid #fff;
+}
+
+.bg-blue {
+    background: #f0f8ff;
+}
+
+.am-interested-box {
+    border-radius: 20px;
+    padding: 50px 30px;
+}
+
+.reschedule-request-box {
+    border-radius: 20px;
+    padding: 26px 30px;
+}
+
+.mobile-body-content {
+    padding: 0 18px;
+}
+
+.mobile-footer {
+    padding: 12px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+    background: #fff;
+}
+
+.interview-question-wrapper label {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  padding: 31px 20px;
+  min-height: 150px;
+}
+
+.interview-question-wrapper label img {
+  width: 80px;
+}
+
+.interview-question-wrapper input[type="radio"]:checked+label {
+  border-width: 2px;
+  border: 2.5px solid #009AFA;
+}
+
+.interview-question-wrapper input[type="radio"]:checked+label img {
+  -webkit-filter: unset;
+  filter: unset;
+}
+
+.duty-badge {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 44px;
+    box-shadow: 0 0 10px 0 #0000000f;
+    padding: 8px 15px;
+}
+
+.no-global-style .fz10 {
+  font-size: 0.625rem !important;
+}
+
+.no-global-style .fz14 {
+  font-size: 0.875rem !important; 
+}
+
+.no-global-style .fz15 {
+  font-size: 0.9375rem !important; 
+}
+
+.no-global-style .fz16 {
+  font-size: 1rem !important; 
+}
+
+.no-global-style .fz20 {
+  font-size: 1.25rem !important; 
+}
+
+.no-global-style .fz22 {
+  font-size: 1.375rem !important; 
+}
+
+.no-global-style .fz24 {
+  font-size: 1.5rem !important; 
+}
+
+.no-global-style .fz28 {
+  font-size: 1.75rem !important; 
+}
+
+.no-global-style .mb12 {
+    margin-bottom: 12px!important;
+}
+
+.no-global-style .mb16 {
+    margin-bottom: 16px!important;
+}
+
+.no-global-style .mb20 {
+    margin-bottom: 20px!important;
+}
+
+.no-global-style .mb24 {
+    margin-bottom: 24px!important;
+}
+
+.no-global-style .mb30 {
+    margin-bottom: 30px!important;
+}
+
+.no-global-style .mb32 {
+    margin-bottom: 32px!important;
+}
+
+.no-global-style .mb40 {
+    margin-bottom: 40px!important;
+}
+
+.no-global-style .mT30 {
+    margin-top: 30px!important;
+}
+
+.no-global-style .mt10 {
+    margin-top: 10px!important;
+}
+
+.no-global-style .mt20 {
+    margin-top: 20px!important;
+}
+
+.no-global-style .m20 {
+    margin-top: 20px!important;
+}
+
+.no-global-style .m24 {
+    margin-top: 24px!important;
+}
+
+.no-global-style .pR20 {
+    padding-right: 20px!important;
+}
+
+.no-global-style .pl20 {
+    padding-left: 20px!important;
+}
+.no-global-style  .interview_datecalandar .react-datepicker__current-month {
+    background-color: #fff;
+}
+
+.no-global-style .interview_datecalandar .react-datepicker__navigation-icon::before { 
+    border-color: #444 !important;
+}

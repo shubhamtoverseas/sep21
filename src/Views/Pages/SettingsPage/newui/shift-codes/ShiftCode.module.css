@@ -1,0 +1,82 @@
+/* Shift codes (new UI) — add page row grid, duration read-out, edit modal. */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1.2fr) minmax(140px, 1fr) minmax(140px, 1fr) minmax(120px, 0.8fr) 36px;
+  align-items: start;
+  gap: 12px;
+}
+
+.rowHead {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line-2);
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.rowAction {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.rowsError {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: #b42318;
+}
+
+.addRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+/* Read-only duration "8.5 H" */
+.durationBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  background: #f6f7f9;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.durationValue {
+  font-weight: 600;
+}
+
+.durationUnit {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-4);
+}
+
+@media (max-width: 900px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .rowHead {
+    display: none;
+  }
+}

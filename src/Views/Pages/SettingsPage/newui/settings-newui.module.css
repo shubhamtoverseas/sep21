@@ -1,0 +1,489 @@
+/* ── Breadcrumb ──────────────────────────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.breadcrumb a {
+  color: var(--text-4);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--text-2);
+}
+
+.breadcrumbCurrent {
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+.breadcrumbSep {
+  color: var(--line-strong);
+}
+
+/* ── Filter bar ──────────────────────────────────────────────────────────── */
+.filtersRow.filtersRow {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+
+.clearBtn {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+
+.clearBtn:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--text-1);
+  border-color: var(--line-strong);
+}
+
+.clearBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ── Cells ───────────────────────────────────────────────────────────────── */
+.nameText {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.nameLink {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent-fg);
+  text-decoration: none;
+}
+
+.nameLink:hover {
+  text-decoration: underline;
+}
+
+.softCell {
+  font-size: 13px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.countCell {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.codeCell {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--code-fg);
+  white-space: nowrap;
+}
+
+.rowIconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--accent-fg);
+  cursor: pointer;
+}
+
+.rowIconBtn:hover:not(:disabled) {
+  background: var(--accent-bg);
+}
+
+.rowIconBtn:disabled {
+  color: var(--text-4);
+  cursor: default;
+}
+
+.rowIconBtn:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+
+/* ── Content card (forms / detail surfaces) ──────────────────────────────── */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+  padding: 18px 20px 20px;
+  font-family: var(--sans);
+}
+
+.cardHead {
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--line-1);
+}
+
+.cardHead .cardTitle {
+  margin: 0 0 4px;
+}
+
+.sectionEyebrow {
+  margin: 0 0 12px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.loadingState {
+  padding: 40px 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-3);
+}
+
+.notAuthorized {
+  padding: 24px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--st-danger);
+}
+
+/* ── Balance / result chips (leave ledger, manual update leaves) ─────────── */
+.chipCard {
+  padding: 14px 16px 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius-3);
+}
+
+.chipCard > h2 {
+  margin-bottom: 10px;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding: 0 4px 0 12px;
+  border: 1px solid var(--line-1);
+  border-radius: 999px;
+  background: var(--bg-subtle);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+}
+
+.chipLabel {
+  font-weight: 500;
+}
+
+.chipCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.chipSuccess {
+  border-color: var(--st-success-bd);
+  background: var(--st-success-bg);
+  color: var(--st-success);
+}
+
+.chipSuccess .chipCount {
+  background: var(--st-success);
+}
+
+/* ── Form page footer ────────────────────────────────────────────────────── */
+.formFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-2);
+}
+
+.formFootSpacer {
+  flex: 1;
+}
+
+/* ── Hosted legacy bootstrap popups (.modalCustom) ───────────────────────── */
+/* Wrap a legacy popup in .legacyModalHost to normalise its chrome to the new
+   UI without touching the popup's logic (e.g. SmartFillPopup). */
+.legacyModalHost :global(.modalCustom .modal-content) {
+  border: 1px solid var(--line-1);
+  border-radius: 12px !important;
+  box-shadow: 0 24px 64px rgba(16, 24, 40, 0.24);
+  font-family: var(--sans);
+}
+
+.legacyModalHost :global(.modalCustom .modal-title) {
+  font-family: var(--sans);
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--text-1) !important;
+}
+
+.legacyModalHost :global(.modalCustom .form-label),
+.legacyModalHost :global(.modalCustom label) {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #667080;
+}
+
+.legacyModalHost :global(.modalCustom .form-control),
+.legacyModalHost :global(.modalCustom select.form-control) {
+  height: 32px !important;
+  padding: 0 10px;
+  border: 1px solid #d5dbe3;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--text-1);
+  box-shadow: none;
+}
+
+.legacyModalHost :global(.modalCustom .form-control:focus) {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+.legacyModalHost :global(.modalCustom .btn) {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.legacyModalHost :global(.modalCustom .filled-btn),
+.legacyModalHost :global(.modalCustom .btn-primary) {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: var(--text-on-accent) !important;
+}
+
+.legacyModalHost :global(.modalCustom .btn-outline) {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--line-1) !important;
+  color: var(--text-1) !important;
+}
+
+.legacyModalHost :global(.modalCustom .custom-checkbox label) {
+  font-family: var(--sans);
+  font-size: 12.5px !important;
+  color: var(--text-1);
+}
+
+.legacyModalHost :global(.modalCustom .custom-checkbox label::before) {
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  border: 1.5px solid #c3cad4;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.legacyModalHost :global(.modalCustom .custom-check-input:checked + label::before) {
+  border-color: #2563eb !important;
+  background-color: #2563eb !important;
+}
+
+.legacyModalHost :global(.modalCustom .custom-checkbox input:checked + label::after) {
+  top: 50%;
+  left: 5.5px;
+  width: 4px;
+  height: 8px;
+  margin-top: -5px;
+  border-color: #fff !important;
+  border-width: 0 1.5px 1.5px 0;
+}
+
+/* ── Row action groups ───────────────────────────────────────────────────── */
+.rowActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.rowIconDanger {
+  color: var(--st-danger);
+}
+
+.rowIconDanger:hover:not(:disabled) {
+  background: var(--st-danger-bg);
+}
+
+/* ── Page-level tab strip (price list) ───────────────────────────────────── */
+.tabStrip {
+  display: flex;
+  gap: 4px;
+  margin: 0 0 16px;
+  box-shadow: inset 0 -1px 0 var(--line-1);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.tabStripItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  height: 38px;
+  padding: 0 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-3);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--dur-1), border-color var(--dur-1);
+}
+
+.tabStripItem:hover {
+  color: var(--text-1);
+}
+
+.tabStripActive {
+  color: var(--text-1);
+  border-bottom-color: var(--accent);
+}
+
+.tabStripItem:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
+/* ── Segmented control (secondary tabs inside a card) ────────────────────── */
+.segment {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+}
+
+.segmentItem {
+  height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-3);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-1), color var(--dur-1);
+}
+
+.segmentItem:hover {
+  color: var(--text-1);
+}
+
+.segmentActive {
+  background: var(--bg-surface);
+  color: var(--text-1);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
+}
+
+.segmentItem:focus-visible {
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 1px;
+}
+
+/* Card head with actions on the right */
+.cardHeadRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardHeadRow .cardTitle {
+  margin: 0;
+}
+
+.cardHeadActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Last refresh line under list titles (mirrors EmployerDashboard .lastRefresh) ── */
+.lastRefresh {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 5px;
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+.lastRefresh b {
+  color: var(--text-1);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* read-only stand-in notice (a page whose API is not connected yet) */
+.noticeBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border: 1px solid #e6d6a8;
+  border-radius: 8px;
+  background: #fdf8ec;
+  color: #7a5a15;
+  font-size: 12.5px;
+  line-height: 1.5;
+}

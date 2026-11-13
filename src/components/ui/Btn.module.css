@@ -1,0 +1,80 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-2);
+  font-size: 12.5px; /* bundle .btn */
+  font-weight: 500;
+  line-height: 1;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: var(--sans);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease), color var(--dur-2);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Variants */
+.primary {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  border-color: var(--accent);
+}
+.primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--text-on-accent);
+  text-decoration: none;
+}
+
+.secondary {
+  background: var(--bg-surface);
+  color: var(--text-1);
+  border-color: var(--line-1);
+}
+.secondary:hover {
+  background: var(--bg-hover);
+  border-color: var(--line-strong);
+  text-decoration: none;
+}
+
+.ghost {
+  background: transparent;
+  color: var(--text-2);
+  border-color: transparent;
+}
+.ghost:hover {
+  background: var(--bg-hover);
+  color: var(--text-1);
+  text-decoration: none;
+}
+
+.danger {
+  background: var(--st-danger);
+  color: #fff;
+  border-color: var(--st-danger);
+}
+.danger:hover {
+  opacity: 0.88;
+  text-decoration: none;
+  color: #fff;
+}
+
+.dangerOutline {
+  background: transparent;
+  color: var(--st-danger);
+  border-color: var(--st-danger-bd);
+}
+.dangerOutline:hover {
+  background: var(--st-danger-bg);
+  text-decoration: none;
+}

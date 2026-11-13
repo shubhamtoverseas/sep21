@@ -1,0 +1,63 @@
+/* Shared inactive-staff cue (UI Correction C3; Insurance.html .mc-staff-inactive / .mc-staff-sr / .mc-staff-tip):
+   a 16px ring with a 10px deactivated-account glyph beside the avatar; no text badge, no strikethrough, no colour-only meaning. */
+.cue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin-left: -2px;
+  border-radius: 50%;
+  color: var(--text-4, #676e77);
+  background: var(--bg-surface, #fff);
+  border: 1px solid var(--line-1, #e3e7ed);
+  box-sizing: border-box;
+  vertical-align: middle;
+  line-height: 0;
+  cursor: default;
+}
+
+.cue svg {
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+.cue[data-staff-inactive="standalone"]:focus { outline: none; }
+
+.cue[data-staff-inactive="standalone"]:focus-visible {
+  outline: 2px solid var(--accent-ring, #2f6fec);
+  outline-offset: 1px;
+}
+
+/* visually hidden but in flow (net zero width): an absolutely positioned hidden text inside a horizontally scrolling
+   table escapes to the page's containing block and widens the page */
+.sr {
+  display: inline-block !important;
+  position: static !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: 0 -1px 0 0 !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  vertical-align: top !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.tip {
+  position: fixed;
+  z-index: 1400;
+  pointer-events: none;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: var(--text-1, #131316);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
